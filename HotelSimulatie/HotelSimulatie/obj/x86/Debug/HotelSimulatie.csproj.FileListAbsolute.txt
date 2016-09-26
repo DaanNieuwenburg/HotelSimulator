@@ -1,82 +1,3 @@
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.dll
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.xml
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.View.Hoofdmenu.resources
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Hotelruimte.xnb
-C:\Users\niels\Source\Repos\ThemeHotel\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Receptie.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.View.Hoofdmenu.resources
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\3SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\4SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Trap.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Bioscoop.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects - kopie\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\3SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\4SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Trap.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Bioscoop.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.dll
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.View.Hoofdmenu.resources
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
-C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb
@@ -100,7 +21,6 @@ C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Graphics.xml
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.xml
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Input.Touch.xml
-C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.View.Hoofdmenu.resources
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache

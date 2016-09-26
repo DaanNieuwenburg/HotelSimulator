@@ -36,8 +36,8 @@
             // startBtn
             // 
             this.startBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.startBtn.Location = new System.Drawing.Point(76, 90);
-            this.startBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.startBtn.Location = new System.Drawing.Point(74, 156);
+            this.startBtn.Margin = new System.Windows.Forms.Padding(2);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(56, 19);
             this.startBtn.TabIndex = 0;
@@ -46,9 +46,10 @@
             // 
             // LogoPbx
             // 
-            this.LogoPbx.Location = new System.Drawing.Point(54, 12);
+            this.LogoPbx.Location = new System.Drawing.Point(30, 12);
             this.LogoPbx.Name = "LogoPbx";
-            this.LogoPbx.Size = new System.Drawing.Size(100, 50);
+            this.LogoPbx.Size = new System.Drawing.Size(151, 123);
+            this.LogoPbx.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LogoPbx.TabIndex = 1;
             this.LogoPbx.TabStop = false;
             // 
@@ -59,7 +60,7 @@
             this.ClientSize = new System.Drawing.Size(212, 206);
             this.Controls.Add(this.LogoPbx);
             this.Controls.Add(this.startBtn);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Hoofdmenu";
             this.Text = "Hoofdmenu";
             ((System.ComponentModel.ISupportInitialize)(this.LogoPbx)).EndInit();
@@ -70,6 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Button startBtn;
-        private System.Windows.Forms.PictureBox LogoPbx;
+        public System.Windows.Forms.PictureBox LogoPbx;
     }
 }
