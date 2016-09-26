@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb</Output>
       <Time>2016-09-23T21:18:47.611508+02:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb</Output>
       <Time>2016-09-23T21:18:55.6476941+02:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb</Output>
       <Time>2016-09-23T21:18:55.6616957+02:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\3SterHotelKamer.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\3SterHotelKamer.xnb</Output>
       <Time>2016-09-23T21:18:55.6726959+02:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\4SterHotelKamer.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\4SterHotelKamer.xnb</Output>
       <Time>2016-09-23T21:18:55.6836976+02:00</Time>
     </Item>
     <Item>
@@ -52,7 +52,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb</Output>
       <Time>2016-09-23T21:18:55.6946975+02:00</Time>
     </Item>
     <Item>
@@ -61,7 +61,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift.xnb</Output>
       <Time>2016-09-23T21:18:55.6246935+02:00</Time>
     </Item>
     <Item>
@@ -70,7 +70,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Trap.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Trap.xnb</Output>
       <Time>2016-09-23T21:18:55.6356941+02:00</Time>
     </Item>
     <Item>
@@ -79,7 +79,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Bioscoop.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Bioscoop.xnb</Output>
       <Time>2016-09-23T21:19:08.5791309+02:00</Time>
     </Item>
     <Item>
@@ -88,7 +88,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb</Output>
       <Time>2016-09-23T21:28:53.7059901+02:00</Time>
     </Item>
     <Item>
@@ -97,7 +97,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb</Output>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb</Output>
       <Time>2016-09-23T21:19:08.569131+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -107,10 +107,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatieContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\niels\Documents\Visual Studio 2015\Projects\HotelSimulatie\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatieContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

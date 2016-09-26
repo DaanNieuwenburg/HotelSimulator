@@ -9,6 +9,7 @@ namespace HotelSimulatie.Model
     public class Hotel
     {
         public HotelRuimte[,] HotelLayout { get; set; }
+        public Lobby LobbyRuimte { get; set; }
         public Hotel()
         {
             HotelLayout = new HotelRuimte[7,5];
@@ -57,6 +58,5 @@ namespace HotelSimulatie.Model
             HotelLayout[6, 3] = hotelRuimteFabriek.MaakHotelRuimte("Kamer");
             HotelLayout[6, 4] = hotelRuimteFabriek.MaakHotelRuimte("Lift");
         }
-
     }
 }
