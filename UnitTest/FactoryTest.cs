@@ -7,7 +7,7 @@ namespace UnitTest
     public class FactoryTest
     {
         [TestMethod]
-        public void Test_RuimteFactory()
+        public void Test_RuimteFactory_Return_Fitness()
         {
             // Arrange
             string  n = "Fitness";
@@ -20,9 +20,30 @@ namespace UnitTest
             Assert.AreEqual("Fitness", soort);
         }
         [TestMethod]
-        public void Test_PersoneeFactory()
+        public void Test_RuimteFactory_Return_Lift()
         {
-            // Nog te doen
+            // Arrange
+            string n = "Trap";
+            //Act
+
+            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
+            string soort = factory.MaakHotelRuimte(n).Naam;
+
+            //Assert
+            Assert.AreEqual("Lift", soort);
+        }
+        [TestMethod]
+        public void Test_RuimteFactory_Return_Kamer()
+        {
+            // Arrange
+            string n = "Lobby";
+            //Act
+
+            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
+            string soort = factory.MaakHotelRuimte(n).Naam;
+
+            //Assert
+            Assert.AreEqual("Lobby", soort);
         }
     }
 }
