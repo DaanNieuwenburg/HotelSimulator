@@ -23,7 +23,7 @@ namespace HotelSimulatie
         public void Beweeg(Vector2 waarde)
         {
             // Als de bodem van het spel wordt bereikt, stop dan de camera van verder gaan
-            if (Positie.Y < 0)
+            /*if (Positie.Y < 0)
             {
                 // Reset de Positie
                 Vector2 tempVector = Positie;
@@ -32,9 +32,9 @@ namespace HotelSimulatie
                 bodemBereikt = true;
             }
             else
-            {
+            {*/
                 Positie = waarde;
-            }
+            //}
         }
         /// Zet de matrix om naar een nieuwe positie
 
@@ -44,7 +44,7 @@ namespace HotelSimulatie
         /// <returns>Matrix</returns>
         public Matrix TransformeerMatrix(GraphicsDevice graphicsdevice)
         {
-            return Matrix.CreateTranslation(new Vector3(-Positie.X, Positie.Y, 0));
+            return Matrix.CreateTranslation(new Vector3(-Positie.X, -Positie.Y, 0));
         }
     }
 }

@@ -72,13 +72,27 @@ namespace HotelSimulatie
             if (ks.IsKeyDown(Keys.Up))
             {
                 Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y + 1;
+                nieuweVector.Y = nieuweVector.Y - 1;
                 SpelCamera.Beweeg(nieuweVector);
             }
             if (ks.IsKeyDown(Keys.Down))
             {
                 Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y - 1;
+                nieuweVector.Y = nieuweVector.Y + 1;
+                SpelCamera.Beweeg(nieuweVector);
+            }
+
+            // Voor links en rechts
+            if (ks.IsKeyDown(Keys.Left))
+            {
+                Vector2 nieuweVector = SpelCamera.Positie;
+                nieuweVector.X = nieuweVector.X - 1;
+                SpelCamera.Beweeg(nieuweVector);
+            }
+            if (ks.IsKeyDown(Keys.Right))
+            {
+                Vector2 nieuweVector = SpelCamera.Positie;
+                nieuweVector.X = nieuweVector.X + 1;
                 SpelCamera.Beweeg(nieuweVector);
             }
 
@@ -97,20 +111,6 @@ namespace HotelSimulatie
                 {
                     mouseClick = false;
                 }
-            }
-
-            // Voor links en rechts
-            if (ks.IsKeyDown(Keys.Left))
-            {
-                Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.X = nieuweVector.X - 1;
-                SpelCamera.Beweeg(nieuweVector);
-            }
-            if (ks.IsKeyDown(Keys.Right))
-            {
-                Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.X = nieuweVector.X + 1;
-                SpelCamera.Beweeg(nieuweVector);
             }
             base.Update(gameTime);
 
@@ -159,7 +159,7 @@ namespace HotelSimulatie
                     }
                     else
                     {
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte,150,90), Color.White);
                     }
                 }
                 hoogte = hoogte - 90;
