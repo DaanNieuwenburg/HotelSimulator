@@ -36,9 +36,9 @@ namespace HotelSimulatie
                 Positie = waarde;
             }
         }
+        /// Zet de matrix om naar een nieuwe positie
 
         /// <summary>
-        /// Zet de matrix om naar een nieuwe positie
         /// </summary>
         /// <param name="graphicsdevice"></param>
         /// <returns>Matrix</returns>

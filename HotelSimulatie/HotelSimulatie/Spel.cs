@@ -84,13 +84,15 @@ namespace HotelSimulatie
 
             // Kijk of muis op de lobby staat
             MouseState muisStatus = Mouse.GetState();
-            
-            if(lobby.Contains(muisStatus.X, muisStatus.Y) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
+            Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
+            muisLocatie = muisLocatie + SpelCamera.Positie;
+            if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
             {
                 mouseClick = true;
                 // Open een nieuw scherm met info over het spel
                 LobbyMenu lobbyMenu = new LobbyMenu();
                 lobbyMenu.ShowDialog();
+                Console.WriteLine(muisStatus.X + "" + muisStatus.Y);
                 if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
                 {
                     mouseClick = false;
