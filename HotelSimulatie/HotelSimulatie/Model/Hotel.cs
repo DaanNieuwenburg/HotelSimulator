@@ -10,8 +10,13 @@ namespace HotelSimulatie.Model
     {
         public HotelRuimte[,] HotelLayout { get; set; }
         public Lobby LobbyRuimte { get; set; }
+        public List<Gast> Gastenlijst { get; set; }
         public Hotel()
         {
+            Gastenlijst = new List<Gast>();
+            Addgasten();                        // tijdelijke testcode
+
+
             HotelLayout = new HotelRuimte[7,5];
             HotelRuimteFactory hotelRuimteFabriek = new HotelRuimteFactory();
 
@@ -57,6 +62,18 @@ namespace HotelSimulatie.Model
             HotelLayout[6, 2] = hotelRuimteFabriek.MaakHotelRuimte("Kamer");
             HotelLayout[6, 3] = hotelRuimteFabriek.MaakHotelRuimte("Kamer");
             HotelLayout[6, 4] = hotelRuimteFabriek.MaakHotelRuimte("Lift");
+        }
+        public void Addgasten()
+        {
+            // test gast
+            Gast gast = new Gast();
+            gast.Gastnummer = 1;
+            gast.Honger = false;
+            gast.Kamernummer = 102;
+            gast.Wacht = false;
+            gast.Positie = "Lobby";
+
+            Gastenlijst.Add(gast);
         }
     }
 }

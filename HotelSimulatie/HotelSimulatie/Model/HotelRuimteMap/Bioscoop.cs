@@ -9,6 +9,7 @@ namespace HotelSimulatie.Model
     {
         public Bioscoop()
         {
+            Naam = "Bioscoop";
             TextureCode = 10;
         }
     }

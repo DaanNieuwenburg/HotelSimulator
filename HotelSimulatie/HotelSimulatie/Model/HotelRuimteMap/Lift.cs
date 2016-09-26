@@ -9,6 +9,7 @@ namespace HotelSimulatie.Model
     {
         public Lift()
         {
+            Naam = "Lift";
             TextureCode = 6;
         }
     }

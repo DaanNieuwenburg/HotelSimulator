@@ -89,7 +89,7 @@ namespace HotelSimulatie
             {
                 mouseClick = true;
                 // Open een nieuw scherm met info over het spel
-                LobbyMenu lobbyMenu = new LobbyMenu();
+                LobbyMenu lobbyMenu = new LobbyMenu(hotel);
                 lobbyMenu.ShowDialog();
                 if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
                 {

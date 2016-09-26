@@ -9,6 +9,7 @@ namespace HotelSimulatie.Model
     {
         public Trap()
         {
+            Naam = "Trap";
             TextureCode = 7;
         }
     }

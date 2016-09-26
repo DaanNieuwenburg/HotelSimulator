@@ -9,12 +9,13 @@ namespace HotelSimulatie.Model
     {
         public Lobby()
         {
+            Naam = "Lobby";
             TextureCode = 0;
         }
 
         public void GasteInChecken()
         {
-
+            
         }
     }
 }

@@ -9,6 +9,7 @@ namespace HotelSimulatie.Model
     {
         public Eetzaal()
         {
+            Naam = "Eetzaal";
             TextureCode = 8;
         }
     }

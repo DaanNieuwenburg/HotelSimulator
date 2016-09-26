@@ -81,6 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Hotel.cs" />
+    <Compile Include="Model\HotelGastenMap\Gast.cs" />
+    <Compile Include="Model\HotelPersoneelMap\Schoonmaker.cs" />
     <Compile Include="Model\HotelRuimteMap\Bioscoop.cs" />
     <Compile Include="Model\HotelRuimteMap\Eetzaal.cs" />
     <Compile Include="Model\HotelRuimteMap\Fitness.cs" />
@@ -133,6 +135,9 @@
   <ItemGroup>
     <EmbeddedResource Include="View\Hoofdmenu.resx">
       <DependentUpon>Hoofdmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LobbyMenu.resx">
+      <DependentUpon>LobbyMenu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,7 @@ namespace HotelSimulatie.Model
 {
     public abstract class HotelRuimte
     {
+        public string Naam { get; set; }
         public int Prijs { get; set; }
         public int TextureCode { get; set; }
     }
