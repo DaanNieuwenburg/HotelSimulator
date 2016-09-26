@@ -30,31 +30,34 @@
         {
             this.tabs = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbKamerB = new System.Windows.Forms.Label();
+            this.lbBestemmingB = new System.Windows.Forms.Label();
+            this.lbPositieB = new System.Windows.Forms.Label();
+            this.lbKamerA = new System.Windows.Forms.Label();
+            this.lbBestemmingA = new System.Windows.Forms.Label();
+            this.lbPositieA = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lvGasten = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chPositie = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chKamernr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chWachten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHonger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.lbKamerA = new System.Windows.Forms.Label();
-            this.lbBestemmingA = new System.Windows.Forms.Label();
-            this.lbPositieA = new System.Windows.Forms.Label();
-            this.lbKamerB = new System.Windows.Forms.Label();
-            this.lbBestemmingB = new System.Windows.Forms.Label();
-            this.lbPositieB = new System.Windows.Forms.Label();
+            this.lbPersonenLift = new System.Windows.Forms.Label();
+            this.lbBestemmingLift = new System.Windows.Forms.Label();
+            this.lbPositieLift = new System.Windows.Forms.Label();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -97,39 +100,125 @@
             this.tabPage1.Text = "Schoonmakers";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // lbKamerB
             // 
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Location = new System.Drawing.Point(4, 24);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(420, 337);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Liften";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.lbKamerB.AutoSize = true;
+            this.lbKamerB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbKamerB.Location = new System.Drawing.Point(168, 305);
+            this.lbKamerB.Name = "lbKamerB";
+            this.lbKamerB.Size = new System.Drawing.Size(26, 16);
+            this.lbKamerB.TabIndex = 13;
+            this.lbKamerB.Text = "xxx";
             // 
-            // tabPage3
+            // lbBestemmingB
             // 
-            this.tabPage3.Controls.Add(this.lvGasten);
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(420, 337);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Gasten";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.lbBestemmingB.AutoSize = true;
+            this.lbBestemmingB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBestemmingB.Location = new System.Drawing.Point(168, 262);
+            this.lbBestemmingB.Name = "lbBestemmingB";
+            this.lbBestemmingB.Size = new System.Drawing.Size(26, 16);
+            this.lbBestemmingB.TabIndex = 12;
+            this.lbBestemmingB.Text = "xxx";
             // 
-            // label1
+            // lbPositieB
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(30, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Positie:";
+            this.lbPositieB.AutoSize = true;
+            this.lbPositieB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPositieB.Location = new System.Drawing.Point(168, 224);
+            this.lbPositieB.Name = "lbPositieB";
+            this.lbPositieB.Size = new System.Drawing.Size(26, 16);
+            this.lbPositieB.TabIndex = 11;
+            this.lbPositieB.Text = "xxx";
+            // 
+            // lbKamerA
+            // 
+            this.lbKamerA.AutoSize = true;
+            this.lbKamerA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbKamerA.Location = new System.Drawing.Point(168, 133);
+            this.lbKamerA.Name = "lbKamerA";
+            this.lbKamerA.Size = new System.Drawing.Size(26, 16);
+            this.lbKamerA.TabIndex = 10;
+            this.lbKamerA.Text = "xxx";
+            // 
+            // lbBestemmingA
+            // 
+            this.lbBestemmingA.AutoSize = true;
+            this.lbBestemmingA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBestemmingA.Location = new System.Drawing.Point(168, 90);
+            this.lbBestemmingA.Name = "lbBestemmingA";
+            this.lbBestemmingA.Size = new System.Drawing.Size(26, 16);
+            this.lbBestemmingA.TabIndex = 9;
+            this.lbBestemmingA.Text = "xxx";
+            // 
+            // lbPositieA
+            // 
+            this.lbPositieA.AutoSize = true;
+            this.lbPositieA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPositieA.Location = new System.Drawing.Point(168, 52);
+            this.lbPositieA.Name = "lbPositieA";
+            this.lbPositieA.Size = new System.Drawing.Size(26, 16);
+            this.lbPositieA.TabIndex = 8;
+            this.lbPositieA.Text = "xxx";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(30, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(117, 16);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Schoonmaker A";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(30, 191);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(117, 16);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "Schoonmaker B";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(30, 305);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 16);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "In Kamer:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(30, 262);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 16);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Bestemming:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(30, 224);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 16);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Positie:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(30, 133);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(63, 16);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "In Kamer:";
             // 
             // label2
             // 
@@ -141,15 +230,31 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Bestemming:";
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(30, 133);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "In Kamer:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(30, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 16);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Positie:";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lbPersonenLift);
+            this.tabPage2.Controls.Add(this.lbBestemmingLift);
+            this.tabPage2.Controls.Add(this.lbPositieLift);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(420, 337);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Liften";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -180,6 +285,17 @@
             this.label6.Size = new System.Drawing.Size(52, 16);
             this.label6.TabIndex = 3;
             this.label6.Text = "Positie:";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.lvGasten);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(420, 337);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Gasten";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // lvGasten
             // 
@@ -217,115 +333,35 @@
             // 
             this.chHonger.Text = "Honger";
             // 
-            // label7
+            // lbPersonenLift
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(30, 305);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 16);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "In Kamer:";
+            this.lbPersonenLift.AutoSize = true;
+            this.lbPersonenLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPersonenLift.Location = new System.Drawing.Point(169, 144);
+            this.lbPersonenLift.Name = "lbPersonenLift";
+            this.lbPersonenLift.Size = new System.Drawing.Size(26, 16);
+            this.lbPersonenLift.TabIndex = 8;
+            this.lbPersonenLift.Text = "xxx";
             // 
-            // label8
+            // lbBestemmingLift
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(30, 262);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 16);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Bestemming:";
+            this.lbBestemmingLift.AutoSize = true;
+            this.lbBestemmingLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBestemmingLift.Location = new System.Drawing.Point(169, 101);
+            this.lbBestemmingLift.Name = "lbBestemmingLift";
+            this.lbBestemmingLift.Size = new System.Drawing.Size(26, 16);
+            this.lbBestemmingLift.TabIndex = 7;
+            this.lbBestemmingLift.Text = "xxx";
             // 
-            // label9
+            // lbPositieLift
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(30, 224);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 16);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "Positie:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(30, 191);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(117, 16);
-            this.label10.TabIndex = 6;
-            this.label10.Text = "Schoonmaker B";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(30, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(117, 16);
-            this.label11.TabIndex = 7;
-            this.label11.Text = "Schoonmaker A";
-            // 
-            // lbKamerA
-            // 
-            this.lbKamerA.AutoSize = true;
-            this.lbKamerA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKamerA.Location = new System.Drawing.Point(168, 133);
-            this.lbKamerA.Name = "lbKamerA";
-            this.lbKamerA.Size = new System.Drawing.Size(26, 16);
-            this.lbKamerA.TabIndex = 10;
-            this.lbKamerA.Text = "xxx";
-            // 
-            // lbBestemmingA
-            // 
-            this.lbBestemmingA.AutoSize = true;
-            this.lbBestemmingA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBestemmingA.Location = new System.Drawing.Point(168, 90);
-            this.lbBestemmingA.Name = "lbBestemmingA";
-            this.lbBestemmingA.Size = new System.Drawing.Size(26, 16);
-            this.lbBestemmingA.TabIndex = 9;
-            this.lbBestemmingA.Text = "xxx";
-            // 
-            // lbPositieA
-            // 
-            this.lbPositieA.AutoSize = true;
-            this.lbPositieA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPositieA.Location = new System.Drawing.Point(168, 52);
-            this.lbPositieA.Name = "lbPositieA";
-            this.lbPositieA.Size = new System.Drawing.Size(26, 16);
-            this.lbPositieA.TabIndex = 8;
-            this.lbPositieA.Text = "xxx";
-            // 
-            // lbKamerB
-            // 
-            this.lbKamerB.AutoSize = true;
-            this.lbKamerB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbKamerB.Location = new System.Drawing.Point(168, 305);
-            this.lbKamerB.Name = "lbKamerB";
-            this.lbKamerB.Size = new System.Drawing.Size(26, 16);
-            this.lbKamerB.TabIndex = 13;
-            this.lbKamerB.Text = "xxx";
-            // 
-            // lbBestemmingB
-            // 
-            this.lbBestemmingB.AutoSize = true;
-            this.lbBestemmingB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBestemmingB.Location = new System.Drawing.Point(168, 262);
-            this.lbBestemmingB.Name = "lbBestemmingB";
-            this.lbBestemmingB.Size = new System.Drawing.Size(26, 16);
-            this.lbBestemmingB.TabIndex = 12;
-            this.lbBestemmingB.Text = "xxx";
-            // 
-            // lbPositieB
-            // 
-            this.lbPositieB.AutoSize = true;
-            this.lbPositieB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPositieB.Location = new System.Drawing.Point(168, 224);
-            this.lbPositieB.Name = "lbPositieB";
-            this.lbPositieB.Size = new System.Drawing.Size(26, 16);
-            this.lbPositieB.TabIndex = 11;
-            this.lbPositieB.Text = "xxx";
+            this.lbPositieLift.AutoSize = true;
+            this.lbPositieLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPositieLift.Location = new System.Drawing.Point(169, 63);
+            this.lbPositieLift.Name = "lbPositieLift";
+            this.lbPositieLift.Size = new System.Drawing.Size(26, 16);
+            this.lbPositieLift.TabIndex = 6;
+            this.lbPositieLift.Text = "xxx";
             // 
             // LobbyMenu
             // 
@@ -374,5 +410,8 @@
         private System.Windows.Forms.Label lbKamerB;
         private System.Windows.Forms.Label lbBestemmingB;
         private System.Windows.Forms.Label lbPositieB;
+        private System.Windows.Forms.Label lbPositieLift;
+        private System.Windows.Forms.Label lbBestemmingLift;
+        private System.Windows.Forms.Label lbPersonenLift;
     }
 }

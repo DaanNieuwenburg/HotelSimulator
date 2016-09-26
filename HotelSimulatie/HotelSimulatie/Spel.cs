@@ -33,8 +33,9 @@ namespace HotelSimulatie
             Window.Title = "Hotel Simulator";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            SpelCamera = new SpelCamera();
             hotel = _hotel;
+            SpelCamera = new SpelCamera(hotel.HotelLayout.GetLength(0) * 90, hotel.HotelLayout.GetLength(1) * 150);
+            
         }
 
         protected override void Initialize()
@@ -72,29 +73,14 @@ namespace HotelSimulatie
             if (ks.IsKeyDown(Keys.Up))
             {
                 Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y + 1;
+                nieuweVector.Y = nieuweVector.Y - 1;
                 SpelCamera.Beweeg(nieuweVector);
             }
             if (ks.IsKeyDown(Keys.Down))
             {
                 Vector2 nieuweVector = SpelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y - 1;
+                nieuweVector.Y = nieuweVector.Y + 1;
                 SpelCamera.Beweeg(nieuweVector);
-            }
-
-            // Kijk of muis op de lobby staat
-            MouseState muisStatus = Mouse.GetState();
-            
-            if(lobby.Contains(muisStatus.X, muisStatus.Y) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
-            {
-                mouseClick = true;
-                // Open een nieuw scherm met info over het spel
-                LobbyMenu lobbyMenu = new LobbyMenu(hotel);
-                lobbyMenu.ShowDialog();
-                if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-                {
-                    mouseClick = false;
-                }
             }
 
             // Voor links en rechts
@@ -109,6 +95,23 @@ namespace HotelSimulatie
                 Vector2 nieuweVector = SpelCamera.Positie;
                 nieuweVector.X = nieuweVector.X + 1;
                 SpelCamera.Beweeg(nieuweVector);
+            }
+
+            // Kijk of muis op de lobby staat
+            MouseState muisStatus = Mouse.GetState();
+            Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
+            muisLocatie = muisLocatie + SpelCamera.Positie;
+            if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
+            {
+                mouseClick = true;
+                // Open een nieuw scherm met info over het spel
+                LobbyMenu lobbyMenu = new LobbyMenu(hotel);
+                lobbyMenu.ShowDialog();
+                Console.WriteLine(muisStatus.X + "" + muisStatus.Y);
+                if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    mouseClick = false;
+                }
             }
             base.Update(gameTime);
 
@@ -157,7 +160,7 @@ namespace HotelSimulatie
                     }
                     else
                     {
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte,150,90), Color.White);
                     }
                 }
                 hoogte = hoogte - 90;
