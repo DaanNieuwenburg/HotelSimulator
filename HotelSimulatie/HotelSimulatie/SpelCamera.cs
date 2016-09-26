@@ -24,7 +24,7 @@ namespace HotelSimulatie
         /// Beweegt de camera in de matrix
         /// </summary>
         /// <param name="waarde">De coordinaten waar naar toe bewogen is</param>
-        public void Beweeg(Vector2 waarde)
+        public void Beweeg( Vector2 waarde)
         {
             // Als de bodem van het spel wordt bereikt, stop dan de camera van verder gaan
             if (Positie.Y > 0)

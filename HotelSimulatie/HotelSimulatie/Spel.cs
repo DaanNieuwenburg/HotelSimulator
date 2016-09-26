@@ -123,13 +123,13 @@ namespace HotelSimulatie
                 graphics.PreferredBackBufferWidth = 800;
                 graphics.ApplyChanges();
             }
-            if (keyboardState.IsKeyDown(Keys.F2))
+            else if (ks.IsKeyDown(Keys.F2))
             {
                 graphics.PreferredBackBufferHeight = 768;
                 graphics.PreferredBackBufferWidth = 1024;
                 graphics.ApplyChanges();
             }
-            if (keyboardState.IsKeyDown(Keys.F3))
+            else if (ks.IsKeyDown(Keys.F3))
             {
                 graphics.PreferredBackBufferHeight = 700;
                 graphics.PreferredBackBufferWidth = 1024;
