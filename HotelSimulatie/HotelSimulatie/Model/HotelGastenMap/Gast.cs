@@ -26,8 +26,8 @@ namespace HotelSimulatie.Model
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 vector = new Vector2(300, 678);
-            spriteBatch.Draw(Texture, vector, Color.White);
+            Vector2 vector = new Vector2(350, 20);
+            spriteBatch.Draw(Texture, new Rectangle(400,680,48,74), Color.White);
             CoordinatenInSpel = vector;
         }
     }

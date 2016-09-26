@@ -102,6 +102,7 @@ namespace HotelSimulatie
             // Kijk of muis op de lobby staat
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
+            Console.WriteLine(muisLocatie.X + " " + muisLocatie.Y);
             muisLocatie = muisLocatie + spelCamera.Positie;
             if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
             {
@@ -144,7 +145,7 @@ namespace HotelSimulatie
             int tegelBreedte = 150;
 
             Matrix matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
-            spriteBatch.Begin(SpriteSortMode.BackToFront,
+            spriteBatch.Begin(SpriteSortMode.Immediate,
                         BlendState.AlphaBlend,
                         null,
                         null,
@@ -169,7 +170,7 @@ namespace HotelSimulatie
             }
 
             // Probeer gast Rob te tonen
-
+            gastRob.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
