@@ -19,11 +19,10 @@ namespace HotelSimulatie
         private SpriteBatch spriteBatch;
         private List<Texture2D> tegelTextureLijst;
         private Hotel hotel { get; set; }
-        int tegelBreedte = 150;
-        int tegelHoogte = 90;
-        private SpelCamera SpelCamera { get; set; }
+        private SpelCamera spelCamera { get; set; }
         private Rectangle lobby { get; set; }
-        private bool mouseClick { get; set; }
+        private bool muisKlik { get; set; }
+        private Gast gastRob { get; set; }
 
         public Spel(Hotel _hotel)
         {
@@ -34,12 +33,13 @@ namespace HotelSimulatie
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             hotel = _hotel;
-            SpelCamera = new SpelCamera(hotel.HotelLayout.GetLength(0) * 90, hotel.HotelLayout.GetLength(1) * 150);
+            spelCamera = new SpelCamera(hotel.HotelLayout.GetLength(0) * 90, hotel.HotelLayout.GetLength(1) * 150);
             
         }
 
         protected override void Initialize()
         {
+            gastRob = new Gast();
             base.Initialize();
         }
 
@@ -58,6 +58,8 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
+
+            gastRob.LoadContent(Content);
         }
 
         protected override void UnloadContent()
@@ -69,53 +71,52 @@ namespace HotelSimulatie
         protected override void Update(GameTime gameTime)
         {
             // Zorgt ervoor dat de camera bediend kan worden
-            KeyboardState ks = Keyboard.GetState();
-            if (ks.IsKeyDown(Keys.Up))
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Up))
             {
-                Vector2 nieuweVector = SpelCamera.Positie;
+                Vector2 nieuweVector = spelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y - 1;
-                SpelCamera.Beweeg(nieuweVector);
+                spelCamera.Beweeg(nieuweVector);
             }
-            if (ks.IsKeyDown(Keys.Down))
+            if (keyboardState.IsKeyDown(Keys.Down))
             {
-                Vector2 nieuweVector = SpelCamera.Positie;
+                Vector2 nieuweVector = spelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y + 1;
-                SpelCamera.Beweeg(nieuweVector);
+                spelCamera.Beweeg(nieuweVector);
             }
 
             // Voor links en rechts
-            if (ks.IsKeyDown(Keys.Left))
+            if (keyboardState.IsKeyDown(Keys.Left))
             {
-                Vector2 nieuweVector = SpelCamera.Positie;
+                Vector2 nieuweVector = spelCamera.Positie;
                 nieuweVector.X = nieuweVector.X - 1;
-                SpelCamera.Beweeg(nieuweVector);
+                spelCamera.Beweeg(nieuweVector);
             }
-            if (ks.IsKeyDown(Keys.Right))
+            if (keyboardState.IsKeyDown(Keys.Right))
             {
-                Vector2 nieuweVector = SpelCamera.Positie;
+                Vector2 nieuweVector = spelCamera.Positie;
                 nieuweVector.X = nieuweVector.X + 1;
-                SpelCamera.Beweeg(nieuweVector);
+                spelCamera.Beweeg(nieuweVector);
             }
 
             // Kijk of muis op de lobby staat
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
-            muisLocatie = muisLocatie + SpelCamera.Positie;
-            if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
+            muisLocatie = muisLocatie + spelCamera.Positie;
+            if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
             {
-                mouseClick = true;
+                muisKlik = true;
                 // Open een nieuw scherm met info over het spel
                 LobbyMenu lobbyMenu = new LobbyMenu(hotel);
                 lobbyMenu.ShowDialog();
-                Console.WriteLine(muisStatus.X + "" + muisStatus.Y);
                 if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
                 {
-                    mouseClick = false;
+                    muisKlik = false;
                 }
             }
             base.Update(gameTime);
 
-            if (ks.IsKeyDown(Keys.F1))
+            if (keyboardState.IsKeyDown(Keys.F1))
             {
                 graphics.PreferredBackBufferHeight = 600;
                 graphics.PreferredBackBufferWidth = 800;
@@ -140,6 +141,7 @@ namespace HotelSimulatie
         {
             GraphicsDevice.Clear(Color.White);
             int hoogte = 678;
+            int tegelBreedte = 150;
 
             Matrix matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.BackToFront,
@@ -148,7 +150,7 @@ namespace HotelSimulatie
                         null,
                         null,
                         null,
-                        SpelCamera.TransformeerMatrix(GraphicsDevice));
+                        spelCamera.TransformeerMatrix(GraphicsDevice));
             for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
             {
                 for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
@@ -165,6 +167,9 @@ namespace HotelSimulatie
                 }
                 hoogte = hoogte - 90;
             }
+
+            // Probeer gast Rob te tonen
+
             spriteBatch.End();
             base.Draw(gameTime);
         }
