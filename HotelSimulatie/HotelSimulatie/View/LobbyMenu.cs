@@ -27,7 +27,7 @@ namespace HotelSimulatie.View
             {
                 lvGasten.Items.Add(new ListViewItem(new string[] { gast.Gastnummer.ToString(), gast.Positie, gast.Kamernummer.ToString(), gast.Wacht.ToString(), gast.Honger.ToString() }));
             }
-
+            #region
             // Ken waardes voor schoonmakers toe aan labels
             lbKamerA.Text = hotel.Schoonmaker_A.inKamer.ToString();
             lbPositieA.Text = hotel.Schoonmaker_A.Positie;
@@ -41,6 +41,7 @@ namespace HotelSimulatie.View
             lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
             lbPersonenLift.Text = hotel.lift.Aantal_Personen.ToString() ;
             lbPositieLift.Text = hotel.lift.Positie.ToString();
+            #endregion
 
         }
     }
