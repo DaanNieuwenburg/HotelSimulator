@@ -113,6 +113,25 @@ namespace HotelSimulatie
                 SpelCamera.Beweeg(nieuweVector);
             }
             base.Update(gameTime);
+
+            if (ks.IsKeyDown(Keys.F1))
+            {
+                graphics.PreferredBackBufferHeight = 600;
+                graphics.PreferredBackBufferWidth = 800;
+                graphics.ApplyChanges();
+            }
+            if (ks.IsKeyDown(Keys.F2))
+            {
+                graphics.PreferredBackBufferHeight = 768;
+                graphics.PreferredBackBufferWidth = 1024;
+                graphics.ApplyChanges();
+            }
+            if (ks.IsKeyDown(Keys.F3))
+            {
+                graphics.PreferredBackBufferHeight = 700;
+                graphics.PreferredBackBufferWidth = 1024;
+                graphics.ApplyChanges();
+            }
         }
 
 

@@ -36,7 +36,7 @@
             // startBtn
             // 
             this.startBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.startBtn.Location = new System.Drawing.Point(74, 156);
+            this.startBtn.Location = new System.Drawing.Point(77, 160);
             this.startBtn.Margin = new System.Windows.Forms.Padding(2);
             this.startBtn.Name = "startBtn";
             this.startBtn.Size = new System.Drawing.Size(56, 19);
