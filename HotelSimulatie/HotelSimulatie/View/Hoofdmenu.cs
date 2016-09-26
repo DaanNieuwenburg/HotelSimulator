@@ -15,6 +15,7 @@ namespace HotelSimulatie.View
         public Hoofdmenu()
         {
             InitializeComponent();
+            LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
         }
     }
 }

@@ -133,7 +133,7 @@
     <Folder Include="Controller\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\HoofdmenuLogo.png" />
+    <Content Include="Properties\Resources\HoofdmenuLogo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

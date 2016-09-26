@@ -79,6 +79,19 @@ namespace HotelSimulatie
                 spelcamera.Beweeg(nieuweVector);
             }
 
+            // Voor links en rechts
+            if (ks.IsKeyDown(Keys.Left))
+            {
+                Vector2 nieuweVector = spelcamera.Positie;
+                nieuweVector.X = nieuweVector.X - 1;
+                spelcamera.Beweeg(nieuweVector);
+            }
+            if (ks.IsKeyDown(Keys.Right))
+            {
+                Vector2 nieuweVector = spelcamera.Positie;
+                nieuweVector.X = nieuweVector.X + 1;
+                spelcamera.Beweeg(nieuweVector);
+            }
             base.Update(gameTime);
         }
 
