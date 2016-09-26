@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 namespace UnitTest
 {
     [TestClass]
-    public class UnitTest1
+    public class FactoryTest
     {
         [TestMethod]
         public void Test_RuimteFactory()
