@@ -9,18 +9,21 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using HotelSimulatie.Model;
+using HotelSimulatie.View;
 
 namespace HotelSimulatie
 {
     public class Spel : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        List<Texture2D> tegelTextureLijst;
-        Hotel hotel { get; set; }
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private List<Texture2D> tegelTextureLijst;
+        private Hotel hotel { get; set; }
         int tegelBreedte = 150;
         int tegelHoogte = 90;
-        private SpelCamera spelcamera { get; set; }
+        private SpelCamera SpelCamera { get; set; }
+        private Rectangle lobby { get; set; }
+        private bool mouseClick { get; set; }
 
         public Spel(Hotel _hotel)
         {
@@ -30,7 +33,7 @@ namespace HotelSimulatie
             Window.Title = "Hotel Simulator";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-            spelcamera = new SpelCamera();
+            SpelCamera = new SpelCamera();
             hotel = _hotel;
         }
 
@@ -68,29 +71,44 @@ namespace HotelSimulatie
             KeyboardState ks = Keyboard.GetState();
             if (ks.IsKeyDown(Keys.Up))
             {
-                Vector2 nieuweVector = spelcamera.Positie;
+                Vector2 nieuweVector = SpelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y + 1;
-                spelcamera.Beweeg(nieuweVector);
+                SpelCamera.Beweeg(nieuweVector);
             }
-            if(ks.IsKeyDown(Keys.Down))
+            if (ks.IsKeyDown(Keys.Down))
             {
-                Vector2 nieuweVector = spelcamera.Positie;
+                Vector2 nieuweVector = SpelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y - 1;
-                spelcamera.Beweeg(nieuweVector);
+                SpelCamera.Beweeg(nieuweVector);
+            }
+
+            // Kijk of muis op de lobby staat
+            MouseState muisStatus = Mouse.GetState();
+            
+            if(lobby.Contains(muisStatus.X, muisStatus.Y) && muisStatus.LeftButton == ButtonState.Pressed && mouseClick == false)
+            {
+                mouseClick = true;
+                // Open een nieuw scherm met info over het spel
+                LobbyMenu lobbyMenu = new LobbyMenu();
+                lobbyMenu.ShowDialog();
+                if(lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    mouseClick = false;
+                }
             }
 
             // Voor links en rechts
             if (ks.IsKeyDown(Keys.Left))
             {
-                Vector2 nieuweVector = spelcamera.Positie;
+                Vector2 nieuweVector = SpelCamera.Positie;
                 nieuweVector.X = nieuweVector.X - 1;
-                spelcamera.Beweeg(nieuweVector);
+                SpelCamera.Beweeg(nieuweVector);
             }
             if (ks.IsKeyDown(Keys.Right))
             {
-                Vector2 nieuweVector = spelcamera.Positie;
+                Vector2 nieuweVector = SpelCamera.Positie;
                 nieuweVector.X = nieuweVector.X + 1;
-                spelcamera.Beweeg(nieuweVector);
+                SpelCamera.Beweeg(nieuweVector);
             }
             base.Update(gameTime);
 
@@ -127,14 +145,21 @@ namespace HotelSimulatie
                         null,
                         null,
                         null,
-                        spelcamera.TransformeerMatrix(GraphicsDevice));
+                        SpelCamera.TransformeerMatrix(GraphicsDevice));
             for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
             {
                 for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
                 {
-                    spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Vector2(x * tegelBreedte, hoogte), Color.White);
+                    if (hotel.HotelLayout[y, x] is Lobby)
+                    {
+                        lobby = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
+                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                    }
                 }
-
                 hoogte = hoogte - 90;
             }
             spriteBatch.End();
