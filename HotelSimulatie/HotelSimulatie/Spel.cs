@@ -24,6 +24,7 @@ namespace HotelSimulatie
         private SpelCamera SpelCamera { get; set; }
         private Rectangle lobby { get; set; }
         private bool mouseClick { get; set; }
+        private Gast gastRob { get; set; }
 
         public Spel(Hotel _hotel)
         {
@@ -40,6 +41,7 @@ namespace HotelSimulatie
 
         protected override void Initialize()
         {
+            gastRob = new Gast();
             base.Initialize();
         }
 
@@ -58,6 +60,8 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
+
+            gastRob.LoadContent(Content);
         }
 
         protected override void UnloadContent()
@@ -165,6 +169,9 @@ namespace HotelSimulatie
                 }
                 hoogte = hoogte - 90;
             }
+
+            // Probeer gast Rob te tonen
+            gastRob.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
