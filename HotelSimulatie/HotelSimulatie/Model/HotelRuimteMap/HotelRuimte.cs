@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace HotelSimulatie.Model
 {
@@ -15,5 +16,6 @@ namespace HotelSimulatie.Model
         public int Capaciteit { get; set; }
 
 
+        public Vector2 CoordinatenInSpel { get; set; }
     }
 }

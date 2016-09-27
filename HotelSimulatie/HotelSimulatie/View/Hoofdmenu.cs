@@ -18,7 +18,7 @@ namespace HotelSimulatie.View
             try
             {
                 LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
-            }
+        }
             catch(System.Net.WebException ex)
             {
                 Console.WriteLine("Logo cannot be found - " + ex);
