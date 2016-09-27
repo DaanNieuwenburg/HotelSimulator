@@ -23,7 +23,7 @@ namespace HotelSimulatie
         private Rectangle lobbyR { get; set; }
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
-        private HotelRuimte lift { get; set; }
+        private HotelRuimte eersteKamer { get; set; }
         private HotelRuimte lobby { get; set; }
 
         public Spel(Hotel _hotel)
@@ -140,15 +140,15 @@ namespace HotelSimulatie
             }
 
             // Verplaatst gast over het scherm
-            if (lift != null && lobby != null)
+            if (eersteKamer != null && lobby != null)
             {
-                if (gastRob.HuidigeRuimte == lift)
+                if (gastRob.HuidigeRuimte == eersteKamer)
                 {
-                    gastRob.GaNaarRuimte(lift, lobby);
+                    gastRob.GaNaarRuimte(eersteKamer, lobby);
                 }
                 else
                 {
-                    gastRob.GaNaarRuimte(lobby, lift);
+                    gastRob.GaNaarRuimte(lobby, eersteKamer);
                 }
             }
         }
@@ -172,17 +172,22 @@ namespace HotelSimulatie
             {
                 for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
                 {
+                    // Koppelt de coordinaten aan de hotelruimte coordinaten property
+                    hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
+
                     if (hotel.HotelLayout[y, x] is Lobby)
                     {
-                        hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
+                        // -Temp code-
                         lobby = hotel.HotelLayout[y, x];  // temp
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                     }
-                    else
+                    else if (hotel.HotelLayout[y, x] is Kamer && y == 0 && x == 1)
                     {
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte,150,90), Color.White);
+                        // -Temp code-
+                        eersteKamer = hotel.HotelLayout[y, x];
                     }
+                    // Toont de hotelruimte op het bord
+                    spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                 }
                 hoogte = hoogte - 90;
             }
@@ -190,7 +195,7 @@ namespace HotelSimulatie
             // Probeer gast Rob te tonen
             if (gastRob.HuidigeRuimte != null)
             {
-            gastRob.Draw(spriteBatch);
+                gastRob.Draw(spriteBatch);
             }
             spriteBatch.End();
             base.Draw(gameTime);
