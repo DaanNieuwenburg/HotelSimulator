@@ -116,7 +116,6 @@ namespace HotelSimulatie
                     muisKlik = false;
                 }
             }
-            base.Update(gameTime);
 
             if (keyboardState.IsKeyDown(Keys.F1))
             {
@@ -140,15 +139,11 @@ namespace HotelSimulatie
             // Verplaatst gast over het scherm
             if (eersteKamer != null && hotel.LobbyRuimte != null)
             {
-                if (gastRob.HuidigeRuimte == eersteKamer)
-                {
-                    gastRob.GaNaarRuimte(eersteKamer, hotel.LobbyRuimte);
-                }
-                else
-                {
-                    gastRob.GaNaarRuimte(hotel.LobbyRuimte, eersteKamer);
-                }
+                gastRob.LoopNaarRuimte(eersteKamer, hotel.LobbyRuimte);
+                gastRob.UpdateFrame(gameTime);
             }
+
+            base.Update(gameTime);
         }
 
 

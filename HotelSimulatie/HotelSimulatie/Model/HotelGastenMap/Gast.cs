@@ -17,26 +17,28 @@ namespace HotelSimulatie.Model
         public HotelRuimte Bestemming { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Texture2D Texture { get; set; }
-
-        // Store some information about the sprite's motion.
-        Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
+        public GeanimeerdeTexture SpriteAnimatie { get; set; }
 
         public void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>("AnimatedRob");
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 4);
         }
 
-        public void GaNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
+        public void UpdateFrame(GameTime spelTijd)
+        {
+            SpriteAnimatie.UpdateFrame(spelTijd);
+        }
+
+        public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
         {
             Bestemming = bestemming;
             HuidigeRuimte = huidigeRuimte;
-            Vector2 vector = new Vector2(350, 20);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle(195, 692, 100, 37), new Rectangle(0,0,100,37),Color.White);
-            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 50, 37), Color.White);
+            SpriteAnimatie.ToonFrame(spriteBatch, HuidigeRuimte.CoordinatenInSpel);
+            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 48, 74), Color.White);
         }
     }
 }
