@@ -19,16 +19,19 @@ namespace HotelSimulatie.Model
         public HotelRuimte HuidigeRuimte { get; set; }  
         public Texture2D Texture { get; set; }
 
+        // Store some information about the sprite's motion.
+        Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
 
         public void LoadContent(ContentManager contentManager)
         {
             Texture = contentManager.Load<Texture2D>("Rob");
         }
-
+        
         public void GaNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
         {
             Bestemming = bestemming;
             HuidigeRuimte = huidigeRuimte;
+            Vector2 vector = new Vector2(350, 20);
         }
 
         public void Draw(SpriteBatch spriteBatch)

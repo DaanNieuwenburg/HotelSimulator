@@ -7,10 +7,11 @@ namespace HotelSimulatie.Model
 {
     public class Kamer : HotelRuimte
     {
+        public int AantalSterren { get; set; }
         public Kamer()
         {
             TextureCode = 1;
         }
-        public int AantalSterren { get; set; }
+        
     }
 }
