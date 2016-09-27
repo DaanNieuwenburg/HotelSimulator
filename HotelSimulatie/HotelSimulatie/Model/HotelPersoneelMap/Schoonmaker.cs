@@ -9,6 +9,6 @@ namespace HotelSimulatie.Model
     {
         public string Positie { get; set; }
         public string Bestemming { get; set; }
-        public bool inKamer { get; set; }
+        public bool InKamer { get; set; }
     }
 }

@@ -26,9 +26,14 @@ namespace HotelSimulatie.Model
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Vector2 vector = new Vector2(350, 20);
-            spriteBatch.Draw(Texture, new Rectangle(400,680,48,74), Color.White);
+            Vector2 vector = new Vector2(380, 760 - 65);
+            spriteBatch.Draw(Texture, new Rectangle((Int32)vector.X,(Int32)vector.Y, 48, 74), Color.White);
             CoordinatenInSpel = vector;
+        }
+
+        public Vector2 GaNaarRuimte(HotelRuimte ruimte)
+        {
+            
         }
     }
 }
