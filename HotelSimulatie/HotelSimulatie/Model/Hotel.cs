@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-
 namespace HotelSimulatie.Model
 {
     public class Hotel
@@ -68,6 +67,7 @@ namespace HotelSimulatie.Model
             HotelLayout[6, 2] = hotelRuimteFabriek.MaakHotelRuimte("Kamer");
             HotelLayout[6, 3] = hotelRuimteFabriek.MaakHotelRuimte("Kamer");
             HotelLayout[6, 4] = lift;
+            
         }
         public void Addgasten()
         {

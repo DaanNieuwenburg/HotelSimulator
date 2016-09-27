@@ -8,16 +8,16 @@ namespace Graph
 {
     public class Node
     {
-        public Dictionary<Node, int> Neighbours { get; set; }
-        public int Distance { get; set; }
-        public Node Previous { get; set; }
-        public string Name { get; set; }
-        public Node(string name)
+        public Dictionary<Node, int> Buren { get; set; }
+        public int Afstand { get; set; }
+        public Node Vorige { get; set; }
+        public string Naam { get; set; }
+        public Node(string naam)
         {
-            Previous = null;
-            Distance = Int32.MaxValue / 2;
-            Neighbours = new Dictionary<Node, int>();
-            Name = name;
+            Vorige = null;
+            Afstand = Int32.MaxValue / 2;
+            Buren = new Dictionary<Node, int>();
+            Naam = naam;
         }
     }
 }

@@ -140,13 +140,13 @@ namespace HotelSimulatie
             // Verplaatst gast over het scherm
             if (lift != null && lobby != null)
             {
-                if (gastRob.CoordinatenInSpel == lift.CoordinatenInSpel)
+                if (gastRob.HuidigeRuimte == lift)
                 {
-                    gastRob.GaNaarRuimte(lobby);
+                    gastRob.GaNaarRuimte(lift, lobby);
                 }
                 else
                 {
-                    gastRob.GaNaarRuimte(lift);
+                    gastRob.GaNaarRuimte(lobby, lift);
                 }
             }
             base.Update(gameTime);
@@ -173,7 +173,6 @@ namespace HotelSimulatie
                 {
                     if (hotel.HotelLayout[y, x] is Lobby)
                     {
-
                         hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
                         lobby = hotel.HotelLayout[y, x];  // temp
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
@@ -194,7 +193,10 @@ namespace HotelSimulatie
             }
 
             // Probeer gast Rob te tonen
-            gastRob.Draw(spriteBatch);
+            if (gastRob.HuidigeRuimte != null)
+            {
+                gastRob.Draw(spriteBatch);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }

@@ -17,24 +17,16 @@ namespace Graph
             VerticeList = new List<Vertice>();
         }
 
-        public Graph Convert2dArrayToGraph()
+        public Graph Convert2dArrayToGraph(Node[,] hotelLayout)
         {
-            for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
+            for (int y = 0; y < hotelLayout.GetLength(0); y++)
             {
-                for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
+                for (int x = 0; x < hotelLayout.GetLength(1); x++)
                 {
-                    if (hotel.HotelLayout[y, x] is Lobby)
-                    {
-                        lobby = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
-                    }
-                    else
-                    {
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
-                    }
+                    
                 }
-                hoogte = hoogte - 90;
             }
+            return null;
         }
     }
 }
