@@ -175,14 +175,14 @@ namespace HotelSimulatie
                     {
 
                         hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
-                        lobby = hotel.HotelLayout[y, x]; // temp
+                        lobby = hotel.HotelLayout[y, x];  // temp
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                         spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                     }
                     else
                     {
                         // Tijdelijk stukje voor bewegen naar lift
-                        if (hotel.HotelLayout[y, x] is Lift && x == 6)
+                        if (hotel.HotelLayout[y, x] is Lift)
                         {
                             lift = hotel.HotelLayout[y, x];
                         }
