@@ -10,3 +10,4 @@ Content\Bioscoop.xnb
 Content\Eetzaal.xnb
 Content\Fitness.xnb
 Content\Rob.xnb
+Content\AnimatedRob.xnb

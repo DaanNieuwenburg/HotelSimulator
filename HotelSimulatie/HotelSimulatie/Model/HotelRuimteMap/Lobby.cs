@@ -13,7 +13,7 @@ namespace HotelSimulatie.Model
             TextureCode = 0;
         }
 
-        public void GasteInChecken()
+        public void GastenInChecken()
         {
             
         }

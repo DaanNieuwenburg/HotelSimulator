@@ -30,16 +30,18 @@
         {
             this.startBtn = new System.Windows.Forms.Button();
             this.LogoPbx = new System.Windows.Forms.PictureBox();
+            this.optiesBtn = new System.Windows.Forms.Button();
+            this.quitBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPbx)).BeginInit();
             this.SuspendLayout();
             // 
             // startBtn
             // 
             this.startBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.startBtn.Location = new System.Drawing.Point(77, 160);
+            this.startBtn.Location = new System.Drawing.Point(30, 140);
             this.startBtn.Margin = new System.Windows.Forms.Padding(2);
             this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(56, 19);
+            this.startBtn.Size = new System.Drawing.Size(151, 26);
             this.startBtn.TabIndex = 0;
             this.startBtn.Text = "Start";
             this.startBtn.UseVisualStyleBackColor = true;
@@ -53,11 +55,32 @@
             this.LogoPbx.TabIndex = 1;
             this.LogoPbx.TabStop = false;
             // 
+            // optiesBtn
+            // 
+            this.optiesBtn.Location = new System.Drawing.Point(30, 171);
+            this.optiesBtn.Name = "optiesBtn";
+            this.optiesBtn.Size = new System.Drawing.Size(75, 23);
+            this.optiesBtn.TabIndex = 2;
+            this.optiesBtn.Text = "Opties";
+            this.optiesBtn.UseVisualStyleBackColor = true;
+            // 
+            // quitBtn
+            // 
+            this.quitBtn.Location = new System.Drawing.Point(106, 171);
+            this.quitBtn.Name = "quitBtn";
+            this.quitBtn.Size = new System.Drawing.Size(75, 23);
+            this.quitBtn.TabIndex = 3;
+            this.quitBtn.Text = "Afsluiten";
+            this.quitBtn.UseVisualStyleBackColor = true;
+            this.quitBtn.Click += new System.EventHandler(this.quitBtn_Click);
+            // 
             // Hoofdmenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(212, 206);
+            this.Controls.Add(this.quitBtn);
+            this.Controls.Add(this.optiesBtn);
             this.Controls.Add(this.LogoPbx);
             this.Controls.Add(this.startBtn);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -72,5 +95,7 @@
 
         private System.Windows.Forms.Button startBtn;
         public System.Windows.Forms.PictureBox LogoPbx;
+        private System.Windows.Forms.Button optiesBtn;
+        private System.Windows.Forms.Button quitBtn;
     }
 }

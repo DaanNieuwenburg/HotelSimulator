@@ -12,5 +12,8 @@ namespace HotelSimulatie.Model
         public int TextureCode { get; set; }
         public int hoogte { get; set; }
         public int breette { get; set; }
+        public int Capaciteit { get; set; }
+
+
     }
 }

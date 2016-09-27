@@ -15,7 +15,22 @@ namespace HotelSimulatie.View
         public Hoofdmenu()
         {
             InitializeComponent();
-            LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
+            try
+            {
+                LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
+            }
+            catch(System.Net.WebException ex)
+            {
+                Console.WriteLine("Logo cannot be found - " + ex);
+                LogoPbx.Image = LogoPbx.ErrorImage;
+                LogoPbx.SizeMode = PictureBoxSizeMode.Normal;
+            }
+            
+        }
+
+        private void quitBtn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
