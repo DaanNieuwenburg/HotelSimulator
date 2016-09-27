@@ -13,7 +13,7 @@ using HotelSimulatie.View;
 
 namespace HotelSimulatie
 {
-    public class Spel : Microsoft.Xna.Framework.Game
+    public class Spel : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -107,6 +107,7 @@ namespace HotelSimulatie
             if(lobby.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
             {
                 muisKlik = true;
+                
                 // Open een nieuw scherm met info over het spel
                 LobbyMenu lobbyMenu = new LobbyMenu(hotel);
                 lobbyMenu.ShowDialog();
@@ -135,6 +136,7 @@ namespace HotelSimulatie
                 graphics.PreferredBackBufferWidth = 1024;
                 graphics.ApplyChanges();
             }
+            
         }
 
 

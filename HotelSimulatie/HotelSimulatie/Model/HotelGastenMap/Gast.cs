@@ -18,6 +18,8 @@ namespace HotelSimulatie.Model
         public Vector2 CoordinatenInSpel { get; set; }  // Plaats waar de gast zich op het bord bevindt
         public Texture2D Texture { get; set; }
 
+        // Store some information about the sprite's motion.
+        Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
 
         public void LoadContent(ContentManager contentManager)
         {
@@ -30,5 +32,6 @@ namespace HotelSimulatie.Model
             spriteBatch.Draw(Texture, new Rectangle(400,680,48,74), Color.White);
             CoordinatenInSpel = vector;
         }
+        
     }
 }

@@ -11,8 +11,8 @@ namespace UnitTest
         {
             // Arrange
             string  n = "Fitness";
+            
             //Act
-
             HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
             string soort = factory.MaakHotelRuimte(n).Naam;
             
@@ -37,8 +37,8 @@ namespace UnitTest
         {
             // Arrange
             string n = "Lobby";
+            
             //Act
-
             HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
             string soort = factory.MaakHotelRuimte(n).Naam;
 
