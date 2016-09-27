@@ -73,11 +73,11 @@ namespace HotelSimulatie.Model
         {
             // test gast
             Gast gast = new Gast();
+            gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = 1;
             gast.Honger = false;
             gast.Kamernummer = 102;
             gast.Wacht = false;
-            gast.Positie = "Lobby";
 
             Gastenlijst.Add(gast);
         }

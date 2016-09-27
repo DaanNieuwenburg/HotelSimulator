@@ -24,8 +24,6 @@ namespace HotelSimulatie
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
         private HotelRuimte eersteKamer { get; set; }
-        private HotelRuimte lobby { get; set; }
-
         public Spel(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -140,15 +138,15 @@ namespace HotelSimulatie
             }
 
             // Verplaatst gast over het scherm
-            if (eersteKamer != null && lobby != null)
+            if (eersteKamer != null && hotel.LobbyRuimte != null)
             {
                 if (gastRob.HuidigeRuimte == eersteKamer)
                 {
-                    gastRob.GaNaarRuimte(eersteKamer, lobby);
+                    gastRob.GaNaarRuimte(eersteKamer, hotel.LobbyRuimte);
                 }
                 else
                 {
-                    gastRob.GaNaarRuimte(lobby, eersteKamer);
+                    gastRob.GaNaarRuimte(hotel.LobbyRuimte, eersteKamer);
                 }
             }
         }
@@ -168,6 +166,7 @@ namespace HotelSimulatie
                         null,
                         null,
                         spelCamera.TransformeerMatrix(GraphicsDevice));
+
             for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
             {
                 for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
@@ -178,7 +177,8 @@ namespace HotelSimulatie
                     if (hotel.HotelLayout[y, x] is Lobby)
                     {
                         // -Temp code-
-                        lobby = hotel.HotelLayout[y, x];  // temp
+                        hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
+                        hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
                     else if (hotel.HotelLayout[y, x] is Kamer && y == 0 && x == 1)

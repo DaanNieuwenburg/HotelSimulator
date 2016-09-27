@@ -14,9 +14,8 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int Kamernummer { get; set; }
         public bool Wacht { get; set; }
-        public string Positie { get; set; }
         public HotelRuimte Bestemming { get; set; }
-        public HotelRuimte HuidigeRuimte { get; set; }  
+        public HotelRuimte HuidigeRuimte { get; set; }
         public Texture2D Texture { get; set; }
 
         // Store some information about the sprite's motion.
@@ -24,9 +23,9 @@ namespace HotelSimulatie.Model
 
         public void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>("Rob");
+            Texture = contentManager.Load<Texture2D>("AnimatedRob");
         }
-        
+
         public void GaNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
         {
             Bestemming = bestemming;
@@ -36,7 +35,8 @@ namespace HotelSimulatie.Model
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 48, 74), Color.White);
+            spriteBatch.Draw(Texture, new Rectangle(195, 692, 100, 37), new Rectangle(0,0,100,37),Color.White);
+            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 50, 37), Color.White);
         }
     }
 }

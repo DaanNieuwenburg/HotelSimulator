@@ -80,6 +80,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GeanimeerdeTexture.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\HotelGastenMap\Gast.cs" />
     <Compile Include="Model\HotelPersoneelMap\Schoonmaker.cs" />
