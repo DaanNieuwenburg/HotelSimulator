@@ -24,16 +24,14 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>("Rob");
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void GaNaarRuimte(HotelRuimte ruimte)
         {
-            Vector2 vector = new Vector2(380, 760 - 65);
-            spriteBatch.Draw(Texture, new Rectangle((Int32)vector.X,(Int32)vector.Y, 48, 74), Color.White);
-            CoordinatenInSpel = vector;
+            CoordinatenInSpel = ruimte.CoordinatenInSpel;
         }
 
-        public Vector2 GaNaarRuimte(HotelRuimte ruimte)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            
+            spriteBatch.Draw(Texture, new Rectangle((Int32)CoordinatenInSpel.X, (Int32)CoordinatenInSpel.Y, 48, 74), Color.White);
         }
     }
 }
