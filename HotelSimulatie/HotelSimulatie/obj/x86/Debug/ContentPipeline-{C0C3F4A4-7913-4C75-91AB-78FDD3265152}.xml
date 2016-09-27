@@ -109,15 +109,6 @@
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Rob.xnb</Output>
       <Time>2016-09-26T22:45:40.4720095+02:00</Time>
     </Item>
-    <Item>
-      <Source>AnimatedRob.png</Source>
-      <Name>AnimatedRob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedRob.xnb</Output>
-      <Time>2016-09-27T11:52:14.6491742+02:00</Time>
-    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>
