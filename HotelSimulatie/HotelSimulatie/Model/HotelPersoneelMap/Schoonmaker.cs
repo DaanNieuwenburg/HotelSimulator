@@ -12,12 +12,16 @@ namespace HotelSimulatie.Model
     {
         public string Positie { get; set; }
         public bool InKamer { get; set; }
+        public string Texturenaam { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         public HotelRuimte Bestemming { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public void LoadContent(ContentManager contentManager)
         {
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedSchoonmaker", 2);
+            if (Texturenaam == "AnimatedSchoonmaker")
+                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 2);
+            else
+                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 4);
         }
 
         public void UpdateFrame(GameTime spelTijd)

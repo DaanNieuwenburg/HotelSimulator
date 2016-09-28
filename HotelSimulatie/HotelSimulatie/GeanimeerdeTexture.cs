@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -44,7 +41,7 @@ namespace HotelSimulatie
                 spriteBatch.Draw(Texture, positie, sourcerect, Color.White);
             }
 
-            if (Frame == TotaalAantalFrames)
+            if (Frame >= TotaalAantalFrames)
             {
                 Frame = 0;
             }
