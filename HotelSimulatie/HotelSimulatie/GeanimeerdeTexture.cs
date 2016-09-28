@@ -26,7 +26,7 @@ namespace HotelSimulatie
 
         public void UpdateFrame(GameTime spelTijd)
         {
-            VerstrekenTijd += (float)spelTijd.ElapsedGameTime.TotalSeconds;
+            VerstrekenTijd += (float)spelTijd.ElapsedGameTime.TotalMilliseconds;
             if(VerstrekenTijd > TijdPerFrame)
             {
                 Frame++;
