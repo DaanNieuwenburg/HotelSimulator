@@ -9,7 +9,10 @@ Content\Trap.xnb
 Content\Bioscoop.xnb
 Content\Eetzaal.xnb
 Content\Fitness.xnb
-Content\Rob.xnb
-Content\AnimatedRob.xnb
+Content\Gasten\AnimatedRob.xnb
 Content\AnimatedSchoonmaker.xnb
 Content\AnimatedTim.xnb
+Content\Gasten\AnimatedGast1.xnb
+Content\Gasten\AnimatedGast2.xnb
+Content\Gasten\AnimatedGast3.xnb
+Content\AnimatedRob.xnb
