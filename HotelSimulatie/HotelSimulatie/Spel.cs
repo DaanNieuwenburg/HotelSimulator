@@ -102,7 +102,6 @@ namespace HotelSimulatie
             // Kijk of muis op de lobby staat
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
-            Console.WriteLine(muisLocatie.X + " " + muisLocatie.Y);
             muisLocatie = muisLocatie + spelCamera.Positie;
             if (lobbyR.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
             {
