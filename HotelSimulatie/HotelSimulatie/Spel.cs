@@ -23,6 +23,7 @@ namespace HotelSimulatie
         private Rectangle lobbyR { get; set; }
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
+        private Schoonmaker schoonmaker_A { get; set; }
         private HotelRuimte eersteKamer { get; set; }
         public Spel(Hotel _hotel)
         {
@@ -40,6 +41,7 @@ namespace HotelSimulatie
         protected override void Initialize()
         {
             gastRob = new Gast();
+            schoonmaker_A = new Schoonmaker();
             base.Initialize();
         }
 
@@ -59,6 +61,7 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
 
+            schoonmaker_A.LoadContent(Content);
             gastRob.LoadContent(Content);
         }
 
@@ -140,8 +143,9 @@ namespace HotelSimulatie
             {
                 gastRob.LoopNaarRuimte(eersteKamer, hotel.LobbyRuimte);
                 gastRob.UpdateFrame(gameTime);
+                schoonmaker_A.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
+                schoonmaker_A.UpdateFrame(gameTime);
             }
-
             base.Update(gameTime);
         }
 
@@ -186,6 +190,11 @@ namespace HotelSimulatie
                 hoogte = hoogte - 90;
             }
 
+            // Toon schoonmaker
+            if(schoonmaker_A.HuidigeRuimte != null)
+            {
+                schoonmaker_A.Draw(spriteBatch);
+            }
             // Probeer gast Rob te tonen
             if (gastRob.HuidigeRuimte != null)
             {

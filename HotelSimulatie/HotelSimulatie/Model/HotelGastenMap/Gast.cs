@@ -38,7 +38,6 @@ namespace HotelSimulatie.Model
         public void Draw(SpriteBatch spriteBatch)
         {
             SpriteAnimatie.ToonFrame(spriteBatch, HuidigeRuimte.CoordinatenInSpel);
-            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 48, 74), Color.White);
         }
     }
 }
