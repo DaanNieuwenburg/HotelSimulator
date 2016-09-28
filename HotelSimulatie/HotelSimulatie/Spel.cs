@@ -29,14 +29,13 @@ namespace HotelSimulatie
         public Spel(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 768;
             Window.Title = "Hotel Simulator";
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             hotel = _hotel;
             spelCamera = new SpelCamera(hotel.HotelLayout.GetLength(0) * 90, hotel.HotelLayout.GetLength(1) * 150);
-
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
         }
 
         protected override void Initialize()
@@ -153,6 +152,7 @@ namespace HotelSimulatie
                 schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
                 schoonmaker_B.UpdateFrame(gameTime);
             }
+
             base.Update(gameTime);
         }
 
