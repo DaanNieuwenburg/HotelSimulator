@@ -34,6 +34,14 @@ namespace HotelSimulatie
                 TijdPerFrame = TijdPerFrame + VerstrekenTijd;
                 VerstrekenTijd -= TijdPerFrame;
             }
+            else
+            {
+                // Reset het aantal frames naar 0, zodat er weer vanaf 0 geteld wordt.
+                if (Frame == TotaalAantalFrames)
+                {
+                    Frame = 0;
+                }
+            }
         }
 
         public void ToonFrame(SpriteBatch spriteBatch, Vector2 positie)
@@ -42,11 +50,6 @@ namespace HotelSimulatie
             Rectangle sourcerect = new Rectangle(FrameGrootte * Frame, 0, FrameGrootte, Texture.Height);
             spriteBatch.Draw(Texture, positie, sourcerect, Color.White);
             
-            // Reset het aantal frames naar -1, zodat er weer vanaf 0 geteld wordt.
-            if (Frame == TotaalAantalFrames)
-            {
-                Frame = -1;
-            }
         }
     }
 }
