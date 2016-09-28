@@ -18,17 +18,17 @@ namespace Graph
             Start = start;
             toVisit = new List<Node>();
             Node node = start;
-            node.Distance = 0;
+            node.Afstand = 0;
             while (!visit(node, end))
             {
-                node = toVisit.Aggregate((l, r) => l.Distance < r.Distance ? l : r);
+                node = toVisit.Aggregate((l, r) => l.Afstand < r.Afstand ? l : r);
             }
             Console.WriteLine(returnShortestPath());
         }
 
         private bool visit(Node node, Node end)
         {
-            Console.WriteLine("Im visiting node: " + node.Name);
+            Console.WriteLine("Im visiting node: " + node.Naam);
 
             // If node end has been found
             if (node == end)
@@ -43,13 +43,13 @@ namespace Graph
             }
 
             // Visit neighbours
-            foreach (KeyValuePair<Node, int> neighbour in node.Neighbours)
+            foreach (KeyValuePair<Node, int> neighbour in node.Buren)
             {
-                int newDistance = node.Distance + neighbour.Value;
-                if (newDistance < neighbour.Key.Distance)
+                int newDistance = node.Afstand + neighbour.Value;
+                if (newDistance < neighbour.Key.Afstand)
                 {
-                    neighbour.Key.Distance = newDistance;
-                    neighbour.Key.Previous = node;
+                    neighbour.Key.Afstand = newDistance;
+                    neighbour.Key.Vorige = node;
                     toVisit.Add(neighbour.Key);
                 }
             }
@@ -63,10 +63,10 @@ namespace Graph
             Node node = End;
             while (node != Start)
             {
-                path = path + node.Name;
-                node = node.Previous;
+                path = path + node.Naam;
+                node = node.Vorige;
             }
-            return path + Start.Name;
+            return path + Start.Naam;
         }
     }
 }

@@ -14,35 +14,31 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int Kamernummer { get; set; }
         public bool Wacht { get; set; }
-        public string Positie { get; set; }
-        public Vector2 OudeCoordinatenInSpel { get; set; }
-        public Vector2 CoordinatenInSpel { get; set; }  // Plaats waar de gast zich op het bord bevindt
+        public HotelRuimte Bestemming { get; set; }
+        public HotelRuimte HuidigeRuimte { get; set; }
         public Texture2D Texture { get; set; }
-
-        private Texture2D AnimatedTexture;
-
-        // Store some information about the sprite's motion.
-        Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
+        public GeanimeerdeTexture SpriteAnimatie { get; set; }
 
         public void LoadContent(ContentManager contentManager)
         {
-            //Texture = contentManager.Load<Texture2D>("Rob");
-
-            AnimatedTexture = contentManager.Load<Texture2D>("AnimatedRob");
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 4);
         }
 
-        public void GaNaarRuimte(HotelRuimte ruimte)
+        public void UpdateFrame(GameTime spelTijd)
         {
-            OudeCoordinatenInSpel = CoordinatenInSpel;
-            CoordinatenInSpel = ruimte.CoordinatenInSpel;
+            SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
-        public void Draw(SpriteBatch spriteBatch, Rectangle source)
+        public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
         {
-            for (int i = 0; i < 20; i++)
-            {
-                spriteBatch.Draw(AnimatedTexture, new Rectangle((Int32)OudeCoordinatenInSpel.X - i, (Int32)CoordinatenInSpel.Y, 55, 74),source , Color.White);
-            }
+            Bestemming = bestemming;
+            HuidigeRuimte = huidigeRuimte;
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            SpriteAnimatie.ToonFrame(spriteBatch, HuidigeRuimte.CoordinatenInSpel);
+            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 48, 74), Color.White);
         }
     }
 }

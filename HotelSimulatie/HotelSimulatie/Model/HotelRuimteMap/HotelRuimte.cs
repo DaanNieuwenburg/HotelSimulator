@@ -11,11 +11,9 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         public int Prijs { get; set; }
         public int TextureCode { get; set; }
-        public int hoogte { get; set; }
-        public int breette { get; set; }
+        public int Hoogte { get; set; }
+        public int Breedte { get; set; }
         public int Capaciteit { get; set; }
-
-
         public Vector2 CoordinatenInSpel { get; set; }
     }
 }

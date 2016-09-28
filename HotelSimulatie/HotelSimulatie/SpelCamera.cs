@@ -13,9 +13,9 @@ namespace HotelSimulatie
         public bool bodemBereikt { get; set; }
         private int height { get; set; }
         private int width { get; set; }
-        public SpelCamera(int breette, int hoogte)
+        public SpelCamera(int breedte, int hoogte)
         {
-            width = breette;
+            width = breedte;
             height = hoogte;
             Positie = Vector2.Zero;
         }
@@ -54,12 +54,12 @@ namespace HotelSimulatie
                 Positie = tempVector;
             }
         }
-        /// Zet de matrix om naar een nieuwe positie
 
-                /// <summary>
-                /// </summary>
-                /// <param name="graphicsdevice"></param>
-                /// <returns>Matrix</returns>
+        /// <summary>
+        /// Zet de matrix om naar een nieuwe positie
+        /// </summary>
+        /// <param name="graphicsdevice"></param>
+        /// <returns>Matrix</returns>
         public Matrix TransformeerMatrix(GraphicsDevice graphicsdevice)
         {
             return Matrix.CreateTranslation(new Vector3(-Positie.X, -Positie.Y, 0));

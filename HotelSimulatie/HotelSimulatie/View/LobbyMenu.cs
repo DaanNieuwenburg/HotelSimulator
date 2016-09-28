@@ -25,7 +25,7 @@ namespace HotelSimulatie.View
             // voeg gasten toe aan de lijst
             foreach(Gast gast in hotel.Gastenlijst)
             {
-                lvGasten.Items.Add(new ListViewItem(new string[] { gast.Gastnummer.ToString(), gast.Positie, gast.Kamernummer.ToString(), gast.Wacht.ToString(), gast.Honger.ToString() }));
+                lvGasten.Items.Add(new ListViewItem(new string[] { gast.Gastnummer.ToString(), gast.HuidigeRuimte.Naam, gast.Kamernummer.ToString(), gast.Wacht.ToString(), gast.Honger.ToString() }));
             }
             #region
             // Ken waardes voor schoonmakers toe aan labels

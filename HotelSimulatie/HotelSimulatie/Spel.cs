@@ -21,20 +21,11 @@ namespace HotelSimulatie
         private Hotel hotel { get; set; }
         private SpelCamera spelCamera { get; set; }
         private Rectangle lobbyR { get; set; }
-        private HotelRuimte lobby { get; set; }
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
-        private HotelRuimte lift { get; set; }
-
-        // Voor animatie
-        Rectangle DestRect;
-        Rectangle SourceRect;
-        float elapsed;
-        float delay = 200f;
-        int frames = 0;
+        private HotelRuimte eersteKamer { get; set; }
         public Spel(Hotel _hotel)
         {
-
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 768;
@@ -94,7 +85,7 @@ namespace HotelSimulatie
                 spelCamera.Beweeg(nieuweVector);
             }
 
-            // Voor links en rechts                                                   
+            // Voor links en rechts
             if (keyboardState.IsKeyDown(Keys.Left))
             {
                 Vector2 nieuweVector = spelCamera.Positie;
@@ -108,12 +99,12 @@ namespace HotelSimulatie
                 spelCamera.Beweeg(nieuweVector);
             }
 
-            // Kijk of muis op de lobby staat                                         
+            // Kijk of muis op de lobby staat
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
             Console.WriteLine(muisLocatie.X + " " + muisLocatie.Y);
             muisLocatie = muisLocatie + spelCamera.Positie;
-            if (lobbyR.Contains((Int32)muisLocatie.X, (Int32)muisLocatie.Y) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
+            if (lobbyR.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
             {
                 muisKlik = true;
 
@@ -146,33 +137,12 @@ namespace HotelSimulatie
             }
 
             // Verplaatst gast over het scherm
-            if (lift != null && lobby != null)
+            if (eersteKamer != null && hotel.LobbyRuimte != null)
             {
-                if (gastRob.CoordinatenInSpel == lift.CoordinatenInSpel)
-                {
-                    gastRob.GaNaarRuimte(lobby);
-                }
-                else
-                {
-                    gastRob.GaNaarRuimte(lift);
-                }
+                gastRob.LoopNaarRuimte(eersteKamer, hotel.LobbyRuimte);
+                gastRob.UpdateFrame(gameTime);
             }
-            // Voor animatie
-            elapsed += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (elapsed >= delay)
-            {
-                if (frames >= 3)
-                {
-                    frames = 0;
-                }
-                else
-                {
-                    frames++;
-                }
-                elapsed = 0;
-            }
-            SourceRect = new Rectangle(55 * frames, 0, 55, 74);
             base.Update(gameTime);
         }
 
@@ -191,34 +161,37 @@ namespace HotelSimulatie
                         null,
                         null,
                         spelCamera.TransformeerMatrix(GraphicsDevice));
+
             for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
             {
                 for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
                 {
+                    // Koppelt de coordinaten aan de hotelruimte coordinaten property
+                    hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
+
                     if (hotel.HotelLayout[y, x] is Lobby)
                     {
-
-                        hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
-                        lobby = hotel.HotelLayout[y, x];  // temp
+                        // -Temp code-
+                        hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
+                        hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                     }
-                    else
+                    else if (hotel.HotelLayout[y, x] is Kamer && y == 0 && x == 1)
                     {
-                        // Tijdelijk stukje voor bewegen naar lift
-                        if (hotel.HotelLayout[y, x] is Lift)
-                        {
-                            lift = hotel.HotelLayout[y, x];
-                        }
-                        hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
-                        spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                        // -Temp code-
+                        eersteKamer = hotel.HotelLayout[y, x];
                     }
+                    // Toont de hotelruimte op het bord
+                    spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                 }
                 hoogte = hoogte - 90;
             }
 
             // Probeer gast Rob te tonen
-            gastRob.Draw(spriteBatch, SourceRect);
+            if (gastRob.HuidigeRuimte != null)
+            {
+                gastRob.Draw(spriteBatch);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
