@@ -15,23 +15,34 @@ namespace HotelSimulatie.Model
         public int Kamernummer { get; set; }
         public bool Wacht { get; set; }
         public string Positie { get; set; }
+        public Vector2 OudeCoordinatenInSpel { get; set; }
         public Vector2 CoordinatenInSpel { get; set; }  // Plaats waar de gast zich op het bord bevindt
         public Texture2D Texture { get; set; }
+
+        private Texture2D AnimatedTexture;
 
         // Store some information about the sprite's motion.
         Vector2 spriteSpeed = new Vector2(50.0f, 50.0f);
 
         public void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>("Rob");
+            //Texture = contentManager.Load<Texture2D>("Rob");
+
+            AnimatedTexture = contentManager.Load<Texture2D>("AnimatedRob");
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void GaNaarRuimte(HotelRuimte ruimte)
         {
-            Vector2 vector = new Vector2(350, 20);
-            spriteBatch.Draw(Texture, new Rectangle(400,680,48,74), Color.White);
-            CoordinatenInSpel = vector;
+            OudeCoordinatenInSpel = CoordinatenInSpel;
+            CoordinatenInSpel = ruimte.CoordinatenInSpel;
         }
-        
+
+        public void Draw(SpriteBatch spriteBatch, Rectangle source)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                spriteBatch.Draw(AnimatedTexture, new Rectangle((Int32)OudeCoordinatenInSpel.X - i, (Int32)CoordinatenInSpel.Y, 55, 74),source , Color.White);
+            }
+        }
     }
 }
