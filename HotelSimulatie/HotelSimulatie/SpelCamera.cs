@@ -27,11 +27,11 @@ namespace HotelSimulatie
         public void Beweeg( Vector2 waarde)
         {
             // Als de bodem van het spel wordt bereikt, stop dan de camera van verder gaan
-            if (Positie.Y > 0)
+            if (Positie.Y > 150)
             {
                 // Reset de Positie
                 Vector2 tempVector = Positie;
-                tempVector.Y = 0;
+                tempVector.Y = 150;
                 Positie = tempVector;
                 bodemBereikt = true;
             }

@@ -31,11 +31,9 @@ namespace HotelSimulatie.View
             // Ken waardes voor schoonmakers toe aan labels
             lbKamerA.Text = hotel.Schoonmaker_A.InKamer.ToString();
             lbPositieA.Text = hotel.Schoonmaker_A.Positie;
-            lbBestemmingA.Text = hotel.Schoonmaker_A.Bestemming;
 
             lbKamerB.Text = hotel.Schoonmaker_B.InKamer.ToString();
             lbPositieB.Text = hotel.Schoonmaker_B.Positie;
-            lbBestemmingB.Text = hotel.Schoonmaker_B.Bestemming;
 
             // Ken waardes toe voor de lift
             lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
