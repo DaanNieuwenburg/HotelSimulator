@@ -16,7 +16,6 @@ namespace HotelSimulatie.Model
         public bool Wacht { get; set; }
         public HotelRuimte Bestemming { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
-        public Texture2D Texture { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
 
         public void LoadContent(ContentManager contentManager)
@@ -38,7 +37,6 @@ namespace HotelSimulatie.Model
         public void Draw(SpriteBatch spriteBatch)
         {
             SpriteAnimatie.ToonFrame(spriteBatch, HuidigeRuimte.CoordinatenInSpel);
-            //spriteBatch.Draw(Texture, new Rectangle((Int32)HuidigeRuimte.CoordinatenInSpel.X + 45, (Int32)HuidigeRuimte.CoordinatenInSpel.Y + 16, 48, 74), Color.White);
         }
     }
 }
