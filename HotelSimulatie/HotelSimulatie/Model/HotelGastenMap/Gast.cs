@@ -21,7 +21,7 @@ namespace HotelSimulatie.Model
 
         public void LoadContent(ContentManager contentManager)
         {
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 4);
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);
         }
 
         public void UpdateFrame(GameTime spelTijd)
