@@ -15,6 +15,7 @@ namespace HotelSimulatie
         public float TijdPerFrame { get; set; }
         public int Frame { get; set; }
         public int TotaalAantalFrames { get; set; }
+        // commentaar
         public GeanimeerdeTexture(ContentManager contentManager, string textureNaam, int totaalAantalFrames)
         {
             Frame = 0;
