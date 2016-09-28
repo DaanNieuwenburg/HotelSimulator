@@ -18,13 +18,12 @@ namespace HotelSimulatie
             Texture = contentManager.Load<Texture2D>(textureNaam);
             TotaalAantalFrames = totaalAantalFrames;
             VerstrekenTijd = 0;
-            TijdPerFrame = 900;
+            TijdPerFrame = 200;
         }
 
         public void UpdateFrame(GameTime spelTijd)
         {
-            VerstrekenTijd += (float)spelTijd.ElapsedGameTime.TotalMilliseconds;
-            Console.WriteLine("Verstrekentijd " + VerstrekenTijd);
+            VerstrekenTijd += spelTijd.ElapsedGameTime.Milliseconds;
             if (VerstrekenTijd > TijdPerFrame)
             {
                 Frame++;
