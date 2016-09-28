@@ -91,14 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rob.png">
-      <Name>Rob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AnimatedRob.png">
+    <Compile Include="Gasten\AnimatedRob.png">
       <Name>AnimatedRob</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -114,6 +107,25 @@
   <ItemGroup>
     <Compile Include="AnimatedTim.png">
       <Name>AnimatedTim</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gasten\AnimatedGast1.png">
+      <Name>AnimatedGast1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Gasten\AnimatedGast2.png">
+      <Name>AnimatedGast2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gasten\AnimatedGast3.png">
+      <Name>AnimatedGast3</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

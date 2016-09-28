@@ -12,3 +12,4 @@ Content\Fitness.xnb
 Content\Rob.xnb
 Content\AnimatedRob.xnb
 Content\AnimatedSchoonmaker.xnb
+Content\AnimatedTim.xnb

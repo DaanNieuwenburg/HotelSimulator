@@ -17,6 +17,7 @@ namespace HotelSimulatie.Model
         public HotelRuimte Bestemming { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
+        public List<Texture2D> Texturelijst { get; set; }
 
         public void LoadContent(ContentManager contentManager)
         {
