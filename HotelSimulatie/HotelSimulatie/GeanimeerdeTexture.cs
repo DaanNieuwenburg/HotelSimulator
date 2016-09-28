@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,7 +23,7 @@ namespace HotelSimulatie
 
         public void UpdateFrame(GameTime spelTijd)
         {
-            VerstrekenTijd += spelTijd.ElapsedGameTime.Milliseconds;
+            VerstrekenTijd += (float)spelTijd.ElapsedGameTime.TotalMilliseconds;
             Console.WriteLine("Verstrekentijd " + VerstrekenTijd);
             if (VerstrekenTijd > TijdPerFrame)
             {
@@ -45,7 +42,7 @@ namespace HotelSimulatie
                 spriteBatch.Draw(Texture, positie, sourcerect, Color.White);
             }
 
-            if (Frame == TotaalAantalFrames)
+            if (Frame >= TotaalAantalFrames)
             {
                 Frame = 0;
             }

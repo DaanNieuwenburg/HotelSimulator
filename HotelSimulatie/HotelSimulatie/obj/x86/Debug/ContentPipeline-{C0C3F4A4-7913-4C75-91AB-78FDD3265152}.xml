@@ -118,6 +118,24 @@
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedRob.xnb</Output>
       <Time>2016-09-28T12:05:08.7175895+02:00</Time>
     </Item>
+    <Item>
+      <Source>AnimatedSchoonmaker.png</Source>
+      <Name>AnimatedSchoonmaker</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedSchoonmaker.xnb</Output>
+      <Time>2016-09-28T12:28:30.0724903+02:00</Time>
+    </Item>
+    <Item>
+      <Source>AnimatedTim.png</Source>
+      <Name>AnimatedTim</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedTim.xnb</Output>
+      <Time>2016-09-28T13:39:11.4358735+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>

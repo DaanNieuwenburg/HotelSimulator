@@ -24,6 +24,7 @@ namespace HotelSimulatie
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
         private Schoonmaker schoonmaker_A { get; set; }
+        private Schoonmaker schoonmaker_B { get; set; }
         private HotelRuimte eersteKamer { get; set; }
         public Spel(Hotel _hotel)
         {
@@ -42,6 +43,9 @@ namespace HotelSimulatie
         {
             gastRob = new Gast();
             schoonmaker_A = new Schoonmaker();
+            schoonmaker_A.Texturenaam = "AnimatedSchoonmaker";
+            schoonmaker_B = new Schoonmaker();
+            schoonmaker_B.Texturenaam = "AnimatedTim";
             base.Initialize();
         }
 
@@ -62,6 +66,7 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
 
             schoonmaker_A.LoadContent(Content);
+            schoonmaker_B.LoadContent(Content);
             gastRob.LoadContent(Content);
         }
 
@@ -145,6 +150,8 @@ namespace HotelSimulatie
                 gastRob.UpdateFrame(gameTime);
                 schoonmaker_A.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
                 schoonmaker_A.UpdateFrame(gameTime);
+                schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
+                schoonmaker_B.UpdateFrame(gameTime);
             }
             base.Update(gameTime);
         }
@@ -179,7 +186,7 @@ namespace HotelSimulatie
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
-                    else if (hotel.HotelLayout[y, x] is Kamer && y == 0 && x == 1)
+                    else if (hotel.HotelLayout[y, x] is Kamer && y == 1 && x == 1)
                     {
                         // -Temp code-
                         eersteKamer = hotel.HotelLayout[y, x];
@@ -194,6 +201,10 @@ namespace HotelSimulatie
             if(schoonmaker_A.HuidigeRuimte != null)
             {
                 schoonmaker_A.Draw(spriteBatch);
+            }
+            if (schoonmaker_B.HuidigeRuimte != null)
+            {
+                schoonmaker_B.Draw(spriteBatch);
             }
             // Probeer gast Rob te tonen
             if (gastRob.HuidigeRuimte != null)
