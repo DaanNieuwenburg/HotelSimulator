@@ -25,7 +25,7 @@ namespace HotelSimulatie
         private Gast gastRob { get; set; }
         private Schoonmaker schoonmaker_A { get; set; }
         private Schoonmaker schoonmaker_B { get; set; }
-        private HotelRuimte eersteKamer { get; set; }
+        private HotelRuimte eersteLift { get; set; }
         public Spel(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,7 +58,7 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("3SterHotelKamer"));  // 3
             tegelTextureLijst.Add(Content.Load<Texture2D>("4SterHotelKamer"));  // 4
             tegelTextureLijst.Add(Content.Load<Texture2D>("5SterHotelKamer"));  // 5
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Lift"));             // 6
+            tegelTextureLijst.Add(Content.Load<Texture2D>(@"Lift\Lift_Gesloten"));             // 6
             tegelTextureLijst.Add(Content.Load<Texture2D>("Trap"));             // 7
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
@@ -143,13 +143,13 @@ namespace HotelSimulatie
             }
 
             // Verplaatst gast over het scherm
-            if (eersteKamer != null && hotel.LobbyRuimte != null)
+            if (eersteLift != null && hotel.LobbyRuimte != null)
             {
-                gastRob.LoopNaarRuimte(eersteKamer, hotel.LobbyRuimte);
+                gastRob.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
                 gastRob.UpdateFrame(gameTime);
-                schoonmaker_A.LoopNaarRuimte(eersteKamer,hotel.LobbyRuimte);
+                schoonmaker_A.LoopNaarRuimte(eersteLift,hotel.LobbyRuimte);
                 schoonmaker_A.UpdateFrame(gameTime);
-                schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
+                schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteLift);
                 schoonmaker_B.UpdateFrame(gameTime);
             }
 
@@ -186,10 +186,10 @@ namespace HotelSimulatie
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
-                    else if (hotel.HotelLayout[y, x] is Kamer && y == 1 && x == 1)
+                    else if (hotel.HotelLayout[y, x] is Lift && x == 1)
                     {
                         // -Temp code-
-                        eersteKamer = hotel.HotelLayout[y, x];
+                        eersteLift = hotel.HotelLayout[y, x];
                     }
                     // Toont de hotelruimte op het bord
                     spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
