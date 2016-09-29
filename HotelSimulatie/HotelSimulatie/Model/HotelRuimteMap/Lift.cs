@@ -13,9 +13,10 @@ namespace HotelSimulatie.Model
         public int Positie { get; set; }
         public int AantalPersonen { get; set; }
         public int Verdieping { get; set; }
-        public Lift()
+        public Lift(int verdieping)
         {
             Naam = "Lift";
+            Verdieping = verdieping;
         }
         public override void LoadContent(ContentManager contentManager)
         {
@@ -23,8 +24,7 @@ namespace HotelSimulatie.Model
             if (Verdieping == 0)
                 texture = @"Lift\Lift_Beneden";
             else
-                texture = @"Lift\Gesloten";
-
+                texture = @"Lift\Lift_Gesloten";
             Texture = contentManager.Load<Texture2D>(texture);
         }
     }

@@ -7,7 +7,7 @@ namespace HotelSimulatie.Model
 {
     public class HotelRuimteFactory
     {
-        public HotelRuimte MaakHotelRuimte(string soort)
+        public HotelRuimte MaakHotelRuimte(string soort, int verdieping = 0)
         {
             if (soort == "Bioscoop")
                 return new Lobby();
@@ -16,7 +16,7 @@ namespace HotelSimulatie.Model
             else if (soort == "Fitness")
                 return new Fitness();
             else if (soort == "Lift")
-                return new Lift();
+                return new Lift(verdieping);
             else if (soort == "Lobby")
                 return new Lobby();
             else if (soort == "Trap")
