@@ -11,7 +11,7 @@ namespace HotelSimulatie.Model
     {
         public Trap()
         {
-            Naam = "Trap";
+            Naam = "Trap_gesloten";
         }
         public override void LoadContent(ContentManager contentManager)
         {
