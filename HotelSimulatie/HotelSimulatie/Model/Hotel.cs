@@ -18,6 +18,7 @@ namespace HotelSimulatie.Model
             Gastenlijst = new List<Gast>();
             Schoonmaker_A = new Schoonmaker();
             Schoonmaker_B = new Schoonmaker();
+            lift = new Lift(0);
             Addgasten();                        // tijdelijke testcode
 
 
