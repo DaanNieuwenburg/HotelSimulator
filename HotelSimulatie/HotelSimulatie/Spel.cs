@@ -50,8 +50,8 @@ namespace HotelSimulatie
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            schoonmaker_A.LoadContent(Content);
-            schoonmaker_B.LoadContent(Content);
+            //schoonmaker_A.LoadContent(Content);
+            //schoonmaker_B.LoadContent(Content);
             gastRob.LoadContent(Content);
         }
 
@@ -133,10 +133,10 @@ namespace HotelSimulatie
             {
                 gastRob.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
                 gastRob.UpdateFrame(gameTime);
-                schoonmaker_A.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
-                schoonmaker_A.UpdateFrame(gameTime);
-                schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteLift);
-                schoonmaker_B.UpdateFrame(gameTime);
+                //schoonmaker_A.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
+                //schoonmaker_A.UpdateFrame(gameTime);
+                //schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteLift);
+                //schoonmaker_B.UpdateFrame(gameTime);
             }
 
             base.Update(gameTime);
@@ -187,11 +187,11 @@ namespace HotelSimulatie
             // Toon schoonmaker
             if (schoonmaker_A.HuidigeRuimte != null)
             {
-                schoonmaker_A.Draw(spriteBatch);
+                ///schoonmaker_A.Draw(spriteBatch);
             }
             if (schoonmaker_B.HuidigeRuimte != null)
             {
-                schoonmaker_B.Draw(spriteBatch);
+                ///schoonmaker_B.Draw(spriteBatch);
             }
             // Probeer gast Rob te tonen
             if (gastRob.HuidigeRuimte != null)
