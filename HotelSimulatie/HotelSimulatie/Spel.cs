@@ -63,7 +63,6 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
-
             schoonmaker_A.LoadContent(Content);
             schoonmaker_B.LoadContent(Content);
             gastRob.LoadContent(Content);
