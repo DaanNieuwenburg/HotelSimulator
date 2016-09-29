@@ -75,10 +75,6 @@ namespace HotelSimulatie.Model
             Gast gast = new Gast();
             gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = Gastenlijst.Count + 1;
-            gast.Honger = false;
-            gast.Kamernummer = 102;
-            gast.Wacht = false;
-
             Gastenlijst.Add(gast);
         }
     }
