@@ -63,7 +63,6 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
             tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
-
             schoonmaker_A.LoadContent(Content);
             schoonmaker_B.LoadContent(Content);
             gastRob.LoadContent(Content);
@@ -186,7 +185,7 @@ namespace HotelSimulatie
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
-                    else if (hotel.HotelLayout[y, x] is Lift && x == 1)
+                    else if (hotel.HotelLayout[y, x] is Lift && y == 1)
                     {
                         // -Temp code-
                         eersteLift = hotel.HotelLayout[y, x];
