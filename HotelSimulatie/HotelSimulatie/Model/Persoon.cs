@@ -29,18 +29,17 @@ namespace HotelSimulatie.Model
             if (positie.X == 0 && positie.Y == 0)
             {
                 // Zet de positie goed en zorg ervoor dat de schoonmaker met beide benen op de grond komt te staan
-                positie = new Vector2(huidigeRuimte.CoordinatenInSpel.X, huidigeRuimte.CoordinatenInSpel.Y + 18);
+                positie = new Vector2(huidigeRuimte.CoordinatenInSpel.X, huidigeRuimte.CoordinatenInSpel.Y + 20);
             }
 
             //Als positie gelijk is aan bestemming
-            Console.WriteLine(bestemming.CoordinatenInSpel);
             if (positie.X == bestemming.CoordinatenInSpel.X)
             {
                 Console.WriteLine("AANGEKOMEN op bestemming");
             }
             else
             {
-                positie = new Vector2(positie.X + b, positie.Y);
+                positie = new Vector2(positie.X - b, positie.Y);
             }
         }
 

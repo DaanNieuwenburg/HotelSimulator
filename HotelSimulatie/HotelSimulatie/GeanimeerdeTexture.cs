@@ -45,6 +45,9 @@ namespace HotelSimulatie
             {
                 Frame = 0;
             }
+
+            Console.WriteLine("X= " + positie.X);
+            Console.WriteLine("Y= " + positie.Y);
         }
     }
 }
