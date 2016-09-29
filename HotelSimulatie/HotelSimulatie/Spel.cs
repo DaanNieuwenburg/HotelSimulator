@@ -147,7 +147,7 @@ namespace HotelSimulatie
             {
                 gastRob.LoopNaarRuimte(eersteKamer, hotel.LobbyRuimte);
                 gastRob.UpdateFrame(gameTime);
-                schoonmaker_A.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
+                schoonmaker_A.LoopNaarRuimte(eersteKamer,hotel.LobbyRuimte);
                 schoonmaker_A.UpdateFrame(gameTime);
                 schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteKamer);
                 schoonmaker_B.UpdateFrame(gameTime);

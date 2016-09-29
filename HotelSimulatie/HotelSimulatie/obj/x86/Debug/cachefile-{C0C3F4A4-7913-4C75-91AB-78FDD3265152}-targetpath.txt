@@ -16,3 +16,9 @@ Content\Gasten\AnimatedGast1.xnb
 Content\Gasten\AnimatedGast2.xnb
 Content\Gasten\AnimatedGast3.xnb
 Content\AnimatedRob.xnb
+Content\Lift\Lift_Beneden.xnb
+Content\Lift\Lift_Beneden_Open.xnb
+Content\Lift\Lift_Bovenste_Gesloten.xnb
+Content\Lift\Lift_Bovenste_Open.xnb
+Content\Lift\Lift_Gesloten.xnb
+Content\Lift\Lift_Open.xnb
