@@ -33,7 +33,8 @@ namespace HotelSimulatie.Model
             }
 
             //Als positie gelijk is aan bestemming
-            if (positie.X == bestemming.CoordinatenInSpel.X)
+            Console.WriteLine(bestemming.CoordinatenInSpel);
+            if (positie.X >= bestemming.CoordinatenInSpel.X && positie.X <= bestemming.CoordinatenInSpel.X + 6)
             {
                 Console.WriteLine("AANGEKOMEN op bestemming");
             }
