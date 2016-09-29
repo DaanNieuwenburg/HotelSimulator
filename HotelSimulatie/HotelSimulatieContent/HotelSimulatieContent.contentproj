@@ -131,8 +131,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Lift_Beneden.png">
-      <Name>Lift_Beneden</Name>
+    <Compile Include="AnimatedRob.png">
+      <Name>AnimatedRob</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
