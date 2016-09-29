@@ -17,7 +17,6 @@ namespace HotelSimulatie
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private List<Texture2D> tegelTextureLijst;
         private Hotel hotel { get; set; }
         private SpelCamera spelCamera { get; set; }
         private Rectangle lobbyR { get; set; }
@@ -51,21 +50,6 @@ namespace HotelSimulatie
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            tegelTextureLijst = new List<Texture2D>();                          // --  Nummering in 2d array
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Lobby"));            // 0
-            tegelTextureLijst.Add(Content.Load<Texture2D>("1SterHotelKamer"));  // 1
-            tegelTextureLijst.Add(Content.Load<Texture2D>("2SterHotelKamer"));  // 2
-            tegelTextureLijst.Add(Content.Load<Texture2D>("3SterHotelKamer"));  // 3
-            tegelTextureLijst.Add(Content.Load<Texture2D>("4SterHotelKamer"));  // 4
-            tegelTextureLijst.Add(Content.Load<Texture2D>("5SterHotelKamer"));  // 5
-            if (eersteLift != null)
-            {
-                eersteLift.LoadContent(Content);
-            }
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Trap"));             // 7
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
-            tegelTextureLijst.Add(Content.Load<Texture2D>("Bioscoop"));         // 10
             schoonmaker_A.LoadContent(Content);
             schoonmaker_B.LoadContent(Content);
             gastRob.LoadContent(Content);
@@ -194,7 +178,8 @@ namespace HotelSimulatie
                         eersteLift = (Lift)hotel.HotelLayout[y, x];
                     }
                     // Toont de hotelruimte op het bord
-                    spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+                    hotel.HotelLayout[y, x].LoadContent(Content);
+                    spriteBatch.Draw(hotel.HotelLayout[y, x].Texture, new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
                 }
                 hoogte = hoogte - 90;
             }
