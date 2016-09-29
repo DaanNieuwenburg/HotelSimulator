@@ -12,7 +12,7 @@ namespace HotelSimulatie.Model
     {
         public int Gastnummer { get; set; }
         public bool Honger { get; set; }
-        public int Kamernummer { get; set; }
+        public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
         public HotelRuimte Bestemming { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
@@ -20,6 +20,11 @@ namespace HotelSimulatie.Model
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         public List<Texture2D> Texturelijst { get; set; }
 
+        public Gast()
+        {
+            Honger = false;
+            Wacht = false;
+        }
         public void LoadContent(ContentManager contentManager)
         {
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);

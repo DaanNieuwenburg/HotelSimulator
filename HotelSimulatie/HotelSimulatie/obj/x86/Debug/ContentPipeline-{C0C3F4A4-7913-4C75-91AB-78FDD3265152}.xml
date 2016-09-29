@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedRob.xnb</Output>
-      <Time>2016-09-28T20:24:17.7683316+02:00</Time>
+      <Time>2016-09-29T10:10:13.9268151+02:00</Time>
     </Item>
     <Item>
       <Source>AnimatedSchoonmaker.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedSchoonmaker.xnb</Output>
-      <Time>2016-09-28T20:24:17.7603309+02:00</Time>
+      <Time>2016-09-28T12:37:43.7659909+02:00</Time>
     </Item>
     <Item>
       <Source>AnimatedTim.png</Source>
@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedTim.xnb</Output>
-      <Time>2016-09-28T20:24:17.7623311+02:00</Time>
+      <Time>2016-09-28T14:48:25.8245989+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast1.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast1.xnb</Output>
-      <Time>2016-09-28T20:24:17.7633322+02:00</Time>
+      <Time>2016-09-29T10:10:13.9268151+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast2.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast2.xnb</Output>
-      <Time>2016-09-28T20:24:17.765331+02:00</Time>
+      <Time>2016-09-29T10:10:13.9268151+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast3.png</Source>
@@ -152,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast3.xnb</Output>
-      <Time>2016-09-28T20:24:17.7663311+02:00</Time>
+      <Time>2016-09-29T10:10:13.9268151+02:00</Time>
     </Item>
     <Item>
       <Source>AnimatedRob.png</Source>
@@ -161,7 +161,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedRob.xnb</Output>
-      <Time>2016-09-28T20:31:55.2783408+02:00</Time>
+      <Time>2016-09-28T12:06:02.0700085+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -201,8 +201,8 @@
         <Value>2011-09-01T16:22:30+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2016-09-22T23:03:47.6681713+02:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-09-22T13:07:57.4101131+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
