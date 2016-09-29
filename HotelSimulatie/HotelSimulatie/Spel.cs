@@ -25,7 +25,7 @@ namespace HotelSimulatie
         private Gast gastRob { get; set; }
         private Schoonmaker schoonmaker_A { get; set; }
         private Schoonmaker schoonmaker_B { get; set; }
-        private HotelRuimte eersteLift { get; set; }
+        private Lift eersteLift { get; set; }
         public Spel(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -58,7 +58,10 @@ namespace HotelSimulatie
             tegelTextureLijst.Add(Content.Load<Texture2D>("3SterHotelKamer"));  // 3
             tegelTextureLijst.Add(Content.Load<Texture2D>("4SterHotelKamer"));  // 4
             tegelTextureLijst.Add(Content.Load<Texture2D>("5SterHotelKamer"));  // 5
-            tegelTextureLijst.Add(Content.Load<Texture2D>(@"Lift\Lift_Gesloten"));             // 6
+            if (eersteLift != null)
+            {
+                eersteLift.LoadContent(Content);
+            }
             tegelTextureLijst.Add(Content.Load<Texture2D>("Trap"));             // 7
             tegelTextureLijst.Add(Content.Load<Texture2D>("Eetzaal"));          // 8
             tegelTextureLijst.Add(Content.Load<Texture2D>("Fitness"));          // 9
@@ -146,7 +149,7 @@ namespace HotelSimulatie
             {
                 gastRob.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
                 gastRob.UpdateFrame(gameTime);
-                schoonmaker_A.LoopNaarRuimte(eersteLift,hotel.LobbyRuimte);
+                schoonmaker_A.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
                 schoonmaker_A.UpdateFrame(gameTime);
                 schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteLift);
                 schoonmaker_B.UpdateFrame(gameTime);
@@ -188,7 +191,7 @@ namespace HotelSimulatie
                     else if (hotel.HotelLayout[y, x] is Lift)
                     {
                         // -Temp code-
-                        eersteLift = hotel.HotelLayout[y, x];
+                        eersteLift = (Lift)hotel.HotelLayout[y, x];
                     }
                     // Toont de hotelruimte op het bord
                     spriteBatch.Draw(tegelTextureLijst[hotel.HotelLayout[y, x].TextureCode], new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
@@ -197,7 +200,7 @@ namespace HotelSimulatie
             }
 
             // Toon schoonmaker
-            if(schoonmaker_A.HuidigeRuimte != null)
+            if (schoonmaker_A.HuidigeRuimte != null)
             {
                 schoonmaker_A.Draw(spriteBatch);
             }
