@@ -22,3 +22,4 @@ Content\Lift\Lift_Bovenste_Gesloten.xnb
 Content\Lift\Lift_Bovenste_Open.xnb
 Content\Lift\Lift_Gesloten.xnb
 Content\Lift\Lift_Open.xnb
+Content\Trap_gesloten.xnb
