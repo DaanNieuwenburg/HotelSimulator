@@ -40,8 +40,6 @@ namespace HotelSimulatie.Model
             }
             else
             {
-                
-
                 positie = new Vector2(positie.X + b, positie.Y);
             }
         }

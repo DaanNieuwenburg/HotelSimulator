@@ -10,6 +10,7 @@ namespace HotelSimulatie.Model
         public int Bestemming { get; set; }
         public int Positie { get; set; }
         public int AantalPersonen { get; set; }
+        public int Verdieping { get; set; }
         public Lift()
         {
             Naam = "Lift";

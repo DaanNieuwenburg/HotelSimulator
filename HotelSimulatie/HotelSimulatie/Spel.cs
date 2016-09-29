@@ -186,7 +186,7 @@ namespace HotelSimulatie
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
-                    else if (hotel.HotelLayout[y, x] is Lift && x == 1)
+                    else if (hotel.HotelLayout[y, x] is Lift)
                     {
                         // -Temp code-
                         eersteLift = hotel.HotelLayout[y, x];
