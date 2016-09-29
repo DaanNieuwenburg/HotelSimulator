@@ -1,0 +1,44 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace HotelSimulatie.Model
+{
+    public class Persoon
+    {
+        public HotelRuimte Bestemming { get; set; }
+        public HotelRuimte HuidigeRuimte { get; set; }
+        private Vector2 positie { get; set; }
+        public GeanimeerdeTexture SpriteAnimatie { get; set; }
+        public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
+        {
+            Bestemming = bestemming;
+            HuidigeRuimte = huidigeRuimte;
+
+            if (positie.X == 0 && positie.Y == 0)
+            {
+                // Zet de positie goed en zorg ervoor dat de schoonmaker met beide benen op de grond komt te staan
+                positie = new Vector2(huidigeRuimte.CoordinatenInSpel.X, huidigeRuimte.CoordinatenInSpel.Y + 18);
+            }
+
+            //Als positie gelijk is aan bestemming
+            Console.WriteLine(bestemming.CoordinatenInSpel);
+            if (positie.X == bestemming.CoordinatenInSpel.X)
+            {
+                Console.WriteLine("AANGEKOMEN op bestemming");
+            }
+            else
+            {
+                positie = new Vector2(positie.X + 0.1f, positie.Y);
+            }
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            SpriteAnimatie.ToonFrame(spriteBatch, positie);
+        }
+    }
+}
