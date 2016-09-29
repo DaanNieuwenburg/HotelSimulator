@@ -13,8 +13,16 @@ namespace HotelSimulatie.Model
         public HotelRuimte HuidigeRuimte { get; set; }
         private Vector2 positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
+        private float b { get; set; }
+        public Persoon()
+        {
+            Random random = new Random();
+            int a = random.Next(1, 9);
+            b = (float)a / 10;
+        }
         public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
         {
+            
             Bestemming = bestemming;
             HuidigeRuimte = huidigeRuimte;
 
@@ -32,7 +40,9 @@ namespace HotelSimulatie.Model
             }
             else
             {
-                positie = new Vector2(positie.X + 0.1f, positie.Y);
+                
+
+                positie = new Vector2(positie.X + b, positie.Y);
             }
         }
 
