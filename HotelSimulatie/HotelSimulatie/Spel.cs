@@ -18,12 +18,11 @@ namespace HotelSimulatie
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         public Hotel hotel { get; set; }
+        public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
-        private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
-        private Schoonmaker schoonmaker_A { get; set; }
-        private Schoonmaker schoonmaker_B { get; set; }
         private Lift eersteLift { get; set; }
+
         public Spel(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -38,21 +37,18 @@ namespace HotelSimulatie
 
         protected override void Initialize()
         {
-            gastRob = new Gast();
-            schoonmaker_A = new Schoonmaker();
-            schoonmaker_A.Texturenaam = "AnimatedSchoonmaker";
-            schoonmaker_B = new Schoonmaker();
-            schoonmaker_B.Texturenaam = "AnimatedTim";
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            foreach (Gast gast in hotel.Gastenlijst)
+            {
+                gast.LoadContent(Content);
+            }
+
             Components.Add(new InputHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //schoonmaker_A.LoadContent(Content);
-            //schoonmaker_B.LoadContent(Content);
-            gastRob.LoadContent(Content);
         }
 
         protected override void UnloadContent()
@@ -63,17 +59,24 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
-            // Verplaatst gast over het scherm
-            if (eersteLift != null && hotel.LobbyRuimte != null)
+            // Zet nieuwe gasten op de spawnpoint
+            if (GastSpawnLocatie != null)
             {
-                gastRob.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
-                gastRob.UpdateFrame(gameTime);
-                //schoonmaker_A.LoopNaarRuimte(eersteLift, hotel.LobbyRuimte);
-                //schoonmaker_A.UpdateFrame(gameTime);
-                //schoonmaker_B.LoopNaarRuimte(hotel.LobbyRuimte, eersteLift);
-                //schoonmaker_B.UpdateFrame(gameTime);
-            }
+                foreach (Gast gast in hotel.Gastenlijst)
+                {
+                    Vector2 legePos = new Vector2(0, 0);
 
+                    // In dit geval is er sprake van een nieuwe gast
+                    if (gast.Positie == legePos && hotel.LobbyRuimte != null)
+                    {
+                        gast.Positie = GastSpawnLocatie;
+                        gast.Bestemming = hotel.LobbyRuimte;
+                        gast.LoopNaarRuimte(hotel.LobbyRuimte, hotel.LobbyRuimte);
+                        gast.UpdateFrame(gameTime);
+                    }
+                    gast.LoadContent(Content);
+                }
+            }
             base.Update(gameTime);
         }
 
@@ -104,14 +107,11 @@ namespace HotelSimulatie
                     {
                         // -Temp code-
                         hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
+                        GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
                         hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
-                    else if (hotel.HotelLayout[y, x] is Lift)
-                    {
-                        // -Temp code-
-                        eersteLift = (Lift)hotel.HotelLayout[y, x];
-                    }
+
                     // Toont de hotelruimte op het bord
                     hotel.HotelLayout[y, x].LoadContent(Content);
                     spriteBatch.Draw(hotel.HotelLayout[y, x].Texture, new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
@@ -119,20 +119,12 @@ namespace HotelSimulatie
                 hoogte = hoogte - 90;
             }
 
-            // Toon schoonmaker
-            if (schoonmaker_A.HuidigeRuimte != null)
+            // Toon gasten
+            foreach(Gast gast in hotel.Gastenlijst)
             {
-                ///schoonmaker_A.Draw(spriteBatch);
+                gast.Draw(spriteBatch);
             }
-            if (schoonmaker_B.HuidigeRuimte != null)
-            {
-                ///schoonmaker_B.Draw(spriteBatch);
-            }
-            // Probeer gast Rob te tonen
-            if (gastRob.HuidigeRuimte != null)
-            {
-                gastRob.Draw(spriteBatch);
-            }
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

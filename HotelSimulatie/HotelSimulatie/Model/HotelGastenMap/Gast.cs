@@ -31,7 +31,5 @@ namespace HotelSimulatie.Model
         {
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
-
-        
     }
 }

@@ -11,8 +11,11 @@ namespace HotelSimulatie.Model
     public class Lobby : HotelRuimte
     {
         public Rectangle LobbyRectangle { get; set; }
+        public Queue<Gast> Wachtrij { get; set; }
         public Lobby()
         {
+            BalieCoordinaten = new Vector2(LobbyRectangle.Left + 80, LobbyRectangle.Bottom);
+            Wachtrij = new Queue<Gast>();
             Naam = "lobby_Normaal";
             //Texture is lobby_Death als er een klant komt. Deze moet nog wel worden geimplementeerd
         }
@@ -21,9 +24,9 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(Naam);
         }
 
-        public void GastenInChecken()
+        public void GastInChecken(Gast gast)
         {
-            
+            Wachtrij.Enqueue(gast);
         }
     }
 }
