@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace HotelSimulatie.Model
 { 
     public class Lobby : HotelRuimte
     {
+        public Rectangle LobbyRectangle { get; set; }
         public Lobby()
         {
             Naam = "lobby_Normaal";

@@ -17,9 +17,8 @@ namespace HotelSimulatie
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private Hotel hotel { get; set; }
-        private SpelCamera spelCamera { get; set; }
-        private Rectangle lobbyR { get; set; }
+        public Hotel hotel { get; set; }
+        public SpelCamera spelCamera { get; set; }
         private bool muisKlik { get; set; }
         private Gast gastRob { get; set; }
         private Schoonmaker schoonmaker_A { get; set; }
@@ -49,6 +48,7 @@ namespace HotelSimulatie
 
         protected override void LoadContent()
         {
+            Components.Add(new InputHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
             //schoonmaker_A.LoadContent(Content);
             //schoonmaker_B.LoadContent(Content);
@@ -63,71 +63,6 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
-            // Zorgt ervoor dat de camera bediend kan worden
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Up))
-            {
-                Vector2 nieuweVector = spelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y - 1;
-                spelCamera.Beweeg(nieuweVector);
-            }
-            if (keyboardState.IsKeyDown(Keys.Down))
-            {
-                Vector2 nieuweVector = spelCamera.Positie;
-                nieuweVector.Y = nieuweVector.Y + 1;
-                spelCamera.Beweeg(nieuweVector);
-            }
-
-            // Voor links en rechts
-            if (keyboardState.IsKeyDown(Keys.Left))
-            {
-                Vector2 nieuweVector = spelCamera.Positie;
-                nieuweVector.X = nieuweVector.X - 1;
-                spelCamera.Beweeg(nieuweVector);
-            }
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                Vector2 nieuweVector = spelCamera.Positie;
-                nieuweVector.X = nieuweVector.X + 1;
-                spelCamera.Beweeg(nieuweVector);
-            }
-
-            // Kijk of muis op de lobby staat
-            MouseState muisStatus = Mouse.GetState();
-            Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
-            muisLocatie = muisLocatie + spelCamera.Positie;
-            if (lobbyR.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && muisKlik == false)
-            {
-                muisKlik = true;
-
-                // Open een nieuw scherm met info over het spel
-                LobbyMenu lobbyMenu = new LobbyMenu(hotel);
-                lobbyMenu.ShowDialog();
-                if (lobbyMenu.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-                {
-                    muisKlik = false;
-                }
-            }
-
-            if (keyboardState.IsKeyDown(Keys.F1))
-            {
-                graphics.PreferredBackBufferHeight = 600;
-                graphics.PreferredBackBufferWidth = 800;
-                graphics.ApplyChanges();
-            }
-            else if (keyboardState.IsKeyDown(Keys.F2))
-            {
-                graphics.PreferredBackBufferHeight = 768;
-                graphics.PreferredBackBufferWidth = 1024;
-                graphics.ApplyChanges();
-            }
-            else if (keyboardState.IsKeyDown(Keys.F3))
-            {
-                graphics.PreferredBackBufferHeight = 700;
-                graphics.PreferredBackBufferWidth = 1024;
-                graphics.ApplyChanges();
-            }
-
             // Verplaatst gast over het scherm
             if (eersteLift != null && hotel.LobbyRuimte != null)
             {
@@ -170,7 +105,7 @@ namespace HotelSimulatie
                         // -Temp code-
                         hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
                         hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
-                        lobbyR = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
+                        hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                     }
                     else if (hotel.HotelLayout[y, x] is Lift)
                     {
