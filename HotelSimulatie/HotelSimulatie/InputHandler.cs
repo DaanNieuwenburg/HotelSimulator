@@ -11,6 +11,7 @@ namespace HotelSimulatie
 {
     public class InputHandler : Microsoft.Xna.Framework.GameComponent
     {
+        public GraphicsDeviceManager graphics { get; set; }
         private SpelCamera spelCamera { get; set; }
         private Hotel hotel { get; set; }
         private KeyboardState keyboardStatus { get; set; }
@@ -20,6 +21,7 @@ namespace HotelSimulatie
             Spel spel = (Spel)game;
             spelCamera = spel.spelCamera;
             hotel = spel.hotel;
+            graphics = spel.graphics;
         }
 
 
@@ -28,6 +30,7 @@ namespace HotelSimulatie
             keyboardStatus = Keyboard.GetState();
             cameraInput();
             lobbyInput();
+            resolutieInput();
             base.Update(gameTime);
         }
 
@@ -88,27 +91,24 @@ namespace HotelSimulatie
 
         private void resolutieInput()
         {
-            /* 
-            -- Is dit nog nodig?
-            if (keyboardState.IsKeyDown(Keys.F1))
+            if (keyboardStatus.IsKeyDown(Keys.F1))
             {
                 graphics.PreferredBackBufferHeight = 600;
                 graphics.PreferredBackBufferWidth = 800;
                 graphics.ApplyChanges();
             }
-            else if (keyboardState.IsKeyDown(Keys.F2))
+            else if (keyboardStatus.IsKeyDown(Keys.F2))
             {
                 graphics.PreferredBackBufferHeight = 768;
                 graphics.PreferredBackBufferWidth = 1024;
                 graphics.ApplyChanges();
             }
-            else if (keyboardState.IsKeyDown(Keys.F3))
+            else if (keyboardStatus.IsKeyDown(Keys.F3))
             {
                 graphics.PreferredBackBufferHeight = 700;
                 graphics.PreferredBackBufferWidth = 1024;
                 graphics.ApplyChanges();
             }
-            */
         }
     }
 }

@@ -15,7 +15,7 @@ namespace HotelSimulatie
 {
     public class Spel : Game
     {
-        private GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics { get; set; }
         private SpriteBatch spriteBatch;
         public Hotel hotel { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
