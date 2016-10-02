@@ -23,10 +23,10 @@ namespace Graph
             {
                 for (int x = 0; x < hotelLayout.GetLength(1); x++)
                 {
-                    
+                    hotelLayout.
                 }
             }
-            return null;
+            return this;
         }
     }
 }
