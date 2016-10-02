@@ -29,17 +29,21 @@ namespace HotelSimulatie.Model
         public HotelRuimte GastInChecken(Gast gast, GameTime gameTime, Lift tempTestLift)
         {
             verlopenTijd += gameTime.ElapsedGameTime.Milliseconds;
-            if (verlopenTijd > 2000)
+            if (verlopenTijd > 4000)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
                 gastAanDeBeurt.Kamernummer = 1; // temp dit moet dynamisch
                 gastAanDeBeurt.Bestemming = tempTestLift;
                 gastAanDeBeurt.BestemmingBereikt = false;
+                verlopenTijd = 0;
                 return tempTestLift;
             }
             else
             {
-                Wachtrij.Enqueue(gast);
+                if(!Wachtrij.Contains(gast))
+                {
+                    Wachtrij.Enqueue(gast);
+                }
             }
             return null;
         }
