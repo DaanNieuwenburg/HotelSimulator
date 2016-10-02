@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
+        public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
@@ -20,6 +21,7 @@ namespace HotelSimulatie.Model
             Random random = new Random();
             int a = random.Next(1, 9);
             loopSnelheid = (float)a / 10;
+            BestemmingBereikt = false;
         }
 
         public void LoadContent(ContentManager contentManager)
@@ -27,18 +29,25 @@ namespace HotelSimulatie.Model
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);
         }
 
-        public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
+        public bool LoopNaarRuimte(HotelRuimte bestemming)
         {
             Bestemming = bestemming;
-            HuidigeRuimte = huidigeRuimte;
-
-            if(Positie.X > bestemming.EventCoordinaten.X)
+            int x = Convert.ToInt32(Positie.X);
+            if (x != bestemming.EventCoordinaten.X)
             {
-                Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
+                if (Positie.X > bestemming.EventCoordinaten.X)
+                {
+                    Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
+                }
+                else
+                {
+                    Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+                }
+                return false;
             }
             else
             {
-                Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+                return true;
             }
         }
 

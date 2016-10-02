@@ -22,5 +22,18 @@ namespace HotelSimulatie.Model
             Honger = false;
             Wacht = false;
         }
+
+        public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)
+        {
+            BestemmingBereikt = LoopNaarRuimte(lobby);
+            if(BestemmingBereikt == true)
+            {
+                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestLift);
+                if(kamer != null)
+                {
+                    LoopNaarRuimte(kamer);
+                }
+            }
+        }
     }
 }

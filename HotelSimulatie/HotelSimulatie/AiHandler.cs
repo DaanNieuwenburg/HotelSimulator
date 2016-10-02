@@ -40,20 +40,40 @@ namespace HotelSimulatie
         {
             foreach (Gast gast in hotel.Gastenlijst)
             {
-                // Spawn nieuwe gast als hij nog niet bestaat, ga dan inchecken
+                // Maak nieuwe gast indien nodig
                 if (gast.SpriteAnimatie == null && hotel.LobbyRuimte != null)
                 {
-                    Vector2 legeVector = new Vector2(0, 0);
-                    if (gast.Positie == legeVector)
-                    {
-                        gast.Positie = spell.GastSpawnLocatie;
-                    }
-                    gast.LoadContent(Content);
-                    gast.LoopNaarRuimte(hotel.LobbyRuimte, hotel.LobbyRuimte);
+                    MaakNieuweGast(gast);
+                }
+                // Inchecken
+                else if(gast.Kamernummer == null)
+                {
+                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteLift);
+                }
+                // Loop naar een ruimte
+                else if(gast.BestemmingBereikt == false)
+                {
+                    gast.LoopNaarRuimte(gast.Bestemming);
                 }
                 gast.UpdateFrame(gameTime);
             }
         }
+
+        private void MaakNieuweGast(Gast gast)
+        {
+            // Spawn nieuwe gast als hij nog niet bestaat
+            if (gast.SpriteAnimatie == null && hotel.LobbyRuimte != null)
+            {
+                Vector2 legeVector = new Vector2(0, 0);
+                if (gast.Positie == legeVector)
+                {
+                    gast.Positie = spell.GastSpawnLocatie;
+                    gast.HuidigeRuimte = hotel.LobbyRuimte;
+                }
+                gast.LoadContent(Content);
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);

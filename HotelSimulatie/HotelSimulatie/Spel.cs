@@ -20,7 +20,7 @@ namespace HotelSimulatie
         public Hotel hotel { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
-        private Lift eersteLift { get; set; }
+        public Lift EersteLift { get; set; }
 
         public Spel(Hotel _hotel)
         {
@@ -87,6 +87,11 @@ namespace HotelSimulatie
                         hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
                         GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                         hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 50, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
+                    }
+                    else if (hotel.HotelLayout[y, x] is Lift && y == 0)
+                    {
+                        EersteLift = (Lift)hotel.HotelLayout[y, x];
+                        EersteLift.EventCoordinaten = new Vector2(EersteLift.CoordinatenInSpel.X, EersteLift.CoordinatenInSpel.Y);
                     }
                 }
                 hoogte = hoogte - 90;
