@@ -16,11 +16,10 @@ namespace HotelSimulatie
     public class Spel : Game
     {
         public GraphicsDeviceManager graphics { get; set; }
-        private SpriteBatch spriteBatch;
+        private SpriteBatch spriteBatch { get; set; }
         public Hotel hotel { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
-        private Gast gastRob { get; set; }
         private Lift eersteLift { get; set; }
 
         public Spel(Hotel _hotel)
@@ -42,12 +41,9 @@ namespace HotelSimulatie
 
         protected override void LoadContent()
         {
-            foreach (Gast gast in hotel.Gastenlijst)
-            {
-                gast.LoadContent(Content);
-            }
-
+            // Laad de inputhandler
             Components.Add(new InputHandler(this));
+            Components.Add(new AiHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
@@ -59,24 +55,6 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
-            // Zet nieuwe gasten op de spawnpoint
-            if (GastSpawnLocatie != null)
-            {
-                foreach (Gast gast in hotel.Gastenlijst)
-                {
-                    Vector2 legePos = new Vector2(0, 0);
-
-                    // In dit geval is er sprake van een nieuwe gast
-                    if (gast.Positie == legePos && hotel.LobbyRuimte != null)
-                    {
-                        gast.Positie = GastSpawnLocatie;
-                        gast.Bestemming = hotel.LobbyRuimte;
-                        gast.LoopNaarRuimte(hotel.LobbyRuimte, hotel.LobbyRuimte);
-                        gast.UpdateFrame(gameTime);
-                    }
-                    gast.LoadContent(Content);
-                }
-            }
             base.Update(gameTime);
         }
 
@@ -88,13 +66,7 @@ namespace HotelSimulatie
             int tegelBreedte = 150;
 
             Matrix matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
-            spriteBatch.Begin(SpriteSortMode.Immediate,
-                        BlendState.AlphaBlend,
-                        null,
-                        null,
-                        null,
-                        null,
-                        spelCamera.TransformeerMatrix(GraphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
 
             for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
             {
@@ -103,29 +75,25 @@ namespace HotelSimulatie
                     // Koppelt de coordinaten aan de hotelruimte coordinaten property
                     hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
 
-                    if (hotel.HotelLayout[y, x] is Lobby)
-                    {
-                        // -Temp code-
-                        hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
-                        GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
-                        hotel.Gastenlijst[0].HuidigeRuimte = hotel.LobbyRuimte;
-                        hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
-                    }
-
                     // Toont de hotelruimte op het bord
                     hotel.HotelLayout[y, x].LoadContent(Content);
                     spriteBatch.Draw(hotel.HotelLayout[y, x].Texture, new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
+
+                    // In het geval van een lobby, bind hem dan aan spel.Lobby
+                    if (hotel.HotelLayout[y, x] is Lobby)
+                    {
+                        hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
+
+                        hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
+                        GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
+                        hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 50, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
+                    }
                 }
                 hoogte = hoogte - 90;
             }
 
-            // Toon gasten
-            foreach(Gast gast in hotel.Gastenlijst)
-            {
-                gast.Draw(spriteBatch);
-            }
-
             spriteBatch.End();
+            Console.WriteLine(GastSpawnLocatie);
             base.Draw(gameTime);
         }
     }

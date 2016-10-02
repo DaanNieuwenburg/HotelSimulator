@@ -83,6 +83,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AiHandler.cs" />
     <Compile Include="GeanimeerdeTexture.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Model\Hotel.cs" />
