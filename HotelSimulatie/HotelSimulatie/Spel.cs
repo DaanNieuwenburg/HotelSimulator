@@ -89,7 +89,7 @@ namespace HotelSimulatie
                 }
                 if(hotelRuimte is Trap)
                 {
-                    hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 50, hotelRuimte.CoordinatenInSpel.Y);
+                    hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 53, hotelRuimte.CoordinatenInSpel.Y);
                 }
 
                 if (hotelRuimte is Kamer && y == 408 && x == 3)

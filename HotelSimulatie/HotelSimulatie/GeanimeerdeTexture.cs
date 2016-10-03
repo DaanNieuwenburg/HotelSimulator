@@ -29,7 +29,6 @@ namespace HotelSimulatie
                 Frame++;
                 VerstrekenTijd = 0;
             }
-
         }
 
         public void ToonFrame(SpriteBatch spriteBatch, Vector2 positie)
