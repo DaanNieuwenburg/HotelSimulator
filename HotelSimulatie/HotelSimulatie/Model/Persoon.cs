@@ -92,6 +92,7 @@ namespace HotelSimulatie.Model
                 else
                 {
                     LooptnaarLinks = false;
+                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
                     Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
                 }
                 return false;
