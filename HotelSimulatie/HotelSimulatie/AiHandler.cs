@@ -76,8 +76,9 @@ namespace HotelSimulatie
 
         public override void Draw(GameTime gameTime)
         {
+            spell.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spell.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
             base.Draw(gameTime);
-            spriteBatch.Begin();
 
             if (eersteKeer == false)
             {
