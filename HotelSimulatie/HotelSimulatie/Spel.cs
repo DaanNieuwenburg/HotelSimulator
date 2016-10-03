@@ -21,6 +21,7 @@ namespace HotelSimulatie
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
         public Lift EersteLift { get; set; }
+        public Matrix matrix { get; set; }
 
         public Spel(Hotel _hotel)
         {
