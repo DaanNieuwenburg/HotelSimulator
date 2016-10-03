@@ -30,6 +30,7 @@ namespace HotelSimulatie.Model
                 HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestLift);
                 if(kamer != null)
                 {
+                    Algortime alg = new Algortime(HuidigeRuimte , kamer);
                     LoopNaarRuimte(kamer);
                 }
             }

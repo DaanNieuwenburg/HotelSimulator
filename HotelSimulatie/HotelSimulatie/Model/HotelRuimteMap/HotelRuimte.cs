@@ -13,18 +13,33 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         public int Hoogte { get; set; }
         public int Breedte { get; set; }
+        public int Afstand { get; set; }
         public int Capaciteit { get; set; }
-        public HotelRuimte[] Buren { get; set; }
+        public Dictionary<HotelRuimte, int> Buren { get; set; }
         public Vector2 CoordinatenInSpel { get; set; }
         public Vector2 EventCoordinaten { get; set; }
         public Texture2D Texture { get; set; }
+        public HotelRuimte Vorige { get; set; }
 
+        public HotelRuimte()
+        {
+            Vorige = null;
+        }
         public abstract void LoadContent(ContentManager contentManager);
         public void VoegBurenToe(HotelRuimte buur1, HotelRuimte buur2 = null)
         {
-            Buren = new HotelRuimte[2];
-            Buren[0] = buur1;
-            Buren[1] = buur2;
+            Buren = new Dictionary<HotelRuimte, int>();
+            if(buur1 is Lift || buur1 is Trap)
+                Buren.Add(buur1, 2);
+            else
+                Buren.Add(buur1, 1);
+            if(buur2 != null)
+            {
+                if (buur2 is Lift || buur2 is Trap)
+                    Buren.Add(buur2, 2);
+                else
+                    Buren.Add(buur2, 1);
+            }
         }
     }
 }
