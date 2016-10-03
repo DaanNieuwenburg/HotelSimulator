@@ -41,12 +41,35 @@ namespace HotelSimulatie.Model
 
         public bool LoopNaarRuimte()
         {
-            if(Bestemminglijst != null && Bestemminglijst.Count > 0)
+            /*// In het geval van omhoog en omlaag gaan
+            if (Bestemming is Trap || Bestemming is Lift)
             {
-                Bestemming = Bestemminglijst.First();
-                Bestemminglijst.Remove(Bestemming);
-            }
-            
+                int y = Convert.ToInt32(Positie.Y);
+                if (Positie.Y != Bestemming.EventCoordinaten.Y)
+                {
+                    if (Positie.Y > Bestemming.EventCoordinaten.Y)
+                    {
+                        Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
+                    }
+                    else
+                    {
+                        Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
+                    }
+                    return false;
+                }
+                else
+                {
+                    if (Bestemminglijst != null && Bestemminglijst.Count > 0)
+                    {
+                        Bestemming = Bestemminglijst.First();
+                        Bestemminglijst.Remove(Bestemming);
+                    }
+                    return true;
+                }
+            }*/
+
+            // In het geval van rechts en naar links
+
             int x = Convert.ToInt32(Positie.X);
             if (x != Bestemming.EventCoordinaten.X)
             {
@@ -62,8 +85,14 @@ namespace HotelSimulatie.Model
             }
             else
             {
+                if (Bestemminglijst != null && Bestemminglijst.Count > 0)
+                {
+                    Bestemming = Bestemminglijst.First();
+                    Bestemminglijst.Remove(Bestemming);
+                }
                 return true;
             }
+
         }
 
 
