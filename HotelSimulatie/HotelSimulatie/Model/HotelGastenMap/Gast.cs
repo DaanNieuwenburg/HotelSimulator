@@ -20,7 +20,6 @@ namespace HotelSimulatie.Model
         {
             Honger = false;
             Wacht = false;
-
         }
 
         public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)
@@ -32,8 +31,11 @@ namespace HotelSimulatie.Model
                 
                 if (kamer != null)
                 {
+                    alg = new Algortime();
+                    List<HotelRuimte> ruimteLijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
+
                     lobby.Naam = "lobby_Normaal";
-                    alg = new Algortime(HuidigeRuimte , kamer);
+                    
                     LoopNaarRuimte(kamer);
                 }
             }
