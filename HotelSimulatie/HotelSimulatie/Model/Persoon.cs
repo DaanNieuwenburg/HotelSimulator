@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -7,46 +8,57 @@ using System.Text;
 
 namespace HotelSimulatie.Model
 {
-    public class Persoon
+    public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
+        public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
-        private Vector2 positie { get; set; }
+        public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
-        private float b { get; set; }
+        private float loopSnelheid { get; set; }
         public Persoon()
         {
             Random random = new Random();
             int a = random.Next(1, 9);
-            b = (float)a / 10;
+            loopSnelheid = (float)a / 10;
+            BestemmingBereikt = false;
         }
-        public void LoopNaarRuimte(HotelRuimte bestemming, HotelRuimte huidigeRuimte)
+
+        public void LoadContent(ContentManager contentManager)
         {
-            
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);
+        }
+
+        public bool LoopNaarRuimte(HotelRuimte bestemming)
+        {
             Bestemming = bestemming;
-            HuidigeRuimte = huidigeRuimte;
-
-            if (positie.X == 0 && positie.Y == 0)
+            int x = Convert.ToInt32(Positie.X);
+            if (x != bestemming.EventCoordinaten.X)
             {
-                // Zet de positie goed en zorg ervoor dat de schoonmaker met beide benen op de grond komt te staan
-                positie = new Vector2(huidigeRuimte.CoordinatenInSpel.X, huidigeRuimte.CoordinatenInSpel.Y + 20);
-            }
-
-            //Als positie gelijk is aan bestemming
-            Console.WriteLine(bestemming.CoordinatenInSpel);
-            if (positie.X >= bestemming.CoordinatenInSpel.X && positie.X <= bestemming.CoordinatenInSpel.X + 6)
-            {
-                Console.WriteLine("AANGEKOMEN op bestemming");
+                if (Positie.X > bestemming.EventCoordinaten.X)
+                {
+                    Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
+                }
+                else
+                {
+                    Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+                }
+                return false;
             }
             else
             {
-                positie = new Vector2(positie.X - b, positie.Y);
+                return true;
             }
+        }
+
+        public void UpdateFrame(GameTime spelTijd)
+        {
+            SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            SpriteAnimatie.ToonFrame(spriteBatch, positie);
+            SpriteAnimatie.ToonFrame(spriteBatch, Positie);
         }
     }
 }

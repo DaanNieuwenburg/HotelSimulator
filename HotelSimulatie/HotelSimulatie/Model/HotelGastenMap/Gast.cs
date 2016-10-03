@@ -15,23 +15,25 @@ namespace HotelSimulatie.Model
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
        
-        public List<Texture2D> Texturelijst { get; set; }
+        public Texture Texturelijst { get; set; }
 
         public Gast()
         {
             Honger = false;
             Wacht = false;
         }
-        public void LoadContent(ContentManager contentManager)
-        {
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);
-        }
 
-        public void UpdateFrame(GameTime spelTijd)
+        public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)
         {
-            SpriteAnimatie.UpdateFrame(spelTijd);
+            BestemmingBereikt = LoopNaarRuimte(lobby);
+            if(BestemmingBereikt == true)
+            {
+                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestLift);
+                if(kamer != null)
+                {
+                    LoopNaarRuimte(kamer);
+                }
+            }
         }
-
-        
     }
 }
