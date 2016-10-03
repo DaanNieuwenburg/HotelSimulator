@@ -58,7 +58,8 @@ namespace HotelSimulatie.Model
             {
                 if (Positie.X > Bestemming.EventCoordinaten.X)
                 {
-                    string texture = Texturelijst[textureindex] += "_Links";
+                    string texture = Texturelijst[textureindex];
+                    texture += "_Links";
                     if (LooptnaarLinks == false)
                     {
                         SpriteAnimatie = new GeanimeerdeTexture(tempmanager, texture, 3);
