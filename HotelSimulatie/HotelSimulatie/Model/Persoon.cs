@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
             BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
-            //Texturelijst.Add(@"Gasten\AnimatedRob");
+            Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");
@@ -41,7 +41,6 @@ namespace HotelSimulatie.Model
             tempmanager = contentManager;
             Random randomgast = new Random();
             textureindex = randomgast.Next(0, Texturelijst.Count());
-            //SpriteAnimatie = new GeanimeerdeTexture(contentManager, @"Gasten\AnimatedGast3", 3);
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureindex], 3);
         }
 

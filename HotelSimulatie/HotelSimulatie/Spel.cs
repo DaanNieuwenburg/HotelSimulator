@@ -65,9 +65,10 @@ namespace HotelSimulatie
         {
             GraphicsDevice.Clear(Color.White);
             int tegelBreedte = 150;
-
+            
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
+            spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
 
             int x = 0;
             int y = 678;
