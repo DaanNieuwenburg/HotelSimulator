@@ -47,11 +47,11 @@ namespace HotelSimulatie.Model
 
         public bool LoopNaarRuimte()
         {
-            /*// In het geval van omhoog en omlaag gaan
-            if (Bestemming is Trap || Bestemming is Lift)
+            // In het geval van omhoog en omlaag gaan
+            if (Bestemming is Trap && HuidigeRuimte is Trap || Bestemming is Lift && Bestemming is Lift)
             {
                 int y = Convert.ToInt32(Positie.Y);
-                if (Positie.Y != Bestemming.EventCoordinaten.Y)
+                if (y != Bestemming.EventCoordinaten.Y)
                 {
                     if (Positie.Y > Bestemming.EventCoordinaten.Y)
                     {
@@ -67,12 +67,13 @@ namespace HotelSimulatie.Model
                 {
                     if (Bestemminglijst != null && Bestemminglijst.Count > 0)
                     {
+                        HuidigeRuimte = Bestemming;
                         Bestemming = Bestemminglijst.First();
                         Bestemminglijst.Remove(Bestemming);
                     }
                     return true;
                 }
-            }*/
+            }
 
             // In het geval van rechts en naar links
 
@@ -101,7 +102,9 @@ namespace HotelSimulatie.Model
             {
                 if (Bestemminglijst != null && Bestemminglijst.Count > 0)
                 {
+                    HuidigeRuimte = Bestemming;
                     Bestemming = Bestemminglijst.First();
+                    Console.WriteLine( Positie.Y);
                     Bestemminglijst.Remove(Bestemming);
                 }
                 return true;
