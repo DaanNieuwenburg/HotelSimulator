@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
+        public List<HotelRuimte> Bestemminglijst { get; set; }
         public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
@@ -38,13 +39,18 @@ namespace HotelSimulatie.Model
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[i], 3);
         }
 
-        public bool LoopNaarRuimte(HotelRuimte bestemming)
+        public bool LoopNaarRuimte()
         {
-            Bestemming = bestemming;
-            int x = Convert.ToInt32(Positie.X);
-            if (x != bestemming.EventCoordinaten.X)
+            if(Bestemminglijst != null && Bestemminglijst.Count > 0)
             {
-                if (Positie.X > bestemming.EventCoordinaten.X)
+                Bestemming = Bestemminglijst.First();
+                Bestemminglijst.Remove(Bestemming);
+            }
+            
+            int x = Convert.ToInt32(Positie.X);
+            if (x != Bestemming.EventCoordinaten.X)
+            {
+                if (Positie.X > Bestemming.EventCoordinaten.X)
                 {
                     Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
                 }
@@ -59,6 +65,7 @@ namespace HotelSimulatie.Model
                 return true;
             }
         }
+
 
         public void UpdateFrame(GameTime spelTijd)
         {
