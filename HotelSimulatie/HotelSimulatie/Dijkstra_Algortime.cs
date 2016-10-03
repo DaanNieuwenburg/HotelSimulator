@@ -32,16 +32,14 @@ namespace HotelSimulatie
         {
             List<HotelRuimte> pad = new List<HotelRuimte>();
             HotelRuimte deze = Eind;
-            string path = "het snelste pad = ";
             while (deze != Begin)
             {
-                path += " " + deze.Naam;
+                if(deze.Vorige != Begin)
+                {
+                    pad.Add(deze.Vorige);
+                }
                 deze = deze.Vorige;
-                pad.Add(deze);
             }
-            path += " " + "begin";
-
-            // Voeg eindnode toe
             pad.Add(Eind);
             return pad;
         }
