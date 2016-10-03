@@ -83,7 +83,7 @@ namespace HotelSimulatie
                 {
                     hotel.LobbyRuimte = (Lobby)hotelRuimte;  // temp
 
-                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, y, 150, 90);
+                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle((x - 1) * tegelBreedte, y, 150, 90);
                     GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 50, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                 }

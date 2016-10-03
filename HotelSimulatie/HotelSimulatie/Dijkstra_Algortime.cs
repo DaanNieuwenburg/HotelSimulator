@@ -12,7 +12,8 @@ namespace HotelSimulatie
         public HotelRuimte Begin { get; set; }
         public HotelRuimte Eind { get; set; }
         public List<HotelRuimte> open { get; set; }
-        public Algortime(HotelRuimte begin, HotelRuimte eind)
+
+        public List<HotelRuimte> MaakAlgoritme(HotelRuimte begin, HotelRuimte eind)
         {
             Begin = begin;
             Eind = eind;
@@ -23,21 +24,28 @@ namespace HotelSimulatie
             {
                 Temp = open.Aggregate((l, r) => l.Afstand < r.Afstand ? l : r);
             }
-            Console.WriteLine(MaakPad());
+
+            return MaakPad();
         }
-        public string MaakPad()
+
+        private List<HotelRuimte> MaakPad()
         {
+            List<HotelRuimte> pad = new List<HotelRuimte>();
             HotelRuimte deze = Eind;
             string path = "het snelste pad = ";
             while (deze != Begin)
             {
                 path += " " + deze.Naam;
                 deze = deze.Vorige;
+                pad.Add(deze);
             }
             path += " " + "begin";
-            return path;
+
+            // Voeg eindnode toe
+            pad.Add(Eind);
+            return pad;
         }
-        public bool Bezoek(HotelRuimte deze, HotelRuimte eind)
+        private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
             deze.Afstand = 0;
             // Bezoek node
@@ -64,6 +72,5 @@ namespace HotelSimulatie
             }
             return false;
         }
-
     }
 }
