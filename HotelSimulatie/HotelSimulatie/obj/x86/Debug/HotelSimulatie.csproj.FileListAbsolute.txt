@@ -89,3 +89,4 @@ C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\lobby_Death.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\lobby_Normaal.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\lobby_Death.xnb
+C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamer_1ster.xnb

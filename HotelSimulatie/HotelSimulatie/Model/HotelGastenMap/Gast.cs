@@ -14,6 +14,7 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
+        private Algortime alg { get; set; }
 
         public Gast()
         {
@@ -23,15 +24,18 @@ namespace HotelSimulatie.Model
 
         public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)
         {
-            BestemmingBereikt = LoopNaarRuimte(lobby);
-            if(BestemmingBereikt == true)
+            if(LoopNaarRuimte(lobby))
             {
+                lobby.Naam = "lobby_Death";
                 HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestLift);
-                if(kamer != null)
+                
+                if (kamer != null)
                 {
-                    Algortime alg = new Algortime();
+                    alg = new Algortime();
                     List<HotelRuimte> ruimteLijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
 
+                    lobby.Naam = "lobby_Normaal";
+                    
                     LoopNaarRuimte(kamer);
                 }
             }
