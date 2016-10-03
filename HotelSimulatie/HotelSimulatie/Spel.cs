@@ -81,7 +81,7 @@ namespace HotelSimulatie
 
                 if(hotelRuimte is Lobby)
                 {
-                    hotel.LobbyRuimte = (Lobby)hotelRuimte;  // temp
+                    hotel.LobbyRuimte = (Lobby)hotelRuimte;
 
                     hotel.LobbyRuimte.LobbyRectangle = new Rectangle((x - 1) * tegelBreedte, y, 150, 90);
                     GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
@@ -111,36 +111,7 @@ namespace HotelSimulatie
                 }
             }
 
-            /*
-            for (int y = 0; y < hotel.HotelLayout.GetLength(0); y++)
-            {
-                for (int x = 0; x < hotel.HotelLayout.GetLength(1); x++)
-                {
-                    // Koppelt de coordinaten aan de hotelruimte coordinaten property
-                    hotel.HotelLayout[y, x].CoordinatenInSpel = new Vector2(x * tegelBreedte, hoogte);
-
-                    // Toont de hotelruimte op het bord
-                    hotel.HotelLayout[y, x].LoadContent(Content);
-                    spriteBatch.Draw(hotel.HotelLayout[y, x].Texture, new Rectangle(x * tegelBreedte, hoogte, 150, 90), Color.White);
-
-                    // In het geval van een lobby, bind hem dan aan spel.Lobby
-                    if (hotel.HotelLayout[y, x] is Lobby)
-                    {
-                        hotel.LobbyRuimte = (Lobby)hotel.HotelLayout[y, x];  // temp
-
-                        hotel.LobbyRuimte.LobbyRectangle = new Rectangle(x * tegelBreedte, hoogte, 150, 90);
-                        GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
-                        hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 50, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
-                    }
-                    else if (hotel.HotelLayout[y, x] is Lift && y == 0)
-                    {
-                        EersteLift = (Lift)hotel.HotelLayout[y, x];
-                        EersteLift.EventCoordinaten = new Vector2(EersteLift.CoordinatenInSpel.X, EersteLift.CoordinatenInSpel.Y);
-                    }
-                }
-                hoogte = hoogte - 90;
-            }
-            */
+            
 
             spriteBatch.End();
             Console.WriteLine(GastSpawnLocatie);

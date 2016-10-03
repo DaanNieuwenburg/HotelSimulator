@@ -36,7 +36,7 @@ namespace HotelSimulatie.Model
                     Bestemminglijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
 
                     lobby.Naam = "lobby_Normaal";
-
+                    
                     Bestemming = kamer;
                     LoopNaarRuimte();
                 }

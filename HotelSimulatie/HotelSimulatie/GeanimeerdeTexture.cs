@@ -37,7 +37,7 @@ namespace HotelSimulatie
             if (Texture != null)
             {
                 int FrameGrootte = Texture.Width / TotaalAantalFrames;
-                Rectangle sourcerect = new Rectangle(Frame * FrameGrootte, 0, FrameGrootte, Texture.Height);
+                Rectangle sourcerect = new Rectangle(Frame * FrameGrootte, 0, FrameGrootte, 74);
                 spriteBatch.Draw(Texture, positie, sourcerect, Color.White);
             }
 
