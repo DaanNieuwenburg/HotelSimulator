@@ -48,12 +48,12 @@ namespace HotelSimulatie
                 // Inchecken
                 else if(gast.Kamernummer == null)
                 {
-                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteTrap);
+                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteKamer);
                 }
                 // Loop naar een ruimte
                 else if(gast.BestemmingBereikt == false)
                 {
-                    gast.LoopNaarRuimte(gast.Bestemming);
+                    gast.LoopNaarRuimte();
                 }
                 gast.UpdateFrame(gameTime);
             }

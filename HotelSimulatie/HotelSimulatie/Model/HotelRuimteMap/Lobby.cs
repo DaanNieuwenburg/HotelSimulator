@@ -26,17 +26,17 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(Naam);
         }
 
-        public HotelRuimte GastInChecken(Gast gast, GameTime gameTime, Trap tempTesttrap)
+        public HotelRuimte GastInChecken(Gast gast, GameTime gameTime, Kamer tempTestKamer)
         {
             verlopenTijd += gameTime.ElapsedGameTime.Milliseconds;
             if (verlopenTijd > 4000)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
                 gastAanDeBeurt.Kamernummer = 1; // temp dit moet dynamisch
-                gastAanDeBeurt.Bestemming = tempTesttrap;
+                gastAanDeBeurt.Bestemming = tempTestKamer;
                 gastAanDeBeurt.BestemmingBereikt = false;
                 verlopenTijd = 0;
-                return tempTesttrap;
+                return tempTestKamer;
             }
             else
             {

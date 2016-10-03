@@ -22,21 +22,23 @@ namespace HotelSimulatie.Model
             Wacht = false;
         }
 
-        public void Inchecken(Lobby lobby, GameTime gameTime, Trap tempTesttrap)
+        public void Inchecken(Lobby lobby, GameTime gameTime, Kamer tempTestKamer)
         {
-            if(LoopNaarRuimte(lobby))
+            Bestemming = lobby;
+            if(LoopNaarRuimte())
             {
                 lobby.Naam = "lobby_Death";
-                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTesttrap);
+                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestKamer);
                 
                 if (kamer != null)
                 {
                     alg = new Algortime();
-                    List<HotelRuimte> ruimteLijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
+                    Bestemminglijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
 
                     lobby.Naam = "lobby_Normaal";
                     
-                    LoopNaarRuimte(kamer);
+                    Bestemming = kamer;
+                    LoopNaarRuimte();
                 }
             }
         }
