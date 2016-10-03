@@ -22,12 +22,12 @@ namespace HotelSimulatie.Model
             Wacht = false;
         }
 
-        public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)
+        public void Inchecken(Lobby lobby, GameTime gameTime, Trap tempTesttrap)
         {
             if(LoopNaarRuimte(lobby))
             {
                 lobby.Naam = "lobby_Death";
-                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestLift);
+                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTesttrap);
                 
                 if (kamer != null)
                 {

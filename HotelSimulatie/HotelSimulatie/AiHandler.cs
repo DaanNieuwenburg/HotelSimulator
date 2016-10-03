@@ -48,7 +48,7 @@ namespace HotelSimulatie
                 // Inchecken
                 else if(gast.Kamernummer == null)
                 {
-                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteLift);
+                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteTrap);
                 }
                 // Loop naar een ruimte
                 else if(gast.BestemmingBereikt == false)
