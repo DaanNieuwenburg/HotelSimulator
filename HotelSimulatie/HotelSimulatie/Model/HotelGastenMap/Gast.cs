@@ -14,13 +14,12 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
-       
-        public Texture Texturelijst { get; set; }
 
         public Gast()
         {
             Honger = false;
             Wacht = false;
+
         }
 
         public void Inchecken(Lobby lobby, GameTime gameTime, Lift tempTestLift)

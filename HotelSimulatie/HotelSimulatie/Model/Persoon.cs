@@ -16,17 +16,26 @@ namespace HotelSimulatie.Model
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
+        public List<string> Texturelijst { get; set; }
         public Persoon()
         {
             Random random = new Random();
             int a = random.Next(1, 9);
             loopSnelheid = (float)a / 10;
             BestemmingBereikt = false;
+
+            Texturelijst = new List<string>();
+            Texturelijst.Add(@"Gasten\AnimatedRob");
+            Texturelijst.Add(@"Gasten\AnimatedGast1");
+            Texturelijst.Add(@"Gasten\AnimatedGast2");
+            Texturelijst.Add(@"Gasten\AnimatedGast3");
         }
 
         public void LoadContent(ContentManager contentManager)
         {
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, "AnimatedRob", 3);
+            Random randomgast = new Random();
+            int i = randomgast.Next(0, Texturelijst.Count());
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[i], 3);
         }
 
         public bool LoopNaarRuimte(HotelRuimte bestemming)

@@ -21,6 +21,7 @@ namespace HotelSimulatie
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
         public Lift EersteLift { get; set; }
+        public Matrix matrix { get; set; }
 
         public Spel(Hotel _hotel)
         {
@@ -65,7 +66,7 @@ namespace HotelSimulatie
             GraphicsDevice.Clear(Color.White);
             int tegelBreedte = 150;
 
-            Matrix matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
+            matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
 
             int x = 0;
