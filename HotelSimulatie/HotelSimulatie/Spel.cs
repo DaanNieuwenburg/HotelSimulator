@@ -88,7 +88,7 @@ namespace HotelSimulatie
                     GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 10, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if(hotelRuimte is Trap && y == 678)
+                if(hotelRuimte is Trap)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 53, hotelRuimte.CoordinatenInSpel.Y);
                 }
