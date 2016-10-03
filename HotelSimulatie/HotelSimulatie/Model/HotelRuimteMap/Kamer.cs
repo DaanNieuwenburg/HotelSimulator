@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
         {
             if (AantalSterren == 1)
             {
-                Texture = contentManager.Load<Texture2D>("1SterHotelKamer");
+                Texture = contentManager.Load<Texture2D>("Kamer_1ster");
             }
             else if (AantalSterren == 2)
             {

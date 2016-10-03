@@ -182,12 +182,12 @@ namespace HotelSimulatie.Model
             gast.Gastnummer = Gastenlijst.Count + 1;
             Gastenlijst.Add(gast);
             
-            /*Gast gast1 = new Gast();
+            Gast gast1 = new Gast();
             gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = Gastenlijst.Count + 1;
             Gastenlijst.Add(gast1);
 
-            Gast gast2 = new Gast();
+            /*Gast gast2 = new Gast();
             gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = Gastenlijst.Count + 1;
             Gastenlijst.Add(gast2);*/
