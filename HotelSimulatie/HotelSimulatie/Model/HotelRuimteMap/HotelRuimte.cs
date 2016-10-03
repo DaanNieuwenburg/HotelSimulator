@@ -23,6 +23,7 @@ namespace HotelSimulatie.Model
 
         public HotelRuimte()
         {
+            Afstand = Int32.MaxValue/2;
             Vorige = null;
         }
         public abstract void LoadContent(ContentManager contentManager);

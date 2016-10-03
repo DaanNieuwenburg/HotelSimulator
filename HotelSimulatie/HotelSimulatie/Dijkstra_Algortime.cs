@@ -39,6 +39,7 @@ namespace HotelSimulatie
         }
         public bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
+            deze.Afstand = 0;
             // Bezoek node
             Console.WriteLine("Bezoek Node: " + deze.Naam);
             if (deze == eind)

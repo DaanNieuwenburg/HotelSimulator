@@ -33,7 +33,7 @@ namespace UnitTest
             Assert.AreEqual("Lift", soort);
         }
         [TestMethod]
-        public void Test_RuimteFactory_Return_Kamer()
+        public void Test_RuimteFactory_Return_Lobby()
         {
             // Arrange
             string n = "Lobby";
@@ -43,7 +43,7 @@ namespace UnitTest
             string soort = factory.MaakHotelRuimte(n).Naam;
 
             //Assert
-            Assert.AreEqual("Lobby", soort);
+            Assert.AreEqual("lobby_Normaal", soort);
         }
     }
 }
