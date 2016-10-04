@@ -1,4 +1,5 @@
 ﻿using HotelSimulatie.Model;
+using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,15 @@ namespace HotelSimulatie
     {
         public int MaxX { get; set; }
         public int MaxY { get; set; }
-        List<HotelRuimte> hotelRuimte = new List<HotelRuimte>();
+        public List<HotelRuimte> HotelRuimteLijst { get; set; } 
         
         public LayoutLezer()
         {
-            LeesLayoutUit();
-            //MaxX = bepaalMaxX();
-            //MaxY = bepaalMaxY();
+            HotelRuimteLijst = LeesLayoutUit();
+            MaxX = bepaalMaxX();
+            MaxY = bepaalMaxY();
+            maakLift();
+            maakTrap();
         }
         
         public List<HotelRuimte> LeesLayoutUit()
@@ -37,6 +40,8 @@ namespace HotelSimulatie
             {
                 Console.WriteLine("Exception bij het uitlezen van de layout " + ex);
             }
+
+            // Sorteer layout 
             return ruimteLijst;
         }
         
@@ -44,22 +49,30 @@ namespace HotelSimulatie
 
         public int bepaalMaxX()
         {
-            return (Int32)hotelRuimte.Max(obj => obj.CoordinatenInSpel.X);
+            return (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X);
         }
 
         public int bepaalMaxY()
         {
-            return (Int32)hotelRuimte.Max(obj => obj.CoordinatenInSpel.Y);
+            return (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
         }
 
         public void maakLift()
         {
-
+            for (int y = 0; y < MaxY; y++)
+            {
+                Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(0, y), Afmetingen = new Vector2(1, 1) };
+                HotelRuimteLijst.Add(liftschacht);
+            }
         }
 
         public void maakTrap()
         {
-
+            for (int y = 0; y < MaxX; y++)
+            {
+                Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(MaxX, y), Afmetingen = new Vector2(1, 1) };
+                HotelRuimteLijst.Add(liftschacht);
+            }
         }
 
         public void maakLobby()
