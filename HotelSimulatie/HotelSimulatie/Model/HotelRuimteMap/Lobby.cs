@@ -17,12 +17,13 @@ namespace HotelSimulatie.Model
         {
             EventCoordinaten = new Vector2(LobbyRectangle.Left + 80, LobbyRectangle.Bottom);
             Wachtrij = new Queue<Gast>();
-            Naam = "lobby_Normaal";
+            Naam = "Lobby";
+            texturepath = @"Kamers\lobby_Normaal";
         }
 
         public override void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>(Naam);
+            Texture = contentManager.Load<Texture2D>(texturepath);
         }
 
         public HotelRuimte GastInChecken(Gast gast, GameTime gameTime, Kamer tempTestKamer)

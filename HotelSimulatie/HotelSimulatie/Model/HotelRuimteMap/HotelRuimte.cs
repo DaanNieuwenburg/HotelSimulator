@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     public abstract class HotelRuimte
     {
         public string Naam { get; set; }
+        public string texturepath { get; set; }
         public int Hoogte { get; set; }
         public int Breedte { get; set; }
         public int Afstand { get; set; }

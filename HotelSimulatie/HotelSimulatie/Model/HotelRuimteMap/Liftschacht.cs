@@ -16,6 +16,7 @@ namespace HotelSimulatie.Model
         public Liftschacht(int verdieping)
         {
             Naam = "Lift";
+            texturepath = "";
             Verdieping = verdieping;
         }
         public override void LoadContent(ContentManager contentManager)

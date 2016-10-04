@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     {
         public int Kamernummer { get; set; }
         public int AantalSterren { get; set; }
+        public int hoogte { get; set; }
         public Kamer()
         {
             AantalSterren = 1;
@@ -19,19 +20,27 @@ namespace HotelSimulatie.Model
         {
             if (AantalSterren == 1)
             {
-                Texture = contentManager.Load<Texture2D>("Kamer_1ster");
+                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_1ster");
             }
             else if (AantalSterren == 2)
             {
-                Texture = contentManager.Load<Texture2D>("2SterHotelKamer");
+                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_2ster");
             }
             else if (AantalSterren == 3)
             {
-                Texture = contentManager.Load<Texture2D>("3SterHotelKamer");
+                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_3ster");
             }
             else if (AantalSterren == 4)
             {
-                Texture = contentManager.Load<Texture2D>("4SterHotelKamer");
+                if (hoogte == 1)
+                {
+
+                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_4ster(1hoog)");
+                }
+                else
+                {
+                    Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_4ster(2hoog)");
+                }
             }
             else if (AantalSterren == 5)
             {

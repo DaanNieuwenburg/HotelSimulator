@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
         public Fitness()
         {
             Naam = "Fitness";
+            texturepath = @"Kamers\Fitness";
         }
         public override void LoadContent(ContentManager contentManager)
         {

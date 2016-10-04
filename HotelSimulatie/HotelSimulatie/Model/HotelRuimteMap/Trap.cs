@@ -11,11 +11,12 @@ namespace HotelSimulatie.Model
     {
         public Trap()
         {
-            Naam = "Trap_gesloten";
+            Naam = "Trap";
+            texturepath = @"Kamers\Trap_gesloten";
         }
         public override void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>(Naam);
+            Texture = contentManager.Load<Texture2D>(texturepath);
         }
     }
 }
