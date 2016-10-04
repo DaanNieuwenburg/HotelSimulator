@@ -63,7 +63,6 @@ namespace HotelSimulatie
             foreach (KeyValuePair<HotelRuimte, int> x in deze.Buren)
             {
                 int NieuweAfstand = deze.Afstand + x.Value;
-                Console.WriteLine(NieuweAfstand);
                 if (NieuweAfstand < x.Key.Afstand)
                 {
                     x.Key.Afstand = NieuweAfstand;

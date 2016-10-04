@@ -24,7 +24,7 @@ namespace HotelSimulatie.Model
             Schoonmaker_B = new Schoonmaker();
             lift = new Liftschacht(0);
             Addgasten();    // tijdelijke testcode
-
+            LayoutLezer layoutLezer = new LayoutLezer();
             
 
             // This is seriously way to long -.- something for iteration 3?

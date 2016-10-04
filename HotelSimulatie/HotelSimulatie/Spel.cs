@@ -113,7 +113,6 @@ namespace HotelSimulatie
             }
 
             spriteBatch.End();
-            Console.WriteLine(GastSpawnLocatie);
             base.Draw(gameTime);
         }
     }

@@ -22,7 +22,7 @@ namespace HotelSimulatie.Model
             else if (soort == "Trap")
                 return new Trap();
             else if (soort == "Kamer")
-                return new Kamer();
+                return new Kamer(1);
             else
                 return null;
         }

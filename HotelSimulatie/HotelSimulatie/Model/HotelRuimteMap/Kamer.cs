@@ -12,9 +12,9 @@ namespace HotelSimulatie.Model
         public int Kamernummer { get; set; }
         public int AantalSterren { get; set; }
         public int hoogte { get; set; }
-        public Kamer()
+        public Kamer(int aantalSterren)
         {
-            AantalSterren = 1;
+            AantalSterren = aantalSterren;
         }
         public override void LoadContent(ContentManager contentManager)
         {
