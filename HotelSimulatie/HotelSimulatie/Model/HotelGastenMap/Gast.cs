@@ -38,7 +38,11 @@ namespace HotelSimulatie.Model
                     lobby.Naam = "lobby_Normaal";
                     
                     Bestemming = kamer;
-                    LoopNaarRuimte();
+                    bool gearriveerd = LoopNaarRuimte();
+                    if(gearriveerd == true)
+                    {
+                        GaKamerIn(Bestemming);
+                    }
                 }
             }
         }

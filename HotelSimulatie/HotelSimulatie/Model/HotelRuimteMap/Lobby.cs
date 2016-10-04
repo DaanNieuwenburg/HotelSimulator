@@ -18,7 +18,6 @@ namespace HotelSimulatie.Model
             EventCoordinaten = new Vector2(LobbyRectangle.Left + 80, LobbyRectangle.Bottom);
             Wachtrij = new Queue<Gast>();
             Naam = "lobby_Normaal";
-            //Texture is lobby_Death als er een klant komt. Deze moet nog wel worden geimplementeerd
         }
 
         public override void LoadContent(ContentManager contentManager)

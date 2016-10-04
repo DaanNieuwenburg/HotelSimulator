@@ -24,9 +24,10 @@ namespace HotelSimulatie.Model
         public Persoon()
         {
             LooptnaarLinks = false;
-            Random random = new Random();
+            /*Random random = new Random();
             int a = random.Next(1, 9);
-            loopSnelheid = (float)a / 10;
+            loopSnelheid = (float)a / 10;*/
+            loopSnelheid = (float)0.5;
             BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
@@ -110,6 +111,10 @@ namespace HotelSimulatie.Model
 
         }
 
+        public void GaKamerIn(HotelRuimte hotelRuimte)
+        {
+            Console.WriteLine("Ga kamer in");
+        }
 
         public void UpdateFrame(GameTime spelTijd)
         {

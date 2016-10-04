@@ -104,6 +104,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Spel.cs" />
     <Compile Include="SpelCamera.cs" />
+    <Compile Include="TempClasse.cs" />
     <Compile Include="View\Hoofdmenu.cs">
       <SubType>Form</SubType>
     </Compile>
