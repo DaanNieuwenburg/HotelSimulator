@@ -21,15 +21,16 @@ namespace HotelSimulatie
             //MaxY = bepaalMaxY();
         }
         
-        public List<object> LeesLayoutUit()
+        public List<HotelRuimte> LeesLayoutUit()
         {
-            List<object> ruimteLijst = null;
+            List<HotelRuimte> ruimteLijst = null;
             try
             {
-                using (StreamReader reader = new StreamReader(@"C:\Users\niels\Hotel3.layut"))
+                JsonConverter converter = new HotelRuimteJsonConverter();
+                using (StreamReader reader = new StreamReader(@"C:\Users\niels\Hotel3.layout"))
                 {
                     string content = reader.ReadToEnd();
-                    ruimteLijst = JsonConvert.DeserializeObject<List<object>>(content);
+                    ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);
                 }
             }
             catch (Exception ex) when (ex is JsonException || ex is IOException)
@@ -38,6 +39,7 @@ namespace HotelSimulatie
             }
             return ruimteLijst;
         }
+        
 
 
         public int bepaalMaxX()
