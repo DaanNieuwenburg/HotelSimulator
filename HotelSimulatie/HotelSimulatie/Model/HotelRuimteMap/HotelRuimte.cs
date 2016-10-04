@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Newtonsoft.Json;
 
 namespace HotelSimulatie.Model
 {
@@ -12,11 +13,13 @@ namespace HotelSimulatie.Model
     {
         public string Naam { get; set; }
         public string texturepath { get; set; }
-        public int Hoogte { get; set; }
-        public int Breedte { get; set; }
+        [JsonProperty("Dimension")]
+        public Vector2 Afmetingen { get; set; }
         public int Afstand { get; set; }
+        [JsonProperty("Capacity")]
         public int Capaciteit { get; set; }
         public Dictionary<HotelRuimte, int> Buren { get; set; }
+        [JsonProperty("Position")]
         public Vector2 CoordinatenInSpel { get; set; }
         public Vector2 EventCoordinaten { get; set; }
         public Texture2D Texture { get; set; }
@@ -24,18 +27,18 @@ namespace HotelSimulatie.Model
 
         public HotelRuimte()
         {
-            Afstand = Int32.MaxValue/2;
+            Afstand = Int32.MaxValue / 2;
             Vorige = null;
         }
         public abstract void LoadContent(ContentManager contentManager);
         public void VoegBurenToe(HotelRuimte buur1, HotelRuimte buur2 = null)
         {
             Buren = new Dictionary<HotelRuimte, int>();
-            if(buur1 is Liftschacht || buur1 is Trap)
+            if (buur1 is Liftschacht || buur1 is Trap)
                 Buren.Add(buur1, 2);
             else
                 Buren.Add(buur1, 1);
-            if(buur2 != null)
+            if (buur2 != null)
             {
                 if (buur2 is Liftschacht || buur2 is Trap)
                     Buren.Add(buur2, 2);

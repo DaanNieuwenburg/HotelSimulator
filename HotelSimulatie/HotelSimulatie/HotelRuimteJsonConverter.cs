@@ -5,12 +5,13 @@ using System.Text;
 using Newtonsoft.Json;
 using HotelSimulatie.Model;
 using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace HotelSimulatie
 {
     public class HotelRuimteJsonConverter : JsonConverter
     {
-        
+
         public override bool CanConvert(Type objectType)
         {
             return (objectType == typeof(HotelRuimte));
@@ -18,8 +19,21 @@ namespace HotelSimulatie
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            // Verandert stringcoordinaten naar vectors
             JObject jObject = JObject.Load(reader);
-            if(jObject["AreaType"].Value<string>() == "Restaurant")
+            Regex coordinatenRegex = new Regex(@"([1-9])([,]\s?)([1-9])");
+
+            JObject testObject = new JObject();
+
+            IEnumerable<JProperty> propertyLijst = jObject.Properties();
+            /*
+                if(jProperty.Value.Type == JTokenType.String && coordinatenRegex.IsMatch((string)jProperty.Value))
+                {
+                }*/
+
+
+            // Zet de objecten om naar de juiste childrens van hotelruimte
+            if (jObject["AreaType"].Value<string>() == "Restaurant")
             {
                 return jObject.ToObject<Eetzaal>(serializer);
             }
