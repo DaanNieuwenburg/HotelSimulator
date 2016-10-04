@@ -63,6 +63,7 @@
             this.optiesBtn.TabIndex = 2;
             this.optiesBtn.Text = "Opties";
             this.optiesBtn.UseVisualStyleBackColor = true;
+            this.optiesBtn.Click += new System.EventHandler(this.optiesBtn_Click);
             // 
             // quitBtn
             // 

@@ -11,13 +11,13 @@ namespace HotelSimulatie.Model
     public abstract class Persoon 
     {
         public HotelRuimte Bestemming { get; set; }
-        public List<HotelRuimte> Bestemminglijst { get; set; }
+        protected List<HotelRuimte> Bestemminglijst { get; set; }
         public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
-        public List<string> Texturelijst { get; set; }
+        private List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
         private int textureindex { get; set; }
         private bool LooptnaarLinks { get; set; }
@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
             BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
-            Texturelijst.Add(@"Gasten\AnimatedRob");
+            //Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");

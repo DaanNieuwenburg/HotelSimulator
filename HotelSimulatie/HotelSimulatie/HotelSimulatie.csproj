@@ -116,6 +116,12 @@
     <Compile Include="View\LobbyMenu.Designer.cs">
       <DependentUpon>LobbyMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\OptiesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OptiesForm.Designer.cs">
+      <DependentUpon>OptiesForm.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HotelSimulatieContent\HotelSimulatieContent.contentproj">
@@ -146,6 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LobbyMenu.resx">
       <DependentUpon>LobbyMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OptiesForm.resx">
+      <DependentUpon>OptiesForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

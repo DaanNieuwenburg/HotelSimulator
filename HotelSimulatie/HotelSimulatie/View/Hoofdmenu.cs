@@ -32,5 +32,15 @@ namespace HotelSimulatie.View
         {
             Close();
         }
+
+        private void optiesBtn_Click(object sender, EventArgs e)
+        {
+            OptiesForm opties = new OptiesForm();
+            opties.ShowDialog();
+            if(opties.DialogResult == DialogResult.OK)
+            {
+
+            }   
+        }
     }
 }
