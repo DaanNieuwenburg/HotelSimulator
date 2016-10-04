@@ -14,32 +14,31 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
-        private Algortime alg { get; set; }
+        private Algoritme algoritme { get; set; }
 
         public Gast()
         {
             Honger = false;
             Wacht = false;
+            algoritme = new Algoritme();
         }
 
         public void Inchecken(Lobby lobby, GameTime gameTime, Kamer tempTestKamer)
         {
             Bestemming = lobby;
-            if(LoopNaarRuimte())
+            if (LoopNaarRuimte())
             {
                 lobby.Naam = "lobby_Death";
                 HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestKamer);
-                
+
                 if (kamer != null)
                 {
-                    alg = new Algortime();
-                    Bestemminglijst = alg.MaakAlgoritme(HuidigeRuimte, kamer);
-
+                    Bestemminglijst = algoritme.MaakAlgoritme(HuidigeRuimte, kamer);
                     lobby.Naam = "lobby_Normaal";
-                    
+
                     Bestemming = kamer;
                     bool gearriveerd = LoopNaarRuimte();
-                    if(gearriveerd == true)
+                    if (gearriveerd == true)
                     {
                         GaKamerIn(Bestemming);
                     }
