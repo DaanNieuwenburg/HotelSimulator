@@ -11,19 +11,13 @@ namespace HotelSimulatie
 {
     public class AiHandler : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        private SpriteBatch spriteBatch { get; set; }
-        private Spel spell { get; set; }
+        private Spel spel { get; set; }
         private ContentManager Content { get; set; }
-        private Hotel hotel { get; set; }
         private bool eersteKeer { get; set; }
 
         public AiHandler(Game game) : base(game)
         {
-            spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-            Spel spel = (Spel)game;
-            hotel = spel.hotel;
-            Content = spel.Content;
-            spell = spel;
+            spel = (Spel)game;
             eersteKeer = true;
         }
 
@@ -38,17 +32,17 @@ namespace HotelSimulatie
 
         private void GastenUpdate(GameTime gameTime)
         {
-            foreach (Gast gast in hotel.Gastenlijst)
+            foreach (Gast gast in spel.hotel.Gastenlijst)
             {
                 // Maak nieuwe gast indien nodig
-                if (gast.SpriteAnimatie == null && hotel.LobbyRuimte != null)
+                if (gast.SpriteAnimatie == null && spel.hotel.LobbyRuimte != null)
                 {
                     MaakNieuweGast(gast);
                 }
                 // Inchecken
                 else if (gast.Kamernummer == null && gast.BestemmingBereikt == false)
                 {
-                    gast.Inchecken(hotel.LobbyRuimte, gameTime, spell.EersteKamer);
+                    gast.Inchecken(spel.hotel.LobbyRuimte, gameTime, spel.EersteKamer);
                 }
                 // Loop naar een ruimte
                 else if(gast.BestemmingBereikt == false)
@@ -62,28 +56,29 @@ namespace HotelSimulatie
         private void MaakNieuweGast(Gast gast)
         {
             // Spawn nieuwe gast als hij nog niet bestaat
-            if (gast.SpriteAnimatie == null && hotel.LobbyRuimte != null)
+            if (gast.SpriteAnimatie == null && spel.hotel.LobbyRuimte != null)
             {
                 Vector2 legeVector = new Vector2(0, 0);
                 if (gast.Positie == legeVector)
                 {
-                    gast.Positie = spell.GastSpawnLocatie;
-                    gast.HuidigeRuimte = hotel.LobbyRuimte;
+                    gast.Positie = spel.GastSpawnLocatie;
+                    gast.HuidigeRuimte = spel.hotel.LobbyRuimte;
                 }
-                gast.LoadContent(Content);
+                gast.LoadContent(spel.Content);
             }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            spell.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spell.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
+            SpriteBatch spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+            spel.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
             base.Draw(gameTime);
 
             if (eersteKeer == false)
             {
                 // Toon gasten
-                foreach (Gast gast in hotel.Gastenlijst)
+                foreach (Gast gast in spel.hotel.Gastenlijst)
                 {
                     gast.Draw(spriteBatch);
                 }

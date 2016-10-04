@@ -11,12 +11,12 @@ namespace HotelSimulatie
     {
         public Vector2 Positie { get; set; }
         public bool bodemBereikt { get; set; }
-        private int height { get; set; }
-        private int width { get; set; }
-        public SpelCamera(int breedte, int hoogte)
+        private int breedte { get; set; }
+        private int hoogte { get; set; }
+        public SpelCamera(int _breedte, int _hoogte)
         {
-            width = breedte;
-            height = hoogte;
+            breedte = _breedte;
+            hoogte = _hoogte;
             Positie = Vector2.Zero;
         }
 
@@ -24,7 +24,7 @@ namespace HotelSimulatie
         /// Beweegt de camera in de matrix
         /// </summary>
         /// <param name="waarde">De coordinaten waar naar toe bewogen is</param>
-        public void Beweeg( Vector2 waarde)
+        public void Beweeg(Vector2 waarde)
         {
             // Als de bodem van het spel wordt bereikt, stop dan de camera van verder gaan
             if (Positie.Y > 150)
@@ -46,11 +46,11 @@ namespace HotelSimulatie
                 tempVector.X = -100;
                 Positie = tempVector;
             }
-            if (Positie.X > width / 4)
+            if (Positie.X > breedte / 4)
             {
                 // Reset de Positie
                 Vector2 tempVector = Positie;
-                tempVector.X = width / 4;
+                tempVector.X = breedte / 4;
                 Positie = tempVector;
             }
         }

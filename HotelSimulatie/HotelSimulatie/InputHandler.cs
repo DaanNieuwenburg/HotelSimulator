@@ -12,14 +12,13 @@ namespace HotelSimulatie
     public class InputHandler : Microsoft.Xna.Framework.GameComponent
     {
         public GraphicsDeviceManager graphics { get; set; }
-        private SpelCamera spelCamera { get; set; }
+        private Spel spel { get; set; }
         private Hotel hotel { get; set; }
         private KeyboardState keyboardStatus { get; set; }
         private static bool vorigeMuisKlik { get; set; }
         public InputHandler(Game game) : base(game)
         {
-            Spel spel = (Spel)game;
-            spelCamera = spel.spelCamera;
+            spel = (Spel)game;
             hotel = spel.hotel;
             graphics = spel.graphics;
         }
@@ -39,29 +38,29 @@ namespace HotelSimulatie
         {
             if (keyboardStatus.IsKeyDown(Keys.Up))
             {
-                Vector2 nieuweVector = spelCamera.Positie;
+                Vector2 nieuweVector = spel.spelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y - 1;
-                spelCamera.Beweeg(nieuweVector);
+                spel.spelCamera.Beweeg(nieuweVector);
             }
             if (keyboardStatus.IsKeyDown(Keys.Down))
             {
-                Vector2 nieuweVector = spelCamera.Positie;
+                Vector2 nieuweVector = spel.spelCamera.Positie;
                 nieuweVector.Y = nieuweVector.Y + 1;
-                spelCamera.Beweeg(nieuweVector);
+                spel.spelCamera.Beweeg(nieuweVector);
             }
 
             // Voor links en rechts
             if (keyboardStatus.IsKeyDown(Keys.Left))
             {
-                Vector2 nieuweVector = spelCamera.Positie;
+                Vector2 nieuweVector = spel.spelCamera.Positie;
                 nieuweVector.X = nieuweVector.X - 1;
-                spelCamera.Beweeg(nieuweVector);
+                spel.spelCamera.Beweeg(nieuweVector);
             }
             if (keyboardStatus.IsKeyDown(Keys.Right))
             {
-                Vector2 nieuweVector = spelCamera.Positie;
+                Vector2 nieuweVector = spel.spelCamera.Positie;
                 nieuweVector.X = nieuweVector.X + 1;
-                spelCamera.Beweeg(nieuweVector);
+                spel.spelCamera.Beweeg(nieuweVector);
             }
         }
 
@@ -70,7 +69,7 @@ namespace HotelSimulatie
         {
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
-            muisLocatie = muisLocatie + spelCamera.Positie;
+            muisLocatie = muisLocatie + spel.spelCamera.Positie;
             if (hotel.LobbyRuimte != null)
             {
                 if (hotel.LobbyRuimte.LobbyRectangle.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && vorigeMuisKlik == false)
