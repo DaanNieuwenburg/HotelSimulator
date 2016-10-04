@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AiHandler.cs" />
-    <Compile Include="Dijkstra_Algortime.cs" />
+    <Compile Include="Dijkstra_Algoritme.cs" />
     <Compile Include="GeanimeerdeTexture.cs" />
     <Compile Include="InputHandler.cs" />
     <Compile Include="Model\Hotel.cs" />

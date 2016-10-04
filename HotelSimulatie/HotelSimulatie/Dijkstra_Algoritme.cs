@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelSimulatie
 {
-    public class Algortime
+    public class Algoritme
     {
         public HotelRuimte Begin { get; set; }
         public HotelRuimte Eind { get; set; }
@@ -38,6 +38,9 @@ namespace HotelSimulatie
                 {
                     pad.Add(deze.Vorige);
                 }
+
+                // Reset de afstand, anders is de afstand bij een volgend gebruik altijd 0
+                deze.Afstand = Int32.MaxValue;
                 deze = deze.Vorige;
             }
             pad.Reverse();
@@ -47,8 +50,6 @@ namespace HotelSimulatie
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
             deze.Afstand = 0;
-            // Bezoek Kamer
-            Console.WriteLine("Bezoek Kamer: " + deze.Naam);
             if (deze == eind)
             {
                 return true;
@@ -62,6 +63,7 @@ namespace HotelSimulatie
             foreach (KeyValuePair<HotelRuimte, int> x in deze.Buren)
             {
                 int NieuweAfstand = deze.Afstand + x.Value;
+                Console.WriteLine(NieuweAfstand);
                 if (NieuweAfstand < x.Key.Afstand)
                 {
                     x.Key.Afstand = NieuweAfstand;
