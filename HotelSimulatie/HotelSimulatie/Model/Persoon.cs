@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
             BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
-            Texturelijst.Add(@"Gasten\AnimatedRob");
+            //Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");
