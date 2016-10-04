@@ -47,7 +47,7 @@ namespace HotelSimulatie.Model
         public bool LoopNaarRuimte()
         {
             // In het geval van omhoog en omlaag gaan
-            if (Bestemming is Trap && HuidigeRuimte is Trap || Bestemming is Lift && Bestemming is Lift)
+            if (Bestemming is Trap && HuidigeRuimte is Trap || Bestemming is Liftschacht && HuidigeRuimte is Liftschacht)
             {
                 int y = Convert.ToInt32(Positie.Y);
                 if (y != Bestemming.EventCoordinaten.Y)

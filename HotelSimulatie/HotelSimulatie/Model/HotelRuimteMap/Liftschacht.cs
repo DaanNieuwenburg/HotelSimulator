@@ -7,13 +7,13 @@ using System.Text;
 
 namespace HotelSimulatie.Model
 {
-    public class Lift : HotelRuimte
+    public class Liftschacht : HotelRuimte
     {
         public int Bestemming { get; set; }
         public int Positie { get; set; }
         public int AantalPersonen { get; set; }
         public int Verdieping { get; set; }
-        public Lift(int verdieping)
+        public Liftschacht(int verdieping)
         {
             Naam = "Lift";
             Verdieping = verdieping;

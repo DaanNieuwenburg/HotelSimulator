@@ -14,7 +14,7 @@ namespace HotelSimulatie.Model
         public List<Kamer> KamerLijst { get; set; }
         public Schoonmaker Schoonmaker_A { get; set; }
         public Schoonmaker Schoonmaker_B { get; set; }
-        public Lift lift { get; set; }
+        public Liftschacht lift { get; set; }
         public Hotel()
         {
             NodeLijst = new List<HotelRuimte>();
@@ -22,7 +22,7 @@ namespace HotelSimulatie.Model
             KamerLijst = new List<Kamer>();
             Schoonmaker_A = new Schoonmaker();
             Schoonmaker_B = new Schoonmaker();
-            lift = new Lift(0);
+            lift = new Liftschacht(0);
             Addgasten();                        // tijdelijke testcode
 
             

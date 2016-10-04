@@ -105,7 +105,7 @@ namespace HotelSimulatie
                 }
 
                 // Ga naar de volgende verdieping
-                if (hotelRuimte is Lift)
+                if (hotelRuimte is Liftschacht)
                 {
                     x = 0;
                     y = y - 90;

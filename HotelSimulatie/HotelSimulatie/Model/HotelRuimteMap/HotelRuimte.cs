@@ -30,13 +30,13 @@ namespace HotelSimulatie.Model
         public void VoegBurenToe(HotelRuimte buur1, HotelRuimte buur2 = null)
         {
             Buren = new Dictionary<HotelRuimte, int>();
-            if(buur1 is Lift || buur1 is Trap)
+            if(buur1 is Liftschacht || buur1 is Trap)
                 Buren.Add(buur1, 2);
             else
                 Buren.Add(buur1, 1);
             if(buur2 != null)
             {
-                if (buur2 is Lift || buur2 is Trap)
+                if (buur2 is Liftschacht || buur2 is Trap)
                     Buren.Add(buur2, 2);
                 else
                     Buren.Add(buur2, 1);
