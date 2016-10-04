@@ -103,7 +103,6 @@ namespace HotelSimulatie.Model
                 {
                     HuidigeRuimte = Bestemming;
                     Bestemming = Bestemminglijst.First();
-                    Console.WriteLine( Positie.Y);
                     Bestemminglijst.Remove(Bestemming);
                 }
                 return true;

@@ -40,9 +40,10 @@ namespace HotelSimulatie
                 }
                 deze = deze.Vorige;
             }
-            pad.Add(Eind);
+            pad.Reverse();
             return pad;
         }
+
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
             deze.Afstand = 0;
