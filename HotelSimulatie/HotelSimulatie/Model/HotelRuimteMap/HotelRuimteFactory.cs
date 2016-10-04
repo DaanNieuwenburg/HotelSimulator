@@ -16,7 +16,7 @@ namespace HotelSimulatie.Model
             else if (soort == "Fitness")
                 return new Fitness();
             else if (soort == "Lift")
-                return new Lift(verdieping);
+                return new Liftschacht(verdieping);
             else if (soort == "Lobby")
                 return new Lobby();
             else if (soort == "Trap")
