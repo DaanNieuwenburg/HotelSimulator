@@ -177,7 +177,7 @@ namespace HotelSimulatie.Model
         public void Addgasten()
         {
             // test gast
-            /*Gast gast = new Gast();
+            Gast gast = new Gast();
             gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = Gastenlijst.Count + 1;
             Gastenlijst.Add(gast);
@@ -190,7 +190,7 @@ namespace HotelSimulatie.Model
             Gast gast2 = new Gast();
             gast.HuidigeRuimte = LobbyRuimte;
             gast.Gastnummer = Gastenlijst.Count + 1;
-            Gastenlijst.Add(gast2); */
+            Gastenlijst.Add(gast2); 
         }
     }
 }
