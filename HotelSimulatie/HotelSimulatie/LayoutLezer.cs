@@ -1,5 +1,6 @@
 ﻿using HotelSimulatie.Model;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,11 @@ namespace HotelSimulatie
     {
         public int MaxX { get; set; }
         public int MaxY { get; set; }
-        public List<HotelRuimte> HotelRuimteLijst { get; set; } 
-        
+        public List<HotelRuimte> HotelRuimteLijst { get; set; }
+        private ContentManager tempmanager { get; set; }
         public LayoutLezer()
         {
+            
             HotelRuimteLijst = LeesLayoutUit();
             MaxX = bepaalMaxX();
             MaxY = bepaalMaxY();
@@ -30,7 +32,7 @@ namespace HotelSimulatie
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(@"C:\Users\niels\Hotel3.layout"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\Hotel3.layout"))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);

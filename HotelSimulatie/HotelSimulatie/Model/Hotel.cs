@@ -42,7 +42,7 @@ namespace HotelSimulatie.Model
             KamerLijst.Add((Kamer)Kamer03);
             HotelRuimte Lift04 = hotelRuimteFabriek.MaakHotelRuimte("Lift", 0);
             NodeLijst.Add(Lift04);
-
+            
             Kamer01.VoegBurenToe(Trap00, Lobby02);
             Lobby02.VoegBurenToe(Kamer01, Kamer03);
             Kamer03.VoegBurenToe(Kamer03, Lift04);

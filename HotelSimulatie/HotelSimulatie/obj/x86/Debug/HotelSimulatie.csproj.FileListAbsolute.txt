@@ -29,17 +29,6 @@ C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lobby.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\1SterHotelKamer.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\2SterHotelKamer.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\3SterHotelKamer.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\4SterHotelKamer.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Trap.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Bioscoop.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedRob.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedSchoonmaker.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedTim.xnb
