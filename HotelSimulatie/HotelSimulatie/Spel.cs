@@ -65,24 +65,22 @@ namespace HotelSimulatie
         {
             GraphicsDevice.Clear(Color.White);
             int tegelBreedte = 150;
-            
+
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
 
             int x = 0;
             int y = 678;
-            int yTeller = 0;
-
-            int veranderdeNodes = 0;
 
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {
-                hotelRuimte.CoordinatenInSpel = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X * tegelBreedte, (Int32)hotelRuimte.CoordinatenInSpel.Y * 90);
+                hotelRuimte.CoordinatenInSpel = new Vector2(x * tegelBreedte, y);
                 hotelRuimte.LoadContent(Content);
-                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X * tegelBreedte, (Int32)hotelRuimte.CoordinatenInSpel.Y, 150, 90), Color.White);
-                /*
-                if(hotelRuimte is Lobby)
+                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(x * tegelBreedte, y, 150, 90), Color.White);
+                x++;
+
+                if (hotelRuimte is Lobby)
                 {
                     hotel.LobbyRuimte = (Lobby)hotelRuimte;
 
@@ -90,7 +88,7 @@ namespace HotelSimulatie
                     GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 10, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if(hotelRuimte is Trap)
+                if (hotelRuimte is Trap)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 53, hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
@@ -104,10 +102,10 @@ namespace HotelSimulatie
                 if (hotelRuimte is Kamer)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y);
-                }*/
+                }
 
                 // Ga naar de volgende verdieping
-                if (hotelRuimte is Trap)
+                if (hotelRuimte is Liftschacht)
                 {
                     x = 0;
                     y = y - 90;
@@ -115,6 +113,7 @@ namespace HotelSimulatie
             }
 
             spriteBatch.End();
+            Console.WriteLine(GastSpawnLocatie);
             base.Draw(gameTime);
         }
     }

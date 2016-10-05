@@ -33,7 +33,7 @@ namespace HotelSimulatie
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"Hotel3.layout"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\Hotel3.layout"))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);
@@ -73,8 +73,8 @@ namespace HotelSimulatie
         {
             for (int y = 0; y < MaxX; y++)
             {
-                Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(MaxX, y), Afmetingen = new Vector2(1, 1) };
-                HotelRuimteLijst.Add(liftschacht);
+                Trap trap = new Trap() { CoordinatenInSpel = new Vector2(MaxX, y), Afmetingen = new Vector2(1, 1) };
+                HotelRuimteLijst.Add(trap);
             }
         }
 
