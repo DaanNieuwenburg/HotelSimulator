@@ -23,13 +23,13 @@ namespace HotelSimulatie.Model
             algoritme = new Algoritme();
         }
 
-        public void Inchecken(Lobby lobby, GameTime gameTime, Kamer tempTestKamer)
+        public void Inchecken(Lobby lobby, GameTime gameTime)
         {
             Bestemming = lobby;
             if (LoopNaarRuimte())
             {
                 lobby.Naam = "lobby_Death";
-                HotelRuimte kamer = lobby.GastInChecken(this, gameTime, tempTestKamer);
+                HotelRuimte kamer = lobby.GastInChecken(this, gameTime);
 
                 if (kamer != null)
                 {

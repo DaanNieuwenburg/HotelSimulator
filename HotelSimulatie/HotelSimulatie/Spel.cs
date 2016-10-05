@@ -45,7 +45,7 @@ namespace HotelSimulatie
         {
             // Laad de inputhandler
             Components.Add(new InputHandler(this));
-            //Components.Add(new AiHandler(this));
+            Components.Add(new AiHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
@@ -68,38 +68,30 @@ namespace HotelSimulatie
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
-
-            int x = 0;
-            int y = 678;
-
+            
 
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {
                 hotelRuimte.LoadContent(Content);
-                int xPos = 150 * (Int32)hotelRuimte.CoordinatenInSpel.X;
-                int yPos = 678 - ((Int32)hotelRuimte.CoordinatenInSpel.Y * 90) - 90;
-                int breedte = (Int32)hotelRuimte.Afmetingen.X * 150;
-                int hoogte = (Int32)hotelRuimte.Afmetingen.Y * 90;
+
+                // Tekent de textures op het scherm
+                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y), Color.White);
+
+                // Zet de coordinaten van de hotelruimte goed
+                hotelRuimte.CoordinatenInSpel = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+
+                // Zet overige posities goed
                 if (hotelRuimte is Lobby)
                 {
                     hotel.LobbyRuimte = (Lobby)hotelRuimte;
-
-                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle(xPos, yPos, breedte, hoogte);
-                    GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
-                    hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 10, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
+                    hotel.LobbyRuimte.hotel = hotel;
+                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y);
+                    GastSpawnLocatie = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
+                    hotel.LobbyRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
                 if (hotelRuimte is Trap)
                 {
-                    hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 53, hotelRuimte.CoordinatenInSpel.Y + 20);
-                }
-                if (hotelRuimte.Afmetingen.Y > 1)
-                {
-                    // Zet textures die grooter zijn dan 1, hoger neer
-                    spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(xPos, (Int32)(yPos - hotelRuimte.Afmetingen.Y * 90 + 90), breedte, hoogte), Color.White);
-                }
-                else
-                {
-                    spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(xPos, yPos, breedte, hoogte), Color.White);
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 53, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
 
             }

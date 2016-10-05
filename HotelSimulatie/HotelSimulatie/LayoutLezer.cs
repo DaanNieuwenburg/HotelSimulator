@@ -25,6 +25,7 @@ namespace HotelSimulatie
             zetTrapInLayout();
             zetLobbyInLayout();
             geefLayoutNodesBuren();
+            zetLayoutPositiesGoed();
             Console.WriteLine(HotelRuimteLijst.Count);
         }
 
@@ -160,7 +161,7 @@ namespace HotelSimulatie
                         {
                             zoekTeller++;
                         }
-                        else if(volgendeofvorige == "vorige" && zoekTeller > -1)
+                        else if (volgendeofvorige == "vorige" && zoekTeller > -1)
                         {
                             zoekTeller--;
                         }
@@ -176,6 +177,24 @@ namespace HotelSimulatie
                 }
             }
             return gevondenRuimte;
+        }
+
+        private void zetLayoutPositiesGoed()
+        {
+            foreach (HotelRuimte hotelRuimte in HotelRuimteLijst)
+            {
+                int xPos = 150 * (Int32)hotelRuimte.CoordinatenInSpel.X;
+                int yPos = 678 - ((Int32)hotelRuimte.CoordinatenInSpel.Y * 90) - 90;
+                yPos = (Int32)(yPos - hotelRuimte.Afmetingen.Y * 90 + 90);
+                int breedte = (Int32)hotelRuimte.Afmetingen.X * 150;
+                int hoogte = (Int32)hotelRuimte.Afmetingen.Y * 90;
+
+                // Bind aan properties
+                Vector2 coordinaten = new Vector2(xPos, yPos);
+                Vector2 afmetingen = new Vector2(breedte, hoogte);
+                hotelRuimte.CoordinatenInSpel = coordinaten;
+                hotelRuimte.Afmetingen = afmetingen;
+            }
         }
     }
 }

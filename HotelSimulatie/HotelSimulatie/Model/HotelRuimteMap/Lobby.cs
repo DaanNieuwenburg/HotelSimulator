@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
     {
         public Rectangle LobbyRectangle { get; set; }
         public Queue<Gast> Wachtrij { get; set; }
+        public Hotel hotel { get; set; }
         private float verlopenTijd { get; set; }
         public Lobby()
         {
@@ -26,17 +27,21 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
 
-        public HotelRuimte GastInChecken(Gast gast, GameTime gameTime, Kamer tempTestKamer)
+        public HotelRuimte GastInChecken(Gast gast, GameTime gameTime)
         {
             verlopenTijd += gameTime.ElapsedGameTime.Milliseconds;
             if (verlopenTijd > 4000)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
                 gastAanDeBeurt.Kamernummer = 1; // temp dit moet dynamisch
-                gastAanDeBeurt.Bestemming = tempTestKamer;
+                //gastAanDeBeurt.Bestemming = tempTestKamer;
                 gastAanDeBeurt.BestemmingBereikt = false;
                 verlopenTijd = 0;
-                return tempTestKamer;
+
+                // Geef een beschikbare kamer
+                Kamer toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false);
+                toegewezenKamer.Bezet = true;
+                return toegewezenKamer;
             }
             else
             {

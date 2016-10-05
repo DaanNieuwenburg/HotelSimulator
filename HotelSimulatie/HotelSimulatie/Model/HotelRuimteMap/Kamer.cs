@@ -14,9 +14,11 @@ namespace HotelSimulatie.Model
         [JsonProperty("Classification")]
         public int AantalSterren { get; set; }
 
+        public bool Bezet { get; set; }
         public int hoogte { get; set; }
         public Kamer(int aantalSterren)
         {
+            Bezet = false;
             AantalSterren = aantalSterren;
         }
         public override void LoadContent(ContentManager contentManager)
