@@ -45,7 +45,7 @@ namespace HotelSimulatie
         {
             // Laad de inputhandler
             Components.Add(new InputHandler(this));
-            Components.Add(new AiHandler(this));
+            //Components.Add(new AiHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
@@ -72,14 +72,16 @@ namespace HotelSimulatie
 
             int x = 0;
             int y = 678;
+            int yTeller = 0;
+
+            int veranderdeNodes = 0;
 
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {
-                hotelRuimte.CoordinatenInSpel = new Vector2(x * tegelBreedte, y);
+                hotelRuimte.CoordinatenInSpel = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X * tegelBreedte, (Int32)hotelRuimte.CoordinatenInSpel.Y * 90);
                 hotelRuimte.LoadContent(Content);
-                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(x * tegelBreedte, y, 150, 90), Color.White);
-                x++;
-
+                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X * tegelBreedte, (Int32)hotelRuimte.CoordinatenInSpel.Y, 150, 90), Color.White);
+                /*
                 if(hotelRuimte is Lobby)
                 {
                     hotel.LobbyRuimte = (Lobby)hotelRuimte;
@@ -102,10 +104,10 @@ namespace HotelSimulatie
                 if (hotelRuimte is Kamer)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y);
-                }
+                }*/
 
                 // Ga naar de volgende verdieping
-                if (hotelRuimte is Liftschacht)
+                if (hotelRuimte is Trap)
                 {
                     x = 0;
                     y = y - 90;
