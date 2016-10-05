@@ -25,6 +25,7 @@ namespace HotelSimulatie
             maakLift();
             maakTrap();
             maakLobby();
+            Console.WriteLine(HotelRuimteLijst.Count);
         }
         
         public List<HotelRuimte> LeesLayoutUit()
@@ -62,7 +63,7 @@ namespace HotelSimulatie
 
         public void maakLift()
         {
-            for (int y = 0; y < MaxY; y++)
+            for (int y = 0; y <= MaxY; y++)
             {
                 Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(0, y), Afmetingen = new Vector2(1, 1) };
                 HotelRuimteLijst.Add(liftschacht);
@@ -71,7 +72,7 @@ namespace HotelSimulatie
 
         public void maakTrap()
         {
-            for (int y = 0; y < MaxX; y++)
+            for (int y = 0; y <= MaxY; y++)
             {
                 Trap trap = new Trap() { CoordinatenInSpel = new Vector2(MaxX, y), Afmetingen = new Vector2(1, 1) };
                 HotelRuimteLijst.Add(trap);
@@ -92,16 +93,12 @@ namespace HotelSimulatie
                     {
                         ruimtesLinks++;
                     }
-                    else if(hotelRuimte.CoordinatenInSpel.X == MaxX)
-                    {
-                        ruimtesRechts--;
-                    }
                 }
             }
 
             // Voeg lobby toe aan lijst
             Lobby lobby = new Lobby();
-            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 0);
+            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 1);
             lobby.CoordinatenInSpel = new Vector2(ruimtesLinks, 0);
             HotelRuimteLijst.Add(lobby);
         }

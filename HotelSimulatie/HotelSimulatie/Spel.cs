@@ -64,27 +64,27 @@ namespace HotelSimulatie
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            int tegelBreedte = 150;
 
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
-            spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
+            //spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
 
             int x = 0;
             int y = 678;
 
+
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {
-                hotelRuimte.CoordinatenInSpel = new Vector2(x * tegelBreedte, y);
                 hotelRuimte.LoadContent(Content);
-                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(x * tegelBreedte, y, 150, 90), Color.White);
-                x++;
-
+                int xPos = 150 * (Int32)hotelRuimte.CoordinatenInSpel.X;
+                int yPos = 678 - ((Int32)hotelRuimte.CoordinatenInSpel.Y * 90);
+                int breedte = (Int32)hotelRuimte.Afmetingen.X * 150;
+                int hoogte = (Int32)hotelRuimte.Afmetingen.Y * 90;
                 if (hotelRuimte is Lobby)
                 {
                     hotel.LobbyRuimte = (Lobby)hotelRuimte;
 
-                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle((x - 1) * tegelBreedte, y, 150, 90);
+                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle(xPos, yPos, breedte, hoogte);
                     GastSpawnLocatie = new Vector2(hotel.LobbyRuimte.CoordinatenInSpel.X, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2(GastSpawnLocatie.X + 10, hotel.LobbyRuimte.CoordinatenInSpel.Y + 20);
                 }
@@ -93,27 +93,11 @@ namespace HotelSimulatie
                     hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X + 53, hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
 
-                if (hotelRuimte is Kamer && y == 408 && x == 3)
-                {
-                    EersteKamer = (Kamer)hotelRuimte;
-                    EersteKamer.EventCoordinaten = new Vector2(EersteKamer.CoordinatenInSpel.X, y);
-                }
+                spriteBatch.Draw(hotelRuimte.Texture, new Rectangle(xPos, yPos, breedte, hoogte), Color.White);
 
-                if (hotelRuimte is Kamer)
-                {
-                    hotelRuimte.EventCoordinaten = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y);
-                }
-
-                // Ga naar de volgende verdieping
-                if (hotelRuimte is Liftschacht)
-                {
-                    x = 0;
-                    y = y - 90;
-                }
             }
 
             spriteBatch.End();
-            Console.WriteLine(GastSpawnLocatie);
             base.Draw(gameTime);
         }
     }
