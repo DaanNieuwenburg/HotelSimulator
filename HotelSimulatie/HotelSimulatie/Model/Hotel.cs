@@ -24,10 +24,10 @@ namespace HotelSimulatie.Model
             Schoonmaker_B = new Schoonmaker();
             lift = new Liftschacht(0);
             Addgasten();    // tijdelijke testcode
-            LayoutLezer layoutLezer = new LayoutLezer();
-            NodeLijst = layoutLezer.HotelRuimteLijst;
+            //LayoutLezer layoutLezer = new LayoutLezer();
+            //NodeLijst = layoutLezer.HotelRuimteLijst;
 
-            /*// This is seriously way to long -.- something for iteration 3?
+            // This is seriously way to long -.- something for iteration 3?
             HotelRuimteFactory hotelRuimteFabriek = new HotelRuimteFactory();
 
             HotelRuimte Trap00  = hotelRuimteFabriek.MaakHotelRuimte("Trap");
@@ -171,7 +171,7 @@ namespace HotelSimulatie.Model
             Lift34.VoegBurenToe(Lift44, Kamer33);
             Lift44.VoegBurenToe(Lift54, Kamer43);
             Lift54.VoegBurenToe(Lift64, Kamer53);
-            Lift64.VoegBurenToe(Kamer63);*/
+            Lift64.VoegBurenToe(Kamer63);
         }
 
         public void Addgasten()
