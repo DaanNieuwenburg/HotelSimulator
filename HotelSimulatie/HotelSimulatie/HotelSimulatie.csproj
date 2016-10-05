@@ -171,7 +171,6 @@
     <Content Include="Properties\Resources\HoofdmenuLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Hotel2.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

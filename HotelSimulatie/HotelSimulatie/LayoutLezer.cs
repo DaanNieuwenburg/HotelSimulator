@@ -22,6 +22,7 @@ namespace HotelSimulatie
             MaxY = bepaalMaxY();
             maakLift();
             maakTrap();
+            maakLobby();
         }
         
         public List<HotelRuimte> LeesLayoutUit()
@@ -77,7 +78,30 @@ namespace HotelSimulatie
 
         public void maakLobby()
         {
+            // Bepaal lobby positie
+            int x = MaxX;
+            int ruimtesLinks = 0;
+            int ruimtesRechts = MaxX;
+            foreach(HotelRuimte hotelRuimte in HotelRuimteLijst)
+            {
+                if(hotelRuimte.CoordinatenInSpel.Y == 0)
+                {
+                    if(hotelRuimte.CoordinatenInSpel.X == 0)
+                    {
+                        ruimtesLinks++;
+                    }
+                    else if(hotelRuimte.CoordinatenInSpel.X == MaxX)
+                    {
+                        ruimtesRechts--;
+                    }
+                }
+            }
 
+            // Voeg lobby toe aan lijst
+            Lobby lobby = new Lobby();
+            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 0);
+            lobby.CoordinatenInSpel = new Vector2(ruimtesLinks, 0);
+            HotelRuimteLijst.Add(lobby);
         }
     }
 }

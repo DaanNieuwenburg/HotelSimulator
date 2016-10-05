@@ -47,6 +47,7 @@ namespace HotelSimulatie
             }
             else if (jObject["AreaType"].Value<string>() == "Room")
             {
+                string classification = jObject["Classification"].Value<string>();
                 return jObject.ToObject<Kamer>(serializer);
             }
             else

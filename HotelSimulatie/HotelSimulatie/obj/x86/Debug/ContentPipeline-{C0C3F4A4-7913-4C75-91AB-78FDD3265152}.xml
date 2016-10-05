@@ -8,7 +8,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedRob.xnb</Output>
-      <Time>2016-09-29T21:54:06.1130991+02:00</Time>
+      <Time>2016-09-29T11:25:38.758733+02:00</Time>
     </Item>
     <Item>
       <Source>AnimatedSchoonmaker.png</Source>
@@ -17,7 +17,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedSchoonmaker.xnb</Output>
-      <Time>2016-09-29T21:54:06.0940985+02:00</Time>
+      <Time>2016-09-29T11:25:38.7406845+02:00</Time>
     </Item>
     <Item>
       <Source>AnimatedTim.png</Source>
@@ -26,7 +26,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedTim.xnb</Output>
-      <Time>2016-09-29T21:54:06.0960984+02:00</Time>
+      <Time>2016-09-29T11:25:38.7426916+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast1.png</Source>
@@ -35,7 +35,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast1.xnb</Output>
-      <Time>2016-09-29T21:54:06.1090988+02:00</Time>
+      <Time>2016-09-29T11:25:38.754724+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast2.png</Source>
@@ -44,7 +44,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast2.xnb</Output>
-      <Time>2016-09-29T21:54:06.1100989+02:00</Time>
+      <Time>2016-09-29T11:25:38.7557262+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast3.png</Source>
@@ -53,7 +53,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast3.xnb</Output>
-      <Time>2016-09-29T21:54:06.112099+02:00</Time>
+      <Time>2016-09-29T11:25:38.7567268+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Beneden.png</Source>
@@ -62,7 +62,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Beneden.xnb</Output>
-      <Time>2016-09-29T21:54:06.1240997+02:00</Time>
+      <Time>2016-09-29T12:50:50.2511165+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Beneden_Open.png</Source>
@@ -71,7 +71,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Beneden_Open.xnb</Output>
-      <Time>2016-10-03T23:17:24.4202723+02:00</Time>
+      <Time>2016-10-04T09:33:14.8606233+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Bovenste_Gesloten.png</Source>
@@ -80,7 +80,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Bovenste_Gesloten.xnb</Output>
-      <Time>2016-09-29T21:54:06.1260999+02:00</Time>
+      <Time>2016-09-29T12:51:51.1749683+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Bovenste_Open.png</Source>
@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Bovenste_Open.xnb</Output>
-      <Time>2016-09-29T21:54:06.1271+02:00</Time>
+      <Time>2016-09-29T12:52:16.1428791+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Gesloten.png</Source>
@@ -98,7 +98,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Gesloten.xnb</Output>
-      <Time>2016-09-29T21:54:06.1281+02:00</Time>
+      <Time>2016-09-29T12:52:37.075272+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Open.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Open.xnb</Output>
-      <Time>2016-09-29T21:54:06.1300999+02:00</Time>
+      <Time>2016-09-29T12:53:04.737877+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Trap_gesloten.png</Source>
@@ -116,7 +116,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Trap_gesloten.xnb</Output>
-      <Time>2016-10-04T14:53:52.9807089+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\lobby_Normaal.png</Source>
@@ -125,7 +125,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\lobby_Normaal.xnb</Output>
-      <Time>2016-10-04T14:53:52.9777073+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\lobby_Death.png</Source>
@@ -134,7 +134,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\lobby_Death.xnb</Output>
-      <Time>2016-10-04T14:53:52.9757061+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Kamer_1ster.png</Source>
@@ -143,7 +143,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_1ster.xnb</Output>
-      <Time>2016-10-04T14:53:52.9677051+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast3_Links.png</Source>
@@ -152,7 +152,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast3_Links.xnb</Output>
-      <Time>2016-10-03T23:17:24.408272+02:00</Time>
+      <Time>2016-10-03T14:17:36.290002+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast1_Links.png</Source>
@@ -161,7 +161,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast1_Links.xnb</Output>
-      <Time>2016-10-03T23:17:24.4052721+02:00</Time>
+      <Time>2016-10-03T14:17:36.290002+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedGast2_Links.png</Source>
@@ -170,7 +170,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast2_Links.xnb</Output>
-      <Time>2016-10-03T23:17:24.4072719+02:00</Time>
+      <Time>2016-10-03T14:17:36.290002+02:00</Time>
     </Item>
     <Item>
       <Source>Gasten\AnimatedRob_Links.png</Source>
@@ -179,7 +179,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedRob_Links.xnb</Output>
-      <Time>2016-10-03T23:17:24.4092724+02:00</Time>
+      <Time>2016-10-04T09:33:14.8606233+02:00</Time>
     </Item>
     <Item>
       <Source>Background.jpg</Source>
@@ -188,7 +188,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Background.xnb</Output>
-      <Time>2016-10-03T23:17:24.3902708+02:00</Time>
+      <Time>2016-10-04T09:33:14.8449927+02:00</Time>
     </Item>
     <Item>
       <Source>Background1.jpg</Source>
@@ -197,7 +197,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Background1.xnb</Output>
-      <Time>2016-10-03T23:17:24.4032732+02:00</Time>
+      <Time>2016-10-04T09:33:14.8606233+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Kamer_2ster.png</Source>
@@ -206,7 +206,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_2ster.xnb</Output>
-      <Time>2016-10-04T14:53:52.9697053+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Kamer_3ster.png</Source>
@@ -215,7 +215,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_3ster.xnb</Output>
-      <Time>2016-10-04T14:53:52.9707064+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Kamer_4ster(2hoog).png</Source>
@@ -224,7 +224,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_4ster(2hoog).xnb</Output>
-      <Time>2016-10-04T14:53:52.9747064+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Kamer_4ster(1hoog).png</Source>
@@ -233,7 +233,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_4ster(1hoog).xnb</Output>
-      <Time>2016-10-04T14:53:52.9727079+02:00</Time>
+      <Time>2016-10-05T09:55:40.983409+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -273,8 +273,8 @@
         <Value>2011-09-01T16:22:30+02:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2016-09-22T23:03:47.6681713+02:00</Value>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2016-09-22T13:07:57.4101131+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
