@@ -15,6 +15,7 @@ namespace HotelSimulatie.Model
         public string texturepath { get; set; }
         [JsonProperty("Dimension")]
         public Vector2 Afmetingen { get; set; }
+        
         public int Afstand { get; set; }
         [JsonProperty("Capacity")]
         public int Capaciteit { get; set; }

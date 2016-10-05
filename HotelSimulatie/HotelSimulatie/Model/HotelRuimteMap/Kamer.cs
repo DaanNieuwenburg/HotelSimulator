@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,9 @@ namespace HotelSimulatie.Model
     public class Kamer : HotelRuimte
     {
         public int Kamernummer { get; set; }
+        [JsonProperty("Classification")]
         public int AantalSterren { get; set; }
+
         public int hoogte { get; set; }
         public Kamer(int aantalSterren)
         {

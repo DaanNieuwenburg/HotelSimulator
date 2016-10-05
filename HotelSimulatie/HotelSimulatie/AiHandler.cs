@@ -12,7 +12,6 @@ namespace HotelSimulatie
     public class AiHandler : Microsoft.Xna.Framework.DrawableGameComponent
     {
         private Spel spel { get; set; }
-        private ContentManager Content { get; set; }
         private bool eersteKeer { get; set; }
 
         public AiHandler(Game game) : base(game)
