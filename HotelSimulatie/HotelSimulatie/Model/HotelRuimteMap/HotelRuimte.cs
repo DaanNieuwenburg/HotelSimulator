@@ -24,6 +24,7 @@ namespace HotelSimulatie.Model
         public Vector2 CoordinatenInSpel { get; set; }
         public Vector2 EventCoordinaten { get; set; }
         public Texture2D Texture { get; set; }
+        public int Verdieping { get; set; }
         public HotelRuimte Vorige { get; set; }
 
         public HotelRuimte()

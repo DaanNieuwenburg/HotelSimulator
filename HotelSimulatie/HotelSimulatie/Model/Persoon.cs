@@ -11,7 +11,7 @@ namespace HotelSimulatie.Model
     public abstract class Persoon 
     {
         public HotelRuimte Bestemming { get; set; }
-        protected List<HotelRuimte> Bestemminglijst { get; set; }
+        public List<HotelRuimte> Bestemminglijst { get; set; }
         public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
@@ -67,9 +67,16 @@ namespace HotelSimulatie.Model
                 {
                     if (Bestemminglijst != null && Bestemminglijst.Count > 0)
                     {
+                        // Zodra de gast bij lift komt word hij toegevoegd aan de wachtrij op de huidige verdieping
+                        if (Bestemming is Liftschacht)
+                        {
+                            Liftschacht test = (Liftschacht)Bestemming;
+                            test.UpdateWachtrij((Gast)this);
+                        }
                         HuidigeRuimte = Bestemming;
                         Bestemming = Bestemminglijst.First();
                         Bestemminglijst.Remove(Bestemming);
+                        
                     }
                     return true;
                 }
