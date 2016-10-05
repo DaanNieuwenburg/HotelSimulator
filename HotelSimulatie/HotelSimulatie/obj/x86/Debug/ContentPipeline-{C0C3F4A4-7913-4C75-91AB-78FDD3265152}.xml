@@ -245,24 +245,6 @@
       <Time>2016-10-05T13:27:17.8871144+02:00</Time>
     </Item>
     <Item>
-      <Source>Eetzaal.jpg</Source>
-      <Name>Eetzaal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb</Output>
-      <Time>2016-10-05T13:27:17.89112+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Fitness.jpg</Source>
-      <Name>Fitness</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb</Output>
-      <Time>2016-10-05T13:27:17.8941139+02:00</Time>
-    </Item>
-    <Item>
       <Source>5SterHotelKamer.jpg</Source>
       <Name>5SterHotelKamer</Name>
       <Importer>TextureImporter</Importer>
@@ -277,28 +259,28 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_5ster.xnb</Output>
-      <Time>0001-01-01T00:00:00</Time>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_5ster.xnb</Output>
+      <Time>2016-10-05T15:04:15.4336822+02:00</Time>
     </Item>
     <Item>
-      <Source>Kamers\Restaurant.png</Source>
-      <Name>Kamers\Restaurant</Name>
+      <Source>Eetzaal.png</Source>
+      <Name>Eetzaal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Restaurant.xnb</Output>
-      <Time>2016-10-05T14:30:27.2258214+02:00</Time>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Eetzaal.xnb</Output>
+      <Time>2016-10-05T15:41:37.5149497+02:00</Time>
     </Item>
     <Item>
-      <Source>Kamers\Fitness.png</Source>
-      <Name>Kamers\Fitness</Name>
+      <Source>Fitness.png</Source>
+      <Name>Fitness</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Fitness.xnb</Output>
-      <Time>2016-10-05T14:49:39.5381044+02:00</Time>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Fitness.xnb</Output>
+      <Time>2016-10-05T15:04:15.4316836+02:00</Time>
     </Item>
-    <BuildSuccessful>false</BuildSuccessful>
+    <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>
       <TargetPlatform>Windows</TargetPlatform>

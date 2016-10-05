@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
 {
     public abstract class HotelRuimte
     {
+        public int Code { get; set; }
         public string Naam { get; set; }
         public string texturepath { get; set; }
         [JsonProperty("Dimension")]
@@ -33,19 +34,43 @@ namespace HotelSimulatie.Model
             Vorige = null;
         }
         public abstract void LoadContent(ContentManager contentManager);
-        public void VoegBurenToe(HotelRuimte buur1, HotelRuimte buur2 = null)
+        public void VoegBurenToe(HotelRuimte buur1, HotelRuimte buur2 = null, HotelRuimte buur3 = null)
         {
             Buren = new Dictionary<HotelRuimte, int>();
-            if (buur1 is Liftschacht || buur1 is Trap)
-                Buren.Add(buur1, 2);
-            else
-                Buren.Add(buur1, 1);
+            if (buur1 != null)
+            {
+                if (buur1 is Liftschacht || buur1 is Trap)
+                {
+                    Buren.Add(buur1, 2);
+                }
+                else
+                {
+                    Buren.Add(buur1, 1);
+                }
+            }
+
             if (buur2 != null)
             {
                 if (buur2 is Liftschacht || buur2 is Trap)
+                {
                     Buren.Add(buur2, 2);
+                }
                 else
+                {
                     Buren.Add(buur2, 1);
+                }
+            }
+
+            if (buur3 != null)
+            {
+                if (buur3 is Liftschacht || buur3 is Trap)
+                {
+                    Buren.Add(buur3, 2);
+                }
+                else
+                {
+                    Buren.Add(buur3, 1);
+                }
             }
         }
     }

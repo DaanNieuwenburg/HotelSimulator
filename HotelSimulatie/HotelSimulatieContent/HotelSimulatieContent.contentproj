@@ -201,20 +201,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Eetzaal.jpg">
-      <Name>Eetzaal</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Fitness.jpg">
-      <Name>Fitness</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="5SterHotelKamer.jpg">
       <Name>5SterHotelKamer</Name>
       <Importer>TextureImporter</Importer>
@@ -229,15 +215,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kamers\Restaurant.png">
-      <Name>Restaurant</Name>
+    <Compile Include="Fitness.png">
+      <Name>Fitness</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kamers\Fitness.png">
-      <Name>Fitness</Name>
+    <Compile Include="Eetzaal.png">
+      <Name>Eetzaal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
