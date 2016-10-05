@@ -62,8 +62,8 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HotelEvents">
-      <HintPath>..\..\..\..\..\Documents\HotelEvents.dll</HintPath>
+    <Reference Include="HotelEvents2">
+      <HintPath>..\..\..\..\..\Downloads\HotelEvents2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
