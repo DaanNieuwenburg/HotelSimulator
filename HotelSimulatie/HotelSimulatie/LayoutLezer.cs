@@ -33,7 +33,7 @@ namespace HotelSimulatie
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\Hotel3.layout"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"Hotel3.layout"))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);
