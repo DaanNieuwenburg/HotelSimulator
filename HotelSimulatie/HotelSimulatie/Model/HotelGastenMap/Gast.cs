@@ -10,7 +10,7 @@ namespace HotelSimulatie.Model
 {
     public class Gast : Persoon
     {
-        public int Gastnummer { get; set; }
+        public string Naam { get; set; }
         public bool Honger { get; set; }
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }

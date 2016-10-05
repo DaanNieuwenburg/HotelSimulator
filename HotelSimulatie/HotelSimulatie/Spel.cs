@@ -20,7 +20,6 @@ namespace HotelSimulatie
         public Hotel hotel { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
-        public Kamer EersteKamer { get; set; }
         public Matrix matrix { get; set; }
 
         public Spel(Hotel _hotel)
@@ -45,7 +44,7 @@ namespace HotelSimulatie
         {
             // Laad de inputhandler
             Components.Add(new InputHandler(this));
-            Components.Add(new AiHandler(this));
+            Components.Add(new HotelEventHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
         }
 
