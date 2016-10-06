@@ -17,10 +17,13 @@ namespace HotelSimulatie
         private bool eersteKeer { get; set; }
         private HotelEvent Event { get; }
         private GameTime GameTijd { get; set; }
+        
+        public int Tijd { get; set; }
 
         public HotelEventHandler(Game game) : base(game)
         {
-
+            Tijdpostitie = new Vector2(0, 700);
+            
             spel = (Spel)game;
             Event = new HotelEvent();
             // Start de event listener
@@ -29,7 +32,7 @@ namespace HotelSimulatie
         }
         protected override void LoadContent()
         {
-
+            
         }
         public override void Update(GameTime gameTime)
         {
@@ -53,8 +56,8 @@ namespace HotelSimulatie
                     }
                     else
                     {
-                        if (gastEvent.Value.Contains("Checkin"))
-                        {
+                    if (gastEvent.Value.Contains("Checkin"))
+                    {
                             Regex regexToSplit = new Regex(@"([1-9])");
                             string[] teSplitten = regexToSplit.Split(gastEvent.Value);
                             string kamernummer = teSplitten[1];
@@ -71,14 +74,14 @@ namespace HotelSimulatie
             spel.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
+            spriteBatch.DrawString(spel.font, "Tijd: " + Event.Time.ToString(), Tijdpostitie, Color.Red);
             base.Draw(gameTime);
 
-
+            
 
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)
             {
-                //spriteBatch.Draw(gast.SpriteAnimatie.Texture, gast.Positie, Color.White);
                 gast.Draw(spriteBatch);
             }
 

@@ -70,7 +70,7 @@ namespace HotelSimulatie.Model
             }
             if (this.CoordinatenInSpel.Y == volgende.CoordinatenInSpel.Y)
             {
-                volgende.LeegWachtrij(volgende.Verdieping);
+                volgende.LeegWachtrij(volgende.Bestemming);
             }
                 
         }
