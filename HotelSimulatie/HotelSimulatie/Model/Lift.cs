@@ -1,20 +1,29 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
 namespace HotelSimulatie.Model
 {
-    public class Lift
+    public class Lift : HotelRuimte
     {
         public int Huidigeverdieping { get; set; }
         public int Volgendeverdieping { get; set; }
-        public int verdieping { get; set; }
         public Dictionary<Gast, int> GasteninLift { get; set; }
+        private Vector2 Positie { get; set; }
+        float snelheid;
 
         public Lift()
         {
+            Huidigeverdieping = 0;
+            snelheid = 0.5f;
             GasteninLift = new Dictionary<Gast, int>();
+        }
+        public override void LoadContent(ContentManager contentManager)
+        {
+
         }
         public void UpdateLift(Gast gast)
         {
@@ -43,7 +52,27 @@ namespace HotelSimulatie.Model
             {
                 GasteninLift.Add(gast, gast.Bestemming.Verdieping - gast.Bestemminglijst.OfType<Liftschacht>().Count());
             }
-            
+            Huidigeverdieping = gast.Bestemming.Verdieping;
+        }
+
+        public void Verplaats(int verdieping)
+        {
+            Liftschacht volgende = new Liftschacht(verdieping);
+            Vector2 verplaatsnaar = volgende.CoordinatenInSpel;
+
+            if(this.CoordinatenInSpel.Y < volgende.CoordinatenInSpel.Y)
+            {
+                Positie = new Vector2(Positie.X, Positie.Y + snelheid);
+            }
+            else
+            {
+                Positie = new Vector2(Positie.X, Positie.Y - snelheid);
+            }
+            if (this.CoordinatenInSpel.Y == volgende.CoordinatenInSpel.Y)
+            {
+                volgende.LeegWachtrij(volgende.Verdieping);
+            }
+                
         }
 
     }

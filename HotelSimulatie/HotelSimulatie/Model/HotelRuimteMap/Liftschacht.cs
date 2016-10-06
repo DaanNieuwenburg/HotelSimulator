@@ -41,7 +41,8 @@ namespace HotelSimulatie.Model
             {
                 Gast temp = Wachtrij.Dequeue();
                 lift.UpdateLift(temp);
-            }       
+            }
+            lift.Verplaats(2);       
         }
     }
 }
