@@ -64,7 +64,6 @@ namespace HotelSimulatie
                     {
 
                     }
-                    
                 }
             }
         }
