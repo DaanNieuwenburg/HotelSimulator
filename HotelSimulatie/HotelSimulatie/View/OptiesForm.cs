@@ -23,7 +23,7 @@ namespace HotelSimulatie.View
             }*/
             else
             {
-                HotelEventManager.HTE_Factor = Convert.ToInt32(tbHTE.Text);
+                HotelEventManager.HTE_Factor = (float)Convert.ToDouble(tbHTE.Text.Replace('.', ','));
                 DialogResult = DialogResult.OK;
             }
             
