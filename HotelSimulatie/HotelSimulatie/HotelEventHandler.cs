@@ -36,7 +36,20 @@ namespace HotelSimulatie
             {
                 foreach (KeyValuePair<string,string> gastEvent in eventData)
                 {
-                    spel.hotel.GastenLijst.Find(o => o.Naam == gastEvent.Key);
+                    Gast gevondenGast = spel.hotel.GastenLijst.Find(o => o.Naam == gastEvent.Key);
+                    if(gevondenGast == null)
+                    {
+                        spel.hotel.GastenLijst.Add(new Gast() { Naam = gastEvent.Key });
+                    }
+
+                    if (gastEvent.Value.Contains("Checkin"))
+                        {
+
+                    }
+                    /*if(gastEvent.Value == HotelEventType.CHECK_IN)
+                    {
+
+                    }*/
                 }
             }
         }
