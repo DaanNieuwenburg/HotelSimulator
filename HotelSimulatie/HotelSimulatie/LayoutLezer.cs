@@ -18,22 +18,24 @@ namespace HotelSimulatie
         private ContentManager tempmanager { get; set; }
         public LayoutLezer()
         {
-            
             HotelRuimteLijst = LeesLayoutUit();
-            MaxX = bepaalMaxX();
+            MaxX = bepaalMaxX() + 1;
             MaxY = bepaalMaxY();
-            maakLift();
-            maakTrap();
-            maakLobby();
+            zetLiftenInLayout();
+            zetTrapInLayout();
+            zetLobbyInLayout();
+            geefLayoutNodesBuren();
+            zetLayoutPositiesGoed();
+            Console.WriteLine(HotelRuimteLijst.Count);
         }
-        
+
         public List<HotelRuimte> LeesLayoutUit()
         {
             List<HotelRuimte> ruimteLijst = null;
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)+@"\Hotel3.layout"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel3.layout"))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);
@@ -47,7 +49,7 @@ namespace HotelSimulatie
             // Sorteer layout 
             return ruimteLijst;
         }
-        
+
 
 
         public int bepaalMaxX()
@@ -60,50 +62,139 @@ namespace HotelSimulatie
             return (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
         }
 
-        public void maakLift()
+        public void zetLiftenInLayout()
         {
-            for (int y = 0; y < MaxY; y++)
+            for (int y = 0; y <= MaxY; y++)
             {
                 Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(0, y), Afmetingen = new Vector2(1, 1) };
                 HotelRuimteLijst.Add(liftschacht);
             }
         }
 
-        public void maakTrap()
+        public void zetTrapInLayout()
         {
-            for (int y = 0; y < MaxX; y++)
+            for (int y = 0; y <= MaxY; y++)
             {
                 Trap trap = new Trap() { CoordinatenInSpel = new Vector2(MaxX, y), Afmetingen = new Vector2(1, 1) };
                 HotelRuimteLijst.Add(trap);
             }
         }
 
-        public void maakLobby()
+        public void zetLobbyInLayout()
         {
             // Bepaal lobby positie
             int x = MaxX;
             int ruimtesLinks = 0;
             int ruimtesRechts = MaxX;
-            foreach(HotelRuimte hotelRuimte in HotelRuimteLijst)
+            foreach (HotelRuimte hotelRuimte in HotelRuimteLijst)
             {
-                if(hotelRuimte.CoordinatenInSpel.Y == 0)
+                if (hotelRuimte.CoordinatenInSpel.Y == 0)
                 {
-                    if(hotelRuimte.CoordinatenInSpel.X == 0)
+                    if (hotelRuimte.CoordinatenInSpel.X == 0)
                     {
                         ruimtesLinks++;
-                    }
-                    else if(hotelRuimte.CoordinatenInSpel.X == MaxX)
-                    {
-                        ruimtesRechts--;
                     }
                 }
             }
 
             // Voeg lobby toe aan lijst
             Lobby lobby = new Lobby();
-            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 0);
+            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 1);
             lobby.CoordinatenInSpel = new Vector2(ruimtesLinks, 0);
             HotelRuimteLijst.Add(lobby);
+        }
+
+        public void geefLayoutNodesBuren()
+        {
+            // Sorteer lijst bij op y en daarna op x
+            HotelRuimteLijst = HotelRuimteLijst.OrderBy(x => x.CoordinatenInSpel.Y).ThenBy(x => x.CoordinatenInSpel.X).ToList();
+
+            int teller = 0;
+            foreach (HotelRuimte hRuimte in HotelRuimteLijst)
+            {
+                if (hRuimte is Liftschacht || hRuimte is Trap)
+                {
+                    HotelRuimte gevondenBovenBuur = zoekLiftOfTrapBuur(hRuimte.GetType(), "volgende", teller);
+                    HotelRuimte gevondenBenedenBuur = zoekLiftOfTrapBuur(hRuimte.GetType(), "vorige", teller);
+                    if (teller + 1 < HotelRuimteLijst.Count() && HotelRuimteLijst[teller + 1].GetType() != typeof(Liftschacht) && HotelRuimteLijst[teller + 1].GetType() != typeof(Trap))
+                    {
+                        hRuimte.VoegBurenToe(gevondenBenedenBuur, gevondenBovenBuur, HotelRuimteLijst[teller + 1]);
+                    }
+                    else
+                    {
+                        hRuimte.VoegBurenToe(gevondenBenedenBuur, gevondenBovenBuur);
+                    }
+                }
+                else
+                {
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[teller - 1], HotelRuimteLijst[teller + 1]);
+                }
+                teller++;
+            }
+        }
+
+        // Returnt de volgende lift of trap buur, als die er is.
+        private HotelRuimte zoekLiftOfTrapBuur(Type teVindenType, string volgendeofvorige, int zoekTeller)
+        {
+            bool gevonden = false;
+            if (volgendeofvorige == "volgende")
+            {
+                zoekTeller++;   // voorkomt dat de zoekteller de huidige lift of trap vind
+            }
+            else
+            {
+                zoekTeller--;   // voorkomt dat de zoekteller de huidige lift of trap vind
+            }
+            HotelRuimte gevondenRuimte = null;
+            while (gevonden == false)
+            {
+                if (zoekTeller < HotelRuimteLijst.Count && zoekTeller > -1)
+                {
+                    if (HotelRuimteLijst[zoekTeller].GetType() == teVindenType)
+                    {
+                        gevondenRuimte = HotelRuimteLijst[zoekTeller];
+                        break;
+                    }
+                    else
+                    {
+                        if (volgendeofvorige == "volgende")
+                        {
+                            zoekTeller++;
+                        }
+                        else if (volgendeofvorige == "vorige" && zoekTeller > -1)
+                        {
+                            zoekTeller--;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            return gevondenRuimte;
+        }
+
+        private void zetLayoutPositiesGoed()
+        {
+            foreach (HotelRuimte hotelRuimte in HotelRuimteLijst)
+            {
+                int xPos = 150 * (Int32)hotelRuimte.CoordinatenInSpel.X;
+                int yPos = 678 - ((Int32)hotelRuimte.CoordinatenInSpel.Y * 90) - 90;
+                yPos = (Int32)(yPos - hotelRuimte.Afmetingen.Y * 90 + 90);
+                int breedte = (Int32)hotelRuimte.Afmetingen.X * 150;
+                int hoogte = (Int32)hotelRuimte.Afmetingen.Y * 90;
+
+                // Bind aan properties
+                Vector2 coordinaten = new Vector2(xPos, yPos);
+                Vector2 afmetingen = new Vector2(breedte, hoogte);
+                hotelRuimte.CoordinatenInSpel = coordinaten;
+                hotelRuimte.Afmetingen = afmetingen;
+            }
         }
     }
 }
