@@ -245,15 +245,6 @@
       <Time>2016-10-05T12:45:58.90009+02:00</Time>
     </Item>
     <Item>
-      <Source>5SterHotelKamer.jpg</Source>
-      <Name>5SterHotelKamer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb</Output>
-      <Time>2016-10-05T12:45:58.8985834+02:00</Time>
-    </Item>
-    <Item>
       <Source>Kamers\Kamer_5ster.png</Source>
       <Name>Kamers\Kamer_5ster</Name>
       <Importer>TextureImporter</Importer>
@@ -288,6 +279,24 @@
       <Options>None</Options>
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T11:59:31.7219653+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Kamers\Gang.png</Source>
+      <Name>Kamers\Gang</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Gang.xnb</Output>
+      <Time>2016-10-06T14:14:39.4197286+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Kamers\Bioscoop.png</Source>
+      <Name>Kamers\Bioscoop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Bioscoop.xnb</Output>
+      <Time>2016-10-06T19:23:46.5588977+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

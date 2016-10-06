@@ -12,10 +12,11 @@ namespace HotelSimulatie.Model
         public Bioscoop()
         {
             Naam = "Bioscoop";
+            texturepath = @"Kamers\Bioscoop";
         }
         public override void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>(Naam);
+            Texture = contentManager.Load<Texture2D>(texturepath);
         }
     }
 }
