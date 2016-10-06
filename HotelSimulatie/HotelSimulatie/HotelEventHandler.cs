@@ -39,17 +39,16 @@ namespace HotelSimulatie
                     Gast gevondenGast = spel.hotel.GastenLijst.Find(o => o.Naam == gastEvent.Key);
                     if(gevondenGast == null)
                     {
-                        spel.hotel.GastenLijst.Add(new Gast() { Naam = gastEvent.Key });
+                        Gast nieuweGast = new Gast() { Naam = gastEvent.Key, Positie = spel.GastSpawnLocatie };
+                        nieuweGast.LoadContent(Game.Content);
+                        spel.hotel.GastenLijst.Add(nieuweGast);
                     }
 
                     if (gastEvent.Value.Contains("Checkin"))
-                        {
-
-                    }
-                    /*if(gastEvent.Value == HotelEventType.CHECK_IN)
                     {
 
-                    }*/
+                    }
+                    
                 }
             }
         }
@@ -64,7 +63,7 @@ namespace HotelSimulatie
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)
             {
-                gast.Draw(spriteBatch);
+                spriteBatch.Draw(gast.SpriteAnimatie.Texture, gast.Positie, Color.White);
             }
 
             spriteBatch.End();
