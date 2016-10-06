@@ -26,7 +26,7 @@ namespace HotelSimulatie
 
         public Spel(Hotel _hotel)
         {
-            
+
             graphics = new GraphicsDeviceManager(this);
             Window.Title = "Hotel Simulator";
             Content.RootDirectory = "Content";
@@ -92,9 +92,14 @@ namespace HotelSimulatie
                     GastSpawnLocatie = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if (hotelRuimte is Trap)
+                if (hotelRuimte is Kamer)
                 {
-                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 53, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
+                    Kamer test = (Kamer)hotelRuimte;
+                    if (test.AantalSterren == 5)
+                    {
+                        spriteBatch.Draw(hotelRuimte.Texture, new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y), Color.White);
+                        hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 53, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
+                    }
                 }
 
             }

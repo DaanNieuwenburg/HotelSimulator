@@ -1,4 +1,5 @@
 ﻿using HotelSimulatie.Model;
+using HotelSimulatie.Model.HotelRuimteMap;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Newtonsoft.Json;
@@ -24,6 +25,7 @@ namespace HotelSimulatie
             zetLiftenInLayout();
             zetTrapInLayout();
             zetLobbyInLayout();
+            zetGangenInLayout();
             geefLayoutNodesBuren();
             zetLayoutPositiesGoed();
             Console.WriteLine(HotelRuimteLijst.Count);
@@ -102,6 +104,21 @@ namespace HotelSimulatie
             lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 1);
             lobby.CoordinatenInSpel = new Vector2(ruimtesLinks, 0);
             HotelRuimteLijst.Add(lobby);
+        }
+        private void zetGangenInLayout()
+        {
+            for (int i = 0; i < HotelRuimteLijst.Count; i++)
+            {
+                HotelRuimte hotelRuimte = HotelRuimteLijst[i];
+                if(hotelRuimte.Afmetingen.Y > 1)
+                {
+                    Gang gang = new Gang();
+                    gang.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);
+                    gang.CoordinatenInSpel = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y + 1);
+                    gang.Texture = hotelRuimte.Texture;
+                    HotelRuimteLijst.Add(gang);
+                }
+            }
         }
 
         public void geefLayoutNodesBuren()

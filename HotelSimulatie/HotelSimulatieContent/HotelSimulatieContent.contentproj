@@ -201,13 +201,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="5SterHotelKamer.jpg">
-      <Name>5SterHotelKamer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Kamers\Kamer_5ster.png">
       <Name>Kamer_5ster</Name>
       <Importer>TextureImporter</Importer>
@@ -233,6 +226,13 @@
       <Name>Font</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Kamers\Gang.png">
+      <Name>Gang</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

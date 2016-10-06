@@ -13,7 +13,6 @@ namespace HotelSimulatie.Model
         {
             Naam = "Eetzaal";
             texturepath = @"Kamers\Eetzaal";
-
         }
         public override void LoadContent(ContentManager contentManager)
         {

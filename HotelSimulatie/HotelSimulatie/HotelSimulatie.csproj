@@ -99,6 +99,7 @@
     <Compile Include="Model\HotelRuimteMap\Bioscoop.cs" />
     <Compile Include="Model\HotelRuimteMap\Eetzaal.cs" />
     <Compile Include="Model\HotelRuimteMap\Fitness.cs" />
+    <Compile Include="Model\HotelRuimteMap\Gang.cs" />
     <Compile Include="Model\HotelRuimteMap\HotelRuimte.cs" />
     <Compile Include="Model\HotelRuimteMap\HotelRuimteFactory.cs" />
     <Compile Include="Model\HotelRuimteMap\Kamer.cs" />
