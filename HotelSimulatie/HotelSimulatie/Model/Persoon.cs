@@ -127,5 +127,9 @@ namespace HotelSimulatie.Model
         {
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
+        public void Draw(SpriteBatch spritebatch)
+        {
+            SpriteAnimatie.ToonFrame(spritebatch, Positie);
+        }
     }
 }

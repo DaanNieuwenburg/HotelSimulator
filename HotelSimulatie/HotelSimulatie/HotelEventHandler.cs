@@ -63,7 +63,8 @@ namespace HotelSimulatie
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)
             {
-                spriteBatch.Draw(gast.SpriteAnimatie.Texture, gast.Positie, Color.White);
+                //spriteBatch.Draw(gast.SpriteAnimatie.Texture, gast.Positie, Color.White);
+                gast.Draw(spriteBatch);
             }
 
             spriteBatch.End();
