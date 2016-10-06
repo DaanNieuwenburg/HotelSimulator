@@ -23,17 +23,17 @@ namespace HotelSimulatie.View
             hotel = _hotel;
             
             // voeg gasten toe aan de lijst
-            foreach(Gast gast in hotel.GastenLijst)
+            /*foreach(Gast gast in hotel.GastenLijst)
             {
                 lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.Kamernummer.ToString(), gast.Wacht.ToString(), gast.Honger.ToString() }));
-            }
+            }*/
             #region
             // Ken waardes voor schoonmakers toe aan labels
             lbKamerA.Text = hotel.Schoonmaker_A.InKamer.ToString();
-            lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
+            //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
 
             lbKamerB.Text = hotel.Schoonmaker_B.InKamer.ToString();
-            lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+            //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
             lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
