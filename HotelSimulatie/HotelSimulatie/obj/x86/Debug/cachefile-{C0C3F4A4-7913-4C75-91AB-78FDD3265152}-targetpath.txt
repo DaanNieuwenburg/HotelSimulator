@@ -27,5 +27,5 @@ Content\Kamers\Kamer_4ster(1hoog).xnb
 Content\Bioscoop.xnb
 Content\5SterHotelKamer.xnb
 Content\Kamers\Kamer_5ster.xnb
-Content\Eetzaal.xnb
 Content\Fitness.xnb
+Content\Eetzaal.xnb

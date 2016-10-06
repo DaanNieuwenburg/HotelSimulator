@@ -30,7 +30,6 @@ C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\5SterHotelKamer.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.exe
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.pdb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelEvents2.dll
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.dll
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
@@ -51,8 +50,6 @@ C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_5ster.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Restaurant.xnb
-C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Fitness.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedRob.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\AnimatedSchoonmaker.xnb
