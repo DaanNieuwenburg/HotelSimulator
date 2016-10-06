@@ -12,7 +12,6 @@ namespace HotelSimulatie.Model
         public int Bestemming { get; set; }
         public int Positie { get; set; }
         public int AantalPersonen { get; set; }
-        public int Verdieping { get; set; }
         private Lift lift { get; set; }
         public Queue<Gast> Wachtrij { get; set; }
         public Liftschacht(int verdieping)
@@ -20,21 +19,21 @@ namespace HotelSimulatie.Model
             Naam = "Lift";
             texturepath = "";
             lift = new Lift();
-            Verdieping = verdieping;
+            Bestemming = verdieping;
         }
         public override void LoadContent(ContentManager contentManager)
         {
             string texture;
-            if (Verdieping == 0)
+            if (Bestemming == 0)
             {
-                if (lift.Huidigeverdieping == Verdieping)
+                if (lift.Huidigeverdieping == Bestemming)
                     texture = @"Lift\Lift_Beneden_Open";
                 else
                     texture = @"Lift\Lift_Beneden";
             }
             else
             {
-                if (lift.Huidigeverdieping == Verdieping)
+                if (lift.Huidigeverdieping == Bestemming)
                     texture = @"Lift\Lift_Open";
                 else
                     texture = @"Lift\Lift_Gesloten";
