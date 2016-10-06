@@ -21,9 +21,11 @@ namespace HotelSimulatie
         public Vector2 GastSpawnLocatie { get; set; }
         public SpelCamera spelCamera { get; set; }
         public Matrix matrix { get; set; }
+        public SpriteFont font { get; set; }
 
         public Spel(Hotel _hotel)
         {
+            
             graphics = new GraphicsDeviceManager(this);
             Window.Title = "Hotel Simulator";
             Content.RootDirectory = "Content";
@@ -46,6 +48,7 @@ namespace HotelSimulatie
             Components.Add(new InputHandler(this));
             Components.Add(new HotelEventHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = Content.Load<SpriteFont>("Font");
         }
 
         protected override void UnloadContent()
@@ -67,7 +70,7 @@ namespace HotelSimulatie
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
-            
+
 
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {

@@ -17,7 +17,7 @@ namespace HotelSimulatie.Model
 
         public Lift()
         {
-            Huidigeverdieping = 0;
+            Huidigeverdieping = 2;
             snelheid = 0.5f;
             GasteninLift = new Dictionary<Gast, int>();
         }

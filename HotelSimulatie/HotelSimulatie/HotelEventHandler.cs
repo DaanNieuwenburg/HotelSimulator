@@ -14,18 +14,34 @@ namespace HotelSimulatie
     {
         private Spel spel { get; set; }
         private bool eersteKeer { get; set; }
+        private HotelEvent Event { get;}
+        private bool timechanged { get; set; }
+
+        private Vector2 Tijdpostitie { get; set; }
+        
+        public int Tijd { get; set; }
 
         public HotelEventHandler(Game game) : base(game)
         {
+            Tijdpostitie = new Vector2(0, 700);
+            
             spel = (Spel)game;
-
+            Event = new HotelEvent();
+            Tijd = Event.Time;
             // Start de event listener
             HotelEventManager.Start();
             HotelEventManager.Register(this);
         }
-
+        protected override void LoadContent()
+        {
+            
+        }
         public override void Update(GameTime gameTime)
         {
+            if(Tijd != Event.Time)
+            {
+
+            }
             base.Update(gameTime);
         }
 
@@ -57,8 +73,12 @@ namespace HotelSimulatie
         {
             SpriteBatch spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
             spel.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
+
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
+            spriteBatch.DrawString(spel.font, "Tijd: " + Event.Time.ToString(), Tijdpostitie, Color.Red);
             base.Draw(gameTime);
+
+            
 
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)

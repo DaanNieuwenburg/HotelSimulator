@@ -26,9 +26,20 @@ namespace HotelSimulatie.Model
         {
             string texture;
             if (Verdieping == 0)
-                texture = @"Lift\Lift_Beneden_Open";
+            {
+                if (lift.Huidigeverdieping == Verdieping)
+                    texture = @"Lift\Lift_Beneden_Open";
+                else
+                    texture = @"Lift\Lift_Beneden";
+            }
             else
-                texture = @"Lift\Lift_Gesloten";
+            {
+                if (lift.Huidigeverdieping == Verdieping)
+                    texture = @"Lift\Lift_Open";
+                else
+                    texture = @"Lift\Lift_Gesloten";
+            }
+                
             Texture = contentManager.Load<Texture2D>(texture);
         }
         public void UpdateWachtrij(Gast gast)

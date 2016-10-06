@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using HotelSimulatie.Model;
 using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.Xna.Framework;
 
 namespace HotelSimulatie
 {
@@ -49,6 +50,7 @@ namespace HotelSimulatie
             {
                 string classification = jObject["Classification"].Value<string>();
                 jObject.Property("Classification").Value = (int)Char.GetNumericValue(classification[0]);
+                jObject.Property("Dimension").Value = jObject["Dimension"].Value<string>();
                 return jObject.ToObject<Kamer>(serializer);
             }
             else
