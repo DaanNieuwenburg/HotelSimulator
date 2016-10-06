@@ -70,7 +70,7 @@ namespace HotelSimulatie
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
-
+            spriteBatch.DrawString(font, "Tijd: " + gameTime.TotalGameTime.Seconds, new Vector2(0, 700), Color.Red);
 
             foreach (HotelRuimte hotelRuimte in hotel.NodeLijst)
             {
