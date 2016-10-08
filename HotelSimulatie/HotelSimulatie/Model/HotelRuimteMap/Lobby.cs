@@ -27,20 +27,33 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
 
-        public HotelRuimte GastInChecken(Gast gast, GameTime gameTime)
+        public Kamer GastInChecken(Gast gast, GameTime gameTime)
         {
             verlopenTijd += gameTime.ElapsedGameTime.Milliseconds;
-            if (verlopenTijd > 4000)
+            if (verlopenTijd > 100)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
-                gastAanDeBeurt.Kamernummer = 1; // temp dit moet dynamisch
-                //gastAanDeBeurt.Bestemming = tempTestKamer;
-                gastAanDeBeurt.BestemmingBereikt = false;
-                verlopenTijd = 0;
 
                 // Geef een beschikbare kamer
-                Kamer toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false);
-                toegewezenKamer.Bezet = true;
+                Kamer toegewezenKamer = null;
+                try
+                {
+                    // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
+                    int aantalSterrenKamer = Convert.ToInt32(gast.HuidigEvent.Message);
+                    while (toegewezenKamer == null && aantalSterrenKamer <= 5)
+                    {
+                        toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == aantalSterrenKamer);
+                        aantalSterrenKamer++;
+                    }
+                    toegewezenKamer.Bezet = true;
+                }
+                catch(InvalidOperationException e)
+                {
+                    // Als er geen kamer beschikbaar is, return kamer van 0 sterren
+                    Console.WriteLine("Checkout");
+                    toegewezenKamer = new Kamer(0);
+                }
+                verlopenTijd = 0;
                 return toegewezenKamer;
             }
             else

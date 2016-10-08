@@ -29,7 +29,7 @@ namespace HotelSimulatie.Model
         {
             int? a = null;
             int? b = null;
-            foreach(HotelRuimte ruimte in gast.Bestemminglijst)
+            foreach(HotelRuimte ruimte in gast.BestemmingLijst)
             {
                 if(ruimte is Liftschacht)
                 {
@@ -46,11 +46,11 @@ namespace HotelSimulatie.Model
             // Kijk of de bestemming omhoog of omlaag is
             if((a - b) < 0)
             {
-                GasteninLift.Add(gast, gast.Bestemming.Verdieping + gast.Bestemminglijst.OfType<Liftschacht>().Count());
+                GasteninLift.Add(gast, gast.Bestemming.Verdieping + gast.BestemmingLijst.OfType<Liftschacht>().Count());
             }
             else
             {
-                GasteninLift.Add(gast, gast.Bestemming.Verdieping - gast.Bestemminglijst.OfType<Liftschacht>().Count());
+                GasteninLift.Add(gast, gast.Bestemming.Verdieping - gast.BestemmingLijst.OfType<Liftschacht>().Count());
             }
             Huidigeverdieping = gast.Bestemming.Verdieping;
         }

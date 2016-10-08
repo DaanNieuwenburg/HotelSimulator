@@ -30,11 +30,15 @@ namespace HotelSimulatie.Model
         private List<Kamer> maakKamerLijst()
         {
             KamerLijst = new List<Kamer>();
+            int kamerNummerTeller = 1;
             foreach (HotelRuimte hotelRuimte in NodeLijst)
             {
                 if(hotelRuimte is Kamer)
                 {
+                    Kamer kamer = (Kamer)hotelRuimte;
+                    kamer.Kamernummer = kamerNummerTeller;
                     KamerLijst.Add((Kamer)hotelRuimte);
+                    kamerNummerTeller++;
                 }
             }
             return KamerLijst;

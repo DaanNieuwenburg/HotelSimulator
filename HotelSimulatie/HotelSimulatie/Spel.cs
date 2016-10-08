@@ -47,6 +47,7 @@ namespace HotelSimulatie
             // Laad de inputhandler
             Components.Add(new InputHandler(this));
             Components.Add(new HotelEventHandler(this));
+            Components.Add(new AIHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Font");
         }
@@ -83,6 +84,7 @@ namespace HotelSimulatie
 
                 // Zet de coordinaten van de hotelruimte goed
                 hotelRuimte.CoordinatenInSpel = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+                hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y);
 
                 // Zet overige posities goed
                 if (hotelRuimte is Lobby)
@@ -93,6 +95,10 @@ namespace HotelSimulatie
                     GastSpawnLocatie = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                     hotel.LobbyRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
+                if(hotelRuimte is Liftschacht)
+                {
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+                }
                 if (hotelRuimte is Kamer)
                 {
                     Kamer test = (Kamer)hotelRuimte;
@@ -102,7 +108,6 @@ namespace HotelSimulatie
                         hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 53, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                     }
                 }
-
             }
 
             spriteBatch.End();

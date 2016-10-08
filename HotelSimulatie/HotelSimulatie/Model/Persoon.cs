@@ -5,13 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HotelEvents;
 
 namespace HotelSimulatie.Model
 {
-    public abstract class Persoon 
+    public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
-        public List<HotelRuimte> Bestemminglijst { get; set; }
+        public List<HotelRuimte> BestemmingLijst { get; set; }
+        public HotelEvent HuidigEvent { get; set; }
         public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
@@ -27,7 +29,7 @@ namespace HotelSimulatie.Model
             /*Random random = new Random();
             int a = random.Next(1, 9);
             loopSnelheid = (float)a / 10;*/
-            loopSnelheid = (float)0.5;
+            loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
             BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
@@ -47,76 +49,75 @@ namespace HotelSimulatie.Model
 
         public bool LoopNaarRuimte()
         {
-            // In het geval van omhoog en omlaag gaan
-            if (Bestemming is Trap && HuidigeRuimte is Trap || Bestemming is Liftschacht && HuidigeRuimte is Liftschacht)
+            bool bestemmingBereikt = false;
+            if(Bestemming != null && bestemmingBereikt == false)
             {
-                int y = Convert.ToInt32(Positie.Y);
-                if (y != Bestemming.EventCoordinaten.Y)
+                HuidigeRuimte = HuidigeRuimte;
+                Bestemming = Bestemming;
+
+                // Beweeg naar boven of beneden
+                if (Bestemming.EventCoordinaten.X == HuidigeRuimte.EventCoordinaten.X && Bestemming is Liftschacht || Bestemming is Trap)
                 {
-                    if (Positie.Y > Bestemming.EventCoordinaten.Y)
+                    if ((Int32)Positie.Y > Bestemming.EventCoordinaten.Y)
                     {
-                        Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
+                        BeweegNaarBoven();
+                    }
+                    else if ((Int32)Positie.Y < Bestemming.EventCoordinaten.Y)
+                    {
+                        BeweegNaarOnder();
                     }
                     else
                     {
-                        Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
-                    }
-                    return false;
-                }
-                else
-                {
-                    if (Bestemminglijst != null && Bestemminglijst.Count > 0)
-                    {
-                        // Zodra de gast bij lift komt word hij toegevoegd aan de wachtrij op de huidige verdieping
-                        if (Bestemming is Liftschacht)
-                        {
-                            Liftschacht test = (Liftschacht)Bestemming;
-                            test.UpdateWachtrij((Gast)this);
-                        }
                         HuidigeRuimte = Bestemming;
-                        Bestemming = Bestemminglijst.First();
-                        Bestemminglijst.Remove(Bestemming);
-                        
+                        bestemmingBereikt = true;
                     }
-                    return true;
-                }
-            }
-
-            // In het geval van rechts en naar links
-
-            int x = Convert.ToInt32(Positie.X);
-            if (x != Bestemming.EventCoordinaten.X)
-            {
-                if (Positie.X > Bestemming.EventCoordinaten.X)
-                {
-                    string texture = Texturelijst[textureindex] + "_Links";
-                    if (LooptnaarLinks == false)
-                    {
-                        SpriteAnimatie = new GeanimeerdeTexture(tempmanager, texture, 3);
-                    }
-                    LooptnaarLinks = true;    
-                    Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
                 }
                 else
                 {
-                    LooptnaarLinks = false;
-                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
-                    Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+                    if ((Int32)Positie.X > Bestemming.EventCoordinaten.X)
+                    {
+                        BeweegNaarLinks();
+                    }
+                    else if ((Int32)Positie.X < Bestemming.EventCoordinaten.X)
+                    {
+                        BeweegNaarRechts();
+                    }
+                    else
+                    {
+                        HuidigeRuimte = Bestemming;
+                        bestemmingBereikt = true;
+                    }
                 }
-                return false;
             }
-            else
-            {
-                if (Bestemminglijst != null && Bestemminglijst.Count > 0)
-                {
-                    HuidigeRuimte = Bestemming;
-                    Bestemming = Bestemminglijst.First();
-                    Bestemminglijst.Remove(Bestemming);
-                }
-                return true;
-            }
-
+            return bestemmingBereikt;
         }
+
+        private bool BeweegNaarLinks()
+        {
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
+            Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
+            return false;
+        }
+
+        private bool BeweegNaarRechts()
+        {
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
+            Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+            return false;
+        }
+
+        private bool BeweegNaarBoven()
+        {
+            Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
+            return false;
+        }
+
+        private bool BeweegNaarOnder()
+        {
+            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
+            return false;
+        }
+
 
         public void GaKamerIn(HotelRuimte hotelRuimte)
         {

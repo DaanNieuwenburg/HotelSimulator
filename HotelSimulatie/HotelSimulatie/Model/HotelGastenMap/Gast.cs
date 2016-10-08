@@ -14,36 +14,75 @@ namespace HotelSimulatie.Model
         public bool Honger { get; set; }
         public int? Kamernummer { get; set; }
         public bool Wacht { get; set; }
-        private Algoritme algoritme { get; set; }
 
         public Gast()
         {
             Honger = false;
             Wacht = false;
-            algoritme = new Algoritme();
         }
 
-        public void Inchecken(Lobby lobby, GameTime gameTime, int aantalSterrenKamer)
+        public void Inchecken(Lobby lobby, GameTime gameTime)
         {
-            Bestemming = lobby;
-            if (LoopNaarRuimte())
+            // Ga naar lobby en vraag om een kamer
+            if (Kamernummer == null)
             {
-                lobby.Naam = "lobby_Death";
-                HotelRuimte kamer = lobby.GastInChecken(this, gameTime);
-
-                if (kamer != null)
+                if (LoopNaarRuimte())
                 {
-                    Bestemminglijst = algoritme.MaakAlgoritme(HuidigeRuimte, kamer);
-                    lobby.Naam = "lobby_Normaal";
-
-                    Bestemming = kamer;
-                    bool gearriveerd = LoopNaarRuimte();
-                    if (gearriveerd == true)
+                    // Voeg gast aan wachtrij toe
+                    if (!lobby.Wachtrij.Contains(this))
                     {
-                        GaKamerIn(Bestemming);
+                        lobby.Wachtrij.Enqueue(this);
                     }
+
+                    // koppel de toegewezenkammer
+                    Kamer toegewezenKamer = lobby.GastInChecken(this, gameTime);
+
+                    // Als er een kamer is toegewezen
+                    if (toegewezenKamer != null)
+                    {
+                        if (toegewezenKamer.AantalSterren == 0)
+                        {
+                            // Ga uitchecken, gevraagde kamer is niet beschikbaar
+                            this.HuidigEvent = new HotelEvents.HotelEvent() { EventType = HotelEvents.HotelEventType.CHECK_OUT };
+                        }
+                        else
+                        {
+                            Bestemming = toegewezenKamer;
+                            Kamernummer = toegewezenKamer.Kamernummer;
+                            BestemmingBereikt = false;
+                        }
+                    }
+                }
+            }
+
+            // Bepaal route naar kamer
+            else if (BestemmingLijst == null && Bestemming is Kamer)
+            {
+                // Zoek pad naar kamer
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, lobby, Bestemming);
+
+                // Koppel eerste node aan bestemming
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop naar kamer
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    Bestemming = BestemmingLijst.First();
+                    BestemmingLijst.Remove(BestemmingLijst.First());
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    BestemmingLijst = null;
+                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
+                    Console.WriteLine("Arrived");
                 }
             }
         }
     }
 }
+

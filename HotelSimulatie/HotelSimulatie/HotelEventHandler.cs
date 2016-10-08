@@ -11,32 +11,23 @@ using System.Text.RegularExpressions;
 
 namespace HotelSimulatie
 {
-    public class HotelEventHandler : Microsoft.Xna.Framework.DrawableGameComponent, HotelEventListener
+    public class HotelEventHandler : Microsoft.Xna.Framework.GameComponent, HotelEventListener
     {
         private Spel spel { get; set; }
         private bool eersteKeer { get; set; }
         private HotelEvent Event { get; }
         private GameTime GameTijd { get; set; }
-        
+
         public int Tijd { get; set; }
 
         public HotelEventHandler(Game game) : base(game)
         {
-            
+
             spel = (Spel)game;
             Event = new HotelEvent();
             // Start de event listener
-            HotelEventManager.Start();
             HotelEventManager.Register(this);
-        }
-        protected override void LoadContent()
-        {
-            
-        }
-        public override void Update(GameTime gameTime)
-        {
-            GameTijd = gameTime;
-            base.Update(gameTime);
+            HotelEventManager.Start();
         }
 
         public void Notify(HotelEvent evt)
@@ -52,38 +43,40 @@ namespace HotelSimulatie
                         Gast nieuweGast = new Gast() { Naam = gastEvent.Key, Positie = spel.GastSpawnLocatie };
                         nieuweGast.LoadContent(Game.Content);
                         spel.hotel.GastenLijst.Add(nieuweGast);
+                        if (gastEvent.Value.Contains("Checkin"))
+                        {
+                            CheckinEvent(nieuweGast, evt);
+                        }
                     }
                     else
                     {
-                    if (gastEvent.Value.Contains("Checkin"))
-                    {
-                            Regex regexToSplit = new Regex(@"([1-9])");
-                            string[] teSplitten = regexToSplit.Split(gastEvent.Value);
-                            string kamernummer = teSplitten[1];
-                            gevondenGast.Inchecken(spel.hotel.LobbyRuimte, GameTijd, Convert.ToInt32(kamernummer));
+                        if (gastEvent.Value.Contains("Checkin"))
+                        {
+                            CheckinEvent(gevondenGast, evt);
                         }
                     }
                 }
             }
         }
 
-        public override void Draw(GameTime gameTime)
+        private void CheckinEvent(Gast gast, HotelEvent hotelEvent)
         {
-            SpriteBatch spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-            spel.matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
+            // Bepaal kamernummer
+            string aantalSterrenKamerStr = Regex.Match(hotelEvent.Data.First().Value, @"([1-9])").Value;
+            int aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
-            base.Draw(gameTime);
+            // Vervang de hotelevent.Value met het kamernummer, voor hergebruik
+            hotelEvent.Message = aantalSterrenKamer.ToString();
 
-            
+            // Zet huidig event om naar inchecken
+            gast.HuidigEvent = hotelEvent;
 
-            // Toon gasten
-            foreach (Gast gast in spel.hotel.GastenLijst)
-            {
-                gast.Draw(spriteBatch);
-            }
+            // Geef gast de bestemming van de lobby
+            gast.HuidigeRuimte = spel.hotel.LobbyRuimte;
+            gast.Bestemming = spel.hotel.LobbyRuimte;
 
-            spriteBatch.End();
+            // Start het event
+            gast.Inchecken(spel.hotel.LobbyRuimte, GameTijd);
         }
     }
 }

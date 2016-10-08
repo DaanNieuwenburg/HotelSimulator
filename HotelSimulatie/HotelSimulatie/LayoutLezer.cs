@@ -28,7 +28,6 @@ namespace HotelSimulatie
             zetGangenInLayout();
             geefLayoutNodesBuren();
             zetLayoutPositiesGoed();
-            Console.WriteLine(HotelRuimteLijst.Count);
         }
 
         public List<HotelRuimte> LeesLayoutUit()
