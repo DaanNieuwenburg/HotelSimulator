@@ -13,7 +13,7 @@ namespace HotelSimulatie
 {
     public class HotelEventHandler : Microsoft.Xna.Framework.GameComponent, HotelEventListener
     {
-        private Spel spel { get; set; }
+        private Simulatie spel { get; set; }
         private bool eersteKeer { get; set; }
         private HotelEvent Event { get; }
         private GameTime GameTijd { get; set; }
@@ -23,7 +23,7 @@ namespace HotelSimulatie
         public HotelEventHandler(Game game) : base(game)
         {
 
-            spel = (Spel)game;
+            spel = (Simulatie)game;
             Event = new HotelEvent();
             // Start de event listener
             HotelEventManager.Register(this);
@@ -32,27 +32,34 @@ namespace HotelSimulatie
 
         public void Notify(HotelEvent evt)
         {
+            // Adapter gebruiken om HotelEvent om te zetten
             Dictionary<string, string> eventData = evt.Data;
             if (evt.Data != null)
             {
                 foreach (KeyValuePair<string, string> gastEvent in eventData)
                 {
                     Gast gevondenGast = spel.hotel.GastenLijst.Find(o => o.Naam == gastEvent.Key);
-                    if (gevondenGast == null)
+                    if (gevondenGast == null && evt.EventType == HotelEventType.CHECK_IN)
                     {
                         Gast nieuweGast = new Gast() { Naam = gastEvent.Key, Positie = spel.GastSpawnLocatie };
                         nieuweGast.LoadContent(Game.Content);
                         spel.hotel.GastenLijst.Add(nieuweGast);
-                        if (gastEvent.Value.Contains("Checkin"))
+                        if (evt.EventType == HotelEventType.CHECK_IN)
                         {
                             CheckinEvent(nieuweGast, evt);
                         }
                     }
                     else
                     {
-                        if (gastEvent.Value.Contains("Checkin"))
+                        if (evt.EventType == HotelEventType.CHECK_IN)
                         {
                             CheckinEvent(gevondenGast, evt);
+                        }
+                        else if (evt.EventType == HotelEventType.CHECK_OUT)
+                        {
+                            gevondenGast.HuidigeRuimte = gevondenGast.HuidigeRuimte;
+                            gevondenGast.Bestemming = spel.hotel.LobbyRuimte;
+                            CheckoutEvent(gevondenGast, evt);
                         }
                     }
                 }
@@ -77,6 +84,13 @@ namespace HotelSimulatie
 
             // Start het event
             gast.Inchecken(spel.hotel.LobbyRuimte, GameTijd);
+        }
+
+        private void CheckoutEvent(Gast gast, HotelEvent hotelEvent)
+        {
+            Console.WriteLine("Checkoutevent");
+            gast.HuidigEvent = hotelEvent;
+            gast.Uitchecken(spel.hotel.LobbyRuimte);
         }
     }
 }

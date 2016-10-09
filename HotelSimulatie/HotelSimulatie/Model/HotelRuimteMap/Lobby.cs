@@ -65,5 +65,13 @@ namespace HotelSimulatie.Model
             }
             return null;
         }
+
+        public void GastUitchecken(Gast gast)
+        {
+            Kamer gastKamer = hotel.KamerLijst.Find(o => o.Kamernummer == gast.Kamernummer);
+            gastKamer.Bezet = false;
+            gast.Kamernummer = null;
+            hotel.GastenLijst.Remove(gast);
+        }
     }
 }

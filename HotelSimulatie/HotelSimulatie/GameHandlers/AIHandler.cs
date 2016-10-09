@@ -11,10 +11,10 @@ namespace HotelSimulatie
 {
     public class AIHandler : Microsoft.Xna.Framework.DrawableGameComponent
     {
-        public Spel spel { get; set; }
+        public Simulatie spel { get; set; }
         public AIHandler(Game game) : base(game)
         {
-            spel = (Spel)game;
+            spel = (Simulatie)game;
         }
 
         public override void Update(GameTime gameTime)
@@ -30,6 +30,10 @@ namespace HotelSimulatie
                     {
                         gast.Inchecken(spel.hotel.LobbyRuimte, gameTime);
                     }
+                    else if(gast.HuidigEvent.EventType == HotelEventType.CHECK_OUT)
+                    {
+                        gast.Uitchecken(spel.hotel.LobbyRuimte);
+                    }
                 }
             }
         }
@@ -42,12 +46,13 @@ namespace HotelSimulatie
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
             base.Draw(gameTime);
 
-
-
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)
             {
-                gast.Draw(spriteBatch);
+                if (gast.Bestemming != null)
+                {
+                    gast.Draw(spriteBatch);
+                }
             }
 
             spriteBatch.End();

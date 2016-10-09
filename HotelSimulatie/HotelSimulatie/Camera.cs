@@ -7,13 +7,13 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HotelSimulatie
 {
-    public class SpelCamera
+    public class Camera
     {
         public Vector2 Positie { get; set; }
         public bool bodemBereikt { get; set; }
         private int breedte { get; set; }
         private int hoogte { get; set; }
-        public SpelCamera(int _breedte, int _hoogte)
+        public Camera(int _breedte, int _hoogte)
         {
             breedte = _breedte;
             hoogte = _hoogte;

@@ -23,7 +23,7 @@ namespace HotelSimulatie
             // Wordt er op start spel gedrukt, dan wordt in onderstaande code een nieuw spel gemaakt
             if (form.ShowDialog() == DialogResult.OK)
             {
-                using (Spel game = new Spel(new Hotel()))
+                using (Simulatie game = new Simulatie(new Hotel()))
                 {
                     // Dit stuk code is voor het uitlezen van de layout file (hernoem naar json). Het moet nog verandert worden van positie
                     /*string text = File.ReadAllText(@"C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\Hotel2.json");

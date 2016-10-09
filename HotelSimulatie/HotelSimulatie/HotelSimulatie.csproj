@@ -88,15 +88,15 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AIHandler.cs" />
-    <Compile Include="HotelEventHandler.cs" />
-    <Compile Include="Dijkstra_Algoritme.cs" />
+    <Compile Include="GameHandlers\AIHandler.cs" />
+    <Compile Include="GameHandlers\HotelEventHandler.cs" />
+    <Compile Include="DijkstraAlgoritme.cs" />
     <Compile Include="GeanimeerdeTexture.cs" />
     <Compile Include="HotelRuimteJsonConverter.cs" />
-    <Compile Include="InputHandler.cs" />
+    <Compile Include="GameHandlers\InputHandler.cs" />
     <Compile Include="Model\Hotel.cs" />
-    <Compile Include="Model\HotelGastenMap\Gast.cs" />
-    <Compile Include="Model\HotelPersoneelMap\Schoonmaker.cs" />
+    <Compile Include="Model\HotelPersonenMap\Gast.cs" />
+    <Compile Include="Model\HotelPersonenMap\Schoonmaker.cs" />
     <Compile Include="Model\HotelRuimteMap\Bioscoop.cs" />
     <Compile Include="Model\HotelRuimteMap\Eetzaal.cs" />
     <Compile Include="Model\HotelRuimteMap\Fitness.cs" />
@@ -108,11 +108,11 @@
     <Compile Include="Model\HotelRuimteMap\Lobby.cs" />
     <Compile Include="Model\HotelRuimteMap\Trap.cs" />
     <Compile Include="Model\Lift.cs" />
-    <Compile Include="Model\Persoon.cs" />
+    <Compile Include="Model\HotelPersonenMap\Persoon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Spel.cs" />
-    <Compile Include="SpelCamera.cs" />
+    <Compile Include="Simulatie.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="LayoutLezer.cs" />
     <Compile Include="View\Hoofdmenu.cs">
       <SubType>Form</SubType>
@@ -167,11 +167,8 @@
       <DependentUpon>OptiesForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HotelEvents2.dll" />
     <Content Include="Properties\Resources\HoofdmenuLogo.png" />
   </ItemGroup>
   <ItemGroup>

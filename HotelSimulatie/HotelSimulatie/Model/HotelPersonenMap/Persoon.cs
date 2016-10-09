@@ -14,23 +14,21 @@ namespace HotelSimulatie.Model
         public HotelRuimte Bestemming { get; set; }
         public List<HotelRuimte> BestemmingLijst { get; set; }
         public HotelEvent HuidigEvent { get; set; }
-        public bool BestemmingBereikt { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
         private List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
-        private int textureindex { get; set; }
-        private bool LooptnaarLinks { get; set; }
+        private int textureIndex { get; set; }
+        private bool LooptNaarLinks { get; set; }
         public Persoon()
         {
-            LooptnaarLinks = false;
+            LooptNaarLinks = false;
             /*Random random = new Random();
             int a = random.Next(1, 9);
             loopSnelheid = (float)a / 10;*/
             loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
-            BestemmingBereikt = false;
 
             Texturelijst = new List<string>();
             //Texturelijst.Add(@"Gasten\AnimatedRob");
@@ -43,8 +41,8 @@ namespace HotelSimulatie.Model
         {
             tempmanager = contentManager;
             Random randomgast = new Random();
-            textureindex = randomgast.Next(0, Texturelijst.Count());
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureindex], 3);
+            textureIndex = randomgast.Next(0, Texturelijst.Count());
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureIndex], 3);
         }
 
         public bool LoopNaarRuimte()
@@ -94,14 +92,14 @@ namespace HotelSimulatie.Model
 
         private bool BeweegNaarLinks()
         {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
             Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
             return false;
         }
 
         private bool BeweegNaarRechts()
         {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureindex], 3);
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
             Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
             return false;
         }
@@ -122,6 +120,7 @@ namespace HotelSimulatie.Model
         public void GaKamerIn(HotelRuimte hotelRuimte)
         {
             Console.WriteLine("Ga kamer in");
+            Bestemming = null;
         }
 
         public void UpdateFrame(GameTime spelTijd)

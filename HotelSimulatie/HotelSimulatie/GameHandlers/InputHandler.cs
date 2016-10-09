@@ -12,13 +12,13 @@ namespace HotelSimulatie
     public class InputHandler : Microsoft.Xna.Framework.GameComponent
     {
         public GraphicsDeviceManager graphics { get; set; }
-        private Spel spel { get; set; }
+        private Simulatie spel { get; set; }
         private Hotel hotel { get; set; }
         private KeyboardState keyboardStatus { get; set; }
         private static bool vorigeMuisKlik { get; set; }
         public InputHandler(Game game) : base(game)
         {
-            spel = (Spel)game;
+            spel = (Simulatie)game;
             hotel = spel.hotel;
             graphics = spel.graphics;
         }

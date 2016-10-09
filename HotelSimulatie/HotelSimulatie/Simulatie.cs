@@ -14,17 +14,17 @@ using HotelEvents;
 
 namespace HotelSimulatie
 {
-    public class Spel : Game
+    public class Simulatie : Game
     {
         public GraphicsDeviceManager graphics { get; set; }
         private SpriteBatch spriteBatch { get; set; }
         public Hotel hotel { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
-        public SpelCamera spelCamera { get; set; }
+        public Camera spelCamera { get; set; }
         public Matrix matrix { get; set; }
         public SpriteFont font { get; set; }
 
-        public Spel(Hotel _hotel)
+        public Simulatie(Hotel _hotel)
         {
 
             graphics = new GraphicsDeviceManager(this);
@@ -32,7 +32,7 @@ namespace HotelSimulatie
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             hotel = _hotel;
-            spelCamera = new SpelCamera(540, 750);
+            spelCamera = new Camera(540, 750);
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 768;
         }
@@ -97,16 +97,11 @@ namespace HotelSimulatie
                 }
                 if(hotelRuimte is Liftschacht)
                 {
-                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if (hotelRuimte is Kamer)
+                if (hotelRuimte is Trap)
                 {
-                    Kamer test = (Kamer)hotelRuimte;
-                    if (test.AantalSterren == 5)
-                    {
-                        spriteBatch.Draw(hotelRuimte.Texture, new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y), Color.White);
-                        hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 53, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
-                    }
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y);
                 }
             }
 
