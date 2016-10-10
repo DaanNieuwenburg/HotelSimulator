@@ -15,7 +15,6 @@ namespace HotelSimulatie.Model
         public Dictionary<Persoon, int> GasteninLift { get; set; }
         public List<int> Bestemmingslijst { get; set;}
         public List<Liftschacht> liftschachtlist { get; set; }
-        //private Hotel hotel { get; }
         private Vector2 Positie { get; set; }
         float snelheid;
 
@@ -89,7 +88,7 @@ namespace HotelSimulatie.Model
                 }
             }
             // Sorteer de bestemmingen van de lift van boven naar beneden
-            Bestemmingslijst = Bestemmingslijst.OrderBy(i => i).ToList();
+            Bestemmingslijst.Sort((a, b) => -1 * a.CompareTo(b)); // descending sort
 
             // Kijk wat de volgende bestemming van de lift is
             int j = 0;
@@ -141,7 +140,6 @@ namespace HotelSimulatie.Model
                         p.Key.Bestemming = p.Key.BestemmingLijst.First();
                     }
                 }
-
                 volgende.LeegWachtrij(volgende.Bestemming);
             }
                 
