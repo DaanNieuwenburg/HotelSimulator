@@ -92,6 +92,7 @@
     <Compile Include="GameHandlers\HotelEventHandler.cs" />
     <Compile Include="DijkstraAlgoritme.cs" />
     <Compile Include="GeanimeerdeTexture.cs" />
+    <Compile Include="HotelEventAdapter.cs" />
     <Compile Include="HotelRuimteJsonConverter.cs" />
     <Compile Include="GameHandlers\InputHandler.cs" />
     <Compile Include="Model\Hotel.cs" />

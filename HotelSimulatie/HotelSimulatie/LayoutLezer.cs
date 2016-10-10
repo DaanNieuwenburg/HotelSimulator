@@ -114,7 +114,7 @@ namespace HotelSimulatie
             for (int i = 0; i < HotelRuimteLijst.Count; i++)
             {
                 HotelRuimte hotelRuimte = HotelRuimteLijst[i];
-                if(hotelRuimte.Afmetingen.Y > 1)
+                if(hotelRuimte.Afmetingen.Y > 1 && hotelRuimte.GetType() != typeof(Bioscoop))
                 {
                     Gang gang = new Gang();
                     gang.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);
