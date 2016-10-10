@@ -27,8 +27,8 @@ namespace HotelSimulatie.Model
         }
         public void UpdateLift(Gast gast)
         {
-            int? a = null;
-            int? b = null;
+            int? a = null; // huidige verdieping
+            int? b = null; // bestemming
             foreach(HotelRuimte ruimte in gast.BestemmingLijst)
             {
                 if(ruimte is Liftschacht)

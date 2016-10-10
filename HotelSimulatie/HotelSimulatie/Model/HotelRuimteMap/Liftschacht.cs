@@ -20,6 +20,7 @@ namespace HotelSimulatie.Model
             texturepath = "";
             lift = new Lift();
             Bestemming = verdieping;
+            Verdieping = verdieping;
         }
         public override void LoadContent(ContentManager contentManager)
         {
