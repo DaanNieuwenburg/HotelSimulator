@@ -124,9 +124,9 @@ namespace HotelSimulatie.Model
                 if (lift.EventCoordinaten.Y < volgendeBestemming.EventCoordinaten.Y)
                 {
                     lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y + snelheid);
-                }
-                else
-                {
+            }
+            else
+            {
                     lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y - snelheid);
                 }
             }
