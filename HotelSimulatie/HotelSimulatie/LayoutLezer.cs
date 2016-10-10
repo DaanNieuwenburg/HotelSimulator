@@ -65,11 +65,16 @@ namespace HotelSimulatie
 
         public void zetLiftenInLayout()
         {
+            Lift lift = new Lift(MaxY);
+            List<Liftschacht> liftlijst = new List<Liftschacht>();
             for (int y = 0; y <= MaxY; y++)
             {
                 Liftschacht liftschacht = new Liftschacht(y) { CoordinatenInSpel = new Vector2(0, y), Afmetingen = new Vector2(1, 1) };
+                liftschacht.lift = lift;
+                liftlijst.Add(liftschacht);
                 HotelRuimteLijst.Add(liftschacht);
             }
+            lift.liftschachtlist = liftlijst;
         }
 
         public void zetTrapInLayout()

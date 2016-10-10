@@ -55,12 +55,12 @@ namespace HotelSimulatie
                         {
                             CheckinEvent(gevondenGast, evt);
                         }
-                        else if (evt.EventType == HotelEventType.CHECK_OUT)
+                        /*else if (evt.EventType == HotelEventType.CHECK_OUT)
                         {
                             gevondenGast.HuidigeRuimte = gevondenGast.HuidigeRuimte;
                             gevondenGast.Bestemming = spel.hotel.LobbyRuimte;
                             CheckoutEvent(gevondenGast, evt);
-                        }
+                        }*/
                     }
                 }
             }
