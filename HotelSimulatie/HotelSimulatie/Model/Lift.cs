@@ -10,13 +10,14 @@ namespace HotelSimulatie.Model
     public class Lift : HotelRuimte
     {
         public int Huidigeverdieping { get; set; }
+        public HotelRuimte HuidigeRuimte { get; set; }
         public int Volgendeverdieping { get; set; }
         public int Bovensteverdieping { get; set; }
         public Dictionary<Persoon, int> GasteninLift { get; set; }
         public List<int> Bestemmingslijst { get; set;}
         public List<Liftschacht> liftschachtlist { get; set; }
         //private Hotel hotel { get; }
-        private Vector2 Positie { get; set; }
+        private Lift lift { get; set; }
         float snelheid;
 
         public Lift(int Aantalverdiepingen)
@@ -89,8 +90,7 @@ namespace HotelSimulatie.Model
                 }
             }
             // Sorteer de bestemmingen van de lift van boven naar beneden
-            Bestemmingslijst = Bestemmingslijst.OrderBy(i => i).ToList();
-
+            Bestemmingslijst.Sort((a, b) => -1 * a.CompareTo(b));
             // Kijk wat de volgende bestemming van de lift is
             int j = 0;
             if (Huidigeverdieping != 0)
@@ -107,45 +107,47 @@ namespace HotelSimulatie.Model
                     j = Bestemmingslijst[i];
                 }
             }
-            Verplaats(j);
+            Verplaats(liftschachtlist[j]);
         }
-        public void Verplaats(int verdieping)
+        public void Verplaats(Liftschacht volgendeBestemming)
         {
-            Liftschacht volgende = liftschachtlist[verdieping];
-            Vector2 verplaatsnaar = volgende.CoordinatenInSpel;
 
-            if (Positie == new Vector2(0, 0))
+            if (lift == null)
             {
-                Positie = liftschachtlist[Huidigeverdieping].EventCoordinaten;
+                lift = liftschachtlist[Huidigeverdieping].lift;
+                lift.EventCoordinaten = liftschachtlist[Huidigeverdieping].EventCoordinaten;
             }
 
-            if(this.CoordinatenInSpel.Y > volgende.CoordinatenInSpel.Y)
+            if ((Int32)this.lift.EventCoordinaten.Y != volgendeBestemming.EventCoordinaten.Y)
             {
-                Positie = new Vector2(Positie.X, Positie.Y + snelheid);
+                if (lift.EventCoordinaten.Y < volgendeBestemming.EventCoordinaten.Y)
+                {
+                    lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y + snelheid);
+                }
+                else
+                {
+                    lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y - snelheid);
+                }
             }
             else
             {
-                Positie = new Vector2(Positie.X, Positie.Y - snelheid);
-            }
-            if ((Int32)this.Positie.Y == volgende.CoordinatenInSpel.Y)
-            {
                 // aangekomen
-                volgende.texturepath = @"Lift\Lift_Open";
+                volgendeBestemming.texturepath = @"Lift\Lift_Open";
                 foreach(KeyValuePair<Persoon, int> p in GasteninLift)
                 {
-                    p.Key.Positie = volgende.EventCoordinaten;
-                    if(p.Key.Bestemming.EventCoordinaten.Y == Positie.Y)
+                    p.Key.Positie = volgendeBestemming.EventCoordinaten;
+                    if(p.Key.Bestemming == lift && Huidigeverdieping == p.Key.BestemmingLijst.OfType<Liftschacht>().Count())
                     {
-                        p.Key.BestemmingLijst.RemoveAll(o => o is Liftschacht);
-                        p.Key.HuidigeRuimte = new Liftschacht(Huidigeverdieping);
+                        p.Key.HuidigeRuimte = HuidigeRuimte;
+                        p.Key.HuidigeRuimte = p.Key.Bestemming;
+                        p.Key.BestemmingLijst.Remove(p.Key.Bestemming);
                         p.Key.Bestemming = p.Key.BestemmingLijst.First();
+
                     }
                 }
-
-                volgende.LeegWachtrij(volgende.Bestemming);
+                Bestemmingslijst.RemoveAll(o => o == volgendeBestemming.Verdieping);
+                volgendeBestemming.LeegWachtrij(volgendeBestemming.Bestemming);
             }
-                
         }
-
     }
 }
