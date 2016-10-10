@@ -10,14 +10,12 @@ namespace HotelSimulatie.Model
     public class Lift : HotelRuimte
     {
         public int Huidigeverdieping { get; set; }
-        public HotelRuimte HuidigeRuimte { get; set; }
         public int Volgendeverdieping { get; set; }
         public int Bovensteverdieping { get; set; }
         public Dictionary<Persoon, int> GasteninLift { get; set; }
         public List<int> Bestemmingslijst { get; set;}
         public List<Liftschacht> liftschachtlist { get; set; }
         //private Hotel hotel { get; }
-        private Lift lift { get; set; }
         float snelheid;
 
         public Lift(int Aantalverdiepingen)
@@ -28,10 +26,12 @@ namespace HotelSimulatie.Model
             GasteninLift = new Dictionary<Persoon, int>();
             Bovensteverdieping = Aantalverdiepingen + 1;
         }
+
         public override void LoadContent(ContentManager contentManager)
         {
 
         }
+
         public void UpdateLift(Persoon persoon)
         {
             int? a = null;
@@ -76,7 +76,6 @@ namespace HotelSimulatie.Model
                 }
                 
             }
-            Huidigeverdieping = persoon.HuidigeRuimte.Verdieping;
             GenerateList();
         }
         private void GenerateList()
@@ -113,41 +112,43 @@ namespace HotelSimulatie.Model
         public void Verplaats(Liftschacht volgendeBestemming)
         {
 
-            if (lift == null)
+            if (EventCoordinaten == new Vector2(0,0))
             {
-                lift = liftschachtlist[Huidigeverdieping].lift;
-                lift.EventCoordinaten = liftschachtlist[Huidigeverdieping].EventCoordinaten;
+                EventCoordinaten = liftschachtlist[Huidigeverdieping].EventCoordinaten;
             }
 
-            if ((Int32)this.lift.EventCoordinaten.Y != volgendeBestemming.EventCoordinaten.Y)
+            if ((Int32)this.EventCoordinaten.Y != volgendeBestemming.EventCoordinaten.Y)
             {
-                if (lift.EventCoordinaten.Y < volgendeBestemming.EventCoordinaten.Y)
+                if (EventCoordinaten.Y < volgendeBestemming.EventCoordinaten.Y)
                 {
-                    lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y + snelheid);
+                    EventCoordinaten = new Vector2(EventCoordinaten.X, EventCoordinaten.Y + snelheid);
             }
             else
             {
-                    lift.EventCoordinaten = new Vector2(lift.EventCoordinaten.X, lift.EventCoordinaten.Y - snelheid);
+                    EventCoordinaten = new Vector2(EventCoordinaten.X, EventCoordinaten.Y - snelheid);
                 }
             }
-            else
+            else if(Bestemmingslijst.Count > 0)
             {
                 // aangekomen
                 volgendeBestemming.texturepath = @"Lift\Lift_Open";
                 foreach(KeyValuePair<Persoon, int> p in GasteninLift)
                 {
                     p.Key.Positie = volgendeBestemming.EventCoordinaten;
-                    if(p.Key.Bestemming == lift && Huidigeverdieping == p.Key.BestemmingLijst.OfType<Liftschacht>().Count())
+                    if(volgendeBestemming.EventCoordinaten == EventCoordinaten)
                     {
-                        p.Key.HuidigeRuimte = HuidigeRuimte;
-                        p.Key.HuidigeRuimte = p.Key.Bestemming;
-                        p.Key.BestemmingLijst.Remove(p.Key.Bestemming);
+                        p.Key.HuidigeRuimte = p.Key.BestemmingLijst.OfType<Liftschacht>().Last();
+                        p.Key.BestemmingLijst.RemoveAll(o => o.Naam == "Lift");
                         p.Key.Bestemming = p.Key.BestemmingLijst.First();
-
                     }
                 }
                 Bestemmingslijst.RemoveAll(o => o == volgendeBestemming.Verdieping);
                 volgendeBestemming.LeegWachtrij(volgendeBestemming.Bestemming);
+            }
+            else
+            {
+                volgendeBestemming.texturepath = @"Lift\Lift_Open";
+                Huidigeverdieping = 0;
             }
         }
     }
