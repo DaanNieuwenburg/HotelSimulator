@@ -12,15 +12,18 @@ namespace HotelSimulatie.Model
         public int Bestemming { get; set; }
         public int Positie { get; set; }
         public int AantalPersonen { get; set; }
-        private Lift lift { get; set; }
-        public Queue<Gast> Wachtrij { get; set; }
+        public bool isWachtrij { get; set; }
+        public Lift lift { get; set; }
+        public Queue<Persoon> Wachtrij { get; set; }
         public Liftschacht(int verdieping)
         {
             Naam = "Lift";
             texturepath = "";
-            lift = new Lift();
             Bestemming = verdieping;
             Verdieping = verdieping;
+            Wachtrij = new Queue<Persoon>();
+            isWachtrij = false;
+
         }
         public override void LoadContent(ContentManager contentManager)
         {
@@ -42,18 +45,23 @@ namespace HotelSimulatie.Model
                 
             Texture = contentManager.Load<Texture2D>(texture);
         }
-        public void UpdateWachtrij(Gast gast)
+        public void UpdateWachtrij(Persoon persoon)
         {
-            Wachtrij.Enqueue(gast);
+            Wachtrij.Enqueue(persoon);
+            isWachtrij = true;
+            if(lift.Huidigeverdieping == this.Verdieping)
+            {
+                LeegWachtrij(this.Verdieping);
+            }
         }
         public void LeegWachtrij(int verdieping)
         {
-            foreach(Gast gast in Wachtrij)
+            for (int i = 0; i < Wachtrij.Count(); i++)
             {
-                Gast temp = Wachtrij.Dequeue();
+                Persoon temp = Wachtrij.Dequeue();
                 lift.UpdateLift(temp);
             }
-            lift.Verplaats(2);       
+            isWachtrij = false;
         }
     }
 }

@@ -22,6 +22,7 @@ namespace HotelSimulatie
 
         public HotelEventHandler(Game game) : base(game)
         {
+
             spel = (Simulatie)game;
             Event = new HotelEvent();
             // Start de event listener
@@ -54,12 +55,12 @@ namespace HotelSimulatie
                         {
                             CheckinEvent(gevondenGast, evt);
                         }
-                        else if (evt.EventType == HotelEventType.CHECK_OUT)
+                        /*else if (evt.EventType == HotelEventType.CHECK_OUT)
                         {
-                           /* gevondenGast.HuidigeRuimte = gevondenGast.HuidigeRuimte;
+                            gevondenGast.HuidigeRuimte = gevondenGast.HuidigeRuimte;
                             gevondenGast.Bestemming = spel.hotel.LobbyRuimte;
-                            CheckoutEvent(gevondenGast, evt);*/
-                        }
+                            CheckoutEvent(gevondenGast, evt);
+                        }*/
                     }
                 }
             }

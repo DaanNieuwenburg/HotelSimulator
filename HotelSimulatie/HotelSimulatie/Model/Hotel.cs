@@ -8,7 +8,7 @@ namespace HotelSimulatie.Model
 {
     public class Hotel
     {
-        public List<HotelRuimte> NodeLijst { get; set; }
+        public static List<HotelRuimte> NodeLijst { get; set; }
         public Lobby LobbyRuimte { get; set; }
         public List<Kamer> KamerLijst { get; set; }
         public List<Gast> GastenLijst { get; set; }
@@ -20,10 +20,10 @@ namespace HotelSimulatie.Model
             NodeLijst = new List<HotelRuimte>();
             GastenLijst = new List<Gast>();
             Schoonmaker_A = new Schoonmaker();
-            Schoonmaker_B = new Schoonmaker();
-            lift = new Liftschacht(0);
+            Schoonmaker_B = new Schoonmaker();            
             LayoutLezer layoutLezer = new LayoutLezer();
             NodeLijst = layoutLezer.HotelRuimteLijst;
+            lift = new Liftschacht(0);
             KamerLijst = maakKamerLijst();
         }
 
