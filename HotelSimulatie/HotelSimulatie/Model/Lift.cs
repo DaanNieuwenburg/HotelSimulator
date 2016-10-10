@@ -107,6 +107,7 @@ namespace HotelSimulatie.Model
                     j = Bestemmingslijst[i];
                 }
             }
+            Huidigeverdieping = j;
             Verplaats(liftschachtlist[j]);
         }
         public void Verplaats(Liftschacht volgendeBestemming)
