@@ -20,8 +20,8 @@ namespace HotelSimulatie.Model
         private float loopSnelheid { get; set; }
         private List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
-        private int textureIndex { get; set; }
         public string Naam { get; set; }
+        private int textureIndex { get; set; }
         private bool LooptNaarLinks { get; set; }
         public Persoon()
         {
@@ -49,7 +49,7 @@ namespace HotelSimulatie.Model
         public bool LoopNaarRuimte()
         {
             bool bestemmingBereikt = false;
-            if(Bestemming != null && bestemmingBereikt == false)
+            if (Bestemming != null && bestemmingBereikt == false)
             {
                 HuidigeRuimte = HuidigeRuimte;
                 Bestemming = Bestemming;
@@ -57,12 +57,6 @@ namespace HotelSimulatie.Model
                 // Beweeg naar boven of beneden
                 if (Bestemming.EventCoordinaten.X == HuidigeRuimte.EventCoordinaten.X && Bestemming is Liftschacht || Bestemming is Trap)
                 {
-                    if(Bestemming is Liftschacht)
-                    {
-                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
-                        liftschacht.UpdateWachtrij(this);
-                    }
-                    /*
                     if ((Int32)Positie.Y > Bestemming.EventCoordinaten.Y)
                     {
                         BeweegNaarBoven();
@@ -75,7 +69,7 @@ namespace HotelSimulatie.Model
                     {
                         HuidigeRuimte = Bestemming;
                         bestemmingBereikt = true;
-                    }*/
+                    }
                 }
                 else
                 {
