@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HotelEvents;
+using System.Text.RegularExpressions;
 
 namespace HotelSimulatie
 {
@@ -11,7 +12,7 @@ namespace HotelSimulatie
     {
         public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented };
         public Gast gast { get; set; }
-        public Kamer hotelKamer { get; set; }
+        public int? aantalSterrenKamer { get; set; }
         public EventCategory Category { get; set; }
         public string message { get; set; }
         public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst)
@@ -20,7 +21,9 @@ namespace HotelSimulatie
             Message = evt.Message;
             Time = evt.Time;
             message = evt.Data.Values.ElementAt(0);
-            
+            string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
+            aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
+
             bepaalHotelEventCategory(evt);
             bepaalGast(evt, gastenLijst);
             if(Category == EventCategory.Cleaning)
@@ -78,10 +81,6 @@ namespace HotelSimulatie
             // Vind de gast in gastenlijst
             gast = gastenLijst.Find(o => o.Naam == gastNaam);
         }
-
-        private void bepaalKamer(HotelEvent evt)
-        {
-
-        }
+        
     }
 }
