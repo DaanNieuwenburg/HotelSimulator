@@ -95,6 +95,7 @@
     <Compile Include="HotelEventAdapter.cs" />
     <Compile Include="HotelRuimteJsonConverter.cs" />
     <Compile Include="GameHandlers\InputHandler.cs" />
+    <Compile Include="HotelTijdsEenheid.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\HotelPersonenMap\Gast.cs" />
     <Compile Include="Model\HotelPersonenMap\Schoonmaker.cs" />

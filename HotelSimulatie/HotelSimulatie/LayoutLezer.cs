@@ -90,7 +90,7 @@ namespace HotelSimulatie
         {
             // Bepaal lobby positie
             int x = MaxX;
-            int ruimtesLinks = 0;
+            int ruimtesLinks = 1;       // meest linkerruimtes die er al zijn 
             int ruimtesRechts = MaxX;
             foreach (HotelRuimte hotelRuimte in HotelRuimteLijst)
             {
@@ -103,12 +103,23 @@ namespace HotelSimulatie
                 }
             }
 
+
+            // Vervang rest van de lege lobby met gangen
+            for (int i = 2; i < MaxX; i++)
+            {
+                Gang gang = new Gang();
+                gang.Afmetingen = new Vector2(2, 1);
+                gang.CoordinatenInSpel = new Vector2(i, 0);
+                HotelRuimteLijst.Add(gang);
+            }
+
             // Voeg lobby toe aan lijst
             Lobby lobby = new Lobby();
-            lobby.Afmetingen = new Vector2(ruimtesRechts - ruimtesLinks, 1);
-            lobby.CoordinatenInSpel = new Vector2(ruimtesLinks, 0);
+            lobby.Afmetingen = new Vector2(1, 1);
+            lobby.CoordinatenInSpel = new Vector2(1, 0);
             HotelRuimteLijst.Add(lobby);
         }
+
         private void zetGangenInLayout()
         {
             for (int i = 0; i < HotelRuimteLijst.Count; i++)

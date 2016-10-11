@@ -13,7 +13,7 @@ namespace HotelSimulatie.Model
     {
         public HotelRuimte Bestemming { get; set; }
         public List<HotelRuimte> BestemmingLijst { get; set; }
-        public HotelEvent HuidigEvent { get; set; }
+        public HotelEventAdapter HuidigEvent { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }

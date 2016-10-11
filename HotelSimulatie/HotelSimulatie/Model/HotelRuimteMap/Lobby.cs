@@ -39,11 +39,10 @@ namespace HotelSimulatie.Model
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
-                    int aantalSterrenKamer = Convert.ToInt32(gast.HuidigEvent.Message);
-                    while (toegewezenKamer == null && aantalSterrenKamer <= 5)
+                    while (toegewezenKamer == null && gast.HuidigEvent.aantalSterrenKamer <= 5)
                     {
-                        toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == aantalSterrenKamer);
-                        aantalSterrenKamer++;
+                        toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.HuidigEvent.aantalSterrenKamer);
+                        gast.HuidigEvent.aantalSterrenKamer++;
                     }
                     toegewezenKamer.Bezet = true;
                 }

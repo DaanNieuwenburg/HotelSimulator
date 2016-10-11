@@ -34,6 +34,11 @@ namespace HotelSimulatie
                     {
                         gast.Uitchecken(spel.hotel.LobbyRuimte);
                     }
+                    else if(gast.HuidigEvent.EventType == HotelEventType.GOTO_CINEMA)
+                    {
+                        Console.WriteLine("Cinema");
+                        gast.GaNaarBioscoop(spel.hotel.bioscoop);
+                    }
                 }
             }
         }

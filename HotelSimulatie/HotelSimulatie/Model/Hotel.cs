@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
         public Lobby LobbyRuimte { get; set; }
         public List<Kamer> KamerLijst { get; set; }
         public List<Gast> GastenLijst { get; set; }
+        public Bioscoop bioscoop { get; set; }
         public Schoonmaker Schoonmaker_A { get; set; }
         public Schoonmaker Schoonmaker_B { get; set; }
         public Liftschacht lift { get; set; }
@@ -25,6 +26,9 @@ namespace HotelSimulatie.Model
             NodeLijst = layoutLezer.HotelRuimteLijst;
             lift = new Liftschacht(0);
             KamerLijst = maakKamerLijst();
+
+            // Koppelt de bioscoop
+            bioscoop = (Bioscoop)NodeLijst.OfType<Bioscoop>().First();
         }
 
         private List<Kamer> maakKamerLijst()

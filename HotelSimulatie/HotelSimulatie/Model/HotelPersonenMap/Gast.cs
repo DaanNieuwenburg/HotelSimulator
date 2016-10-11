@@ -42,7 +42,7 @@ namespace HotelSimulatie.Model
                         if (toegewezenKamer.AantalSterren == 0)
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
-                            this.HuidigEvent = new HotelEvents.HotelEvent() { EventType = HotelEvents.HotelEventType.CHECK_OUT };
+                            HuidigEvent.EventType = HotelEvents.HotelEventType.CHECK_OUT;
                             Console.WriteLine("CHECKOUT EVENT");
                         }
                         else
@@ -93,7 +93,7 @@ namespace HotelSimulatie.Model
             {
                 // Zoek pad naar lobby
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, lobby, Bestemming);
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
 
                 // Koppel eerste node aan bestemming
                 Bestemming = BestemmingLijst.First();
@@ -112,6 +112,36 @@ namespace HotelSimulatie.Model
                 {
                     // Haal het event weg, want de gast is bij zijn kamer aangekomen
                     lobby.GastUitchecken(this);
+                }
+            }
+        }
+
+        public void GaNaarBioscoop(Bioscoop bioscoop)
+        {
+            // Bepaal route naar bioscoop
+            if (BestemmingLijst == null && Bestemming is Lobby)
+            {
+                // Zoek pad naar bioscoop
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
+
+                // Koppel eerste node aan bestemming
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop naar bioscoop
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    Bestemming = BestemmingLijst.First();
+                    BestemmingLijst.Remove(BestemmingLijst.First());
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
+
                 }
             }
         }

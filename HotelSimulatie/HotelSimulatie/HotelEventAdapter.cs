@@ -15,20 +15,27 @@ namespace HotelSimulatie
         public int? aantalSterrenKamer { get; set; }
         public EventCategory Category { get; set; }
         public string message { get; set; }
-        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst)
+        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
             EventType = evt.EventType;
             Message = evt.Message;
             Time = evt.Time;
-            message = evt.Data.Values.ElementAt(0);
-            string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
-            aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
 
             bepaalHotelEventCategory(evt);
-            bepaalGast(evt, gastenLijst);
-            if (Category == EventCategory.Cleaning)
+
+            // Als er geen sprake is van zo een vreselijk test event
+            if (Category != EventCategory.NotImplented)
             {
-                // Koppel kamer
+                message = evt.Data.Values.ElementAt(0);
+
+                // Als er sprake is van een check in event, bepaal kamernummer
+                if (EventType == HotelEventType.CHECK_IN)
+                {
+                    string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
+                    aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
+                }
+
+                bepaalGast(evt, gastenLijst);
             }
         }
 
@@ -45,9 +52,8 @@ namespace HotelSimulatie
             guestEvents[3] = HotelEventType.GOTO_FITNESS;
             guestEvents[4] = HotelEventType.NEED_FOOD;
 
-            HotelEventType[] hotelEvents = new HotelEventType[2];
-            hotelEvents[0] = HotelEventType.EVACUATE;
-            hotelEvents[1] = HotelEventType.START_CINEMA;
+            HotelEventType[] hotelEvents = new HotelEventType[1];
+            hotelEvents[0] = HotelEventType.START_CINEMA;
 
             // Bepaal de event category van het huidige event
             if (cleaningEvents.Contains(evt.EventType))
@@ -70,17 +76,24 @@ namespace HotelSimulatie
 
         private void bepaalGast(HotelEvent evt, List<Gast> gastenLijst)
         {
-            // Als gast naam gast is, koppel dan de value aan de gastnaam
+            // Maak en koppel gastnaam
             evt.Data.Keys.ElementAt(0);
             string gastNaam = evt.Data.Keys.ElementAt(0);
+
+            // Als gastnaam gast is, pak de value van de key ( de gast id )
             if (evt.Data.Keys.ElementAt(0) == "Gast")
             {
                 gastNaam = gastNaam + evt.Data.Values.ElementAt(0);
             }
 
-            // Vind de gast in gastenlijst
+            // Vind de gast in de gastenlijst
             gast = gastenLijst.Find(o => o.Naam == gastNaam);
-        }
 
+            if (gast == null)
+            {
+                gast = new Gast();
+                gast.Naam = gastNaam;
+            }
+        }
     }
 }
