@@ -88,6 +88,30 @@ namespace HotelSimulatie.Model
                     }
                 }
             }
+
+            // Haal de bestemming uit de bestemmingslijst weg
+            /*if (BestemmingLijst != null)
+            {
+                if (bestemmingBereikt == true && BestemmingLijst.Count > 0)
+                {
+                    Bestemming = BestemmingLijst.First();
+                    BestemmingLijst.Remove(BestemmingLijst.First());
+                }
+                else if (bestemmingBereikt == true && BestemmingLijst.Count == 0)
+                {
+
+                    if (HuidigEvent.EventType == HotelEventType.EVACUATE)
+                    {
+                        Bestemming = null;
+                    }
+                    else
+                    {
+                        // Haal het event weg, want de gast is bij zijn kamer aangekomen
+                        HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
+                        Bestemming = null;
+                    }
+                }
+            }*/
             return bestemmingBereikt;
         }
 

@@ -67,9 +67,13 @@ namespace HotelSimulatie.Model
 
         public void GastUitchecken(Gast gast)
         {
-            Kamer gastKamer = hotel.KamerLijst.Find(o => o.Kamernummer == gast.Kamernummer);
-            gastKamer.Bezet = false;
-            gast.Kamernummer = null;
+            // Een kamernummer van 0 betekent dat de gewenste kamer niet beschikbaar is
+            if (gast.ToegewezenKamer.Kamernummer != 0)
+            {
+                Kamer gastKamer = hotel.KamerLijst.Find(o => o.Kamernummer == gast.ToegewezenKamer.Kamernummer);
+                gastKamer.Bezet = false;
+                gast.ToegewezenKamer = null;
+            }
             hotel.GastenLijst.Remove(gast);
         }
     }

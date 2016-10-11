@@ -24,18 +24,23 @@ namespace HotelSimulatie
             bepaalHotelEventCategory(evt);
 
             // Als er geen sprake is van zo een vreselijk test event
-            if (Category != EventCategory.NotImplented)
+            if (Category != EventCategory.NotImplented && Category != EventCategory.Hotel)
             {
                 message = evt.Data.Values.ElementAt(0);
 
-                // Als er sprake is van een check in event, bepaal kamernummer
-                if (EventType == HotelEventType.CHECK_IN)
-                {
-                    string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
-                    aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
-                }
+                Console.WriteLine(evt.Message);
+                Console.WriteLine(message);
 
-                bepaalGast(evt, gastenLijst);
+                if (Category == EventCategory.Guest)
+                {
+                    // Bepaal kamernummer
+                    if (EventType == HotelEventType.CHECK_IN)
+                    {
+                        string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
+                        aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
+                    }
+                    bepaalGast(evt, gastenLijst);
+                }
             }
         }
 
@@ -52,8 +57,9 @@ namespace HotelSimulatie
             guestEvents[3] = HotelEventType.GOTO_FITNESS;
             guestEvents[4] = HotelEventType.NEED_FOOD;
 
-            HotelEventType[] hotelEvents = new HotelEventType[1];
+            HotelEventType[] hotelEvents = new HotelEventType[2];
             hotelEvents[0] = HotelEventType.START_CINEMA;
+            hotelEvents[1] = HotelEventType.EVACUATE;
 
             // Bepaal de event category van het huidige event
             if (cleaningEvents.Contains(evt.EventType))

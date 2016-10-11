@@ -17,8 +17,10 @@ namespace HotelSimulatie.Model
         public Schoonmaker Schoonmaker_B { get; set; }
         public Liftschacht lift { get; set; }
         public Fitness fitness { get; set; }
+        public bool IsEvacuatie { get; set; }
         public Hotel()
         {
+            IsEvacuatie = false;
             NodeLijst = new List<HotelRuimte>();
             GastenLijst = new List<Gast>();
             Schoonmaker_A = new Schoonmaker();
@@ -50,6 +52,29 @@ namespace HotelSimulatie.Model
                 }
             }
             return KamerLijst;
+        }
+
+        public void Evacueer()
+        {
+            if (IsEvacuatie == false)
+            {
+                Console.WriteLine("OMG EVACUATIE");
+                foreach (Gast gast in GastenLijst)
+                {
+                    gast.HuidigEvent.EventType = HotelEvents.HotelEventType.EVACUATE;
+                }
+                IsEvacuatie = true;
+            }
+            else
+            {
+                int aantalGasten = GastenLijst.Count;
+                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == LobbyRuimte select Gast).Count();
+                if(aantalGasten == aantalGastenOpEvacuatiePunt)
+                {
+                    Console.WriteLine("Evacuatie is afgelopen");
+                }
+            }
+
         }
     }
 }

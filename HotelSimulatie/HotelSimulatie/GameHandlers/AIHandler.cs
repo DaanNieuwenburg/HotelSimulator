@@ -42,6 +42,11 @@ namespace HotelSimulatie
                     {
                         gast.GaNaarFitness(spel.hotel.fitness);
                     }
+                    else if(gast.HuidigEvent.EventType == HotelEventType.EVACUATE)
+                    {
+                        gast.GaNaarEvactuatiePunt(spel.hotel.LobbyRuimte);
+                        spel.hotel.Evacueer();
+                    }
                 }
             }
         }

@@ -33,7 +33,7 @@ namespace HotelSimulatie
             // Adapter gebruiken om HotelEvent om te zetten
             HotelEventAdapter hotelEventAdapter = new HotelEventAdapter(evt, spel.hotel.GastenLijst);
 
-            if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Guest)
+            if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Guest && spel.hotel.IsEvacuatie == false)
             {
                 if(hotelEventAdapter.EventType == HotelEventType.CHECK_IN)
                 {
@@ -52,6 +52,13 @@ namespace HotelSimulatie
                 else if(hotelEventAdapter.EventType == HotelEventType.GOTO_FITNESS)
                 {
                     GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+            }
+            else if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel && spel.hotel.IsEvacuatie == false)
+            {
+                if(hotelEventAdapter.EventType == HotelEventType.EVACUATE)
+                {
+                    spel.hotel.Evacueer();
                 }
             }
         }
