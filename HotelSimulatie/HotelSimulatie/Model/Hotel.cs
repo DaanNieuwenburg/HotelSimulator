@@ -61,6 +61,8 @@ namespace HotelSimulatie.Model
                 Console.WriteLine("OMG EVACUATIE");
                 foreach (Gast gast in GastenLijst)
                 {
+                    gast.Bestemming = LobbyRuimte;
+                    gast.BestemmingLijst = null;
                     gast.HuidigEvent.EventType = HotelEvents.HotelEventType.EVACUATE;
                 }
                 IsEvacuatie = true;

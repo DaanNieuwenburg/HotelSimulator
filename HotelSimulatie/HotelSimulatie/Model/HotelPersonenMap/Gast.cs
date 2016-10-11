@@ -185,13 +185,9 @@ namespace HotelSimulatie.Model
 
         public void GaNaarEvactuatiePunt(Lobby lobby)
         {
-            if (Bestemming == null && HuidigeRuimte != lobby)
-            {
-                Bestemming = lobby;
-            }
 
-            // Bepaal route naar fitness
-            if (BestemmingLijst == null && Bestemming is Fitness)
+            // Bepaal route naar lobby
+            if (BestemmingLijst == null && Bestemming is Lobby)
             {
                 // Zoek pad naar fitness
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
@@ -212,8 +208,6 @@ namespace HotelSimulatie.Model
                 }
                 else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
                 {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
                     Bestemming = null;
                 }
             }

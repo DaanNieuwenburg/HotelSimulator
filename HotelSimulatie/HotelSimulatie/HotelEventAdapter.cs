@@ -10,7 +10,7 @@ namespace HotelSimulatie
 {
     public class HotelEventAdapter : HotelEvent
     {
-        public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented };
+        public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
         public Gast gast { get; set; }
         public int? aantalSterrenKamer { get; set; }
         public EventCategory Category { get; set; }

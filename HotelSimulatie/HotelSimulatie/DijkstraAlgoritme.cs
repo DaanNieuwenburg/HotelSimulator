@@ -47,11 +47,19 @@ namespace HotelSimulatie
                 deze.Afstand = Int32.MaxValue / 2;
                 deze = deze.Vorige;
             }
+
             // Reset de afstand van de lobby
             Begin.Afstand = Int32.MaxValue / 2;
             pad.Add(Begin);
             pad.Reverse();
-            return pad;
+            if (Eind.GetType() == typeof(Lobby))
+            {
+                return pad;
+            }
+            else
+            {
+                return pad;
+            }
         }
 
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)

@@ -54,7 +54,7 @@ namespace HotelSimulatie
                     GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
             }
-            else if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel && spel.hotel.IsEvacuatie == false)
+            else if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel)
             {
                 if(hotelEventAdapter.EventType == HotelEventType.EVACUATE)
                 {
