@@ -16,6 +16,7 @@ namespace HotelSimulatie.Model
         public Schoonmaker Schoonmaker_A { get; set; }
         public Schoonmaker Schoonmaker_B { get; set; }
         public Liftschacht lift { get; set; }
+        public Fitness fitness { get; set; }
         public Hotel()
         {
             NodeLijst = new List<HotelRuimte>();
@@ -29,6 +30,9 @@ namespace HotelSimulatie.Model
 
             // Koppelt de bioscoop
             bioscoop = (Bioscoop)NodeLijst.OfType<Bioscoop>().First();
+
+            // Koppelt de fitness
+            fitness = (Fitness)NodeLijst.OfType<Fitness>().First();
         }
 
         private List<Kamer> maakKamerLijst()

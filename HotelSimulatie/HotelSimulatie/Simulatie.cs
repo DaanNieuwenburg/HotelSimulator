@@ -103,6 +103,10 @@ namespace HotelSimulatie
                 {
                     hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y);
                 }
+                if(hotelRuimte is Bioscoop)
+                {
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 80, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+                }
             }
 
             spriteBatch.End();

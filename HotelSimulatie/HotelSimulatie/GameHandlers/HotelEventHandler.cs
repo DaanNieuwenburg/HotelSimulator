@@ -49,6 +49,10 @@ namespace HotelSimulatie
                 {
                     GaNaarBioscoopEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
+                else if(hotelEventAdapter.EventType == HotelEventType.GOTO_FITNESS)
+                {
+                    GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
             }
         }
 
@@ -76,7 +80,6 @@ namespace HotelSimulatie
 
         private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
-            Console.WriteLine("Checkoutevent");
             gast.HuidigEvent = hotelEvent;
             gast.Uitchecken(spel.hotel.LobbyRuimte);
         }
@@ -85,6 +88,12 @@ namespace HotelSimulatie
         {
             gast.HuidigEvent = hotelEvent;
             gast.GaNaarBioscoop(spel.hotel.bioscoop);
+        }
+
+        private void GaNaarFitnessEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            gast.GaNaarFitness(spel.hotel.fitness);
         }
     }
 }

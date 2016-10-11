@@ -43,7 +43,6 @@ namespace HotelSimulatie.Model
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
                             HuidigEvent.EventType = HotelEvents.HotelEventType.CHECK_OUT;
-                            Console.WriteLine("CHECKOUT EVENT");
                         }
                         else
                         {
@@ -80,7 +79,6 @@ namespace HotelSimulatie.Model
                     BestemmingLijst = null;
                     HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
                     GaKamerIn(HuidigeRuimte);
-                    Console.WriteLine(HuidigeRuimte.Naam);
                 }
             }
         }
@@ -118,8 +116,12 @@ namespace HotelSimulatie.Model
 
         public void GaNaarBioscoop(Bioscoop bioscoop)
         {
+            if(Bestemming == null && HuidigeRuimte != bioscoop)
+            {
+                Bestemming = bioscoop;
+            }
             // Bepaal route naar bioscoop
-            if (BestemmingLijst == null && Bestemming is Lobby)
+            if (BestemmingLijst == null && Bestemming is Bioscoop)
             {
                 // Zoek pad naar bioscoop
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
@@ -141,7 +143,43 @@ namespace HotelSimulatie.Model
                 else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
                 {
                     // Haal het event weg, want de gast is bij zijn kamer aangekomen
+                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
+                    Bestemming = null;
+                }
+            }
+        }
 
+        public void GaNaarFitness(Fitness fitness)
+        {
+            if (Bestemming == null && HuidigeRuimte != fitness)
+            {
+                Bestemming = fitness;
+            }
+            // Bepaal route naar fitness
+            if (BestemmingLijst == null && Bestemming is Fitness)
+            {
+                // Zoek pad naar fitness
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
+
+                // Koppel eerste node aan bestemming
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop naar fitness
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    Bestemming = BestemmingLijst.First();
+                    BestemmingLijst.Remove(BestemmingLijst.First());
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
+                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
+                    Bestemming = null;
                 }
             }
         }
