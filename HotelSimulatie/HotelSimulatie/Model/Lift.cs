@@ -105,7 +105,8 @@ namespace HotelSimulatie.Model
                     j = Bestemmingslijst[i];
                 }
             //}
-            Huidigeverdieping = j;
+            Volgendeverdieping = j;
+            j = 5;
             //System.Diagnostics.Debugger.Break();
             Verplaats(liftschachtlist[j]);
         }
@@ -141,11 +142,15 @@ namespace HotelSimulatie.Model
                     p.Key.Positie = volgendeBestemming.EventCoordinaten;
                     if(volgendeBestemming.EventCoordinaten == EventCoordinaten)
                     {
-                        p.Key.HuidigeRuimte = p.Key.BestemmingLijst.OfType<Liftschacht>().Last();
-                        p.Key.BestemmingLijst.RemoveAll(o => o.Naam == "Lift");
-                        p.Key.Bestemming = p.Key.BestemmingLijst.First();
+                        if(p.Key.BestemmingLijst.OfType<Liftschacht>().Count() > 0)
+                        {
+                            p.Key.HuidigeRuimte = p.Key.BestemmingLijst.OfType<Liftschacht>().Last();
+                            p.Key.BestemmingLijst.RemoveAll(o => o.Naam == "Lift");
+                            p.Key.Bestemming = p.Key.BestemmingLijst.First();
+                        }
                     }
                 }
+                Huidigeverdieping = Volgendeverdieping;
                 Bestemmingslijst.RemoveAll(o => o == volgendeBestemming.Verdieping);
                 if (volgendeBestemming.Wachtrij.Count() > 0)
                 volgendeBestemming.LeegWachtrij(volgendeBestemming.Bestemming);
