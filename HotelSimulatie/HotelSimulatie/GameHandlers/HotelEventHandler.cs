@@ -88,19 +88,22 @@ namespace HotelSimulatie
         private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            gast.Uitchecken(spel.hotel.LobbyRuimte);
+            Lobby lobby = spel.hotel.LobbyRuimte;
+            gast.GaNaarKamer<Lobby>(ref lobby);
         }
 
         private void GaNaarBioscoopEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            gast.GaNaarBioscoop(spel.hotel.bioscoop);
+            Bioscoop bioscoop = spel.hotel.bioscoop;
+            gast.GaNaarKamer<Bioscoop>(ref bioscoop);
         }
 
         private void GaNaarFitnessEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            gast.GaNaarFitness(spel.hotel.fitness);
+            Fitness fitness = spel.hotel.fitness;
+            gast.GaNaarKamer<Fitness>(ref fitness);
         }
     }
 }

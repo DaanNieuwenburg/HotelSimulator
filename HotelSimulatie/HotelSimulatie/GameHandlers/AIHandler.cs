@@ -32,19 +32,23 @@ namespace HotelSimulatie
                     }
                     else if(gast.HuidigEvent.EventType == HotelEventType.CHECK_OUT)
                     {
-                        gast.Uitchecken(spel.hotel.LobbyRuimte);
+                        Lobby lobby = spel.hotel.LobbyRuimte;
+                        gast.GaNaarKamer<Lobby>(ref lobby);
                     }
                     else if(gast.HuidigEvent.EventType == HotelEventType.GOTO_CINEMA)
                     {
-                        gast.GaNaarBioscoop(spel.hotel.bioscoop);
+                        Bioscoop bioscoop = spel.hotel.bioscoop;
+                        gast.GaNaarKamer<Bioscoop>(ref bioscoop);
                     }
                     else if(gast.HuidigEvent.EventType == HotelEventType.GOTO_FITNESS)
                     {
-                        gast.GaNaarFitness(spel.hotel.fitness);
+                        Fitness fitness = spel.hotel.fitness;
+                        gast.GaNaarKamer<Fitness>(ref fitness);
                     }
                     else if(gast.HuidigEvent.EventType == HotelEventType.EVACUATE)
                     {
-                        gast.GaNaarEvactuatiePunt(spel.hotel.LobbyRuimte);
+                        Lobby lobby = spel.hotel.LobbyRuimte;
+                        gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
                 }

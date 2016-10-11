@@ -54,144 +54,30 @@ namespace HotelSimulatie.Model
             // Bepaal route naar kamer
             else if (BestemmingLijst == null && Bestemming is Kamer)
             {
-                // Zoek pad naar kamer
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, lobby, Bestemming);
-
-                // Koppel eerste node aan bestemming
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
+                Kamer kamer = ToegewezenKamer;
+                GaNaarKamer<Kamer>(ref kamer);
             }
 
             // Loop naar kamer
             else if (BestemmingLijst != null)
             {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
-                {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    BestemmingLijst = null;
-                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
-                    GaKamerIn(HuidigeRuimte);
-                }
+                Kamer kamer = ToegewezenKamer;
+                GaNaarKamer<Kamer>(ref kamer);
             }
         }
 
-        public void Uitchecken(Lobby lobby)
+        public void GaNaarKamer<T>(ref T ruimte)
         {
-            HuidigeRuimte = HuidigeRuimte;
-            // Bepaal route naar lobby
-            if (BestemmingLijst == null && Bestemming is Lobby)
+            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
             {
-                // Zoek pad naar lobby
+                Bestemming = ruimte as HotelRuimte;
+            }
+
+            if (BestemmingLijst == null && Bestemming is T)
+            {
+                // Zoek kortste pad naar bestemming
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
-
-                // Koppel eerste node aan bestemming
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
-            }
-
-            // Loop naar lobby
-            else if (BestemmingLijst != null)
-            {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
-                {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    lobby.GastUitchecken(this);
-                }
-            }
-        }
-
-        public void GaNaarBioscoop(Bioscoop bioscoop)
-        {
-            if(Bestemming == null && HuidigeRuimte != bioscoop)
-            {
-                Bestemming = bioscoop;
-            }
-            // Bepaal route naar bioscoop
-            if (BestemmingLijst == null && Bestemming is Bioscoop)
-            {
-                // Zoek pad naar bioscoop
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
-
-                // Koppel eerste node aan bestemming
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
-            }
-
-            // Loop naar bioscoop
-            else if (BestemmingLijst != null)
-            {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
-                {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
-                    Bestemming = null;
-                }
-            }
-        }
-
-        public void GaNaarFitness(Fitness fitness)
-        {
-            if (Bestemming == null && HuidigeRuimte != fitness)
-            {
-                Bestemming = fitness;
-            }
-            // Bepaal route naar fitness
-            if (BestemmingLijst == null && Bestemming is Fitness)
-            {
-                // Zoek pad naar fitness
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
-
-                // Koppel eerste node aan bestemming
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
-            }
-
-            // Loop naar fitness
-            else if (BestemmingLijst != null)
-            {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
-                {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
-                    Bestemming = null;
-                }
-            }
-        }
-
-
-        public void GaNaarEvactuatiePunt(Lobby lobby)
-        {
-
-            // Bepaal route naar lobby
-            if (BestemmingLijst == null && Bestemming is Lobby)
-            {
-                // Zoek pad naar fitness
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, Bestemming);
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
                 Bestemming = BestemmingLijst.First();
