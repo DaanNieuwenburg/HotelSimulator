@@ -47,11 +47,18 @@ namespace HotelSimulatie.Model
         }
         public void UpdateWachtrij(Persoon persoon)
         {
-            Wachtrij.Enqueue(persoon);
+            if(!Wachtrij.Contains(persoon))
+            {
+                Wachtrij.Enqueue(persoon);
+            }
             isWachtrij = true;
             if(lift.Huidigeverdieping == this.Verdieping)
             {
                 LeegWachtrij(this.Verdieping);
+            }
+            else
+            {
+                lift.Verplaats(this);
             }
         }
         public void LeegWachtrij(int verdieping)
