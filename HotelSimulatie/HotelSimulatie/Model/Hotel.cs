@@ -58,14 +58,14 @@ namespace HotelSimulatie.Model
         {
             if (IsEvacuatie == false)
             {
+                IsEvacuatie = true;
                 Console.WriteLine("OMG EVACUATIE");
                 foreach (Gast gast in GastenLijst)
                 {
                     gast.Bestemming = LobbyRuimte;
                     gast.BestemmingLijst = null;
-                    gast.HuidigEvent.EventType = HotelEvents.HotelEventType.EVACUATE;
+                    gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
                 }
-                IsEvacuatie = true;
             }
             else
             {
@@ -73,10 +73,10 @@ namespace HotelSimulatie.Model
                 int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == LobbyRuimte select Gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
-                    bool alleGastenInKamer = false;
                     foreach(Gast gast in GastenLijst)
                     {
                         gast.HuidigeRuimte = LobbyRuimte;
+                        gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                     }
                 }
             }
