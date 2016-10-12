@@ -20,6 +20,7 @@ namespace HotelSimulatie
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
             // For loop aangezien we aanpassing maken aan de gasten die in de lijst staan
             for(int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
@@ -45,7 +46,12 @@ namespace HotelSimulatie
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
             base.Draw(gameTime);
+            if(spel.hotel.lift.lift != null)
+            {
+                spel.hotel.lift.lift.LoadContent(Game.Content);
+                spriteBatch.Draw(spel.hotel.lift.lift.Texture, new Rectangle((Int32)spel.hotel.lift.EventCoordinaten.X, (Int32)spel.hotel.lift.EventCoordinaten.Y, 90, 90), Color.White);
 
+            }
             // Toon gasten
             foreach (Gast gast in spel.hotel.GastenLijst)
             {

@@ -17,7 +17,7 @@ namespace HotelSimulatie.Model
         public Queue<Persoon> Wachtrij { get; set; }
         public Liftschacht(int verdieping)
         {
-            Naam = "Lift";
+            Naam = "Liftschacht";
             texturepath = "";
             Bestemming = verdieping;
             Verdieping = verdieping;
@@ -63,11 +63,13 @@ namespace HotelSimulatie.Model
         }
         public void LeegWachtrij(int verdieping)
         {
+            List<Persoon> wachtrijlist = new List<Persoon>();
             for (int i = 0; i < Wachtrij.Count(); i++)
             {
                 Persoon temp = Wachtrij.Dequeue();
-                lift.UpdateLift(temp);
+                wachtrijlist.Add(temp);
             }
+            lift.UpdateLift(wachtrijlist);
             isWachtrij = false;
         }
     }
