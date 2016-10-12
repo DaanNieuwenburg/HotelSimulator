@@ -33,27 +33,25 @@ namespace HotelSimulatie.Model
             if (verlopenTijd > 100)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
-
-                // Geef een beschikbare kamer
-                Kamer toegewezenKamer = null;
+                
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
-                    while (toegewezenKamer == null && gast.HuidigEvent.aantalSterrenKamer <= 5)
+                    while (gast.ToegewezenKamer == null && gast.HuidigEvent.aantalSterrenKamer <= 5)
                     {
-                        toegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.HuidigEvent.aantalSterrenKamer);
+                        gast.ToegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.HuidigEvent.aantalSterrenKamer);
                         gast.HuidigEvent.aantalSterrenKamer++;
                     }
-                    toegewezenKamer.Bezet = true;
+                    gast.ToegewezenKamer.Bezet = true;
                 }
                 catch(InvalidOperationException e)
                 {
                     // Als er geen kamer beschikbaar is, return kamer van 0 sterren
                     Console.WriteLine("Checkout");
-                    toegewezenKamer = new Kamer(0);
+                    gast.ToegewezenKamer = new Kamer(0);
                 }
                 verlopenTijd = 0;
-                return toegewezenKamer;
+                return gast.ToegewezenKamer;
             }
             else
             {

@@ -45,6 +45,11 @@ namespace HotelSimulatie
                         Fitness fitness = spel.hotel.fitness;
                         gast.GaNaarKamer<Fitness>(ref fitness);
                     }
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                    {
+                        Kamer kamer = gast.ToegewezenKamer;
+                        gast.GaNaarKamer<Kamer>(ref kamer);
+                    }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
                         Lobby lobby = spel.hotel.LobbyRuimte;

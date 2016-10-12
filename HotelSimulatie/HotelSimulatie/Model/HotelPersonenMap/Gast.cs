@@ -46,24 +46,11 @@ namespace HotelSimulatie.Model
                         {
                             Bestemming = gevondenKamer;
                             ToegewezenKamer = gevondenKamer;
+                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                         }
                     }
                 }
-            }
-
-            // Bepaal route naar kamer
-            else if (BestemmingLijst == null && Bestemming is Kamer)
-            {
-                Kamer kamer = ToegewezenKamer;
-                GaNaarKamer<Kamer>(ref kamer);
-            }
-
-            // Loop naar kamer
-            else if (BestemmingLijst != null)
-            {
-                Kamer kamer = ToegewezenKamer;
-                GaNaarKamer<Kamer>(ref kamer);
-            }
+            } 
         }
 
         public void GaNaarKamer<T>(ref T ruimte)
