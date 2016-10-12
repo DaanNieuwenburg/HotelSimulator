@@ -30,14 +30,14 @@ namespace HotelSimulatie.Model
             string texture;
             if (Bestemming == 0)
             {
-                if (lift.Huidigeverdieping == Bestemming)
+                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
                     texture = @"Lift\Lift_Beneden_Open";
                 else
                     texture = @"Lift\Lift_Beneden";
             }
             else
             {
-                if (lift.Huidigeverdieping == Bestemming)
+                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
                     texture = @"Lift\Lift_Open";
                 else
                     texture = @"Lift\Lift_Gesloten";
@@ -45,23 +45,27 @@ namespace HotelSimulatie.Model
                 
             Texture = contentManager.Load<Texture2D>(texture);
         }
-        public void UpdateWachtrij(Persoon persoon)
+
+        public void VraagOmLift(Persoon persoon)
         {
-            Wachtrij.Enqueue(persoon);
-            isWachtrij = true;
-            if(lift.Huidigeverdieping == this.Verdieping)
+            if (!Wachtrij.Contains(persoon))
             {
-                LeegWachtrij(this.Verdieping);
+                Wachtrij.Enqueue(persoon);
+                isWachtrij = true;
+                lift.LiftStoppenlijst.Add(Verdieping);
             }
         }
-        public void LeegWachtrij(int verdieping)
+
+        public void LaatGastenLiftInGaan()
         {
             for (int i = 0; i < Wachtrij.Count(); i++)
             {
                 Persoon temp = Wachtrij.Dequeue();
-                lift.UpdateLift(temp);
+                lift.GasteninLift.Add(temp);
+
+                // Voegt de verdieping van de personen aam de lijst toe
+
             }
-            isWachtrij = false;
         }
     }
 }

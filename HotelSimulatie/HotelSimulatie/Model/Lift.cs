@@ -9,126 +9,101 @@ namespace HotelSimulatie.Model
 {
     public class Lift : HotelRuimte
     {
-        public int Huidigeverdieping { get; set; }
-        public int Volgendeverdieping { get; set; }
-        public int Bovensteverdieping { get; set; }
-        public Dictionary<string, int> GasteninLift { get; set; }
-        public List<int> Bestemmingslijst { get; set;}
-        public List<Liftschacht> liftschachtlist { get; set; }
-        //private Hotel hotel { get; }
+        public Liftschacht HuidigeVerdieping { get; set; }
+        public Liftschacht LiftBestemming { get; set; }
+        public int BovensteVerdieping { get; set; }
+        public bool BovensteLiftschachtBereikt { get; set; }
+        public List<Persoon> GasteninLift { get; set; }
+        public List<int> LiftStoppenlijst { get; set; }
+        public List<Liftschacht> Liftschachtlijst { get; set; }
         private Vector2 Positie { get; set; }
-        float snelheid;
+        private float snelheid { get; set; }
 
         public Lift(int Aantalverdiepingen)
         {
-            Bestemmingslijst = new List<int>();
-            Huidigeverdieping = 0;
-            snelheid = 0.5f;
-            GasteninLift = new Dictionary<string, int>();
-            Bovensteverdieping = Aantalverdiepingen + 1;
+            LiftStoppenlijst = new List<int>();
+            snelheid = 2.5f;
+            GasteninLift = new List<Persoon>();
+            BovensteVerdieping = Aantalverdiepingen;
         }
+
+        public void InitializeerLift()
+        {
+            HuidigeVerdieping = Liftschachtlijst.Find(o => o.Verdieping == 0);
+            EventCoordinaten = HuidigeVerdieping.EventCoordinaten;
+            LiftBestemming = Liftschachtlijst.First();
+        }
+
         public override void LoadContent(ContentManager contentManager)
         {
+            // Deze lift kent geen texture
+        }
+
+        public void UpdateLift()
+        {
+            if (VerplaatsLift())
+            {
+                HuidigeVerdieping.LaatGastenLiftInGaan();
+            }
 
         }
-        public void UpdateLift(Persoon persoon)
+
+        private bool VerplaatsLift()
         {
-            int? a = null;
-            int? b = null;
-            foreach(HotelRuimte ruimte in persoon.BestemmingLijst)
+            bool aangekomenOpBestemming = false;
+            if ((Int32)EventCoordinaten.Y < LiftBestemming.EventCoordinaten.Y)
             {
-                if(ruimte is Liftschacht)
+                Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y + snelheid);
+                EventCoordinaten = nieuweLiftPositie;
+            }
+            else if((Int32)EventCoordinaten.Y > LiftBestemming.EventCoordinaten.Y)
+            {
+                Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y - snelheid);
+                EventCoordinaten = nieuweLiftPositie;
+            }
+
+            if (EventCoordinaten.Y == LiftBestemming.EventCoordinaten.Y)
+            {
+                HuidigeVerdieping = LiftBestemming;
+
+                // Controleer of lift uiterst boven of beneden staat
+                if (LiftBestemming.Verdieping == BovensteVerdieping)
                 {
-                    if (a == null)
-                        a = (int)ruimte.Verdieping;
-                    else
+                    BovensteLiftschachtBereikt = true;
+                }
+                else if (LiftBestemming.Verdieping == 0)
+                {
+                    BovensteLiftschachtBereikt = false;
+                }
+
+                // Maak een nieuwe lift bestemming aan
+                if (BovensteLiftschachtBereikt == true)
+                {
+                    LiftBestemming = Liftschachtlijst[HuidigeVerdieping.Verdieping - 1];
+                }
+                else
+                {
+                    LiftBestemming = Liftschachtlijst[HuidigeVerdieping.Verdieping + 1];
+                }
+                HuidigeVerdieping.texturepath = @"Lift\Lift_Open";
+                aangekomenOpBestemming = true;
+
+                // Haal de bestemming weg uit de gastenlijst
+                foreach (Gast gast in GasteninLift)
+                {
+                    if (gast.BestemmingLijst != null)
                     {
-                        b = (int)ruimte.Verdieping;
-                        break;
+                        if (HuidigeVerdieping == gast.Bestemming)
+                        {
+                            gast.HuidigeRuimte = gast.Bestemming;
+                            gast.Bestemming = gast.BestemmingLijst.First();
+                            gast.BestemmingLijst.Remove(gast.BestemmingLijst.First());
+                            gast.Positie = HuidigeVerdieping.EventCoordinaten;
+                        }
                     }
-                        
                 }
             }
-            // Kijk of de bestemming omhoog of omlaag is
-            if((a - b) < 0)
-            {
-                if (!GasteninLift.ContainsKey(persoon.Naam))
-                {
-                    GasteninLift.Add(persoon.Naam, persoon.Bestemming.Verdieping + persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                    Bestemmingslijst.Add(persoon.Bestemming.Verdieping + persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                }
-            }
-            else if(b == null)
-            {
-                if (!GasteninLift.ContainsKey(persoon.Naam))
-                {
-                    GasteninLift.Add(persoon.Naam, persoon.Bestemming.Verdieping + persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                    Bestemmingslijst.Add(persoon.Bestemming.Verdieping + persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                }
-            }
-            else
-            {
-                if (!GasteninLift.ContainsKey(persoon.Naam))
-                {
-                    GasteninLift.Add(persoon.Naam, persoon.Bestemming.Verdieping - persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                    Bestemmingslijst.Add(persoon.Bestemming.Verdieping - persoon.BestemmingLijst.OfType<Liftschacht>().Count());
-                }
-                
-            }
-            Huidigeverdieping = persoon.HuidigeRuimte.Verdieping;
-            GenerateList();
+            return aangekomenOpBestemming;
         }
-        private void GenerateList()
-        {
-            // Kijk op welke verdieping er mensen staan te wachten
-            foreach (Liftschacht lift in liftschachtlist)
-            {
-                if (lift.isWachtrij == true && this.Huidigeverdieping != lift.Verdieping)
-                {
-                    Bestemmingslijst.Add(lift.Verdieping);
-                }
-            }
-            // Sorteer de bestemmingen van de lift van boven naar beneden
-            Bestemmingslijst = Bestemmingslijst.OrderBy(i => i).ToList();
-
-            // Kijk wat de volgende bestemming van de lift is
-            int j = 0;
-            if (Huidigeverdieping != 0)
-            {
-                for (int i = 0; i < Huidigeverdieping; i++)
-                {
-                    j = Bestemmingslijst[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < Bestemmingslijst.Count(); i++)
-                {
-                    j = Bestemmingslijst[i];
-                }
-            }
-            Verplaats(j);
-        }
-        public void Verplaats(int verdieping)
-        {
-            Liftschacht volgende = new Liftschacht(verdieping);
-            Vector2 verplaatsnaar = volgende.CoordinatenInSpel;
-
-            if(this.CoordinatenInSpel.Y < volgende.CoordinatenInSpel.Y)
-            {
-                Positie = new Vector2(Positie.X, Positie.Y + snelheid);
-            }
-            else
-            {
-                Positie = new Vector2(Positie.X, Positie.Y - snelheid);
-            }
-            if (this.CoordinatenInSpel.Y == volgende.CoordinatenInSpel.Y)
-            {
-                volgende.texturepath = @"Lift\Lift_Open";
-                volgende.LeegWachtrij(volgende.Bestemming);
-            }
-                
-        }
-
     }
 }

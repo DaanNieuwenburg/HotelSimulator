@@ -55,39 +55,49 @@ namespace HotelSimulatie.Model
 
         public void GaNaarKamer<T>(ref T ruimte)
         {
-            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
+            if (InLift == false)
             {
-                Bestemming = ruimte as HotelRuimte;
-            }
-
-            if (BestemmingLijst == null && Bestemming is T)
-            {
-                // Zoek kortste pad naar bestemming
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                if (Bestemming is Eetzaal)
+                if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
                 {
-                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                    Bestemming = ruimte as HotelRuimte;
                 }
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
-                // Koppel eerste node aan bestemming
-                HuidigEvent = HuidigEvent;
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
-            }
-
-            // Loop via pathfinding naar bestemming
-            else if (BestemmingLijst != null)
-            {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                if (BestemmingLijst == null && Bestemming is T)
                 {
+                    // Zoek kortste pad naar bestemming
+                    DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                    if (Bestemming is Eetzaal)
+                    {
+                        pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                    }
+                    BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
+
+                    // Koppel eerste node aan bestemming
+                    HuidigEvent = HuidigEvent;
                     Bestemming = BestemmingLijst.First();
                     BestemmingLijst.Remove(BestemmingLijst.First());
                 }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+
+                // Loop via pathfinding naar bestemming
+                else if (BestemmingLijst != null)
                 {
-                    Bestemming = null;
-                    BestemmingLijst = null;
+                    if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                    {
+                        if(Bestemming is Liftschacht)
+                        {
+                            Bestemming = BestemmingLijst.First();
+                        }
+                        else
+                        {
+                            Bestemming = BestemmingLijst.First();
+                            BestemmingLijst.Remove(BestemmingLijst.First());
+                        }
+                    }
+                    else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                    {
+                        Bestemming = null;
+                        BestemmingLijst = null;
+                    }
                 }
             }
         }

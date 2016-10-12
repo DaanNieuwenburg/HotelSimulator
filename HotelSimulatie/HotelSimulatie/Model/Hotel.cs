@@ -15,8 +15,8 @@ namespace HotelSimulatie.Model
         public Bioscoop bioscoop { get; set; }
         public Schoonmaker Schoonmaker_A { get; set; }
         public Schoonmaker Schoonmaker_B { get; set; }
-        public Liftschacht lift { get; set; }
         public Fitness fitness { get; set; }
+        public Lift lift { get; set; }
         public bool IsEvacuatie { get; set; }
         public Hotel()
         {
@@ -27,7 +27,6 @@ namespace HotelSimulatie.Model
             Schoonmaker_B = new Schoonmaker();            
             LayoutLezer layoutLezer = new LayoutLezer();
             NodeLijst = layoutLezer.HotelRuimteLijst;
-            lift = new Liftschacht(0);
             KamerLijst = maakKamerLijst();
 
             // Koppelt de bioscoop
@@ -35,6 +34,10 @@ namespace HotelSimulatie.Model
 
             // Koppelt de fitness
             fitness = (Fitness)NodeLijst.OfType<Fitness>().First();
+
+            // Koppelt de lift
+            Liftschacht liftschacht = (Liftschacht)NodeLijst.OfType<Liftschacht>().First();
+            lift = liftschacht.lift;
         }
 
         private List<Kamer> maakKamerLijst()

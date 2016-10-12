@@ -36,9 +36,9 @@ namespace HotelSimulatie.View
             //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
-            lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
-            lbPersonenLift.Text = hotel.lift.AantalPersonen.ToString() ;
-            lbPositieLift.Text = hotel.lift.Positie.ToString();
+            //lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
+            //lbPersonenLift.Text = hotel.lift.AantalPersonen.ToString() ;
+            //lbPositieLift.Text = hotel.lift.Positie.ToString();
             #endregion
         }
     }

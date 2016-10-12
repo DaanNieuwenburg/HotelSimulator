@@ -47,8 +47,8 @@ namespace HotelSimulatie
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
                     {
-                        Kamer kamer = gast.ToegewezenKamer;
-                        gast.GaNaarKamer<Kamer>(ref kamer);
+                            Kamer kamer = gast.ToegewezenKamer;
+                            gast.GaNaarKamer<Kamer>(ref kamer);
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
@@ -62,6 +62,16 @@ namespace HotelSimulatie
                         gast.GaNaarKamer<Eetzaal>(ref eetzaal);
                     }
                 }
+            }
+
+            // Update de lift
+            if (spel.hotel.lift.EventCoordinaten.X != 0 && spel.hotel.lift.EventCoordinaten.Y != 0)
+            {
+                spel.hotel.lift.UpdateLift();
+            }
+            else
+            {
+                spel.hotel.lift.InitializeerLift();
             }
         }
 

@@ -74,7 +74,7 @@ namespace HotelSimulatie
                 liftlijst.Add(liftschacht);
                 HotelRuimteLijst.Add(liftschacht);
             }
-            lift.liftschachtlist = liftlijst;
+            lift.Liftschachtlijst = liftlijst;
         }
 
         public void zetTrapInLayout()
