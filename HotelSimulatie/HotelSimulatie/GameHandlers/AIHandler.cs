@@ -26,26 +26,26 @@ namespace HotelSimulatie
                 Gast gast = spel.hotel.GastenLijst[i];
                 if (gast.HuidigEvent != null)
                 {
-                    if (gast.HuidigEvent.EventType == HotelEventType.CHECK_IN)
+                    if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
                         gast.Inchecken(spel.hotel.LobbyRuimte, gameTime);
                     }
-                    else if(gast.HuidigEvent.EventType == HotelEventType.CHECK_OUT)
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                     {
                         Lobby lobby = spel.hotel.LobbyRuimte;
                         gast.GaNaarKamer<Lobby>(ref lobby);
                     }
-                    else if(gast.HuidigEvent.EventType == HotelEventType.GOTO_CINEMA)
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
                     {
                         Bioscoop bioscoop = spel.hotel.bioscoop;
                         gast.GaNaarKamer<Bioscoop>(ref bioscoop);
                     }
-                    else if(gast.HuidigEvent.EventType == HotelEventType.GOTO_FITNESS)
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
                     {
                         Fitness fitness = spel.hotel.fitness;
                         gast.GaNaarKamer<Fitness>(ref fitness);
                     }
-                    else if(gast.HuidigEvent.EventType == HotelEventType.EVACUATE)
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
                         Lobby lobby = spel.hotel.LobbyRuimte;
                         gast.GaNaarKamer<Lobby>(ref lobby);

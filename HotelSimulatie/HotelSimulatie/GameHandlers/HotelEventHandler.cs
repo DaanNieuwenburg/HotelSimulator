@@ -33,30 +33,30 @@ namespace HotelSimulatie
             // Adapter gebruiken om HotelEvent om te zetten
             HotelEventAdapter hotelEventAdapter = new HotelEventAdapter(evt, spel.hotel.GastenLijst);
 
-            if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Guest && spel.hotel.IsEvacuatie == false)
+            if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Guest && spel.hotel.IsEvacuatie == false)
             {
-                if(hotelEventAdapter.EventType == HotelEventType.CHECK_IN)
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                 {
                     CheckinEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
-                else if(hotelEventAdapter.EventType == HotelEventType.CHECK_OUT)
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                 {
                     hotelEventAdapter.gast.HuidigeRuimte = hotelEventAdapter.gast.HuidigeRuimte;
                     hotelEventAdapter.gast.Bestemming = spel.hotel.LobbyRuimte;
                     CheckoutEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
-                else if(hotelEventAdapter.EventType == HotelEventType.GOTO_CINEMA)
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
                 {
                     GaNaarBioscoopEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
-                else if(hotelEventAdapter.EventType == HotelEventType.GOTO_FITNESS)
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
                 {
                     GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
             }
-            else if(hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel)
+            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
             {
-                if(hotelEventAdapter.EventType == HotelEventType.EVACUATE)
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                 {
                     spel.hotel.Evacueer();
                 }

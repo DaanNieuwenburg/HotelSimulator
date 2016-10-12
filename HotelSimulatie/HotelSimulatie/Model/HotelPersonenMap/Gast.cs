@@ -80,6 +80,7 @@ namespace HotelSimulatie.Model
                 BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
+                HuidigEvent = HuidigEvent;
                 Bestemming = BestemmingLijst.First();
                 BestemmingLijst.Remove(BestemmingLijst.First());
             }
@@ -95,6 +96,7 @@ namespace HotelSimulatie.Model
                 else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
                 {
                     Bestemming = null;
+                    BestemmingLijst = null;
                 }
             }
         }

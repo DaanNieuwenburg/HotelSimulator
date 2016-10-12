@@ -73,7 +73,11 @@ namespace HotelSimulatie.Model
                 int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == LobbyRuimte select Gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
-                    Console.WriteLine("Evacuatie is afgelopen");
+                    bool alleGastenInKamer = false;
+                    foreach(Gast gast in GastenLijst)
+                    {
+                        gast.HuidigeRuimte = LobbyRuimte;
+                    }
                 }
             }
 
