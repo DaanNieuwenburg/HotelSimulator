@@ -12,6 +12,7 @@ namespace HotelSimulatie
         public HotelRuimte Begin { get; set; }
         public HotelRuimte Eind { get; set; }
         public List<HotelRuimte> open { get; set; }
+        public bool zoekDichtbijzijnde { get; set; }
         private List<HotelRuimte> bezochteRuimtes { get; set; }
 
         public List<HotelRuimte> MaakAlgoritme(Gast gast, HotelRuimte begin, HotelRuimte eind)
@@ -65,7 +66,28 @@ namespace HotelSimulatie
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
             deze.Afstand = 0;
-            if (deze == eind)
+
+            // Als de dichtbijzijnde hotelkamer gezocht moet worden
+            Kamer TypeKamer = new Kamer(0);
+            if (zoekDichtbijzijnde == true && deze.GetType() == eind.GetType() && eind.GetType() == TypeKamer.GetType())
+            {
+                Kamer teVindenKamer = (Kamer)eind;
+                Kamer gevondenKamer = (Kamer)deze;
+                if (gevondenKamer.Kamernummer == teVindenKamer.Kamernummer && gevondenKamer.Bezet == false)
+                {
+                    Eind = deze;
+                    return true;
+                }
+            }
+
+            // Als de dichtbijzijnde eetzaal gezocht moet worden
+            else if(zoekDichtbijzijnde == true && deze.GetType() == eind.GetType())
+            {
+                Eind = deze;
+                return true;
+            }
+
+            else if (zoekDichtbijzijnde == false && deze == eind)
             {
                 return true;
             }

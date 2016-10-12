@@ -56,6 +56,11 @@ namespace HotelSimulatie
                         gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
+                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                    {
+                        Eetzaal eetzaal = new Eetzaal();
+                        gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+                    }
                 }
             }
         }

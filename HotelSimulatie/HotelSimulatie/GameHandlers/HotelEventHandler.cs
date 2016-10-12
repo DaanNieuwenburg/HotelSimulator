@@ -53,6 +53,14 @@ namespace HotelSimulatie
                 {
                     GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                {
+                    GaNaarEigenKamerEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                {
+                    GaNaarEetzaalEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
             }
             else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
             {
@@ -104,6 +112,20 @@ namespace HotelSimulatie
             gast.HuidigEvent = hotelEvent;
             Fitness fitness = spel.hotel.fitness;
             gast.GaNaarKamer<Fitness>(ref fitness);
+        }
+
+        private void GaNaarEigenKamerEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Kamer kamer = gast.ToegewezenKamer;
+            gast.GaNaarKamer<Kamer>(ref kamer);
+        }
+
+        private void GaNaarEetzaalEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Eetzaal eetzaal = new Eetzaal();
+            gast.GaNaarKamer<Eetzaal>(ref eetzaal);
         }
     }
 }

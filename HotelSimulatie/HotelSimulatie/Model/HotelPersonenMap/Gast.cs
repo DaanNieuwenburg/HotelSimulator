@@ -64,6 +64,10 @@ namespace HotelSimulatie.Model
             {
                 // Zoek kortste pad naar bestemming
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                if (Bestemming is Eetzaal)
+                {
+                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                }
                 BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
