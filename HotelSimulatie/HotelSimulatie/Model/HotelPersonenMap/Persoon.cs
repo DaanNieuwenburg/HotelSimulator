@@ -24,10 +24,8 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         private int textureIndex { get; set; }
         private bool LooptNaarLinks { get; set; }
-        public bool InLift { get; set; }
         public Persoon()
         {
-            InLift = false;
             LooptNaarLinks = false;
             /*Random random = new Random();
             int a = random.Next(1, 9);

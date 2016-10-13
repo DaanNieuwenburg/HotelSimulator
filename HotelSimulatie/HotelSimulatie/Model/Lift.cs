@@ -56,7 +56,7 @@ namespace HotelSimulatie.Model
             if (!LiftStoppenlijst.Contains(liftstop))
             {
                 LiftStoppenlijst.Add(liftstop);
-                bepaalLiftBestemming();
+                //bepaalLiftBestemming();
             }
         }
 
@@ -107,15 +107,13 @@ namespace HotelSimulatie.Model
                     {
                         if (HuidigeVerdieping == gast.Bestemming)
                         {
-                            gast.bestemmingslift = gast.BestemmingLijst.OfType<Liftschacht>().Last();
+                            if (gast.BestemmingLijst.OfType<Liftschacht>().Any())
+                                gast.bestemmingslift = gast.BestemmingLijst.OfType<Liftschacht>().Last();
                             gast.HuidigeRuimte = gast.Bestemming;
                             gast.Bestemming = gast.BestemmingLijst.First();
                             gast.BestemmingLijst.Remove(gast.BestemmingLijst.First());
                             gast.Positie = HuidigeVerdieping.EventCoordinaten;
-                            if(gast.Bestemming.GetType() == gast.HuidigeRuimte.GetType())
-                            {
-                                gast.InLift = false;
-                            }
+
                         }
                     }
                 }

@@ -73,7 +73,15 @@ namespace HotelSimulatie
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
             
             // Zet de tijd neer
-            spriteBatch.DrawString(font, "Tijd: " + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor + " HTE", new Vector2(0, 700), Color.Red);
+            if((gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) > 119)
+            {
+                spriteBatch.DrawString(font, "Tijd: " + 120 + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor + " HTE", new Vector2(0, 700), Color.Red);
+            }
+            else
+            {
+                spriteBatch.DrawString(font, "Tijd: " + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor + " HTE", new Vector2(0, 700), Color.Red);
+            }
+            
 
             foreach (HotelRuimte hotelRuimte in Hotel.NodeLijst)
             {

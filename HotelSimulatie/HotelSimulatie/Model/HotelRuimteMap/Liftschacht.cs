@@ -79,6 +79,7 @@ namespace HotelSimulatie.Model
                 if(temp.bestemmingslift == this)
                 {
                     lift.GasteninLift.Remove(temp);
+                    temp.bestemmingslift = null;
                 }
             }
         }
