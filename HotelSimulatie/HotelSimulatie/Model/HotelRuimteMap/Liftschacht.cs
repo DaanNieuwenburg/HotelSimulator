@@ -62,7 +62,7 @@ namespace HotelSimulatie.Model
             {
                 Persoon temp = Wachtrij.Dequeue();
                 lift.GasteninLift.Add(temp);
-
+                temp.InLift = true;
                 // Voegt de verdieping van de personen aan de lijst toe
                 lift.VoegLiftStopToe(temp.BestemmingLijst.OfType<Liftschacht>().Last());
             }
