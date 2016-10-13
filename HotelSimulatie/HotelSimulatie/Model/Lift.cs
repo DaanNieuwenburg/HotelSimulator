@@ -21,7 +21,7 @@ namespace HotelSimulatie.Model
         public Lift(int Aantalverdiepingen)
         {
             LiftStoppenlijst = new List<Liftschacht>();
-            snelheid = 2.5f;
+            snelheid = 1.5f;
             GasteninLift = new List<Persoon>();
             BovensteVerdieping = Aantalverdiepingen;
         }
@@ -76,8 +76,9 @@ namespace HotelSimulatie.Model
 
             if (EventCoordinaten.Y == LiftBestemming.EventCoordinaten.Y)
             {
+                //LiftBestemming.texturepath = @"Lift\Lift_Open";
                 HuidigeVerdieping = LiftBestemming;
-
+                
                 // Controleer of lift uiterst boven of beneden staat
                 if (LiftBestemming.Verdieping == BovensteVerdieping)
                 {
@@ -97,7 +98,7 @@ namespace HotelSimulatie.Model
                 {
                     LiftBestemming = Liftschachtlijst[HuidigeVerdieping.Verdieping + 1];
                 }
-                HuidigeVerdieping.texturepath = @"Lift\Lift_Open";
+                
                 aangekomenOpBestemming = true;
 
                 // Haal de bestemming weg uit de gastenlijst

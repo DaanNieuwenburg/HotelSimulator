@@ -35,6 +35,13 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Beneden";
             }
+            else if(Bestemming == lift.BovensteVerdieping)
+            {
+                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
+                    texture = @"Lift\Lift_Bovenste_Open";
+                else
+                    texture = @"Lift\Lift_Bovenste_Gesloten";
+            }
             else
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)
@@ -42,6 +49,7 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Gesloten";
             }
+
 
             Texture = contentManager.Load<Texture2D>(texture);
         }

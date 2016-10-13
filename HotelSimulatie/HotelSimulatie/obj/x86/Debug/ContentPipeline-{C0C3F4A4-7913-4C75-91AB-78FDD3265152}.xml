@@ -89,7 +89,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Bovenste_Open.xnb</Output>
-      <Time>2016-09-29T13:19:38.268378+02:00</Time>
+      <Time>2016-10-13T12:47:16.5752738+02:00</Time>
     </Item>
     <Item>
       <Source>Lift\Lift_Gesloten.png</Source>
@@ -107,7 +107,7 @@
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Lift\Lift_Open.xnb</Output>
-      <Time>2016-09-29T13:19:38.2718865+02:00</Time>
+      <Time>2016-10-13T12:30:43.0512638+02:00</Time>
     </Item>
     <Item>
       <Source>Kamers\Trap_gesloten.png</Source>
@@ -297,6 +297,24 @@
       <Options>None</Options>
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T11:59:31.7219653+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Gasten\AnimatedGast4.png</Source>
+      <Name>Gasten\AnimatedGast4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast4.xnb</Output>
+      <Time>2016-10-13T12:36:15.6411678+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Gasten\AnimatedGast4_Links.png</Source>
+      <Name>Gasten\AnimatedGast4_Links</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast4_Links.xnb</Output>
+      <Time>2016-10-13T12:36:14.295936+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

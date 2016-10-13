@@ -37,6 +37,8 @@ namespace HotelSimulatie.Model
             Texturelijst.Add(@"Gasten\AnimatedGast1");
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");
+            Texturelijst.Add(@"Gasten\AnimatedGast4");
+
         }
 
         public void LoadContent(ContentManager contentManager)
