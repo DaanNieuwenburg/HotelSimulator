@@ -49,7 +49,6 @@ namespace HotelSimulatie.Model
                 catch(InvalidOperationException e)
                 {
                     // Als er geen kamer beschikbaar is, return kamer van 0 sterren
-                    Console.WriteLine("Checkout");
                     gast.ToegewezenKamer = new Kamer(0);
                 }
                 verlopenTijd = 0;

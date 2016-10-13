@@ -46,30 +46,34 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(texture);
         }
 
-        public void VraagOmLift(Persoon persoon)
+        public bool VraagOmLift(Persoon persoon)
         {
+            bool komtAl = true;
             if (!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
                 isWachtrij = true;
                 lift.VoegLiftStopToe(this);
+                komtAl = false;
             }
+            return komtAl;
         }
 
         public void LaatGastenLiftInGaan()
         {
-            if (lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
-            {
+            //if (lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
                 int a = Wachtrij.Count();
                 for (int i = 0; i < a; i++)
                 {
-                    Persoon temp = Wachtrij.Dequeue();
-                    lift.GasteninLift.Add(temp);
+                    Persoon persoon = Wachtrij.Dequeue();
+                    persoon.inLift = true;
+                    persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
+                    persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
+                    lift.GasteninLift.Add(persoon);
 
                     // Voegt de verdieping van de personen aan de lijst toe
-                    lift.VoegLiftStopToe(temp.bestemmingslift);
+                   // lift.VoegLiftStopToe(temp.bestemmingslift);
                 }
-            }
         }
         public void LaatGastenUitLiftGaan()
         {

@@ -24,7 +24,7 @@ namespace HotelSimulatie
             for(int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null)
+                if (gast.HuidigEvent != null && gast.inLift == false)
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
@@ -88,7 +88,7 @@ namespace HotelSimulatie
             for (int i = 0; i < a; i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.Bestemming != null)
+                if (gast.Bestemming != null && gast.inLift == false)
                 {
                     gast.Draw(spriteBatch);
                 }

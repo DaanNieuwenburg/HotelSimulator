@@ -30,9 +30,7 @@ namespace HotelSimulatie
             if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
                 message = evt.Data.Values.ElementAt(0);
-
-                Console.WriteLine(evt.Message);
-                Console.WriteLine(message);
+                
 
                 if (Category == NEventCategory.Guest)
                 {

@@ -21,7 +21,7 @@ namespace HotelSimulatie.Model
         public Lift(int Aantalverdiepingen)
         {
             LiftStoppenlijst = new List<Liftschacht>();
-            snelheid = 2.5f;
+            snelheid = 1.5f;
             GasteninLift = new List<Persoon>();
             BovensteVerdieping = Aantalverdiepingen;
         }
@@ -42,11 +42,11 @@ namespace HotelSimulatie.Model
         {
             if (VerplaatsLift())
             {
-                if(GasteninLift.Count > 0)
+                if (GasteninLift.Count > 0)
                 {
                     HuidigeVerdieping.LaatGastenUitLiftGaan();
                 }
-                    
+
                 HuidigeVerdieping.LaatGastenLiftInGaan();
             }
         }
@@ -56,7 +56,6 @@ namespace HotelSimulatie.Model
             if (!LiftStoppenlijst.Contains(liftstop))
             {
                 LiftStoppenlijst.Add(liftstop);
-                //bepaalLiftBestemming();
             }
         }
 
@@ -100,38 +99,25 @@ namespace HotelSimulatie.Model
                 HuidigeVerdieping.texturepath = @"Lift\Lift_Open";
                 aangekomenOpBestemming = true;
 
+                GasteninLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
                 // Haal de bestemming weg uit de gastenlijst
-                foreach (Gast gast in GasteninLift)
+                for (int i = 0; i < GasteninLift.Count(); i++)
                 {
-                    if (gast.BestemmingLijst != null)
+                    Persoon persoon = GasteninLift[i];
+                    Console.WriteLine(persoon.Bestemming.Verdieping);
+                    if (HuidigeVerdieping == persoon.Bestemming)
                     {
-                        if (HuidigeVerdieping == gast.Bestemming)
-                        {
-                            if (gast.BestemmingLijst.OfType<Liftschacht>().Any())
-                                gast.bestemmingslift = gast.BestemmingLijst.OfType<Liftschacht>().Last();
-                            gast.HuidigeRuimte = gast.Bestemming;
-                            gast.Bestemming = gast.BestemmingLijst.First();
-                            gast.BestemmingLijst.Remove(gast.BestemmingLijst.First());
-                            gast.Positie = HuidigeVerdieping.EventCoordinaten;
-
-                        }
+                        persoon.HuidigeRuimte = HuidigeVerdieping;
+                        persoon.Bestemming = persoon.BestemmingLijst.First();
+                        persoon.BestemmingLijst.Remove(persoon.Bestemming);
+                        persoon.inLift = false;
+                        persoon.wachtOpLift = false;
+                        GasteninLift.Remove(persoon);
+                        persoon.Positie = HuidigeVerdieping.EventCoordinaten;
                     }
                 }
             }
             return aangekomenOpBestemming;
-        }
-
-        private void bepaalLiftBestemming()
-        {
-            if(LiftStoppenlijst.Count > 0)
-            {
-                LiftBestemming = LiftStoppenlijst.First();
-                LiftStoppenlijst.Remove(LiftStoppenlijst.First());
-            }
-            else
-            {
-                LiftBestemming = HuidigeVerdieping;
-            }
         }
     }
 }

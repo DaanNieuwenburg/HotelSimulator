@@ -82,12 +82,16 @@ namespace HotelSimulatie.Model
             {
                 if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
                 {
-                    if (Bestemming is Liftschacht)
+                    if (HuidigeRuimte is Liftschacht && wachtOpLift == false && inLift == false)
                     {
-                        Bestemming = BestemmingLijst.First();
+                        // Ga verder met de lift
+                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
+                        liftschacht.VraagOmLift(this);
+                        Bestemming = HuidigeRuimte;
                     }
-                    else
+                    else if(HuidigeRuimte.GetType() != typeof(Liftschacht))
                     {
+                        HuidigeRuimte = Bestemming;
                         Bestemming = BestemmingLijst.First();
                         BestemmingLijst.Remove(BestemmingLijst.First());
                     }

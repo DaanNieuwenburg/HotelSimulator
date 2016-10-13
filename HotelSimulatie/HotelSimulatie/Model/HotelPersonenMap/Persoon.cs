@@ -24,8 +24,12 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         private int textureIndex { get; set; }
         private bool LooptNaarLinks { get; set; }
+        public bool wachtOpLift { get; set; }
+        public bool inLift { get; set; }
         public Persoon()
         {
+            inLift = false;
+            wachtOpLift = false;
             LooptNaarLinks = false;
             /*Random random = new Random();
             int a = random.Next(1, 9);
@@ -56,53 +60,30 @@ namespace HotelSimulatie.Model
                 HuidigeRuimte = HuidigeRuimte;
                 Bestemming = Bestemming;
 
-                // Beweeg naar boven of beneden
-                if (Bestemming.EventCoordinaten.X == HuidigeRuimte.EventCoordinaten.X && (Bestemming is Liftschacht || Bestemming is Trap))
+                // Als gast aan komt op bestemming
+                if ((Int32)Positie.X == Bestemming.EventCoordinaten.X)
                 {
-                    if (Bestemming is Liftschacht)
-                    {
-                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
-                        liftschacht.VraagOmLift(this);
-
-                        Bestemming = BestemmingLijst.First();
-                        bestemmingBereikt = false;
-                    }
-                    else
-                    {
-                        if ((Int32)Positie.Y > Bestemming.EventCoordinaten.Y)
-                        {
-                            BeweegNaarBoven();
-                        }
-                        else if ((Int32)Positie.Y < Bestemming.EventCoordinaten.Y)
-                        {
-                            BeweegNaarOnder();
-                        }
-                        else
-                        {
-                            HuidigeRuimte = Bestemming;
-                            bestemmingBereikt = true;
-                        }
-                    }
+                    bestemmingBereikt = true;
+                    HuidigeRuimte = Bestemming;
                 }
-                else
+
+                // Als gast naar links moet
+                else if (Positie.X > Bestemming.EventCoordinaten.X)
                 {
-                    if ((Int32)Positie.X > Bestemming.EventCoordinaten.X)
-                    {
-                        BeweegNaarLinks();
-                    }
-                    else if ((Int32)Positie.X < Bestemming.EventCoordinaten.X)
-                    {
-                        BeweegNaarRechts();
-                    }
-                    else
-                    {
-                        HuidigeRuimte = Bestemming;
-                        bestemmingBereikt = true;
-                    }
+                    BeweegNaarLinks();
+                }
+
+                // Als gast naar rechts moet
+                else if (Positie.X < Bestemming.EventCoordinaten.X)
+                {
+                    BeweegNaarRechts();
                 }
             }
+
             return bestemmingBereikt;
         }
+
+
 
         private bool BeweegNaarLinks()
         {
@@ -118,22 +99,8 @@ namespace HotelSimulatie.Model
             return false;
         }
 
-        private bool BeweegNaarBoven()
-        {
-            Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
-            return false;
-        }
-
-        private bool BeweegNaarOnder()
-        {
-            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
-            return false;
-        }
-
-
         public void GaKamerIn(HotelRuimte hotelRuimte)
         {
-            Console.WriteLine("Ga kamer in");
             Bestemming = null;
         }
 
