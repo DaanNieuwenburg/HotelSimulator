@@ -58,13 +58,28 @@ namespace HotelSimulatie.Model
 
         public void LaatGastenLiftInGaan()
         {
-            for (int i = 0; i < Wachtrij.Count(); i++)
+            if (lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
             {
+                int a = Wachtrij.Count();
+                for (int i = 0; i < a; i++)
+                {
                 Persoon temp = Wachtrij.Dequeue();
                 lift.GasteninLift.Add(temp);
                 temp.InLift = true;
                 // Voegt de verdieping van de personen aan de lijst toe
                 lift.VoegLiftStopToe(temp.BestemmingLijst.OfType<Liftschacht>().Last());
+            }
+        }
+    }
+        public void LaatGastenUitLiftGaan()
+        {
+            for (int i = 0; i < lift.GasteninLift.Count(); i++)
+            {
+                Persoon temp = lift.GasteninLift[i];
+                if(temp.BestemmingLijst.OfType<Liftschacht>().Last() == this)
+                {
+                    lift.GasteninLift.Remove(temp);
+                }
             }
         }
     }
