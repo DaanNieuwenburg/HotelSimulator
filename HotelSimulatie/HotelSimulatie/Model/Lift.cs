@@ -56,7 +56,7 @@ namespace HotelSimulatie.Model
                 Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y + snelheid);
                 EventCoordinaten = nieuweLiftPositie;
             }
-            else if((Int32)EventCoordinaten.Y > LiftBestemming.EventCoordinaten.Y)
+            else if ((Int32)EventCoordinaten.Y > LiftBestemming.EventCoordinaten.Y)
             {
                 Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y - snelheid);
                 EventCoordinaten = nieuweLiftPositie;
