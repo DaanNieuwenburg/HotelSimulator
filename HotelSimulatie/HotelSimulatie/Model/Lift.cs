@@ -43,6 +43,11 @@ namespace HotelSimulatie.Model
         {
             if (VerplaatsLift())
             {
+                if(GasteninLift.Count > 0)
+                {
+                    HuidigeVerdieping.LaatGastenUitLiftGaan();
+                }
+                    
                 HuidigeVerdieping.LaatGastenLiftInGaan();
             }
         }

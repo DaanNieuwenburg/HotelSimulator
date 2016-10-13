@@ -71,5 +71,16 @@ namespace HotelSimulatie.Model
                 }
             }
         }
+        public void LaatGastenUitLiftGaan()
+        {
+            for (int i = 0; i < lift.GasteninLift.Count(); i++)
+            {
+                Persoon temp = lift.GasteninLift[i];
+                if(temp.BestemmingLijst.OfType<Liftschacht>().Last() == this)
+                {
+                    lift.GasteninLift.Remove(temp);
+                }
+            }
+        }
     }
 }
