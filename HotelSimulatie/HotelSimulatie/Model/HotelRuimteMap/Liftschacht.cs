@@ -52,7 +52,7 @@ namespace HotelSimulatie.Model
             {
                 Wachtrij.Enqueue(persoon);
                 isWachtrij = true;
-                lift.LiftStoppenlijst.Add(Verdieping);
+                lift.VoegLiftStopToe(this);
             }
         }
 
@@ -63,8 +63,8 @@ namespace HotelSimulatie.Model
                 Persoon temp = Wachtrij.Dequeue();
                 lift.GasteninLift.Add(temp);
 
-                // Voegt de verdieping van de personen aam de lijst toe
-
+                // Voegt de verdieping van de personen aan de lijst toe
+                lift.VoegLiftStopToe(temp.BestemmingLijst.OfType<Liftschacht>().Last());
             }
         }
     }
