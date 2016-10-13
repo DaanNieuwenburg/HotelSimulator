@@ -14,14 +14,14 @@ namespace HotelSimulatie.Model
         public int BovensteVerdieping { get; set; }
         public bool BovensteLiftschachtBereikt { get; set; }
         public List<Persoon> GasteninLift { get; set; }
-        public List<int> LiftStoppenlijst { get; set; }
+        public List<Liftschacht> LiftStoppenlijst { get; set; }
         public List<Liftschacht> Liftschachtlijst { get; set; }
         private Vector2 Positie { get; set; }
         private float snelheid { get; set; }
 
         public Lift(int Aantalverdiepingen)
         {
-            LiftStoppenlijst = new List<int>();
+            LiftStoppenlijst = new List<Liftschacht>();
             snelheid = 2.5f;
             GasteninLift = new List<Persoon>();
             BovensteVerdieping = Aantalverdiepingen;
@@ -45,7 +45,14 @@ namespace HotelSimulatie.Model
             {
                 HuidigeVerdieping.LaatGastenLiftInGaan();
             }
+        }
 
+        public void VoegLiftStopToe(Liftschacht liftstop)
+        {
+            if (!LiftStoppenlijst.Contains(liftstop))
+            {
+                LiftStoppenlijst.Add(liftstop);
+            }
         }
 
         private bool VerplaatsLift()

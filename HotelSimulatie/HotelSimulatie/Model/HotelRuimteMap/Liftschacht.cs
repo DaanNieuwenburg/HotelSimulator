@@ -42,7 +42,7 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Gesloten";
             }
-                
+
             Texture = contentManager.Load<Texture2D>(texture);
         }
 
@@ -52,23 +52,24 @@ namespace HotelSimulatie.Model
             {
                 Wachtrij.Enqueue(persoon);
                 isWachtrij = true;
-                lift.LiftStoppenlijst.Add(Verdieping);
+                lift.VoegLiftStopToe(this);
             }
         }
 
         public void LaatGastenLiftInGaan()
         {
-            if(lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
+            if (lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
             {
-                for (int i = 0; i < Wachtrij.Count(); i++)
+                int a = Wachtrij.Count();
+                for (int i = 0; i < a; i++)
                 {
                     Persoon temp = Wachtrij.Dequeue();
                     lift.GasteninLift.Add(temp);
 
-                    // Voegt de verdieping van de personen aam de lijst toe
+                    // Voegt de verdieping van de personen aan de lijst toe
+                    lift.VoegLiftStopToe(temp.BestemmingLijst.OfType<Liftschacht>().Last());
                 }
             }
-            
         }
     }
 }

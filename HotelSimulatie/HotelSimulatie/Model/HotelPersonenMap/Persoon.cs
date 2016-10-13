@@ -58,7 +58,7 @@ namespace HotelSimulatie.Model
                 Bestemming = Bestemming;
 
                 // Beweeg naar boven of beneden
-                if (Bestemming.EventCoordinaten.X == HuidigeRuimte.EventCoordinaten.X && Bestemming is Liftschacht || Bestemming is Trap)
+                if (Bestemming.EventCoordinaten.X == HuidigeRuimte.EventCoordinaten.X && (Bestemming is Liftschacht || Bestemming is Trap))
                 {
                     if (Bestemming is Liftschacht)
                     {
