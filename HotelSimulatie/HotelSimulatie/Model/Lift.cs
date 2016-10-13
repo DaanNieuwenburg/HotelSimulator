@@ -16,7 +16,6 @@ namespace HotelSimulatie.Model
         public List<Persoon> GasteninLift { get; set; }
         public List<Liftschacht> LiftStoppenlijst { get; set; }
         public List<Liftschacht> Liftschachtlijst { get; set; }
-        private Vector2 Positie { get; set; }
         private float snelheid { get; set; }
 
         public Lift(int Aantalverdiepingen)
@@ -57,6 +56,7 @@ namespace HotelSimulatie.Model
             if (!LiftStoppenlijst.Contains(liftstop))
             {
                 LiftStoppenlijst.Add(liftstop);
+                bepaalLiftBestemming();
             }
         }
 
@@ -112,11 +112,28 @@ namespace HotelSimulatie.Model
                             gast.Bestemming = gast.BestemmingLijst.First();
                             gast.BestemmingLijst.Remove(gast.BestemmingLijst.First());
                             gast.Positie = HuidigeVerdieping.EventCoordinaten;
+                            if(gast.Bestemming.GetType() == gast.HuidigeRuimte.GetType())
+                            {
+                                gast.InLift = false;
+                            }
                         }
                     }
                 }
             }
             return aangekomenOpBestemming;
+        }
+
+        private void bepaalLiftBestemming()
+        {
+            if(LiftStoppenlijst.Count > 0)
+            {
+                LiftBestemming = LiftStoppenlijst.First();
+                LiftStoppenlijst.Remove(LiftStoppenlijst.First());
+            }
+            else
+            {
+                LiftBestemming = HuidigeVerdieping;
+            }
         }
     }
 }
