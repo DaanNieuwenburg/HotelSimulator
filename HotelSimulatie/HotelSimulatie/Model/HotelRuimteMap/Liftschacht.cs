@@ -52,13 +52,9 @@ namespace HotelSimulatie.Model
                 Wachtrij.Enqueue(persoon);
             }
             isWachtrij = true;
-            if(lift.Huidigeverdieping == this.Verdieping)
+            if(lift.Huidigeverdieping == this.Verdieping && Wachtrij.Count > 0)
             {
                 LeegWachtrij(this.Verdieping);
-            }
-            else
-            {
-                lift.Verplaats(this);
             }
         }
         public void LeegWachtrij(int verdieping)
@@ -69,6 +65,7 @@ namespace HotelSimulatie.Model
                 Persoon temp = Wachtrij.Dequeue();
                 wachtrijlist.Add(temp);
             }
+            Console.WriteLine("Wachtrij geleegd " + verdieping);
             lift.UpdateLift(wachtrijlist);
             isWachtrij = false;
         }

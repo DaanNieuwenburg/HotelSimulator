@@ -15,8 +15,6 @@ namespace HotelSimulatie.Model
         public Dictionary<Persoon, int> GasteninLift { get; set; }
         public List<int> Bestemmingslijst { get; set; }
         public List<Liftschacht> liftschachtlist { get; set; }
-        
-        //private Hotel hotel { get; }
         float snelheid;
 
         public Lift(int Aantalverdiepingen)
@@ -25,7 +23,7 @@ namespace HotelSimulatie.Model
             texturepath = "Naamloos";
             Bestemmingslijst = new List<int>();
             Huidigeverdieping = 0;
-            snelheid = 0.5f;
+            snelheid = 0.1f;
             GasteninLift = new Dictionary<Persoon, int>();
             Bovensteverdieping = Aantalverdiepingen + 1;
         }
@@ -81,9 +79,10 @@ namespace HotelSimulatie.Model
                     }
                 }                
             }
-            GenerateList();
+            if(liftschachtlist[Huidigeverdieping].Wachtrij.Count <= 0)
+                GenerateList();
         }
-        private void GenerateList()
+        public void GenerateList()
         {
             // Kijk op welke verdieping er mensen staan te wachten
             foreach (Liftschacht lift in liftschachtlist)
@@ -95,30 +94,32 @@ namespace HotelSimulatie.Model
             }
             // Sorteer de bestemmingen van de lift van boven naar beneden
             Bestemmingslijst.Sort((a, b) => -1 * a.CompareTo(b));
-            // Kijk wat de volgende bestemming van de lift is
+            
+            // Zorg dat elke bestemming maar 1x in de lijst staan om duplicaten te voorkomen
             Bestemmingslijst = Bestemmingslijst.Distinct().ToList();
+
+            // Kijk wat de volgende bestemming van de lift is
             int j = 0;
             for (int i = 0; i < Bestemmingslijst.Count(); i++)
             {
                 j = Bestemmingslijst[i];
             }
-            //}
+
             Volgendeverdieping = j;
             //System.Diagnostics.Debugger.Break();
 
             Console.WriteLine("Verplaats lift naar " + j);
-            if (Huidigeverdieping == 0)
+            /*if (Huidigeverdieping == 0)
             {
                 Verplaats(liftschachtlist.Last());
             }
             else
-            {
+            {*/
                 Verplaats(liftschachtlist[j]);
-            }
+            //}
         }
         public void Verplaats(Liftschacht volgendeBestemming)
         {
-
             if (EventCoordinaten == new Vector2(0, 0))
             {
                 EventCoordinaten = liftschachtlist[Huidigeverdieping].EventCoordinaten;
@@ -136,40 +137,41 @@ namespace HotelSimulatie.Model
                 }
             }
             //else if (Bestemmingslijst.Count > 0)
-            else //if((Int32)this.EventCoordinaten.Y == volgendeBestemming.EventCoordinaten.Y)
+            else
             {
-                // aangekomen
-                if (volgendeBestemming.Verdieping == 0)
-                    volgendeBestemming.texturepath = @"Lift\Lift_Beneden_Open";
-                else
-                    volgendeBestemming.texturepath = @"Lift\Lift_Open";
-
-                for (int i = 0; i < GasteninLift.Count; i++)
                 {
-                    var p = GasteninLift.ElementAt(i);
-                    p.Key.Positie = volgendeBestemming.EventCoordinaten;
-                    if (volgendeBestemming.EventCoordinaten == EventCoordinaten)
+                    Huidigeverdieping = Volgendeverdieping;
+                    // aangekomen
+                    if (volgendeBestemming.Verdieping == 0)
+                        volgendeBestemming.texturepath = @"Lift\Lift_Beneden_Open";
+                    else
+                        volgendeBestemming.texturepath = @"Lift\Lift_Open";
+
+                    for (int i = 0; i < GasteninLift.Count; i++)
                     {
-                        if (p.Key.BestemmingLijst.OfType<Liftschacht>().Count() > 0)
+                        var p = GasteninLift.ElementAt(i);
+                        p.Key.Positie = volgendeBestemming.EventCoordinaten;
+                        if (p.Key.Positie == EventCoordinaten)
                         {
-                            p.Key.HuidigeRuimte = p.Key.BestemmingLijst.OfType<Liftschacht>().Last();
-                            p.Key.BestemmingLijst.Remove(p.Key.BestemmingLijst.First());
-                           // p.Key.BestemmingLijst.RemoveAll(o => o.Naam == "Liftschacht");
-                            p.Key.Bestemming = p.Key.BestemmingLijst.First();
-                            GasteninLift.Remove(p.Key);
+                            if (p.Key.BestemmingLijst.OfType<Liftschacht>().Count() > 0)
+                            {
+                                p.Key.HuidigeRuimte = p.Key.BestemmingLijst.OfType<Liftschacht>().Last();
+                                p.Key.BestemmingLijst.Remove(p.Key.BestemmingLijst.First());
+                                p.Key.Bestemming = p.Key.BestemmingLijst.First();
+                                GasteninLift.Remove(p.Key);
+                            }
                         }
                     }
-                }
-                Huidigeverdieping = Volgendeverdieping;
-                Bestemmingslijst.RemoveAll(o => o == volgendeBestemming.Verdieping);
 
-                if (volgendeBestemming.Wachtrij.Count() > 0)
-                    volgendeBestemming.LeegWachtrij(volgendeBestemming.Bestemming);
-                else
-                    GenerateList();
+                    Bestemmingslijst.Remove(volgendeBestemming.Verdieping);
+
+                    if (volgendeBestemming.Wachtrij.Count() > 0)
+                        liftschachtlist[Huidigeverdieping].LeegWachtrij(volgendeBestemming.Bestemming);
+                    else
+                        GenerateList();
+                }
             }
         }
-
     }
 }
 
