@@ -107,6 +107,7 @@ namespace HotelSimulatie.Model
                     {
                         if (HuidigeVerdieping == gast.Bestemming)
                         {
+                            gast.bestemmingslift = gast.BestemmingLijst.OfType<Liftschacht>().Last();
                             gast.HuidigeRuimte = gast.Bestemming;
                             gast.Bestemming = gast.BestemmingLijst.First();
                             gast.BestemmingLijst.Remove(gast.BestemmingLijst.First());

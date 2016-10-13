@@ -67,7 +67,7 @@ namespace HotelSimulatie.Model
                     lift.GasteninLift.Add(temp);
 
                     // Voegt de verdieping van de personen aan de lijst toe
-                    lift.VoegLiftStopToe(temp.BestemmingLijst.OfType<Liftschacht>().Last());
+                    lift.VoegLiftStopToe(temp.bestemmingslift);
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace HotelSimulatie.Model
             for (int i = 0; i < lift.GasteninLift.Count(); i++)
             {
                 Persoon temp = lift.GasteninLift[i];
-                if(temp.BestemmingLijst.OfType<Liftschacht>().Last() == this)
+                if(temp.bestemmingslift == this)
                 {
                     lift.GasteninLift.Remove(temp);
                 }

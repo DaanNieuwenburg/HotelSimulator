@@ -84,8 +84,10 @@ namespace HotelSimulatie
             base.Draw(gameTime);
 
             // Toon gasten
-            foreach (Gast gast in spel.hotel.GastenLijst)
+            int a = spel.hotel.GastenLijst.Count;
+            for (int i = 0; i < a; i++)
             {
+                Gast gast = spel.hotel.GastenLijst[i];
                 if (gast.Bestemming != null)
                 {
                     gast.Draw(spriteBatch);
