@@ -44,7 +44,6 @@ namespace HotelSimulatie.Model
             if (VerplaatsLift())
             {
                 bepaalLiftBestemming();
-
                 HuidigeVerdieping.LaatGastenLiftInGaan();
             }
         }
@@ -105,7 +104,6 @@ namespace HotelSimulatie.Model
             // Ga omhoog, bij wachtende mensen boven de huidige lift
             if (wachtendeBovenDeLift > 0)
             {
-                Console.WriteLine("wBDL");
                 // Sorteer de lijst van laag naar hoog, want de lift gaat omhoog
                 LiftStoppenlijst.Sort((o1, o2) => o1.Verdieping.CompareTo(o2.Verdieping));
 
@@ -116,7 +114,6 @@ namespace HotelSimulatie.Model
             // Ga omlaag bij wachtende mensen onder de huidige lift
             else if (wachtendeOnderDeLift > 0)
             {
-                Console.WriteLine("wODL");
                 // Sorteer de lijst van hoog naar laag want de lift gaat omlaag
                 LiftStoppenlijst.Sort((o1, o2) => o2.Verdieping.CompareTo(o1.Verdieping));
 

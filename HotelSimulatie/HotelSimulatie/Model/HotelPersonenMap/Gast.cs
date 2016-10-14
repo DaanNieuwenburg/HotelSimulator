@@ -40,7 +40,7 @@ namespace HotelSimulatie.Model
                         if (gevondenKamer.AantalSterren == 0)
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
-                            HuidigEvent.EventType = HotelEvents.HotelEventType.CHECK_OUT;
+                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.CHECK_OUT;
                         }
                         else
                         {
@@ -100,6 +100,7 @@ namespace HotelSimulatie.Model
                 {
                     Bestemming = null;
                     BestemmingLijst = null;
+                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
                 }
             }
         }
