@@ -75,8 +75,9 @@ namespace HotelSimulatie.Model
 
             if (EventCoordinaten.Y == LiftBestemming.EventCoordinaten.Y)
             {
+                //LiftBestemming.texturepath = @"Lift\Lift_Open";
                 HuidigeVerdieping = LiftBestemming;
-
+                
                 // Controleer of lift uiterst boven of beneden staat
                 if (LiftBestemming.Verdieping == BovensteVerdieping)
                 {
@@ -96,7 +97,7 @@ namespace HotelSimulatie.Model
                 {
                     LiftBestemming = Liftschachtlijst[HuidigeVerdieping.Verdieping + 1];
                 }
-                HuidigeVerdieping.texturepath = @"Lift\Lift_Open";
+                
                 aangekomenOpBestemming = true;
 
                 GasteninLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
