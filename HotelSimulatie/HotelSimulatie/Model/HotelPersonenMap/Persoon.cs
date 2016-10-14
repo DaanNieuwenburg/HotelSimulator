@@ -24,12 +24,10 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         private int textureIndex { get; set; }
         private bool LooptNaarLinks { get; set; }
-        public bool wachtOpLift { get; set; }
         public bool inLift { get; set; }
         public Persoon()
         {
             inLift = false;
-            wachtOpLift = false;
             LooptNaarLinks = false;
             /*Random random = new Random();
             int a = random.Next(1, 9);
@@ -101,15 +99,11 @@ namespace HotelSimulatie.Model
             return false;
         }
 
-        public void GaKamerIn(HotelRuimte hotelRuimte)
-        {
-            Bestemming = null;
-        }
-
         public void UpdateFrame(GameTime spelTijd)
         {
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
+
         public void Draw(SpriteBatch spritebatch)
         {
             SpriteAnimatie.ToonFrame(spritebatch, Positie);

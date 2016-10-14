@@ -35,7 +35,7 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Beneden";
             }
-            else if(Bestemming == lift.BovensteVerdieping)
+            else if (Bestemming == lift.BovensteVerdieping)
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)
                     texture = @"Lift\Lift_Bovenste_Open";
@@ -56,43 +56,41 @@ namespace HotelSimulatie.Model
 
         public bool VraagOmLift(Persoon persoon)
         {
-            bool komtAl = true;
+            bool liftKomtAl = true;
             if (!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
                 isWachtrij = true;
                 lift.VoegLiftStopToe(this);
-                komtAl = false;
+                liftKomtAl = false;
             }
-            return komtAl;
+            return liftKomtAl;
         }
 
         public void LaatGastenLiftInGaan()
         {
-            //if (lift.BovensteLiftschachtBereikt == true || lift.HuidigeVerdieping == lift.Liftschachtlijst[0])
-                int a = Wachtrij.Count();
-                for (int i = 0; i < a; i++)
-                {
-                    Persoon persoon = Wachtrij.Dequeue();
-                    persoon.inLift = true;
-                    persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
-                    persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
-                    lift.GasteninLift.Add(persoon);
-
-                    // Voegt de verdieping van de personen aan de lijst toe
-                   // lift.VoegLiftStopToe(temp.bestemmingslift);
-                }
-        }
-        public void LaatGastenUitLiftGaan()
-        {
-            for (int i = 0; i < lift.GasteninLift.Count(); i++)
+            int personenInWachtrij = Wachtrij.Count();
+            for (int i = 0; i < personenInWachtrij; i++)
             {
-                Persoon temp = lift.GasteninLift[i];
-                if(temp.bestemmingslift == this)
-                {
-                    lift.GasteninLift.Remove(temp);
-                    temp.bestemmingslift = null;
-                }
+                Persoon persoon = Wachtrij.Dequeue();
+                persoon.inLift = true;
+                persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
+                persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
+                lift.GasteninLift.Add(persoon);
+                lift.VoegLiftStopToe((Liftschacht)persoon.Bestemming);
+            }
+        }
+
+        public void LaatGastenUitLiftGaan(List<Persoon> personenDieUitstappen)
+        {
+            foreach (Persoon persoon in personenDieUitstappen)
+            {
+                persoon.HuidigeRuimte = this;
+                persoon.Bestemming = persoon.BestemmingLijst.First();
+                persoon.BestemmingLijst.Remove(persoon.Bestemming);
+                persoon.inLift = false;
+                persoon.Positie = EventCoordinaten;
+                lift.GasteninLift.Remove(persoon);
             }
         }
     }

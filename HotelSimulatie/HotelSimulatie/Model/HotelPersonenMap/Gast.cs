@@ -82,7 +82,7 @@ namespace HotelSimulatie.Model
             {
                 if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
                 {
-                    if (HuidigeRuimte is Liftschacht && wachtOpLift == false && inLift == false)
+                    if (HuidigeRuimte is Liftschacht)
                     {
                         // Ga verder met de lift
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
