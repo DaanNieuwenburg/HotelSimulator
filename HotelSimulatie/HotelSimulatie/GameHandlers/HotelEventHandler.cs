@@ -17,8 +17,6 @@ namespace HotelSimulatie
         private HotelEvent Event { get; }
         private GameTime GameTijd { get; set; }
 
-        public int Tijd { get; set; }
-
         public HotelEventHandler(Game game) : base(game)
         {
             spel = (Simulatie)game;

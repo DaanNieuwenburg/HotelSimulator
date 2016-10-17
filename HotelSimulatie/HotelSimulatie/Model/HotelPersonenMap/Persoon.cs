@@ -60,20 +60,20 @@ namespace HotelSimulatie.Model
                 HuidigeRuimte = HuidigeRuimte;
                 Bestemming = Bestemming;
 
-                // Als gast aan komt op bestemming
+                // Als persoon aan komt op bestemming
                 if ((Int32)Positie.X == Bestemming.EventCoordinaten.X)
                 {
                     bestemmingBereikt = true;
                     HuidigeRuimte = Bestemming;
                 }
 
-                // Als gast naar links moet
+                // Als persoon naar links moet
                 else if (Positie.X > Bestemming.EventCoordinaten.X)
                 {
                     BeweegNaarLinks();
                 }
 
-                // Als gast naar rechts moet
+                // Als persoon naar rechts moet
                 else if (Positie.X < Bestemming.EventCoordinaten.X)
                 {
                     BeweegNaarRechts();
@@ -82,8 +82,6 @@ namespace HotelSimulatie.Model
 
             return bestemmingBereikt;
         }
-
-
 
         private bool BeweegNaarLinks()
         {

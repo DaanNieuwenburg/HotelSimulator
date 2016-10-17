@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace HotelSimulatie.Model.HotelRuimteMap
+namespace HotelSimulatie.Model
 {
     public class Gang : HotelRuimte
     {
