@@ -1,38 +1,40 @@
 ﻿using HotelSimulatie.Model;
-using HotelSimulatie.Model;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace HotelSimulatie
 {
-    public class LayoutLezer
+    public class HotelLayout
     {
         public int MaxX { get; set; }
         public int MaxY { get; set; }
         public List<HotelRuimte> HotelRuimteLijst { get; set; }
-        private ContentManager tempmanager { get; set; }
+        public List<Kamer> KamerLijst { get; set; }
+        public Bioscoop bioscoop { get; set; }
+        public Fitness fitness { get; set; }
+        public Lift lift { get; set; }
         private HotelRuimteFactory hotelRuimteFactory { get; set; }
-        public LayoutLezer()
+        public HotelLayout()
         {
             hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimteLijst = LeesLayoutUit();
-            MaxX = bepaalMaxX() + 1;
-            MaxY = bepaalMaxY();
-            zetLiftenInLayout();
+            bepaalMaxXY();
+            zetLiftschachtenInLayout();
             zetTrapInLayout();
             zetLobbyInLayout();
             zetGangenInLayout();
             geefLayoutNodesBuren();
             zetLayoutPositiesGoed();
+            bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
+            fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
+            KamerLijst = (from kamer in HotelRuimteLijst where kamer is Kamer select kamer as Kamer).ToList(); 
         }
 
-        public List<HotelRuimte> LeesLayoutUit()
+        private List<HotelRuimte> LeesLayoutUit()
         {
             List<HotelRuimte> ruimteLijst = null;
             try
@@ -52,21 +54,16 @@ namespace HotelSimulatie
             // Sorteer layout 
             return ruimteLijst;
         }
-        
 
-        public int bepaalMaxX()
+        public void bepaalMaxXY()
         {
-            return (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X);
+            MaxX = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X) + 1;
+            MaxY = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
         }
 
-        public int bepaalMaxY()
+        private void zetLiftschachtenInLayout()
         {
-            return (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
-        }
-
-        public void zetLiftenInLayout()
-        {
-            Lift lift = new Lift(MaxY);
+            lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift",MaxY);
             List<Liftschacht> liftlijst = new List<Liftschacht>();
             for (int y = 0; y <= MaxY; y++)
             {
@@ -80,7 +77,7 @@ namespace HotelSimulatie
             lift.Liftschachtlijst = liftlijst;
         }
 
-        public void zetTrapInLayout()
+        private void zetTrapInLayout()
         {
             for (int y = 0; y <= MaxY; y++)
             {
@@ -91,7 +88,7 @@ namespace HotelSimulatie
             }
         }
 
-        public void zetLobbyInLayout()
+        private void zetLobbyInLayout()
         {
             // Bepaal lobby positie
             int x = MaxX;
@@ -107,7 +104,6 @@ namespace HotelSimulatie
                     }
                 }
             }
-
 
             // Vervang rest van de lege lobby met gangen
             for (int i = 2; i < MaxX; i++)
@@ -141,7 +137,7 @@ namespace HotelSimulatie
             }
         }
 
-        public void geefLayoutNodesBuren()
+        private void geefLayoutNodesBuren()
         {
             // Sorteer lijst bij op y en daarna op x
             HotelRuimteLijst = HotelRuimteLijst.OrderBy(x => x.CoordinatenInSpel.Y).ThenBy(x => x.CoordinatenInSpel.X).ToList();

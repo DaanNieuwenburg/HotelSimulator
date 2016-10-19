@@ -101,14 +101,14 @@ namespace HotelSimulatie
         private void GaNaarBioscoopEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            Bioscoop bioscoop = spel.hotel.bioscoop;
+            Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
             gast.GaNaarKamer<Bioscoop>(ref bioscoop);
         }
 
         private void GaNaarFitnessEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            Fitness fitness = spel.hotel.fitness;
+            Fitness fitness = spel.hotel.hotelLayout.fitness;
             gast.GaNaarKamer<Fitness>(ref fitness);
         }
 

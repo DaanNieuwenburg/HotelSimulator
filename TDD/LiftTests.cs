@@ -16,12 +16,14 @@ namespace TDD
             Assert.IsInstanceOfType(liftHRuimte, typeof(HotelSimulatie.Model.LiftTDD));
         }
 
+        [TestMethod]
         public void TestStartPositieVanLift()
         {
             // Test of de lift start vanaf verdieping 0
             HotelRuimteFactory hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimte liftHRuimte = hotelRuimteFactory.MaakHotelRuimte("Lift");
-            LiftTDD lift
+            LiftTDD lift = (LiftTDD)liftHRuimte;
+            Assert.AreEqual(lift.HuidigeVerdieping, lift.Liftschachtlijst[0]);
         }
     }
 }

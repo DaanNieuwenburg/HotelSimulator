@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
 
         public LiftTDD(int aantalVerdiepingen)
         {
-
+            HuidigeVerdieping = Liftschachtlijst.First();
         }
 
         public override void LoadContent(ContentManager contentManager)

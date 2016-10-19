@@ -83,7 +83,7 @@ namespace HotelSimulatie
             }
             
 
-            foreach (HotelRuimte hotelRuimte in Hotel.NodeLijst)
+            foreach (HotelRuimte hotelRuimte in hotel.hotelLayout.HotelRuimteLijst)
             {
                 hotelRuimte.LoadContent(Content);
 
