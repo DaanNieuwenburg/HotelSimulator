@@ -111,6 +111,7 @@
     <Compile Include="Model\HotelRuimteMap\Trap.cs" />
     <Compile Include="Model\Lift.cs" />
     <Compile Include="Model\HotelPersonenMap\Persoon.cs" />
+    <Compile Include="Model\LiftTDD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Simulatie.cs" />
