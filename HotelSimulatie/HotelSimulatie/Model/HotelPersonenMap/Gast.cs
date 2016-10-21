@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     public class Gast : Persoon
     {
         public Kamer ToegewezenKamer { get; set; }
+        public int AantalSterrenKamer { get; set; }
         public bool Wacht { get; set; }
 
         public Gast()

@@ -37,12 +37,12 @@ namespace HotelSimulatie.Model
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
-                    while (gast.ToegewezenKamer == null && gast.HuidigEvent.aantalSterrenKamer <= 5)
+                    while (gast.ToegewezenKamer == null && gast.AantalSterrenKamer <= 5)
                     {
                         DijkstraAlgoritme vindDichtbijzijndeKamerAlgo = new DijkstraAlgoritme();
                         vindDichtbijzijndeKamerAlgo.zoekDichtbijzijnde = true;
-                        gast.ToegewezenKamer = hotel.hotelLayout.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.HuidigEvent.aantalSterrenKamer);
-                        gast.HuidigEvent.aantalSterrenKamer++;
+                        gast.ToegewezenKamer = hotel.hotelLayout.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.AantalSterrenKamer);
+                        gast.AantalSterrenKamer++;
                     }
                     gast.ToegewezenKamer.Bezet = true;
                 }
