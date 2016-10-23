@@ -10,20 +10,23 @@ namespace HotelSimulatie.Model
 {
     public class Gast : Persoon
     {
-        public bool Honger { get; set; }
-        public int? Kamernummer { get; set; }
-        public bool Wacht { get; set; }
+        public Kamer ToegewezenKamer { get; set; }
+        public int AantalSterrenKamer { get; set; }
 
         public Gast()
         {
-            Honger = false;
-            Wacht = false;
+            Texturelijst = new List<string>();
+            //Texturelijst.Add(@"Gasten\AnimatedRob");
+            Texturelijst.Add(@"Gasten\AnimatedGast1");
+            Texturelijst.Add(@"Gasten\AnimatedGast2");
+            Texturelijst.Add(@"Gasten\AnimatedGast3");
+            Texturelijst.Add(@"Gasten\AnimatedGast4");
         }
 
         public void Inchecken(Lobby lobby, GameTime gameTime)
         {
             // Ga naar lobby en vraag om een kamer
-            if (Kamernummer == null)
+            if (ToegewezenKamer == null)
             {
                 if (LoopNaarRuimte())
                 {
@@ -34,87 +37,83 @@ namespace HotelSimulatie.Model
                     }
 
                     // koppel de toegewezenkammer
-                    Kamer toegewezenKamer = lobby.GastInChecken(this, gameTime);
+                    Kamer gevondenKamer = lobby.GastInChecken(this, gameTime);
 
                     // Als er een kamer is toegewezen
-                    if (toegewezenKamer != null)
+                    if (gevondenKamer != null)
                     {
-                        if (toegewezenKamer.AantalSterren == 0)
+                        if (gevondenKamer.AantalSterren == 0)
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
-                            this.HuidigEvent = new HotelEvents.HotelEvent() { EventType = HotelEvents.HotelEventType.CHECK_OUT };
-                            Console.WriteLine("CHECKOUT EVENT");
+                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.CHECK_OUT;
                         }
                         else
                         {
-                            Bestemming = toegewezenKamer;
-                            Kamernummer = toegewezenKamer.Kamernummer;
+                            Bestemming = gevondenKamer;
+                            ToegewezenKamer = gevondenKamer;
+                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                         }
                     }
                 }
             }
-
-            // Bepaal route naar kamer
-            else if (BestemmingLijst == null && Bestemming is Kamer)
-            {
-                // Zoek pad naar kamer
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, lobby, Bestemming);
-
-                // Koppel eerste node aan bestemming
-                Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
-            }
-
-            // Loop naar kamer
-            else if (BestemmingLijst != null)
-            {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
-                {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    BestemmingLijst = null;
-                    HuidigEvent.EventType = HotelEvents.HotelEventType.NONE;
-                    GaKamerIn(HuidigeRuimte);
-                    Console.WriteLine(HuidigeRuimte.Naam);
-                }
-            }
         }
 
-        public void Uitchecken(Lobby lobby)
+        public void GaNaarKamer<T>(ref T ruimte)
         {
-            HuidigeRuimte = HuidigeRuimte;
-            // Bepaal route naar lobby
-            if (BestemmingLijst == null && Bestemming is Lobby)
+
+            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
             {
-                // Zoek pad naar lobby
+                Bestemming = ruimte as HotelRuimte;
+            }
+
+            if (BestemmingLijst == null && Bestemming is T)
+            {
+                // Zoek kortste pad naar bestemming
                 DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, lobby, Bestemming);
+                if (Bestemming is Eetzaal)
+                {
+                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                }
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
+                HuidigEvent = HuidigEvent;
                 Bestemming = BestemmingLijst.First();
                 BestemmingLijst.Remove(BestemmingLijst.First());
             }
 
-            // Loop naar lobby
+            // Loop via pathfinding naar bestemming
             else if (BestemmingLijst != null)
             {
                 if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
                 {
-                    Bestemming = BestemmingLijst.First();
-                    BestemmingLijst.Remove(BestemmingLijst.First());
+                    if (HuidigeRuimte is Liftschacht)
+                    {
+                        // Ga verder met de lift
+                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
+                        liftschacht.VraagOmLift(this);
+                        Bestemming = HuidigeRuimte;
+                    }
+                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
+                    {
+                        HuidigeRuimte = Bestemming;
+                        Bestemming = BestemmingLijst.First();
+                        BestemmingLijst.Remove(BestemmingLijst.First());
+                    }
                 }
                 else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
                 {
-                    // Haal het event weg, want de gast is bij zijn kamer aangekomen
-                    lobby.GastUitchecken(this);
+                    Bestemming = null;
+                    BestemmingLijst = null;
+                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
+                    {
+                        HuidigeRuimte.voegPersoonToe(this);
+                    }
                 }
             }
         }
     }
 }
+
 

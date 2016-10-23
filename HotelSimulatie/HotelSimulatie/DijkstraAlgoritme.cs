@@ -12,9 +12,10 @@ namespace HotelSimulatie
         public HotelRuimte Begin { get; set; }
         public HotelRuimte Eind { get; set; }
         public List<HotelRuimte> open { get; set; }
+        public bool zoekDichtbijzijnde { get; set; }
         private List<HotelRuimte> bezochteRuimtes { get; set; }
 
-        public List<HotelRuimte> MaakAlgoritme(Gast gast, HotelRuimte begin, HotelRuimte eind)
+        public List<HotelRuimte> MaakAlgoritme(Persoon gast, HotelRuimte begin, HotelRuimte eind)
         {
             Begin = begin;
             Eind = eind;
@@ -47,17 +48,46 @@ namespace HotelSimulatie
                 deze.Afstand = Int32.MaxValue / 2;
                 deze = deze.Vorige;
             }
+
             // Reset de afstand van de lobby
             Begin.Afstand = Int32.MaxValue / 2;
             pad.Add(Begin);
             pad.Reverse();
-            return pad;
-        }
+            if (Eind.GetType() == typeof(Lobby))
+            {
+                return pad;
+            }
+            else
+            {
+                return pad;
+            }
+        } 
 
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
             deze.Afstand = 0;
-            if (deze == eind)
+
+            // Als de dichtbijzijnde hotelkamer gezocht moet worden
+            Kamer TypeKamer = new Kamer(0);
+            if (zoekDichtbijzijnde == true && deze.GetType() == eind.GetType() && eind.GetType() == TypeKamer.GetType())
+            {
+                Kamer teVindenKamer = (Kamer)eind;
+                Kamer gevondenKamer = (Kamer)deze;
+                if (gevondenKamer.AantalSterren == teVindenKamer.AantalSterren && gevondenKamer.Bezet == false)
+                {
+                    Eind = deze;
+                    return true;
+                }
+            }
+
+            // Als de dichtbijzijnde eetzaal gezocht moet worden
+            else if(zoekDichtbijzijnde == true && deze.GetType() == eind.GetType())
+            {
+                Eind = deze;
+                return true;
+            }
+
+            else if (zoekDichtbijzijnde == false && deze == eind)
             {
                 return true;
             }

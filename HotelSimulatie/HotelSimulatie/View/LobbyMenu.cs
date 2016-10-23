@@ -29,16 +29,13 @@ namespace HotelSimulatie.View
             }*/
             #region
             // Ken waardes voor schoonmakers toe aan labels
-            lbKamerA.Text = hotel.Schoonmaker_A.InKamer.ToString();
             //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
-
-            lbKamerB.Text = hotel.Schoonmaker_B.InKamer.ToString();
             //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
-            lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
-            lbPersonenLift.Text = hotel.lift.AantalPersonen.ToString() ;
-            lbPositieLift.Text = hotel.lift.Positie.ToString();
+            //lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
+            //lbPersonenLift.Text = hotel.lift.AantalPersonen.ToString() ;
+            //lbPositieLift.Text = hotel.lift.Positie.ToString();
             #endregion
         }
     }

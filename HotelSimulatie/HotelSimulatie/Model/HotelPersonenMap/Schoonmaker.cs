@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
     {
         public HotelRuimte SchoonmaakPositie { get; set; }
         public bool InKamer { get; set; }
+        public string Naam { get; set; }
         public string Texturenaam { get; set; }
         public void LoadContent(ContentManager contentManager)
         {

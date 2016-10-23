@@ -8,40 +8,48 @@ namespace HotelSimulatie.Model
 {
     public class Hotel
     {
-        public static List<HotelRuimte> NodeLijst { get; set; }
-        public Lobby LobbyRuimte { get; set; }
-        public List<Kamer> KamerLijst { get; set; }
+        public HotelLayout hotelLayout { get; set; }
         public List<Gast> GastenLijst { get; set; }
-        public Schoonmaker Schoonmaker_A { get; set; }
-        public Schoonmaker Schoonmaker_B { get; set; }
-        public Liftschacht lift { get; set; }
+        public Schoonmaker[] Schoonmakers { get; set; }
+        public bool IsEvacuatie { get; set; }
         public Hotel()
         {
-            NodeLijst = new List<HotelRuimte>();
+            IsEvacuatie = false;
+            hotelLayout = new HotelLayout();
             GastenLijst = new List<Gast>();
-            Schoonmaker_A = new Schoonmaker();
-            Schoonmaker_B = new Schoonmaker();            
-            LayoutLezer layoutLezer = new LayoutLezer();
-            NodeLijst = layoutLezer.HotelRuimteLijst;
-            lift = new Liftschacht(0);
-            KamerLijst = maakKamerLijst();
+            Schoonmakers = new Schoonmaker[2];
+            Schoonmakers[0] = new Schoonmaker();
+            Schoonmakers[1] = new Schoonmaker();
         }
 
-        private List<Kamer> maakKamerLijst()
+        public void Evacueer()
         {
-            KamerLijst = new List<Kamer>();
-            int kamerNummerTeller = 1;
-            foreach (HotelRuimte hotelRuimte in NodeLijst)
+            if (IsEvacuatie == false)
             {
-                if(hotelRuimte is Kamer)
+                IsEvacuatie = true;
+                Console.WriteLine("OMG EVACUATIE");
+                foreach (Gast gast in GastenLijst)
                 {
-                    Kamer kamer = (Kamer)hotelRuimte;
-                    kamer.Kamernummer = kamerNummerTeller;
-                    KamerLijst.Add((Kamer)hotelRuimte);
-                    kamerNummerTeller++;
+                    gast.Bestemming = hotelLayout.lobby;
+                    gast.BestemmingLijst = null;
+                    gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
                 }
             }
-            return KamerLijst;
+            else
+            {
+                int aantalGasten = GastenLijst.Count;
+                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == hotelLayout.lobby select Gast).Count();
+                if(aantalGasten == aantalGastenOpEvacuatiePunt)
+                {
+                    Console.WriteLine("Evacuatie completed");
+                    foreach(Gast gast in GastenLijst)
+                    {
+                        gast.HuidigeRuimte = hotelLayout.lobby;
+                        gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                    }
+                }
+            }
+
         }
     }
 }

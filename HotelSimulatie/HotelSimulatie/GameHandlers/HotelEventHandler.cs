@@ -14,15 +14,11 @@ namespace HotelSimulatie
     public class HotelEventHandler : Microsoft.Xna.Framework.GameComponent, HotelEventListener
     {
         private Simulatie spel { get; set; }
-        private bool eersteKeer { get; set; }
         private HotelEvent Event { get; }
         private GameTime GameTijd { get; set; }
 
-        public int Tijd { get; set; }
-
         public HotelEventHandler(Game game) : base(game)
         {
-
             spel = (Simulatie)game;
             Event = new HotelEvent();
             // Start de event listener
@@ -33,64 +29,101 @@ namespace HotelSimulatie
         public void Notify(HotelEvent evt)
         {
             // Adapter gebruiken om HotelEvent om te zetten
-            Dictionary<string, string> eventData = evt.Data;
-            if (evt.Data != null)
+            HotelEventAdapter hotelEventAdapter = new HotelEventAdapter(evt, spel.hotel.GastenLijst);
+
+            if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Guest && spel.hotel.IsEvacuatie == false)
             {
-                foreach (KeyValuePair<string, string> gastEvent in eventData)
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                 {
-                    Gast gevondenGast = spel.hotel.GastenLijst.Find(o => o.Naam == gastEvent.Key);
-                    if (gevondenGast == null && evt.EventType == HotelEventType.CHECK_IN)
-                    {
-                        Gast nieuweGast = new Gast() { Naam = gastEvent.Key, Positie = spel.GastSpawnLocatie };
-                        nieuweGast.LoadContent(Game.Content);
-                        spel.hotel.GastenLijst.Add(nieuweGast);
-                        if (evt.EventType == HotelEventType.CHECK_IN)
-                        {
-                            CheckinEvent(nieuweGast, evt);
-                        }
-                    }
-                    else
-                    {
-                        if (evt.EventType == HotelEventType.CHECK_IN)
-                        {
-                            CheckinEvent(gevondenGast, evt);
-                        }
-                        /*else if (evt.EventType == HotelEventType.CHECK_OUT)
-                        {
-                            gevondenGast.HuidigeRuimte = gevondenGast.HuidigeRuimte;
-                            gevondenGast.Bestemming = spel.hotel.LobbyRuimte;
-                            CheckoutEvent(gevondenGast, evt);
-                        }*/
-                    }
+                    CheckinEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
+                {
+                    hotelEventAdapter.gast.HuidigeRuimte = hotelEventAdapter.gast.HuidigeRuimte;
+                    hotelEventAdapter.gast.Bestemming = spel.hotel.hotelLayout.lobby;
+                    CheckoutEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
+                {
+                    GaNaarBioscoopEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
+                {
+                    GaNaarFitnessEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                {
+                    GaNaarEigenKamerEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+                else if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                {
+                    GaNaarEetzaalEvent(hotelEventAdapter.gast, hotelEventAdapter);
+                }
+            }
+            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
+            {
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                {
+                    spel.hotel.Evacueer();
                 }
             }
         }
 
-        private void CheckinEvent(Gast gast, HotelEvent hotelEvent)
+        private void CheckinEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
-            // Bepaal kamernummer
-            string aantalSterrenKamerStr = Regex.Match(hotelEvent.Data.First().Value, @"([1-9])").Value;
-            int aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
-
-            // Vervang de hotelevent.Value met het kamernummer, voor hergebruik
-            hotelEvent.Message = aantalSterrenKamer.ToString();
+            // Zet spawnpositie van gast goed
+            gast.Positie = spel.GastSpawnLocatie;
 
             // Zet huidig event om naar inchecken
             gast.HuidigEvent = hotelEvent;
 
+            // Koppel de texture van de  gast
+            gast.LoadContent(Game.Content);
+
             // Geef gast de bestemming van de lobby
-            gast.HuidigeRuimte = spel.hotel.LobbyRuimte;
-            gast.Bestemming = spel.hotel.LobbyRuimte;
+            gast.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+            gast.Bestemming = spel.hotel.hotelLayout.lobby;
+
+            // Koppel gast aan gastenlijst
+            spel.hotel.GastenLijst.Add(gast);
 
             // Start het event
-            gast.Inchecken(spel.hotel.LobbyRuimte, GameTijd);
+            gast.Inchecken(spel.hotel.hotelLayout.lobby, GameTijd);
         }
 
-        private void CheckoutEvent(Gast gast, HotelEvent hotelEvent)
+        private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
-            Console.WriteLine("Checkoutevent");
             gast.HuidigEvent = hotelEvent;
-            gast.Uitchecken(spel.hotel.LobbyRuimte);
+            Lobby lobby = spel.hotel.hotelLayout.lobby;
+            gast.GaNaarKamer<Lobby>(ref lobby);
+        }
+
+        private void GaNaarBioscoopEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
+            gast.GaNaarKamer<Bioscoop>(ref bioscoop);
+        }
+
+        private void GaNaarFitnessEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Fitness fitness = spel.hotel.hotelLayout.fitness;
+            gast.GaNaarKamer<Fitness>(ref fitness);
+        }
+
+        private void GaNaarEigenKamerEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Kamer kamer = gast.ToegewezenKamer;
+            gast.GaNaarKamer<Kamer>(ref kamer);
+        }
+
+        private void GaNaarEetzaalEvent(Gast gast, HotelEventAdapter hotelEvent)
+        {
+            gast.HuidigEvent = hotelEvent;
+            Eetzaal eetzaal = new Eetzaal();
+            gast.GaNaarKamer<Eetzaal>(ref eetzaal);
         }
     }
 }

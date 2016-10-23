@@ -95,6 +95,7 @@
     <Compile Include="HotelEventAdapter.cs" />
     <Compile Include="HotelRuimteJsonConverter.cs" />
     <Compile Include="GameHandlers\InputHandler.cs" />
+    <Compile Include="HotelTijdsEenheid.cs" />
     <Compile Include="Model\Hotel.cs" />
     <Compile Include="Model\HotelPersonenMap\Gast.cs" />
     <Compile Include="Model\HotelPersonenMap\Schoonmaker.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Simulatie.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="LayoutLezer.cs" />
+    <Compile Include="HotelLayout.cs" />
     <Compile Include="View\Hoofdmenu.cs">
       <SubType>Form</SubType>
     </Compile>

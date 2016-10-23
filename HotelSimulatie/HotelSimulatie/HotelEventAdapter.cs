@@ -10,77 +10,99 @@ namespace HotelSimulatie
 {
     public class HotelEventAdapter : HotelEvent
     {
-        public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented };
+        public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
+        // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
+        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM }
         public Gast gast { get; set; }
-        public int? aantalSterrenKamer { get; set; }
-        public EventCategory Category { get; set; }
+        public NEventType NEvent { get; set; }
+        public NEventCategory Category { get; set; }
         public string message { get; set; }
-        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst)
+        public int HuidigeDuurEvent { get; set; }
+        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
-            EventType = evt.EventType;
+            NEvent = (NEventType)evt.EventType;
             Message = evt.Message;
             Time = evt.Time;
-            message = evt.Data.Values.ElementAt(0);
-            string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
-            aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
 
             bepaalHotelEventCategory(evt);
-            bepaalGast(evt, gastenLijst);
-            if(Category == EventCategory.Cleaning)
+
+            // Als er geen sprake is van zo een vreselijk test event
+            if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
-                // Koppel kamer
+                message = evt.Data.Values.ElementAt(0);
+                
+
+                if (Category == NEventCategory.Guest)
+                { 
+                    bepaalGast(evt, gastenLijst);
+                }
             }
         }
 
         private void bepaalHotelEventCategory(HotelEvent evt)
         {
             // Initialiseer de event categories
-            HotelEventType[] cleaningEvents = new HotelEventType[1];
-            cleaningEvents[0] = HotelEventType.CLEANING_EMERGENCY;
+            NEventType[] cleaningEvents = new NEventType[1];
+            cleaningEvents[0] = NEventType.CLEANING_EMERGENCY;
 
-            HotelEventType[] guestEvents = new HotelEventType[5];
-            guestEvents[0] = HotelEventType.CHECK_IN;
-            guestEvents[1] = HotelEventType.CHECK_OUT;
-            guestEvents[2] = HotelEventType.GOTO_CINEMA;
-            guestEvents[3] = HotelEventType.GOTO_FITNESS;
-            guestEvents[4] = HotelEventType.NEED_FOOD;
+            NEventType[] guestEvents = new NEventType[5];
+            guestEvents[0] = NEventType.CHECK_IN;
+            guestEvents[1] = NEventType.CHECK_OUT;
+            guestEvents[2] = NEventType.GOTO_CINEMA;
+            guestEvents[3] = NEventType.GOTO_FITNESS;
+            guestEvents[4] = NEventType.NEED_FOOD;
 
-            HotelEventType[] hotelEvents = new HotelEventType[2];
-            hotelEvents[0] = HotelEventType.EVACUATE;
-            hotelEvents[1] = HotelEventType.START_CINEMA;
+            NEventType[] hotelEvents = new NEventType[2];
+            hotelEvents[0] = NEventType.START_CINEMA;
+            hotelEvents[1] = NEventType.EVACUATE;
 
             // Bepaal de event category van het huidige event
-            if (cleaningEvents.Contains(evt.EventType))
+            if (cleaningEvents.Contains(NEvent))
             {
-                Category = EventCategory.Cleaning;
+                Category = NEventCategory.Cleaning;
             }
-            else if (guestEvents.Contains(evt.EventType))
+            else if (guestEvents.Contains(NEvent))
             {
-                Category = EventCategory.Guest;
+                Category = NEventCategory.Guest;
             }
-            else if (hotelEvents.Contains(evt.EventType))
+            else if (hotelEvents.Contains(NEvent))
             {
-                Category = EventCategory.Hotel;
+                Category = NEventCategory.Hotel;
             }
             else
             {
-                Category = EventCategory.NotImplented;
+                Category = NEventCategory.NotImplented;
             }
         }
 
         private void bepaalGast(HotelEvent evt, List<Gast> gastenLijst)
         {
-            // Als gast naam gast is, koppel dan de value aan de gastnaam
+            // Maak en koppel gastnaam
             evt.Data.Keys.ElementAt(0);
             string gastNaam = evt.Data.Keys.ElementAt(0);
+
+            // Als gastnaam gast is, pak de value van de key ( de gast id )
             if (evt.Data.Keys.ElementAt(0) == "Gast")
             {
                 gastNaam = gastNaam + evt.Data.Values.ElementAt(0);
             }
 
-            // Vind de gast in gastenlijst
+            // Vind de gast in de gastenlijst
             gast = gastenLijst.Find(o => o.Naam == gastNaam);
+
+            if (gast == null)
+            {
+                gast = new Gast();
+                gast.Naam = gastNaam;
+            }
+
+
+            // Bepaal kamernummer bij een checkin
+            if (NEvent == NEventType.CHECK_IN)
+            {
+                string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
+                gast.AantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
+            }
         }
-        
     }
 }

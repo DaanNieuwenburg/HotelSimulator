@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
 {
     public abstract class HotelRuimte
     {
+        [JsonProperty("ID")]
         public int Code { get; set; }
         public string Naam { get; set; }
         public string texturepath { get; set; }
@@ -72,6 +73,10 @@ namespace HotelSimulatie.Model
                     Buren.Add(buur3, 1);
                 }
             }
+        }
+
+        public virtual void voegPersoonToe(Gast gast)
+        {
         }
     }
 }
