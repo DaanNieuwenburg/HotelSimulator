@@ -67,6 +67,13 @@ namespace HotelSimulatie
                     spel.hotel.Evacueer();
                 }
             }
+            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
+            {
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CLEANING_EMERGENCY)
+                {
+                    SchoonmaakEvent(hotelEventAdapter);
+                }
+            }
         }
 
         private void CheckinEvent(Gast gast, HotelEventAdapter hotelEvent)
@@ -124,6 +131,14 @@ namespace HotelSimulatie
             gast.HuidigEvent = hotelEvent;
             Eetzaal eetzaal = new Eetzaal();
             gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+        }
+
+        private void SchoonmaakEvent(HotelEventAdapter hotelEvent)
+        {
+            // Bepaal kamer
+            int kamerCode = Convert.ToInt32(hotelEvent.Message);
+            Kamer gevondenKamer = spel.hotel.hotelLayout.KamerLijst.Find(o => o.Code == kamerCode);
+            spel.hotel.Schoonmakers[0].NieuweSchoonTeMakenKamer(gevondenKamer, spel.hotel.Schoonmakers[1]);
         }
     }
 }

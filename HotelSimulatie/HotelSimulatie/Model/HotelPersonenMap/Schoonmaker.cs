@@ -11,9 +11,20 @@ namespace HotelSimulatie.Model
     public class Schoonmaker : Persoon
     {
         public HotelRuimte SchoonmaakPositie { get; set; }
+        public Dictionary<HotelEventAdapter, Kamer> SchoonTeMakenKamersLijst { get; set; }
         public bool InKamer { get; set; }
         public string Naam { get; set; }
         public string Texturenaam { get; set; }
+        public Schoonmaker()
+        {
+            SchoonTeMakenKamersLijst = new Dictionary<HotelEventAdapter, Kamer>();
+        }
+
+        public void NieuweSchoonTeMakenKamer(Kamer kamer, Schoonmaker collega)
+        {
+
+        }
+
         public void LoadContent(ContentManager contentManager)
         {
             if (Texturenaam == "AnimatedSchoonmaker")
@@ -27,7 +38,10 @@ namespace HotelSimulatie.Model
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
-        
+        public void Update(GameTime spelTijd)
+        {
+
+        }
     }
 
 }

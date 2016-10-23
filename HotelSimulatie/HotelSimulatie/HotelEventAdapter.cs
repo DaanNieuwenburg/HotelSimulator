@@ -16,7 +16,6 @@ namespace HotelSimulatie
         public Gast gast { get; set; }
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }
-        public string message { get; set; }
         public int HuidigeDuurEvent { get; set; }
         public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
@@ -29,9 +28,7 @@ namespace HotelSimulatie
             // Als er geen sprake is van zo een vreselijk test event
             if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
-                message = evt.Data.Values.ElementAt(0);
-                
-
+                Message = evt.Data.Values.ElementAt(0);
                 if (Category == NEventCategory.Guest)
                 { 
                     bepaalGast(evt, gastenLijst);
