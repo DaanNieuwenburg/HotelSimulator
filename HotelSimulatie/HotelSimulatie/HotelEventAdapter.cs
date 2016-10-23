@@ -17,6 +17,7 @@ namespace HotelSimulatie
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }
         public string message { get; set; }
+        public int HuidigeDuurEvent { get; set; }
         public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
             NEvent = (NEventType)evt.EventType;

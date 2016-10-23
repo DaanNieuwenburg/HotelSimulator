@@ -97,11 +97,11 @@ namespace HotelSimulatie
                 // Zet overige posities goed
                 if (hotelRuimte is Lobby)
                 {
-                    hotel.LobbyRuimte = (Lobby)hotelRuimte;
-                    hotel.LobbyRuimte.hotel = hotel;
-                    hotel.LobbyRuimte.LobbyRectangle = new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y);
+                    hotel.hotelLayout.lobby = (Lobby)hotelRuimte;
+                    hotel.hotelLayout.lobby.hotel = hotel;
+                    hotel.hotelLayout.lobby.LobbyRectangle = new Rectangle((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y, (Int32)hotelRuimte.Afmetingen.X, (Int32)hotelRuimte.Afmetingen.Y);
                     GastSpawnLocatie = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
-                    hotel.LobbyRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
+                    hotel.hotelLayout.lobby.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
                 if(hotelRuimte is Liftschacht)
                 {

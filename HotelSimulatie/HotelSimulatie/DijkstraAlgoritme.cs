@@ -61,7 +61,7 @@ namespace HotelSimulatie
             {
                 return pad;
             }
-        }
+        } 
 
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {

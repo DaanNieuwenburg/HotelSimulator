@@ -7,6 +7,8 @@ namespace HotelSimulatie
 {
     public class HotelTijdsEenheid
     {
-        //public float 
+        public static int eetzaalHTE = 1;
+        public static int bioscoopHTE = 1;
+        public static int fitnessHTE = 1;
     }
 }

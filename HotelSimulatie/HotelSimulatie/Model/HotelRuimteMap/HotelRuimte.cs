@@ -73,5 +73,9 @@ namespace HotelSimulatie.Model
                 }
             }
         }
+
+        public virtual void voegPersoonToe(Gast gast)
+        {
+        }
     }
 }

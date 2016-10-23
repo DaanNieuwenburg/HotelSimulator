@@ -9,7 +9,6 @@ namespace HotelSimulatie.Model
     public class Hotel
     {
         public HotelLayout hotelLayout { get; set; }
-        public Lobby LobbyRuimte { get; set; }
         public List<Gast> GastenLijst { get; set; }
         public Schoonmaker Schoonmaker_A { get; set; }
         public Schoonmaker Schoonmaker_B { get; set; }
@@ -31,7 +30,7 @@ namespace HotelSimulatie.Model
                 Console.WriteLine("OMG EVACUATIE");
                 foreach (Gast gast in GastenLijst)
                 {
-                    gast.Bestemming = LobbyRuimte;
+                    gast.Bestemming = hotelLayout.lobby;
                     gast.BestemmingLijst = null;
                     gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
                 }
@@ -39,12 +38,12 @@ namespace HotelSimulatie.Model
             else
             {
                 int aantalGasten = GastenLijst.Count;
-                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == LobbyRuimte select Gast).Count();
+                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == hotelLayout.lobby select Gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
                     foreach(Gast gast in GastenLijst)
                     {
-                        gast.HuidigeRuimte = LobbyRuimte;
+                        gast.HuidigeRuimte = hotelLayout.lobby;
                         gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                     }
                 }

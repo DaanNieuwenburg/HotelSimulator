@@ -12,12 +12,7 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
-        public bool Wacht { get; set; }
-
-        public Gast()
-        {
-            Wacht = false;
-        }
+        
 
         public void Inchecken(Lobby lobby, GameTime gameTime)
         {
@@ -102,6 +97,10 @@ namespace HotelSimulatie.Model
                     Bestemming = null;
                     BestemmingLijst = null;
                     HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if(HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
+                    {
+                        HuidigeRuimte.voegPersoonToe(this);
+                    }
                 }
             }
         }
