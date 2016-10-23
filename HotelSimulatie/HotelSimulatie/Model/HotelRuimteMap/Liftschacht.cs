@@ -17,7 +17,7 @@ namespace HotelSimulatie.Model
         public Queue<Persoon> Wachtrij { get; set; }
         public Liftschacht(int verdieping)
         {
-            Naam = "Lift";
+            Naam = "Liftschacht";
             texturepath = "";
             Bestemming = verdieping;
             Verdieping = verdieping;
@@ -28,72 +28,46 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             string texture;
-            //Laad textures voor verschillende verdiepingen
-            #region 
             if (Bestemming == 0)
             {
-                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
+                if (lift.Huidigeverdieping == Bestemming)
                     texture = @"Lift\Lift_Beneden_Open";
                 else
                     texture = @"Lift\Lift_Beneden";
             }
-            else if (Bestemming == lift.BovensteVerdieping)
-            {
-                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
-                    texture = @"Lift\Lift_Bovenste_Open";
-                else
-                    texture = @"Lift\Lift_Bovenste_Gesloten";
-            }
             else
             {
-                if (lift.HuidigeVerdieping.Verdieping == Bestemming)
+                if (lift.Huidigeverdieping == Bestemming)
                     texture = @"Lift\Lift_Open";
                 else
                     texture = @"Lift\Lift_Gesloten";
             }
-            #endregion  
-
+                
             Texture = contentManager.Load<Texture2D>(texture);
         }
-
-        public bool VraagOmLift(Persoon persoon)
+        public void UpdateWachtrij(Persoon persoon)
         {
-            bool liftKomtAl = true;
-            if (!Wachtrij.Contains(persoon))
+            if(!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
-                isWachtrij = true;
-                lift.VoegLiftStopToe(this);
-                liftKomtAl = false;
             }
-            return liftKomtAl;
+            isWachtrij = true;
+            if(lift.Huidigeverdieping == this.Verdieping && Wachtrij.Count > 0)
+            {
+                LeegWachtrij(this.Verdieping);
+            }
         }
-
-        public void LaatGastenLiftInGaan()
+        public void LeegWachtrij(int verdieping)
         {
-            int personenInWachtrij = Wachtrij.Count();
-            for (int i = 0; i < personenInWachtrij; i++)
+            List<Persoon> wachtrijlist = new List<Persoon>();
+            for (int i = 0; i < Wachtrij.Count(); i++)
             {
-                Persoon persoon = Wachtrij.Dequeue();
-                persoon.inLift = true;
-                persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
-                persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
-                lift.GasteninLift.Add(persoon);
-                lift.VoegLiftStopToe((Liftschacht)persoon.Bestemming);
+                Persoon temp = Wachtrij.Dequeue();
+                wachtrijlist.Add(temp);
             }
-        }
-
-        public void LaatGastenUitLiftGaan(List<Persoon> personenDieUitstappen)
-            {
-            foreach (Persoon persoon in personenDieUitstappen)
-                {
-                persoon.HuidigeRuimte = this;
-                persoon.Bestemming = persoon.BestemmingLijst.First();
-                persoon.BestemmingLijst.Remove(persoon.Bestemming);
-                persoon.inLift = false;
-                persoon.Positie = EventCoordinaten;
-                lift.GasteninLift.Remove(persoon);
-            }
+            Console.WriteLine("Wachtrij geleegd " + verdieping);
+            lift.UpdateLift(wachtrijlist);
+            isWachtrij = false;
         }
     }
 }
