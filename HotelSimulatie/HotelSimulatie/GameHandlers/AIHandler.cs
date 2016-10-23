@@ -79,9 +79,9 @@ namespace HotelSimulatie
             {
                 eetzaal.Update(gameTime);
             }
-
-            // Update lift
+            
             spel.hotel.hotelLayout.bioscoop.Update(gameTime);
+            spel.hotel.hotelLayout.fitness.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

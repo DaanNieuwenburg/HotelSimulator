@@ -106,6 +106,10 @@ namespace HotelSimulatie.Model
                     Bestemming = null;
                     BestemmingLijst = null;
                     HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
+                    {
+                        HuidigeRuimte.voegPersoonToe(this);
+                    }
                 }
             }
         }
