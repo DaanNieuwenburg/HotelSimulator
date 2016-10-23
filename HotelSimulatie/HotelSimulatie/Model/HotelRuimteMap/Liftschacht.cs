@@ -28,6 +28,8 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             string texture;
+            //Laad textures voor verschillende verdiepingen
+            #region 
             if (Bestemming == 0)
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)
@@ -49,7 +51,7 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Gesloten";
             }
-
+            #endregion  
 
             Texture = contentManager.Load<Texture2D>(texture);
         }
@@ -82,9 +84,9 @@ namespace HotelSimulatie.Model
         }
 
         public void LaatGastenUitLiftGaan(List<Persoon> personenDieUitstappen)
-        {
-            foreach (Persoon persoon in personenDieUitstappen)
             {
+            foreach (Persoon persoon in personenDieUitstappen)
+                {
                 persoon.HuidigeRuimte = this;
                 persoon.Bestemming = persoon.BestemmingLijst.First();
                 persoon.BestemmingLijst.Remove(persoon.Bestemming);

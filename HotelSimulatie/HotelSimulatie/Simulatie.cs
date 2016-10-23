@@ -71,17 +71,14 @@ namespace HotelSimulatie
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
             spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
-            
+
             // Zet de tijd neer
-            if((gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) > 119)
+            int tijd = 0;
+            if(gameTime.TotalGameTime.Seconds > 59)
             {
-                spriteBatch.DrawString(font, "Tijd: " + 120 + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor + " HTE", new Vector2(0, 700), Color.Red);
+                tijd = tijd + 60;              
             }
-            else
-            {
-                spriteBatch.DrawString(font, "Tijd: " + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor + " HTE", new Vector2(0, 700), Color.Red);
-            }
-            
+            spriteBatch.DrawString(font, "Tijd: " + (tijd + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) + " HTE", new Vector2(0, 700), Color.Red);
 
             foreach (HotelRuimte hotelRuimte in hotel.hotelLayout.HotelRuimteLijst)
             {

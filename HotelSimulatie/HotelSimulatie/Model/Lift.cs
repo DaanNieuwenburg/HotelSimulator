@@ -83,7 +83,7 @@ namespace HotelSimulatie.Model
                 HuidigeVerdieping = LiftBestemming;
                 LiftStoppenlijst.Remove(HuidigeVerdieping);
                 HuidigeVerdieping = LiftBestemming;
-
+                
                 GasteninLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
 
                 // Laat de gasten uitstappen
@@ -92,34 +92,34 @@ namespace HotelSimulatie.Model
                                                 select gast);
                 List<Persoon> personenDieUitstappenLijst = personenDieUitstappen.ToList();
                 HuidigeVerdieping.LaatGastenUitLiftGaan(personenDieUitstappenLijst);
-            }
+                }
             return aangekomenOpBestemming;
-        }
+                }
 
         private void bepaalLiftBestemming()
-        {
+                {
             int wachtendeBovenDeLift = LiftStoppenlijst.Count(o => o.Verdieping > HuidigeVerdieping.Verdieping);
             int wachtendeOnderDeLift = LiftStoppenlijst.Count(o => o.Verdieping < HuidigeVerdieping.Verdieping);
 
             // Ga omhoog, bij wachtende mensen boven de huidige lift
             if (wachtendeBovenDeLift > 0)
-            {
+                {
                 // Sorteer de lijst van laag naar hoog, want de lift gaat omhoog
                 LiftStoppenlijst.Sort((o1, o2) => o1.Verdieping.CompareTo(o2.Verdieping));
 
                 // Pak de eerste bestemming boven de huidige liftverdieping
                 LiftBestemming = LiftStoppenlijst.First(o => o.Verdieping > HuidigeVerdieping.Verdieping);
-            }
+                }
 
             // Ga omlaag bij wachtende mensen onder de huidige lift
             else if (wachtendeOnderDeLift > 0)
-            {
+                        {
                 // Sorteer de lijst van hoog naar laag want de lift gaat omlaag
                 LiftStoppenlijst.Sort((o1, o2) => o2.Verdieping.CompareTo(o1.Verdieping));
 
                 // Pak de eerste bestemming onder de huidige liftverdieping
                 LiftBestemming = LiftStoppenlijst.First(o => o.Verdieping < HuidigeVerdieping.Verdieping);
-            }
+        }
 
             // Als er niemand wacht op de lift, blijf op huidige verdieping
             

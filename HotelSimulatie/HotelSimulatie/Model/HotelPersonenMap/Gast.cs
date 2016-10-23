@@ -12,7 +12,17 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
-        
+
+        public Gast()
+        {
+            Wacht = false;
+            Texturelijst = new List<string>();
+            //Texturelijst.Add(@"Gasten\AnimatedRob");
+            Texturelijst.Add(@"Gasten\AnimatedGast1");
+            Texturelijst.Add(@"Gasten\AnimatedGast2");
+            Texturelijst.Add(@"Gasten\AnimatedGast3");
+            Texturelijst.Add(@"Gasten\AnimatedGast4");
+        }
 
         public void Inchecken(Lobby lobby, GameTime gameTime)
         {
@@ -49,23 +59,6 @@ namespace HotelSimulatie.Model
             }
         }
 
-        public void GaNaarKamer<T>(ref T ruimte)
-        {
-
-            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
-            {
-                Bestemming = ruimte as HotelRuimte;
-            }
-
-            if (BestemmingLijst == null && Bestemming is T)
-            {
-                // Zoek kortste pad naar bestemming
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                if (Bestemming is Eetzaal)
-                {
-                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
-                }
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
                 HuidigEvent = HuidigEvent;
