@@ -51,6 +51,7 @@ namespace HotelSimulatie
                 string classification = jObject["Classification"].Value<string>();
                 jObject.Property("Classification").Value = (int)Char.GetNumericValue(classification[0]);
                 jObject.Property("Dimension").Value = jObject["Dimension"].Value<string>();
+                jObject.Property("ID").Value = jObject["ID"].Value<string>();
                 return jObject.ToObject<Kamer>(serializer);
             }
             else

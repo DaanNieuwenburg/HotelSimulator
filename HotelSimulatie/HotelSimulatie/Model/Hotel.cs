@@ -10,16 +10,16 @@ namespace HotelSimulatie.Model
     {
         public HotelLayout hotelLayout { get; set; }
         public List<Gast> GastenLijst { get; set; }
-        public Schoonmaker Schoonmaker_A { get; set; }
-        public Schoonmaker Schoonmaker_B { get; set; }
+        public Schoonmaker[] Schoonmakers { get; set; }
         public bool IsEvacuatie { get; set; }
         public Hotel()
         {
             IsEvacuatie = false;
             hotelLayout = new HotelLayout();
             GastenLijst = new List<Gast>();
-            Schoonmaker_A = new Schoonmaker();
-            Schoonmaker_B = new Schoonmaker();   
+            Schoonmakers = new Schoonmaker[2];
+            Schoonmakers[0] = new Schoonmaker();
+            Schoonmakers[1] = new Schoonmaker();
         }
 
         public void Evacueer()
