@@ -97,6 +97,62 @@ namespace HotelSimulatie.Model
             return false;
         }
 
+        public void GaNaarKamer<T>(ref T ruimte)
+        {
+
+            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
+            {
+                Bestemming = ruimte as HotelRuimte;
+            }
+
+            if (BestemmingLijst == null && Bestemming is T)
+            {
+                // Zoek kortste pad naar bestemming
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                if (Bestemming is Eetzaal)
+                {
+                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                }
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
+
+                // Koppel eerste node aan bestemming
+                HuidigEvent = HuidigEvent;
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop via pathfinding naar bestemming
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    if (HuidigeRuimte is Liftschacht)
+                    {
+                        // Ga verder met de lift
+                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
+                        liftschacht.VraagOmLift(this);
+                        Bestemming = HuidigeRuimte;
+                    }
+                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
+                    {
+                        HuidigeRuimte = Bestemming;
+                        Bestemming = BestemmingLijst.First();
+                        BestemmingLijst.Remove(BestemmingLijst.First());
+                    }
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    Bestemming = null;
+                    BestemmingLijst = null;
+                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
+                    {
+                        HuidigeRuimte.voegPersoonToe((Gast)this);
+                    }
+                }
+            }
+        }
+
         public void UpdateFrame(GameTime spelTijd)
         {
             SpriteAnimatie.UpdateFrame(spelTijd);

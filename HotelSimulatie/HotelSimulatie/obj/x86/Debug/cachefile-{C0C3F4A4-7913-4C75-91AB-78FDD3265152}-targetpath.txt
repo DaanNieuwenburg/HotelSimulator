@@ -33,4 +33,3 @@ Content\Kamers\Bioscoop.xnb
 Content\Gasten\AnimatedGast4.xnb
 Content\Gasten\AnimatedGast4_Links.xnb
 Content\Font.xnb
-Content\Naamloos.xnb

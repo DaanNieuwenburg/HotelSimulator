@@ -20,9 +20,8 @@ namespace HotelSimulatie
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
             // For loop aangezien we aanpassing maken aan de gasten die in de lijst staan
-            for(int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
+            for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
                 if (gast.HuidigEvent != null && gast.inLift == false)
@@ -31,33 +30,33 @@ namespace HotelSimulatie
                     {
                         gast.Inchecken(spel.hotel.hotelLayout.lobby, gameTime);
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                     {
                         Lobby lobby = spel.hotel.hotelLayout.lobby;
                         gast.GaNaarKamer<Lobby>(ref lobby);
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
                     {
                         Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
                         gast.GaNaarKamer<Bioscoop>(ref bioscoop);
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
                     {
                         Fitness fitness = spel.hotel.hotelLayout.fitness;
                         gast.GaNaarKamer<Fitness>(ref fitness);
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
                     {
-                            Kamer kamer = gast.ToegewezenKamer;
-                            gast.GaNaarKamer<Kamer>(ref kamer);
+                        Kamer kamer = gast.ToegewezenKamer;
+                        gast.GaNaarKamer<Kamer>(ref kamer);
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
                         Lobby lobby = spel.hotel.hotelLayout.lobby;
                         gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
-                    else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
                     {
                         Eetzaal eetzaal = new Eetzaal();
                         gast.GaNaarKamer<Eetzaal>(ref eetzaal);
@@ -76,11 +75,11 @@ namespace HotelSimulatie
             }
 
             // Update de eetzaal
-            foreach(Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
+            foreach (Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
             {
                 eetzaal.Update(gameTime);
             }
-            
+
             spel.hotel.hotelLayout.bioscoop.Update(gameTime);
             spel.hotel.hotelLayout.fitness.Update(gameTime);
         }
@@ -92,12 +91,7 @@ namespace HotelSimulatie
 
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spel.spelCamera.TransformeerMatrix(this.Game.GraphicsDevice));
             base.Draw(gameTime);
-            if(spel.hotel.lift.lift != null)
-            {
-                spel.hotel.lift.lift.LoadContent(Game.Content);
-                spriteBatch.Draw(spel.hotel.lift.lift.Texture, new Rectangle((Int32)spel.hotel.lift.EventCoordinaten.X, (Int32)spel.hotel.lift.EventCoordinaten.Y, 90, 90), Color.White);
 
-            }
             // Toon gasten
             int a = spel.hotel.GastenLijst.Count;
             for (int i = 0; i < a; i++)
