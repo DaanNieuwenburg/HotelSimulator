@@ -80,7 +80,7 @@ namespace HotelSimulatie
             }
             spriteBatch.DrawString(font, "Tijd: " + (tijd + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) + " HTE", new Vector2(0, 700), Color.Red);
 
-            foreach (HotelRuimte hotelRuimte in Hotel.NodeLijst)
+            foreach (HotelRuimte hotelRuimte in hotel.hotelLayout.HotelRuimteLijst)
             {
                 hotelRuimte.LoadContent(Content);
 

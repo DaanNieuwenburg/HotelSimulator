@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelSimulatieContent", "Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{E138C5E6-43A4-4936-AB72-7BD6B7E75A56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDD", "TDD\TDD.csproj", "{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,14 @@ Global
 		{E138C5E6-43A4-4936-AB72-7BD6B7E75A56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E138C5E6-43A4-4936-AB72-7BD6B7E75A56}.Release|x86.ActiveCfg = Release|Any CPU
 		{E138C5E6-43A4-4936-AB72-7BD6B7E75A56}.Release|x86.Build.0 = Release|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Debug|x86.Build.0 = Debug|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Release|x86.ActiveCfg = Release|Any CPU
+		{7CB9D4F9-E939-45DA-8A4D-77EB1598A022}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

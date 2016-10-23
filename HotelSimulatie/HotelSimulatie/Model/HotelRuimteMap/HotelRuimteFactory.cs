@@ -10,12 +10,12 @@ namespace HotelSimulatie.Model
         public HotelRuimte MaakHotelRuimte(string soort, int verdieping = 0)
         {
             if (soort == "Bioscoop")
-                return new Lobby();
+                return new Bioscoop();
             else if (soort == "Eetzaal")
                 return new Eetzaal();
             else if (soort == "Fitness")
                 return new Fitness();
-            else if (soort == "Lift")
+            else if (soort == "Liftschacht")
                 return new Liftschacht(verdieping);
             else if (soort == "Lobby")
                 return new Lobby();
@@ -23,6 +23,10 @@ namespace HotelSimulatie.Model
                 return new Trap();
             else if (soort == "Kamer")
                 return new Kamer(1);
+            else if (soort == "Gang")
+                return new Gang();
+            else if (soort == "Lift")
+                return new Lift(verdieping);
             else
                 return null;
         }

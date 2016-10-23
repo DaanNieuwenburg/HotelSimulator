@@ -24,7 +24,7 @@ namespace HotelSimulatie
             for(int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null)
+                if (gast.HuidigEvent != null && gast.inLift == false)
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
@@ -37,12 +37,12 @@ namespace HotelSimulatie
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
                     {
-                        Bioscoop bioscoop = spel.hotel.bioscoop;
+                        Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
                         gast.GaNaarKamer<Bioscoop>(ref bioscoop);
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
                     {
-                        Fitness fitness = spel.hotel.fitness;
+                        Fitness fitness = spel.hotel.hotelLayout.fitness;
                         gast.GaNaarKamer<Fitness>(ref fitness);
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
@@ -65,13 +65,13 @@ namespace HotelSimulatie
             }
 
             // Update de lift
-            if (spel.hotel.lift.EventCoordinaten.X != 0 && spel.hotel.lift.EventCoordinaten.Y != 0)
+            if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
             {
-                spel.hotel.lift.UpdateLift();
+                spel.hotel.hotelLayout.lift.UpdateLift();
             }
             else
             {
-                spel.hotel.lift.InitializeerLift();
+                spel.hotel.hotelLayout.lift.InitializeerLift();
             }
         }
 
@@ -88,12 +88,11 @@ namespace HotelSimulatie
             for (int i = 0; i < a; i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.Bestemming != null)
+                if (gast.Bestemming != null && gast.inLift == false)
                 {
                     gast.Draw(spriteBatch);
                 }
             }
-
             spriteBatch.End();
         }
     }

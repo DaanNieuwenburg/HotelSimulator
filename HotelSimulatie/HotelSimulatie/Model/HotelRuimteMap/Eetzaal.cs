@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             Texture = contentManager.Load<Texture2D>(Naam);
+        }
+
+        public void UpdateEetzaal(GameTime gameTijd)
+        {
+
         }
     }
 }

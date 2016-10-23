@@ -11,6 +11,7 @@ namespace HotelSimulatie.Model
     public class Gast : Persoon
     {
         public Kamer ToegewezenKamer { get; set; }
+        public int AantalSterrenKamer { get; set; }
         public bool Wacht { get; set; }
 
         public Gast()
@@ -46,7 +47,7 @@ namespace HotelSimulatie.Model
                         if (gevondenKamer.AantalSterren == 0)
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
-                            HuidigEvent.EventType = HotelEvents.HotelEventType.CHECK_OUT;
+                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.CHECK_OUT;
                         }
                         else
                         {
@@ -57,9 +58,42 @@ namespace HotelSimulatie.Model
                     }
                 }
             }
-        }
+            }
 
-        
+
+                // Koppel eerste node aan bestemming
+                HuidigEvent = HuidigEvent;
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop via pathfinding naar bestemming
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    if (HuidigeRuimte is Liftschacht)
+                    {
+                        // Ga verder met de lift
+                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
+                        liftschacht.VraagOmLift(this);
+                        Bestemming = HuidigeRuimte;
+                    }
+                    else if(HuidigeRuimte.GetType() != typeof(Liftschacht))
+                    {
+                        HuidigeRuimte = Bestemming;
+                        Bestemming = BestemmingLijst.First();
+                        BestemmingLijst.Remove(BestemmingLijst.First());
+                    }
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    Bestemming = null;
+                    BestemmingLijst = null;
+                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                }
+            }
+        }
     }
 }
 

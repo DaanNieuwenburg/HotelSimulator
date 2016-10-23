@@ -37,19 +37,18 @@ namespace HotelSimulatie.Model
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
-                    while (gast.ToegewezenKamer == null && gast.HuidigEvent.aantalSterrenKamer <= 5)
+                    while (gast.ToegewezenKamer == null && gast.AantalSterrenKamer <= 5)
                     {
                         DijkstraAlgoritme vindDichtbijzijndeKamerAlgo = new DijkstraAlgoritme();
                         vindDichtbijzijndeKamerAlgo.zoekDichtbijzijnde = true;
-                        gast.ToegewezenKamer = hotel.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.HuidigEvent.aantalSterrenKamer);
-                        gast.HuidigEvent.aantalSterrenKamer++;
+                        gast.ToegewezenKamer = hotel.hotelLayout.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.AantalSterrenKamer);
+                        gast.AantalSterrenKamer++;
                     }
                     gast.ToegewezenKamer.Bezet = true;
                 }
                 catch(InvalidOperationException e)
                 {
                     // Als er geen kamer beschikbaar is, return kamer van 0 sterren
-                    Console.WriteLine("Checkout");
                     gast.ToegewezenKamer = new Kamer(0);
                 }
                 verlopenTijd = 0;
@@ -70,7 +69,7 @@ namespace HotelSimulatie.Model
             // Een kamernummer van 0 betekent dat de gewenste kamer niet beschikbaar is
             if (gast.ToegewezenKamer.Kamernummer != 0)
             {
-                Kamer gastKamer = hotel.KamerLijst.Find(o => o.Kamernummer == gast.ToegewezenKamer.Kamernummer);
+                Kamer gastKamer = hotel.hotelLayout.KamerLijst.Find(o => o.Kamernummer == gast.ToegewezenKamer.Kamernummer);
                 gastKamer.Bezet = false;
                 gast.ToegewezenKamer = null;
             }

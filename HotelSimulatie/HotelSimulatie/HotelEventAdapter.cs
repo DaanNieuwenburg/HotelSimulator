@@ -14,7 +14,6 @@ namespace HotelSimulatie
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
         public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM }
         public Gast gast { get; set; }
-        public int? aantalSterrenKamer { get; set; }
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }
         public string message { get; set; }
@@ -30,18 +29,10 @@ namespace HotelSimulatie
             if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
                 message = evt.Data.Values.ElementAt(0);
-
-                Console.WriteLine(evt.Message);
-                Console.WriteLine(message);
+                
 
                 if (Category == NEventCategory.Guest)
-                {
-                    // Bepaal kamernummer
-                    if (NEvent == NEventType.CHECK_IN)
-                    {
-                        string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
-                        aantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
-                    }
+                { 
                     bepaalGast(evt, gastenLijst);
                 }
             }
@@ -102,6 +93,14 @@ namespace HotelSimulatie
             {
                 gast = new Gast();
                 gast.Naam = gastNaam;
+            }
+
+
+            // Bepaal kamernummer bij een checkin
+            if (NEvent == NEventType.CHECK_IN)
+            {
+                string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
+                gast.AantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
             }
         }
     }

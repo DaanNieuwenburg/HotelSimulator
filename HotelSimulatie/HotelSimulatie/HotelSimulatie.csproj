@@ -115,7 +115,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Simulatie.cs" />
     <Compile Include="Camera.cs" />
-    <Compile Include="LayoutLezer.cs" />
+    <Compile Include="HotelLayout.cs" />
     <Compile Include="View\Hoofdmenu.cs">
       <SubType>Form</SubType>
     </Compile>
