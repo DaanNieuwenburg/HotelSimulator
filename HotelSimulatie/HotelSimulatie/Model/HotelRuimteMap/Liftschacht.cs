@@ -28,6 +28,8 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             string texture;
+            //Laad textures voor verschillende verdiepingen
+            #region 
             if (Bestemming == 0)
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)
@@ -49,7 +51,7 @@ namespace HotelSimulatie.Model
                 else
                     texture = @"Lift\Lift_Gesloten";
             }
-
+            #endregion  
 
             Texture = contentManager.Load<Texture2D>(texture);
         }
@@ -73,10 +75,12 @@ namespace HotelSimulatie.Model
                 {
                     Persoon temp = Wachtrij.Dequeue();
                     lift.GasteninLift.Add(temp);
-
+                    //temp.Bestemming = null;
+                    Console.WriteLine("Laat " + temp.Naam + " LiftInGaan op verdieping " + this.Verdieping);
                     // Voegt de verdieping van de personen aan de lijst toe
                     lift.VoegLiftStopToe(temp.bestemmingslift);
                 }
+                isWachtrij = false;
             }
         }
         public void LaatGastenUitLiftGaan()

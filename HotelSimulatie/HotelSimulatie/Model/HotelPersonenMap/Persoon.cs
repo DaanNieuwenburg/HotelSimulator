@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HotelEvents;
+using System.Reflection;
 
 namespace HotelSimulatie.Model
 {
@@ -19,10 +20,11 @@ namespace HotelSimulatie.Model
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
-        private List<string> Texturelijst { get; set; }
+        
         private ContentManager tempmanager { get; set; }
         public string Naam { get; set; }
-        private int textureIndex { get; set; }
+        protected int textureIndex { get; set; }
+        protected List<string> Texturelijst { get; set; }
         private bool LooptNaarLinks { get; set; }
         public Persoon()
         {
@@ -32,16 +34,11 @@ namespace HotelSimulatie.Model
             loopSnelheid = (float)a / 10;*/
             loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
 
-            Texturelijst = new List<string>();
-            //Texturelijst.Add(@"Gasten\AnimatedRob");
-            Texturelijst.Add(@"Gasten\AnimatedGast1");
-            Texturelijst.Add(@"Gasten\AnimatedGast2");
-            Texturelijst.Add(@"Gasten\AnimatedGast3");
-            Texturelijst.Add(@"Gasten\AnimatedGast4");
+            
 
         }
 
-        public void LoadContent(ContentManager contentManager)
+        public virtual void LoadContent(ContentManager contentManager)
         {
             tempmanager = contentManager;
             Random randomgast = new Random();
@@ -138,7 +135,52 @@ namespace HotelSimulatie.Model
             Console.WriteLine("Ga kamer in");
             Bestemming = null;
         }
+        public void GaNaarKamer<T>(ref T ruimte)
+        {
 
+            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
+            {
+                Bestemming = ruimte as HotelRuimte;
+            }
+
+            if (BestemmingLijst == null && Bestemming is T)
+            {
+                // Zoek kortste pad naar bestemming
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                if (Bestemming is Eetzaal)
+                {
+                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                }
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
+
+                // Koppel eerste node aan bestemming
+                HuidigEvent = HuidigEvent;
+                Bestemming = BestemmingLijst.First();
+                BestemmingLijst.Remove(BestemmingLijst.First());
+            }
+
+            // Loop via pathfinding naar bestemming
+            else if (BestemmingLijst != null)
+            {
+                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                {
+                    if (Bestemming is Liftschacht)
+                    {
+                        Bestemming = BestemmingLijst.First();
+                    }
+                    else
+                    {
+                        Bestemming = BestemmingLijst.First();
+                        BestemmingLijst.Remove(BestemmingLijst.First());
+                    }
+                }
+                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
+                {
+                    Bestemming = null;
+                    BestemmingLijst = null;
+                }
+            }
+        }
         public void UpdateFrame(GameTime spelTijd)
         {
             SpriteAnimatie.UpdateFrame(spelTijd);

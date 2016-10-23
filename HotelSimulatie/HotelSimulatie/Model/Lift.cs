@@ -98,9 +98,9 @@ namespace HotelSimulatie.Model
                 {
                     LiftBestemming = Liftschachtlijst[HuidigeVerdieping.Verdieping + 1];
                 }
-                
+                Console.WriteLine("Huidigeverdieping " + HuidigeVerdieping.Verdieping);
                 aangekomenOpBestemming = true;
-
+                GasteninLift = GasteninLift.Distinct<Persoon>().ToList();
                 // Haal de bestemming weg uit de gastenlijst
                 foreach (Gast gast in GasteninLift)
                 {
