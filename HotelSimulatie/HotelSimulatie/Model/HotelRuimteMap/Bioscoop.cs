@@ -12,7 +12,7 @@ namespace HotelSimulatie.Model
     {
         private List<Gast> inBioscoopLijst { get; set; }
         private int filmtijd { get; set; }
-        private bool filmbezig { get; set; }
+        public bool filmbezig { get; set; }
         public Bioscoop()
         {
             Naam = "Bioscoop";
@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
         }
         public void Start(GameTime gameTime)
         {
-            filmtijd = gameTime.ElapsedGameTime.Seconds;
+            filmtijd = gameTime.TotalGameTime.Seconds;
             filmbezig = true;
             Console.WriteLine("Film is gestart");
             
@@ -38,21 +38,18 @@ namespace HotelSimulatie.Model
         public void Update(GameTime gameTijd)
         {
             int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
-            foreach (Gast gast in inBioscoopLijst)
-            { 
-                if (gast.HuidigEvent.HuidigeDuurEvent == 0)
+            if (gameTijd.TotalGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE )
+            {
+                filmbezig = false;
+                
+                Console.WriteLine("Film is gestopt");
+                foreach (Gast gast in inBioscoopLijst)
                 {
-                    // In dit geval is er nog geen tijd toegewezen
-                    gast.HuidigEvent.HuidigeDuurEvent = totaleSpelTijd;
-                }
-                else if (gameTijd.ElapsedGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE)
-                {
-                    filmbezig = false;
                     gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                     gast.HuidigEvent.HuidigeDuurEvent = 0;
-                    Console.WriteLine("Film is gestopt");
                 }
             }
+            
         }
     }
 }

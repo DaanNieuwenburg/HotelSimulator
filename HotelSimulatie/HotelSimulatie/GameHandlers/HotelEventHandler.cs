@@ -15,7 +15,7 @@ namespace HotelSimulatie
     {
         private Simulatie spel { get; set; }
         private HotelEvent Event { get; }
-        private GameTime GameTijd { get; set; }
+        private GameTime gametime { get; set; }
 
         public HotelEventHandler(Game game) : base(game)
         {
@@ -25,7 +25,11 @@ namespace HotelSimulatie
             HotelEventManager.Register(this);
             HotelEventManager.Start();
         }
-
+        public override void Update(GameTime gameTime)
+        {
+            gametime = gameTime;
+            base.Update(gameTime);
+        }
         public void Notify(HotelEvent evt)
         {
             // Adapter gebruiken om HotelEvent om te zetten
@@ -60,13 +64,6 @@ namespace HotelSimulatie
                     GaNaarEetzaalEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
             }
-            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
-            {
-                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
-                {
-                    spel.hotel.Evacueer();
-                }
-            }
             else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
             {
                 if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
@@ -74,6 +71,14 @@ namespace HotelSimulatie
                     Start_Cinema(hotelEventAdapter);
                 }
             }
+            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
+            {
+                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                {
+                    spel.hotel.Evacueer();
+                }
+            }
+            
             else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
             {
                 if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CLEANING_EMERGENCY)
@@ -102,12 +107,12 @@ namespace HotelSimulatie
             spel.hotel.GastenLijst.Add(gast);
 
             // Start het event
-            gast.Inchecken(spel.hotel.hotelLayout.lobby, GameTijd);
+            gast.Inchecken(spel.hotel.hotelLayout.lobby, gametime);
         }
         private void Start_Cinema(HotelEventAdapter hotelEvent)
         {
             spel.hotel.hotelLayout.bioscoop.HuidigEvent = hotelEvent;
-            spel.hotel.hotelLayout.bioscoop.Start(GameTijd);
+            spel.hotel.hotelLayout.bioscoop.Start(gametime);
         }
         private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {

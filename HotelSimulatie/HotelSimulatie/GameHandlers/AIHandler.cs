@@ -56,10 +56,10 @@ namespace HotelSimulatie
                         gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
-                    else if (spel.hotel.hotelLayout.bioscoop.HuidigEvent != null && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                    else if (spel.hotel.hotelLayout.bioscoop.filmbezig == true && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
                     {
                         Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        bioscoop.Start(gameTime);
+                        bioscoop.Update(gameTime);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
                     {
@@ -84,8 +84,6 @@ namespace HotelSimulatie
             {
                 eetzaal.Update(gameTime);
             }
-
-            spel.hotel.hotelLayout.bioscoop.Update(gameTime);
             spel.hotel.hotelLayout.fitness.Update(gameTime);
 
             // Update de schoonmakers
