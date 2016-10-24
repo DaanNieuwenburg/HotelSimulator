@@ -12,7 +12,7 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
-
+        public bool heeftHonger { get; set; }
         public Gast()
         {
             Texturelijst = new List<string>();
@@ -109,6 +109,8 @@ namespace HotelSimulatie.Model
                     if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
                     {
                         HuidigeRuimte.voegPersoonToe(this);
+                        if (HuidigeRuimte is Eetzaal)
+                            this.heeftHonger = false;
                     }
                 }
             }

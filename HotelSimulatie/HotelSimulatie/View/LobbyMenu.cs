@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HotelSimulatie.Model;
+using System.Diagnostics;
 
 namespace HotelSimulatie.View
 {
@@ -19,24 +20,54 @@ namespace HotelSimulatie.View
             tabs.Size = this.Size;
             tabs.ItemSize = new Size(tabPage1.Width / 3, 20);
             lvGasten.Size = tabPage3.Size;
-            
+
             hotel = _hotel;
-            
+
             // voeg gasten toe aan de lijst
-            /*foreach(Gast gast in hotel.GastenLijst)
+            foreach (Gast gast in hotel.GastenLijst)
             {
-                lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.Kamernummer.ToString(), gast.Wacht.ToString(), gast.Honger.ToString() }));
-            }*/
+                if (gast.ToegewezenKamer == null)
+                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                else
+                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+            }
             #region
-            // Ken waardes voor schoonmakers toe aan labels
+            //Ken waardes voor schoonmakers toe aan labels
             //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
             //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
-            //lbBestemmingLift.Text = hotel.lift.Bestemming.ToString() ;
-            //lbPersonenLift.Text = hotel.lift.AantalPersonen.ToString() ;
-            //lbPositieLift.Text = hotel.lift.Positie.ToString();
+            lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;
+            lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString() ;
+            lbPositieLift.Text ="Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
             #endregion
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            if(tabs.SelectedTab == tabPage1)
+            {
+                //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
+                //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+            }
+            else if(tabs.SelectedTab == tabPage2)
+            {
+                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
+                lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString();
+                lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
+            }
+            else if(tabs.SelectedTab == tabPage3)
+            {
+                lvGasten.Items.Clear();
+                foreach (Gast gast in hotel.GastenLijst)
+                {
+                    if (gast.ToegewezenKamer == null)
+                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                    else
+                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                }
+            }
+            
         }
     }
 }

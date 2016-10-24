@@ -45,6 +45,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lbPersonenLift = new System.Windows.Forms.Label();
+            this.lbBestemmingLift = new System.Windows.Forms.Label();
+            this.lbPositieLift = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -55,9 +58,7 @@
             this.chKamernr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chWachten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHonger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lbPersonenLift = new System.Windows.Forms.Label();
-            this.lbBestemmingLift = new System.Windows.Forms.Label();
-            this.lbPositieLift = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -256,6 +257,36 @@
             this.tabPage2.Text = "Liften";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lbPersonenLift
+            // 
+            this.lbPersonenLift.AutoSize = true;
+            this.lbPersonenLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPersonenLift.Location = new System.Drawing.Point(169, 144);
+            this.lbPersonenLift.Name = "lbPersonenLift";
+            this.lbPersonenLift.Size = new System.Drawing.Size(26, 16);
+            this.lbPersonenLift.TabIndex = 8;
+            this.lbPersonenLift.Text = "xxx";
+            // 
+            // lbBestemmingLift
+            // 
+            this.lbBestemmingLift.AutoSize = true;
+            this.lbBestemmingLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBestemmingLift.Location = new System.Drawing.Point(169, 101);
+            this.lbBestemmingLift.Name = "lbBestemmingLift";
+            this.lbBestemmingLift.Size = new System.Drawing.Size(26, 16);
+            this.lbBestemmingLift.TabIndex = 7;
+            this.lbBestemmingLift.Text = "xxx";
+            // 
+            // lbPositieLift
+            // 
+            this.lbPositieLift.AutoSize = true;
+            this.lbPositieLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPositieLift.Location = new System.Drawing.Point(169, 63);
+            this.lbPositieLift.Name = "lbPositieLift";
+            this.lbPositieLift.Size = new System.Drawing.Size(26, 16);
+            this.lbPositieLift.TabIndex = 6;
+            this.lbPositieLift.Text = "xxx";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -308,7 +339,7 @@
             this.lvGasten.Location = new System.Drawing.Point(6, 0);
             this.lvGasten.MultiSelect = false;
             this.lvGasten.Name = "lvGasten";
-            this.lvGasten.Size = new System.Drawing.Size(350, 250);
+            this.lvGasten.Size = new System.Drawing.Size(350, 331);
             this.lvGasten.TabIndex = 1;
             this.lvGasten.UseCompatibleStateImageBehavior = false;
             this.lvGasten.View = System.Windows.Forms.View.Details;
@@ -333,41 +364,22 @@
             // 
             this.chHonger.Text = "Honger";
             // 
-            // lbPersonenLift
+            // btnRefresh
             // 
-            this.lbPersonenLift.AutoSize = true;
-            this.lbPersonenLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPersonenLift.Location = new System.Drawing.Point(169, 144);
-            this.lbPersonenLift.Name = "lbPersonenLift";
-            this.lbPersonenLift.Size = new System.Drawing.Size(26, 16);
-            this.lbPersonenLift.TabIndex = 8;
-            this.lbPersonenLift.Text = "xxx";
-            // 
-            // lbBestemmingLift
-            // 
-            this.lbBestemmingLift.AutoSize = true;
-            this.lbBestemmingLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBestemmingLift.Location = new System.Drawing.Point(169, 101);
-            this.lbBestemmingLift.Name = "lbBestemmingLift";
-            this.lbBestemmingLift.Size = new System.Drawing.Size(26, 16);
-            this.lbBestemmingLift.TabIndex = 7;
-            this.lbBestemmingLift.Text = "xxx";
-            // 
-            // lbPositieLift
-            // 
-            this.lbPositieLift.AutoSize = true;
-            this.lbPositieLift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPositieLift.Location = new System.Drawing.Point(169, 63);
-            this.lbPositieLift.Name = "lbPositieLift";
-            this.lbPositieLift.Size = new System.Drawing.Size(26, 16);
-            this.lbPositieLift.TabIndex = 6;
-            this.lbPositieLift.Text = "xxx";
+            this.btnRefresh.Location = new System.Drawing.Point(7, 368);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(87, 29);
+            this.btnRefresh.TabIndex = 2;
+            this.btnRefresh.Text = "button1";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // LobbyMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 388);
+            this.ClientSize = new System.Drawing.Size(428, 400);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabs);
             this.Name = "LobbyMenu";
             this.Text = "LobbyMenu";
@@ -413,5 +425,6 @@
         private System.Windows.Forms.Label lbPositieLift;
         private System.Windows.Forms.Label lbBestemmingLift;
         private System.Windows.Forms.Label lbPersonenLift;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
