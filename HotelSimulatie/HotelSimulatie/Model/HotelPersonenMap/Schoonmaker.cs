@@ -17,6 +17,11 @@ namespace HotelSimulatie.Model
         public string Texturenaam { get; set; }
         public Schoonmaker()
         {
+            Texturelijst = new List<string>();
+            Texturelijst.Add(@"Gasten\AnimatedGast1");
+            Texturelijst.Add(@"Gasten\AnimatedGast2");
+            Texturelijst.Add(@"Gasten\AnimatedGast3");
+            Texturelijst.Add(@"Gasten\AnimatedGast4");
             SchoonTeMakenKamersLijst = new Dictionary<HotelEventAdapter, Kamer>();
         }
 
@@ -27,10 +32,10 @@ namespace HotelSimulatie.Model
 
         public void LoadContent(ContentManager contentManager)
         {
-            if (Texturenaam == "AnimatedSchoonmaker")
-                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 2);
-            else
-                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 4);
+            //if (Texturenaam == "AnimatedSchoonmaker")
+            //    SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 2);
+            //else
+             //   SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 4);
         }
 
         public void UpdateFrame(GameTime spelTijd)

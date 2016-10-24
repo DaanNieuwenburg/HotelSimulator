@@ -122,8 +122,8 @@ namespace HotelSimulatie
             }
 
             // Toon schoonmakers
-            spel.hotel.Schoonmakers[0].Draw(spriteBatch);
-            spel.hotel.Schoonmakers[1].Draw(spriteBatch);
+            //spel.hotel.Schoonmakers[0].Draw(spriteBatch);
+            //spel.hotel.Schoonmakers[1].Draw(spriteBatch);
             spriteBatch.End();
         }
     }
