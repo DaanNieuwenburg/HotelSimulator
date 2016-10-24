@@ -88,7 +88,6 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BFSAlgoritme.cs" />
     <Compile Include="GameHandlers\AIHandler.cs" />
     <Compile Include="GameHandlers\HotelEventHandler.cs" />
     <Compile Include="DijkstraAlgoritme.cs" />
