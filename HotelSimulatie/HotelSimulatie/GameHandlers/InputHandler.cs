@@ -70,9 +70,9 @@ namespace HotelSimulatie
             MouseState muisStatus = Mouse.GetState();
             Vector2 muisLocatie = new Vector2(muisStatus.X, muisStatus.Y);
             muisLocatie = muisLocatie + spel.spelCamera.Positie;
-            if (hotel.LobbyRuimte != null)
+            if (hotel.hotelLayout.lobby != null)
             {
-                if (hotel.LobbyRuimte.LobbyRectangle.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && vorigeMuisKlik == false)
+                if (hotel.hotelLayout.lobby.LobbyRectangle.Contains(Convert.ToInt32(muisLocatie.X), Convert.ToInt32(muisLocatie.Y)) && muisStatus.LeftButton == ButtonState.Pressed && vorigeMuisKlik == false)
                 {
                     vorigeMuisKlik = true;
 

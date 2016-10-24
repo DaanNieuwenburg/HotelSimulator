@@ -9,18 +9,17 @@ namespace HotelSimulatie.Model
     public class Hotel
     {
         public HotelLayout hotelLayout { get; set; }
-        public Lobby LobbyRuimte { get; set; }
         public List<Gast> GastenLijst { get; set; }
-        public Schoonmaker Schoonmaker_A { get; set; }
-        public Schoonmaker Schoonmaker_B { get; set; }
+        public Schoonmaker[] Schoonmakers { get; set; }
         public bool IsEvacuatie { get; set; }
         public Hotel()
         {
             IsEvacuatie = false;
             hotelLayout = new HotelLayout();
             GastenLijst = new List<Gast>();
-            Schoonmaker_A = new Schoonmaker();
-            Schoonmaker_B = new Schoonmaker();   
+            Schoonmakers = new Schoonmaker[2];
+            Schoonmakers[0] = new Schoonmaker();
+            Schoonmakers[1] = new Schoonmaker();
         }
 
         public void Evacueer()
@@ -31,7 +30,7 @@ namespace HotelSimulatie.Model
                 Console.WriteLine("OMG EVACUATIE");
                 foreach (Gast gast in GastenLijst)
                 {
-                    gast.Bestemming = LobbyRuimte;
+                    gast.Bestemming = hotelLayout.lobby;
                     gast.BestemmingLijst = null;
                     gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
                 }
@@ -39,13 +38,13 @@ namespace HotelSimulatie.Model
             else
             {
                 int aantalGasten = GastenLijst.Count;
-                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == LobbyRuimte select Gast).Count();
+                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == hotelLayout.lobby select Gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
                     Console.WriteLine("Evacuatie completed");
                     foreach(Gast gast in GastenLijst)
                     {
-                        gast.HuidigeRuimte = LobbyRuimte;
+                        gast.HuidigeRuimte = hotelLayout.lobby;
                         gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                     }
                 }

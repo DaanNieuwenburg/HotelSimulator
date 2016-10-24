@@ -33,7 +33,7 @@ namespace HotelSimulatie.Model
             if (verlopenTijd > 100)
             {
                 Gast gastAanDeBeurt = Wachtrij.Dequeue();
-                
+
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
@@ -46,7 +46,7 @@ namespace HotelSimulatie.Model
                     }
                     gast.ToegewezenKamer.Bezet = true;
                 }
-                catch(InvalidOperationException e)
+                catch (InvalidOperationException e)
                 {
                     // Als er geen kamer beschikbaar is, return kamer van 0 sterren
                     gast.ToegewezenKamer = new Kamer(0);
@@ -56,7 +56,7 @@ namespace HotelSimulatie.Model
             }
             else
             {
-                if(!Wachtrij.Contains(gast))
+                if (!Wachtrij.Contains(gast))
                 {
                     Wachtrij.Enqueue(gast);
                 }
@@ -67,12 +67,9 @@ namespace HotelSimulatie.Model
         public void GastUitchecken(Gast gast)
         {
             // Een kamernummer van 0 betekent dat de gewenste kamer niet beschikbaar is
-            if (gast.ToegewezenKamer.Kamernummer != 0)
-            {
-                Kamer gastKamer = hotel.hotelLayout.KamerLijst.Find(o => o.Kamernummer == gast.ToegewezenKamer.Kamernummer);
-                gastKamer.Bezet = false;
-                gast.ToegewezenKamer = null;
-            }
+            Kamer gastKamer = hotel.hotelLayout.KamerLijst.Find(o => o.Code == gast.ToegewezenKamer.Code);
+            gastKamer.Bezet = false;
+            gast.ToegewezenKamer = null;
             hotel.GastenLijst.Remove(gast);
         }
     }

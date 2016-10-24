@@ -28,11 +28,11 @@ namespace HotelSimulatie
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
-                        gast.Inchecken(spel.hotel.LobbyRuimte, gameTime);
+                        gast.Inchecken(spel.hotel.hotelLayout.lobby, gameTime);
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                     {
-                        Lobby lobby = spel.hotel.LobbyRuimte;
+                        Lobby lobby = spel.hotel.hotelLayout.lobby;
                         gast.GaNaarKamer<Lobby>(ref lobby);
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
@@ -52,7 +52,7 @@ namespace HotelSimulatie
                     }
                     else if(gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
-                        Lobby lobby = spel.hotel.LobbyRuimte;
+                        Lobby lobby = spel.hotel.hotelLayout.lobby;
                         gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
@@ -73,6 +73,15 @@ namespace HotelSimulatie
             {
                 spel.hotel.hotelLayout.lift.InitializeerLift();
             }
+
+            // Update de eetzaal
+            foreach(Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
+            {
+                eetzaal.Update(gameTime);
+            }
+            
+            spel.hotel.hotelLayout.bioscoop.Update(gameTime);
+            spel.hotel.hotelLayout.fitness.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

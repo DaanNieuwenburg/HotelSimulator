@@ -17,7 +17,9 @@ namespace HotelSimulatie
         public Bioscoop bioscoop { get; set; }
         public Fitness fitness { get; set; }
         public Lift lift { get; set; }
+        public Lobby lobby { get; set; }
         private HotelRuimteFactory hotelRuimteFactory { get; set; }
+        public Eetzaal[] eetzalen { get; set; }
         public HotelLayout()
         {
             hotelRuimteFactory = new HotelRuimteFactory();
@@ -31,7 +33,10 @@ namespace HotelSimulatie
             zetLayoutPositiesGoed();
             bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
             fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
-            KamerLijst = (from kamer in HotelRuimteLijst where kamer is Kamer select kamer as Kamer).ToList(); 
+            KamerLijst = (from kamer in HotelRuimteLijst where kamer is Kamer select kamer as Kamer).ToList();
+            eetzalen = new Eetzaal[2];
+            eetzalen[0] = (Eetzaal)HotelRuimteLijst.OfType<Eetzaal>().First();
+            eetzalen[1] = (Eetzaal)HotelRuimteLijst.OfType<Eetzaal>().Last();
         }
 
         private List<HotelRuimte> LeesLayoutUit()
@@ -115,10 +120,12 @@ namespace HotelSimulatie
             }
 
             // Voeg lobby toe aan lijst
-            HotelRuimte lobby = hotelRuimteFactory.MaakHotelRuimte("Lobby");
-            lobby.Afmetingen = new Vector2(1, 1);
-            lobby.CoordinatenInSpel = new Vector2(1, 0);
-            HotelRuimteLijst.Add(lobby);
+            HotelRuimte lobbyRuimte = hotelRuimteFactory.MaakHotelRuimte("Lobby");
+            lobbyRuimte.Afmetingen = new Vector2(1, 1);
+            lobbyRuimte.CoordinatenInSpel = new Vector2(1, 0);
+            HotelRuimteLijst.Add(lobbyRuimte);
+            lobby = (Lobby)lobbyRuimte;
+
         }
 
         private void zetGangenInLayout()
@@ -126,7 +133,7 @@ namespace HotelSimulatie
             for (int i = 0; i < HotelRuimteLijst.Count; i++)
             {
                 HotelRuimte hotelRuimte = HotelRuimteLijst[i];
-                if(hotelRuimte.Afmetingen.Y > 1)
+                if(hotelRuimte.Afmetingen.Y > 1 && hotelRuimte.GetType() != typeof(Bioscoop))
                 {
                     HotelRuimte gang = hotelRuimteFactory.MaakHotelRuimte("Gang");
                     gang.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);

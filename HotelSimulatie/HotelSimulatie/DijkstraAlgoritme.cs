@@ -61,7 +61,7 @@ namespace HotelSimulatie
             {
                 return pad;
             }
-        }
+        } 
 
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
@@ -73,7 +73,7 @@ namespace HotelSimulatie
             {
                 Kamer teVindenKamer = (Kamer)eind;
                 Kamer gevondenKamer = (Kamer)deze;
-                if (gevondenKamer.Kamernummer == teVindenKamer.Kamernummer && gevondenKamer.Bezet == false)
+                if (gevondenKamer.AantalSterren == teVindenKamer.AantalSterren && gevondenKamer.Bezet == false)
                 {
                     Eind = deze;
                     return true;

@@ -13,7 +13,7 @@ namespace TDD
             // Test de creatie van de lift in de factory
             HotelRuimteFactory hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimte liftHRuimte = hotelRuimteFactory.MaakHotelRuimte("Lift");
-            Assert.IsInstanceOfType(liftHRuimte, typeof(HotelSimulatie.Model.LiftTDD));
+            Assert.IsInstanceOfType(liftHRuimte, typeof(HotelSimulatie.Model.Lift));
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace TDD
             // Test of de lift start vanaf verdieping 0
             HotelRuimteFactory hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimte liftHRuimte = hotelRuimteFactory.MaakHotelRuimte("Lift");
-            LiftTDD lift = (LiftTDD)liftHRuimte;
+            Lift lift = (Lift)liftHRuimte;
             Assert.AreEqual(lift.HuidigeVerdieping, lift.Liftschachtlijst[0]);
         }
     }

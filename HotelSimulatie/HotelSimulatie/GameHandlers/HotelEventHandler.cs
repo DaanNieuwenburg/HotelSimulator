@@ -40,7 +40,7 @@ namespace HotelSimulatie
                 else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                 {
                     hotelEventAdapter.gast.HuidigeRuimte = hotelEventAdapter.gast.HuidigeRuimte;
-                    hotelEventAdapter.gast.Bestemming = spel.hotel.LobbyRuimte;
+                    hotelEventAdapter.gast.Bestemming = spel.hotel.hotelLayout.lobby;
                     CheckoutEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
                 else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
@@ -81,20 +81,20 @@ namespace HotelSimulatie
             gast.LoadContent(Game.Content);
 
             // Geef gast de bestemming van de lobby
-            gast.HuidigeRuimte = spel.hotel.LobbyRuimte;
-            gast.Bestemming = spel.hotel.LobbyRuimte;
+            gast.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+            gast.Bestemming = spel.hotel.hotelLayout.lobby;
 
             // Koppel gast aan gastenlijst
             spel.hotel.GastenLijst.Add(gast);
 
             // Start het event
-            gast.Inchecken(spel.hotel.LobbyRuimte, GameTijd);
+            gast.Inchecken(spel.hotel.hotelLayout.lobby, GameTijd);
         }
 
         private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
-            Lobby lobby = spel.hotel.LobbyRuimte;
+            Lobby lobby = spel.hotel.hotelLayout.lobby;
             gast.GaNaarKamer<Lobby>(ref lobby);
         }
 

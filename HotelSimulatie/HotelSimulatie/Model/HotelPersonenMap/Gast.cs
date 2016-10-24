@@ -12,11 +12,9 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
-        public bool Wacht { get; set; }
 
         public Gast()
         {
-            Wacht = false;
             Texturelijst = new List<string>();
             //Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
@@ -58,6 +56,23 @@ namespace HotelSimulatie.Model
                     }
                 }
 
+        public void GaNaarKamer<T>(ref T ruimte)
+        {
+
+            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
+            {
+                Bestemming = ruimte as HotelRuimte;
+            }
+
+            if (BestemmingLijst == null && Bestemming is T)
+            {
+                // Zoek kortste pad naar bestemming
+                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
+                if (Bestemming is Eetzaal)
+                {
+                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
+                }
+                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
 
                 // Koppel eerste node aan bestemming
                 HuidigEvent = HuidigEvent;
@@ -77,7 +92,7 @@ namespace HotelSimulatie.Model
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
                     }
-                    else if(HuidigeRuimte.GetType() != typeof(Liftschacht))
+                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
                     {
                         HuidigeRuimte = Bestemming;
                         Bestemming = BestemmingLijst.First();
@@ -89,6 +104,10 @@ namespace HotelSimulatie.Model
                     Bestemming = null;
                     BestemmingLijst = null;
                     HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
+                    {
+                        HuidigeRuimte.voegPersoonToe(this);
+                    }
                 }
             }
         }
