@@ -62,6 +62,7 @@ namespace HotelSimulatie.Model
             if (!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
+                persoon.Wacht = true;
                 isWachtrij = true;
                 lift.VoegLiftStopToe(this);
                 liftKomtAl = false;
@@ -75,6 +76,7 @@ namespace HotelSimulatie.Model
             for (int i = 0; i < personenInWachtrij; i++)
             {
                 Persoon persoon = Wachtrij.Dequeue();
+                persoon.Wacht = false;
                 persoon.inLift = true;
                 persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
                 persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);

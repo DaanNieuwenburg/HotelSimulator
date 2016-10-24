@@ -61,6 +61,7 @@ namespace HotelSimulatie
                 }
                 else if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
                 {
+                    hotelEventAdapter.gast.heeftHonger = true;
                     GaNaarEetzaalEvent(hotelEventAdapter.gast, hotelEventAdapter);
                 }
             }

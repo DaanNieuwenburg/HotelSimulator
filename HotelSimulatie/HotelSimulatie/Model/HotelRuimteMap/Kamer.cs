@@ -19,6 +19,7 @@ namespace HotelSimulatie.Model
         public Kamer(int aantalSterren)
         {
             Bezet = false;
+            Naam = "Kamer";
             AantalSterren = aantalSterren;
         }
         public override void LoadContent(ContentManager contentManager)

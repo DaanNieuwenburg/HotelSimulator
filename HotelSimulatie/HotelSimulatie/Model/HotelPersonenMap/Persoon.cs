@@ -25,6 +25,7 @@ namespace HotelSimulatie.Model
         private int textureIndex { get; set; }
         private bool LooptNaarLinks { get; set; }
         public bool inLift { get; set; }
+        public bool Wacht { get; set; }
         public Persoon()
         {
             inLift = false;
