@@ -11,5 +11,6 @@ namespace HotelSimulatie
         public static int bioscoopHTE = 1;
         public static int filmHTE = 10;
         public static int fitnessHTE = 1;
+        public static int schoonmakenHTE = 3;
     }
 }

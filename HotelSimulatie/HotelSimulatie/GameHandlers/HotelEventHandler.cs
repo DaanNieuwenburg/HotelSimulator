@@ -119,6 +119,7 @@ namespace HotelSimulatie
             gast.HuidigEvent = hotelEvent;
             Lobby lobby = spel.hotel.hotelLayout.lobby;
             gast.GaNaarKamer<Lobby>(ref lobby);
+            SchoonmaakEvent(hotelEvent);
         }
 
         private void GaNaarBioscoopEvent(Gast gast, HotelEventAdapter hotelEvent)
@@ -154,7 +155,10 @@ namespace HotelSimulatie
             // Bepaal kamer
             int kamerCode = Convert.ToInt32(hotelEvent.Message);
             Kamer gevondenKamer = spel.hotel.hotelLayout.KamerLijst.Find(o => o.Code == kamerCode);
-            spel.hotel.Schoonmakers[0].NieuweSchoonTeMakenKamer(gevondenKamer, spel.hotel.Schoonmakers[1]);
+            if (gevondenKamer != null)
+            {
+                spel.hotel.Schoonmakers[0].NieuweSchoonTeMakenKamer(gevondenKamer, hotelEvent, spel.hotel.Schoonmakers[1]);
+            }
         }
     }
 }

@@ -39,9 +39,15 @@ namespace HotelSimulatie.Model
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
                     while (gast.ToegewezenKamer == null && gast.AantalSterrenKamer <= 5)
                     {
-                        DijkstraAlgoritme vindDichtbijzijndeKamerAlgo = new DijkstraAlgoritme();
-                        vindDichtbijzijndeKamerAlgo.zoekDichtbijzijnde = true;
-                        gast.ToegewezenKamer = hotel.hotelLayout.KamerLijst.First(o => o.Bezet == false && o.AantalSterren == gast.AantalSterrenKamer);
+                        List<Kamer> kamerz = hotel.hotelLayout.KamerLijst.FindAll(o => o.AantalSterren == gast.AantalSterrenKamer).ToList();
+                        List<List<HotelRuimte>> bestemmingenLijst = new List<List<HotelRuimte>>();
+                        foreach (Kamer kamer in kamerz)
+                        {
+                            DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
+                            bestemmingenLijst.Add(dijkstra.MaakAlgoritme(gast, this, kamer));
+                        }
+                        bestemmingenLijst.OrderBy(o => o.Count);
+                        gast.ToegewezenKamer = (Kamer)bestemmingenLijst[0].Last();
                         gast.AantalSterrenKamer++;
                     }
                     gast.ToegewezenKamer.Bezet = true;
