@@ -208,14 +208,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fitness.png">
+    <Compile Include="Kamers\Fitness.png">
       <Name>Fitness</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Eetzaal.png">
+    <Compile Include="Kamers\Eetzaal.png">
       <Name>Eetzaal</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

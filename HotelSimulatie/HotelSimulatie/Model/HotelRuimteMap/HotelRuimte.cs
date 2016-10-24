@@ -13,6 +13,7 @@ namespace HotelSimulatie.Model
     {
         [JsonProperty("ID")]
         public int Code { get; set; }
+        public HotelEventAdapter HuidigEvent { get; set; }
         public string Naam { get; set; }
         public string texturepath { get; set; }
         [JsonProperty("Dimension")]

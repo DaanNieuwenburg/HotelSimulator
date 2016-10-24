@@ -11,6 +11,8 @@ namespace HotelSimulatie.Model
     public class Bioscoop : HotelRuimte
     {
         private List<Gast> inBioscoopLijst { get; set; }
+        private int filmtijd { get; set; }
+        private bool filmbezig { get; set; }
         public Bioscoop()
         {
             Naam = "Bioscoop";
@@ -26,7 +28,14 @@ namespace HotelSimulatie.Model
             // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
             inBioscoopLijst.Add(gast);
         }
-
+        public void Start(GameTime gameTime)
+        {
+            filmtijd = gameTime.ElapsedGameTime.Seconds;
+            filmbezig = true;
+            if (gameTime.ElapsedGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE)
+                filmbezig = false;
+            
+        }
         public void Update(GameTime gameTijd)
         {
             int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
