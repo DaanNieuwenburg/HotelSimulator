@@ -32,8 +32,7 @@ namespace HotelSimulatie.Model
         {
             filmtijd = gameTime.ElapsedGameTime.Seconds;
             filmbezig = true;
-            if (gameTime.ElapsedGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE)
-                filmbezig = false;
+            Console.WriteLine("Film is gestart");
             
         }
         public void Update(GameTime gameTijd)
@@ -46,10 +45,12 @@ namespace HotelSimulatie.Model
                     // In dit geval is er nog geen tijd toegewezen
                     gast.HuidigEvent.HuidigeDuurEvent = totaleSpelTijd;
                 }
-                else if (totaleSpelTijd - gast.HuidigEvent.HuidigeDuurEvent > HotelTijdsEenheid.bioscoopHTE)
+                else if (gameTijd.ElapsedGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE)
                 {
+                    filmbezig = false;
                     gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
                     gast.HuidigEvent.HuidigeDuurEvent = 0;
+                    Console.WriteLine("Film is gestopt");
                 }
             }
         }

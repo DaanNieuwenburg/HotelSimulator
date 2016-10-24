@@ -56,7 +56,7 @@ namespace HotelSimulatie
                         gast.GaNaarKamer<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
-                    else if (spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                    else if (spel.hotel.hotelLayout.bioscoop.HuidigEvent != null && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
                     {
                         Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
                         bioscoop.Start(gameTime);

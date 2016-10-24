@@ -67,6 +67,13 @@ namespace HotelSimulatie
                     spel.hotel.Evacueer();
                 }
             }
+            else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
+            {
+                if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                {
+                    Start_Cinema(hotelEventAdapter);
+                }
+            }
             else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
             {
                 if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.CLEANING_EMERGENCY)
@@ -97,7 +104,11 @@ namespace HotelSimulatie
             // Start het event
             gast.Inchecken(spel.hotel.hotelLayout.lobby, GameTijd);
         }
-
+        private void Start_Cinema(HotelEventAdapter hotelEvent)
+        {
+            spel.hotel.hotelLayout.bioscoop.HuidigEvent = hotelEvent;
+            spel.hotel.hotelLayout.bioscoop.Start(GameTijd);
+        }
         private void CheckoutEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
