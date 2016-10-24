@@ -57,8 +57,6 @@ namespace HotelSimulatie.Model
                         }
                     }
                 }
-            }
-            }
 
 
                 // Koppel eerste node aan bestemming

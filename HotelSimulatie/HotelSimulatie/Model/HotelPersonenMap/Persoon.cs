@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
-        private List<string> Texturelijst { get; set; }
+        public List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
         public string Naam { get; set; }
         private int textureIndex { get; set; }
