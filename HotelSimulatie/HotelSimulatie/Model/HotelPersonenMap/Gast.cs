@@ -55,7 +55,8 @@ namespace HotelSimulatie.Model
                         }
                     }
                 }
-
+            }
+        }
         public void GaNaarKamer<T>(ref T ruimte)
         {
 
