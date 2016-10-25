@@ -316,6 +316,15 @@
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T12:54:09.7472508+02:00</Time>
     </Item>
+    <Item>
+      <Source>Kamers\Zwembad.png</Source>
+      <Name>Kamers\Zwembad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Zwembad.xnb</Output>
+      <Time>2016-10-25T14:13:42.9552493+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>

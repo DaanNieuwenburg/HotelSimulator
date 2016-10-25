@@ -10,8 +10,6 @@ namespace HotelSimulatie
 {
     public class HotelLayout
     {
-        public int MaxX { get; set; }
-        public int MaxY { get; set; }
         public List<HotelRuimte> HotelRuimteLijst { get; set; }
         public List<Kamer> KamerLijst { get; set; }
         public Bioscoop bioscoop { get; set; }
@@ -24,12 +22,16 @@ namespace HotelSimulatie
         {
             hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimteLijst = LeesLayoutUit();
-            bepaalMaxXY();
+            ZetLiftenEnTrappenInLayout();
+            zetLobbyInLayout();
+            zetGangenInLayout();
+
+            /*bepaalMaxXY();
             zetLiftschachtenInLayout();
             zetTrapInLayout();
             zetLobbyInLayout();
             zetGangenInLayout();
-            geefLayoutNodesBuren();
+            geefLayoutNodesBuren();*/
             zetLayoutPositiesGoed();
             bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
             fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
@@ -60,20 +62,103 @@ namespace HotelSimulatie
             return ruimteLijst;
         }
 
+        private void ZetLiftenEnTrappenInLayout()
+        {
+            // Bepaal hoogte
+            int hoogte = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y + obj.Afmetingen.Y);
+
+            // Bepaal lift positie
+            int LiftX = (Int32)HotelRuimteLijst.Min(obj => obj.CoordinatenInSpel.X) - 1;
+
+            // Bepaal trap positie
+            int TrapX = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X + obj.Afmetingen.X);
+
+            // Maak lift
+            lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift", hoogte);
+            List<Liftschacht> liftlijst = new List<Liftschacht>();
+            for (int y = 0; y <= hoogte; y++)
+            {
+                Liftschacht liftschacht = (Liftschacht)hotelRuimteFactory.MaakHotelRuimte("Liftschacht", y);
+                liftschacht.CoordinatenInSpel = new Vector2(LiftX, y);
+                liftschacht.Afmetingen = new Vector2(1, 1);
+                liftschacht.lift = lift;
+                liftlijst.Add(liftschacht);
+                HotelRuimteLijst.Add(liftschacht);
+            }
+            lift.Liftschachtlijst = liftlijst;
+
+            // Maak trap
+            for (int y = 0; y <= hoogte; y++)
+            {
+                HotelRuimte trap = hotelRuimteFactory.MaakHotelRuimte("Trap", y);
+                trap.CoordinatenInSpel = new Vector2(TrapX, y);
+                trap.Afmetingen = new Vector2(1, 1);
+                HotelRuimteLijst.Add(trap);
+            }
+        }
+
+        private void zetLobbyInLayout()
+        {
+            // Bepaal lobby positie
+            int liftX = (Int32)HotelRuimteLijst.OfType<Liftschacht>().First().CoordinatenInSpel.X;
+            int trapX = (Int32)HotelRuimteLijst.OfType<Trap>().First().CoordinatenInSpel.X;
+            int lobbyXPos = trapX / 2;
+
+            // Vervang rest van de lege lobby met gangen
+            for (int i = liftX + 1; i < trapX - 1; i++)
+            {
+                HotelRuimte gang = hotelRuimteFactory.MaakHotelRuimte("Gang");
+                gang.Afmetingen = new Vector2(2, 1);
+                gang.CoordinatenInSpel = new Vector2(i, 0);
+                HotelRuimteLijst.Add(gang);
+            }
+
+            // Voeg lobby toe aan lijst
+            HotelRuimte lobbyRuimte = hotelRuimteFactory.MaakHotelRuimte("Lobby");
+            lobbyRuimte.Afmetingen = new Vector2(1, 1);
+            lobbyRuimte.CoordinatenInSpel = new Vector2(lobbyXPos, 0);
+            HotelRuimteLijst.Add(lobbyRuimte);
+            lobby = (Lobby)lobbyRuimte;
+        }
+
+
+        private void zetGangenInLayout()
+        {
+            int liftX = (Int32)HotelRuimteLijst.OfType<Liftschacht>().First().CoordinatenInSpel.X;
+            int trapX = (Int32)HotelRuimteLijst.OfType<Trap>().First().CoordinatenInSpel.X;
+
+            for (int i = 0; i < HotelRuimteLijst.Count; i++)
+            {
+                HotelRuimte hotelRuimte = HotelRuimteLijst[i];
+                if (hotelRuimte.Afmetingen.Y > 1)
+                {
+                    HotelRuimte gang = hotelRuimteFactory.MaakHotelRuimte("Gang");
+                    gang.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);
+                    gang.CoordinatenInSpel = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y + 1);
+                    gang.Texture = hotelRuimte.Texture;
+                    HotelRuimteLijst.Add(gang);
+                }
+            }
+        }
+
+        /*
         public void bepaalMaxXY()
         {
-            MaxX = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X) + 1;
-            MaxY = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
+           MaxX = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X) + 1;
+           MaxHoogte = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
         }
 
         private void zetLiftschachtenInLayout()
         {
-            lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift",MaxY);
+            // Bepaal lift positie
+            int MinX = (Int32)HotelRuimteLijst.Min(obj => obj.CoordinatenInSpel.X) - 1;
+
+            lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift",MaxHoogte);
             List<Liftschacht> liftlijst = new List<Liftschacht>();
-            for (int y = 0; y <= MaxY; y++)
+            for (int y = 0; y <= MaxHoogte; y++)
             {
                 Liftschacht liftschacht = (Liftschacht)hotelRuimteFactory.MaakHotelRuimte("Liftschacht", y);
-                liftschacht.CoordinatenInSpel = new Vector2(0, y);
+                liftschacht.CoordinatenInSpel = new Vector2(MinX, y);
                 liftschacht.Afmetingen = new Vector2(1, 1);
                 liftschacht.lift = lift;
                 liftlijst.Add(liftschacht);
@@ -84,10 +169,13 @@ namespace HotelSimulatie
 
         private void zetTrapInLayout()
         {
-            for (int y = 0; y <= MaxY; y++)
+            // Bepaal trap positie
+            int Mx = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.X + obj.Afmetingen.X) + 1;
+
+            for (int y = 0; y <= MaxHoogte; y++)
             {
                 HotelRuimte trap = hotelRuimteFactory.MaakHotelRuimte("Trap", y);
-                trap.CoordinatenInSpel = new Vector2(MaxX, y);
+                trap.CoordinatenInSpel = new Vector2(Mx, y);
                 trap.Afmetingen = new Vector2(1, 1);
                 HotelRuimteLijst.Add(trap);
             }
@@ -167,7 +255,7 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    hRuimte.VoegBurenToe(HotelRuimteLijst[teller - 1], HotelRuimteLijst[teller + 1]);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[teller - 1], HotelRuimteLijst[teller]);
                 }
                 teller++;
             }
@@ -218,7 +306,7 @@ namespace HotelSimulatie
             }
             return gevondenRuimte;
         }
-
+        */
         private void zetLayoutPositiesGoed()
         {
             foreach (HotelRuimte hotelRuimte in HotelRuimteLijst)

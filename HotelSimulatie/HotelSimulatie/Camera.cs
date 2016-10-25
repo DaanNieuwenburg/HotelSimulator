@@ -39,6 +39,7 @@ namespace HotelSimulatie
             {
                 Positie = waarde;
             }
+            /*
             if (Positie.X < -100000)
             {
                 // Reset de Positie
@@ -52,7 +53,7 @@ namespace HotelSimulatie
                 Vector2 tempVector = Positie;
                 tempVector.X = breedte / 4;
                 Positie = tempVector;
-            }
+            }*/
         }
 
         /// <summary>

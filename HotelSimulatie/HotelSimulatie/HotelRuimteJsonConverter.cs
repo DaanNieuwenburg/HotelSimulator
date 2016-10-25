@@ -46,6 +46,10 @@ namespace HotelSimulatie
             {
                 return jObject.ToObject<Fitness>(serializer);
             }
+            else if(jObject["AreaType"].Value<string>() == "Pool")
+            {
+                return jObject.ToObject<Zwembad>(serializer);
+            }
             else if (jObject["AreaType"].Value<string>() == "Room")
             {
                 string classification = jObject["Classification"].Value<string>();

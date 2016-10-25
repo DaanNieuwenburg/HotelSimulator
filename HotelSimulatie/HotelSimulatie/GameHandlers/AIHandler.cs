@@ -92,6 +92,7 @@ namespace HotelSimulatie
                 if (schoonmaker.Positie == new Vector2(0, 0))
                 {
                     schoonmaker.Positie = spel.GastSpawnLocatie;
+                    schoonmaker.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
                 }
                 else
                 {
@@ -120,8 +121,8 @@ namespace HotelSimulatie
             }
 
             // Toon schoonmakers
-            //spel.hotel.Schoonmakers[0].Draw(spriteBatch);
-            //spel.hotel.Schoonmakers[1].Draw(spriteBatch);
+            spel.hotel.Schoonmakers[0].Draw(spriteBatch);
+            spel.hotel.Schoonmakers[1].Draw(spriteBatch);
             spriteBatch.End();
         }
     }
