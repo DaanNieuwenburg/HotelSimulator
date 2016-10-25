@@ -316,6 +316,33 @@
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T11:59:31.7219653+02:00</Time>
     </Item>
+    <Item>
+      <Source>Kamers\zwembad.png</Source>
+      <Name>Kamers\zwembad</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\zwembad.xnb</Output>
+      <Time>2016-10-25T14:49:13.9092034+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Gasten\spook.png</Source>
+      <Name>Gasten\spook</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\spook.xnb</Output>
+      <Time>2016-10-25T14:57:39.5757737+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Gasten\spook_Links.png</Source>
+      <Name>Gasten\spook_Links</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\spook_Links.xnb</Output>
+      <Time>2016-10-25T14:57:39.5737685+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>

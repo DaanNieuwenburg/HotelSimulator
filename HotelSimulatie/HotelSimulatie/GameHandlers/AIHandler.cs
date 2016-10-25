@@ -98,6 +98,16 @@ namespace HotelSimulatie
                     schoonmaker.Update(gameTime);
                 }
             }
+
+            // Controleer dood van gast
+            foreach(Gast gast in spel.hotel.GastenLijst)
+            {
+                if(gast.Wachtteller.Elapsed.Seconds >= 10)
+                {
+                    gast.isDood = true;
+                    gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                }
+            }
         }
 
         public override void Draw(GameTime gameTime)

@@ -12,10 +12,12 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
-        public int Wachtteller { get; set; } 
+        public bool isDood { get; set; }
         public bool heeftHonger { get; set; }
         public Gast()
         {
+            isDood = false;
+            Wachtteller = new System.Diagnostics.Stopwatch();
             Texturelijst = new List<string>();
             //Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
