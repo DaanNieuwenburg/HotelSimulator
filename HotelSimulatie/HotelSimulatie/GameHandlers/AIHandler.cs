@@ -89,7 +89,7 @@ namespace HotelSimulatie
             spel.hotel.hotelLayout.fitness.Update(gameTime);
 
             // Update de schoonmakers
-            foreach(Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
+            foreach (Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
             {
                 if (schoonmaker.Positie == new Vector2(0, 0))
                 {
@@ -106,20 +106,24 @@ namespace HotelSimulatie
 
             foreach (Form frm in fc)
             {
-                if(frm is LobbyMenu)
+                if (frm is LobbyMenu)
                 {
                     LobbyMenu temp = (LobbyMenu)frm;
                     temp.RefreshInfo();
                 }
             }
             // Controleer dood van gast
-            foreach(Gast gast in spel.hotel.GastenLijst)
+            foreach (Gast gast in spel.hotel.GastenLijst)
             {
-                if(gast.Wachtteller.Elapsed.Seconds >= 3)
+                if (gast.isDood == false)
                 {
-                    gast.isDood = true;
-                    gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    if (gast.Wachtteller.Elapsed.Seconds >= 3)
+                    {
+                        gast.isDood = true;
+                        gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    }
                 }
+
             }
         }
 
