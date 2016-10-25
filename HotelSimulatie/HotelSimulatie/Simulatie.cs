@@ -46,8 +46,8 @@ namespace HotelSimulatie
         {
             // Laad de inputhandler
             Components.Add(new InputHandler(this));
-            //Components.Add(new HotelEventHandler(this));
-            //Components.Add(new AIHandler(this));
+            Components.Add(new HotelEventHandler(this));
+            Components.Add(new AIHandler(this));
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Font");
 
