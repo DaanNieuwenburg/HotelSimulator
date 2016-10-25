@@ -33,8 +33,8 @@ namespace HotelSimulatie.View
             }
             #region
             //Ken waardes voor schoonmakers toe aan labels
-            //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
-            //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+            //lbPositieA.Text = hotel.Schoonmakers[0].SchoonmaakPositie.Naam;
+            //lbPositieB.Text = hotel.Schoonmakers[1].SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
             lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;

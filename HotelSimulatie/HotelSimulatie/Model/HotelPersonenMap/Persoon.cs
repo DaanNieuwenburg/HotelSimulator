@@ -19,6 +19,7 @@ namespace HotelSimulatie.Model
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         private float loopSnelheid { get; set; }
+        private float loopSnelheidHTE { get; set; }
         public List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
         public string Naam { get; set; }
@@ -34,6 +35,7 @@ namespace HotelSimulatie.Model
             int a = random.Next(1, 9);
             loopSnelheid = (float)a / 10;*/
             loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
+            loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
 
             Texturelijst = new List<string>();
             //Texturelijst.Add(@"Gasten\AnimatedRob");
@@ -87,13 +89,13 @@ namespace HotelSimulatie.Model
         private bool BeweegNaarLinks()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
+            Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y); // gewijzigd
             return false;
         }
         private bool BeweegNaarBoven()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
+            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheidHTE); //gewijzigd
             return false;
         }
         private bool BeweegNaarBeneden()
@@ -105,7 +107,7 @@ namespace HotelSimulatie.Model
         private bool BeweegNaarRechts()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X + loopSnelheid, Positie.Y);
+            Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y); //gewijzigd
             return false;
         }
 
