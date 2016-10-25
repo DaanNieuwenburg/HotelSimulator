@@ -90,7 +90,18 @@ namespace HotelSimulatie.Model
             Positie = new Vector2(Positie.X - loopSnelheid, Positie.Y);
             return false;
         }
-
+        private bool BeweegNaarBoven()
+        {
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheid);
+            return false;
+        }
+        private bool BeweegNaarBeneden()
+        {
+            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+            Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
+            return false;
+        }
         private bool BeweegNaarRechts()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
