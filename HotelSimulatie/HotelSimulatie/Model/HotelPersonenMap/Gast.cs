@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
     {
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
+        public int Wachtteller { get; set; } 
         public bool heeftHonger { get; set; }
         public Gast()
         {
