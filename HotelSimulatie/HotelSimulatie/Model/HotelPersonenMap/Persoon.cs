@@ -115,6 +115,7 @@ namespace HotelSimulatie.Model
 
         public void GaNaarKamer<T>(ref T ruimte)
         {
+
             if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
             {
                 Bestemming = ruimte as HotelRuimte;
@@ -163,9 +164,15 @@ namespace HotelSimulatie.Model
                     if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
                     {
                         HuidigeRuimte.voegPersoonToe((Gast)this);
+                        Gast persoon = (Gast)this;
+                        HuidigeRuimte.voegPersoonToe(persoon);
+                        if (HuidigeRuimte is Eetzaal)
+                        {
+                            persoon.heeftHonger = false;
+                        }
                     }
                 }
-            }
+             }
         }
 
         public void UpdateFrame(GameTime spelTijd)

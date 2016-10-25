@@ -19,6 +19,7 @@ namespace HotelSimulatie
         public int HuidigeDuurEvent { get; set; }
         public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
+            // Bepaal event category en type
             NEvent = (NEventType)evt.EventType;
             Message = evt.Message;
             Time = evt.Time;

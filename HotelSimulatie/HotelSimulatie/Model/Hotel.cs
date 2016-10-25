@@ -18,8 +18,10 @@ namespace HotelSimulatie.Model
             hotelLayout = new HotelLayout();
             GastenLijst = new List<Gast>();
             Schoonmakers = new Schoonmaker[2];
-            Schoonmakers[0] = new Schoonmaker(hotelLayout.lobby);
-            Schoonmakers[1] = new Schoonmaker(hotelLayout.lobby);
+            Schoonmakers[0] = new Schoonmaker();
+            Schoonmakers[1] = new Schoonmaker();
+            Schoonmakers[0].Collega = Schoonmakers[1];
+            Schoonmakers[1].Collega = Schoonmakers[0];
         }
 
         public void Evacueer()

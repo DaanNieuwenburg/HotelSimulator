@@ -10,31 +10,17 @@ namespace HotelSimulatie.Model
 {
     public class Schoonmaker : Persoon
     {
-        public HotelRuimte SchoonmaakPositie { get; set; }
-        public Dictionary<Kamer, HotelEventAdapter> SchoonTeMakenKamersLijst { get; set; }
-        public bool InKamer { get; set; }
-        public string Texturenaam { get; set; }
+        public Schoonmaker Collega { get; set; }
+        public List<HotelRuimte> SchoonmaakLijst { get; set; }
+        private bool isIdle { get; set; }
+        private int verlopenTijd { get; set; }
         private int startTijd { get; set; }
-        public Schoonmaker(Lobby lobby)
+        public Schoonmaker()
         {
-            HuidigeRuimte = lobby;
+            isIdle = true;
+            SchoonmaakLijst = new List<HotelRuimte>();
             Texturelijst = new List<string>();
             Texturelijst.Add(@"Gasten\AnimatedRob");
-            SchoonTeMakenKamersLijst = new Dictionary<Kamer, HotelEventAdapter>();
-        }
-
-        public void NieuweSchoonTeMakenKamer(Kamer kamer, HotelEventAdapter evt, Schoonmaker collega)
-        {
-            int dezeTaken = SchoonTeMakenKamersLijst.Count;
-            int collegaTaken = SchoonTeMakenKamersLijst.Count;
-            if (dezeTaken == collegaTaken || dezeTaken < collegaTaken)
-            {
-                SchoonTeMakenKamersLijst.Add(kamer, evt);
-            }
-            else if (dezeTaken > collegaTaken)
-            {
-                collega.SchoonTeMakenKamersLijst.Add(kamer, evt);
-            }
         }
 
         /*public void LoadContent(ContentManager contentManager)
@@ -49,33 +35,76 @@ namespace HotelSimulatie.Model
             }
         }*/
 
-        public void UpdateFrame(GameTime spelTijd)
+        public void Update(GameTime spelTijd)
         {
+            // Is de schoonmaker niets aan het doen, kijk dan of er een kamer schoongemaakt moet worden
+            if(isIdle == true)
+            {
+                if(SchoonmaakLijst.Count > 0)
+                {
+                    Bestemming = SchoonmaakLijst.First();
+                    isIdle = false;
+                }
+            }
+            else
+            {
+                // Als schoonmaker aangekomen is bij kamer
+                if (HuidigeRuimte == SchoonmaakLijst.First())
+                {
+                    if(startTijd == 0)
+                    {
+                        startTijd = spelTijd.ElapsedGameTime.Seconds;
+                    }
+                    verlopenTijd = spelTijd.ElapsedGameTime.Seconds;
+                    maakRuimteSchoon();
+                }
+                // Als schoonmaker onderweg is naar kamer
+                else
+                {
+                    HotelRuimte ruimte = SchoonmaakLijst.First();
+                    GaNaarKamer(ref ruimte);
+                }
+            }
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
-        public void Update(GameTime spelTijd)
+        public void VoegRuimteToe(HotelRuimte ruimte)
         {
-            if (InKamer == false)
-            {
-                if (InKamer == true && SchoonTeMakenKamersLijst.Count > 0)
-                {
-                    Kamer kamer = SchoonTeMakenKamersLijst.Keys.First();
-                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
-                    Bestemming = kamer;
-                    startTijd = spelTijd.TotalGameTime.Seconds;
-                    SchoonTeMakenKamersLijst.Remove(kamer);
-                }
-                else if(HuidigeRuimte == Bestemming)
-                {
+            // Bepaal de dichtbijzijnde schoonmaker
+            DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
+            int huidigeSchoonmakerAfstand = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte).Count;
+            int collegaSchoonmakerAfstand = dijkstra.MaakAlgoritme(Collega, HuidigeRuimte, ruimte).Count;
 
+            // Als deze schoonmaker dichterbij is dan collega, anders gaat de collega
+            if(huidigeSchoonmakerAfstand > collegaSchoonmakerAfstand)
+            {
+                SchoonmaakLijst.Add(ruimte);
+            }
+            else if(huidigeSchoonmakerAfstand < collegaSchoonmakerAfstand)
+            {
+                Collega.SchoonmaakLijst.Add(ruimte);
+            }
+            else
+            {
+                // De afstanden zijn gelijk aan elkaar, kies de schoonmaker met de minste opdrachten
+                if(Collega.SchoonmaakLijst.Count > SchoonmaakLijst.Count)
+                {
+                    SchoonmaakLijst.Add(ruimte);
+                }
+                else
+                {
+                    Collega.SchoonmaakLijst.Add(ruimte);
                 }
             }
-            else if (InKamer == true && spelTijd.TotalGameTime.Seconds - startTijd > HotelTijdsEenheid.schoonmakenHTE)
-            {
+        }
 
+        private void maakRuimteSchoon()
+        {
+            if(verlopenTijd - startTijd > HotelTijdsEenheid.schoonmakenHTE)
+            {
+                SchoonmaakLijst.Remove(HuidigeRuimte);
+                isIdle = true;
             }
         }
     }
-
 }

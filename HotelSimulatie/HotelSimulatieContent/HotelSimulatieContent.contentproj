@@ -257,8 +257,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kamers\zwembad.png">
-      <Name>zwembad</Name>
+    <Compile Include="Kamers\Zwembad.png">
+      <Name>Zwembad</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

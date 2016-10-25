@@ -153,12 +153,12 @@ namespace HotelSimulatie
 
         private void SchoonmaakEvent(HotelEventAdapter hotelEvent)
         {
-            // Bepaal kamer
+            // Bepaal ruimte
             int kamerCode = Convert.ToInt32(hotelEvent.Message);
-            Kamer gevondenKamer = spel.hotel.hotelLayout.KamerLijst.Find(o => o.Code == kamerCode);
+            HotelRuimte gevondenKamer = spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == kamerCode);
             if (gevondenKamer != null)
             {
-                spel.hotel.Schoonmakers[0].NieuweSchoonTeMakenKamer(gevondenKamer, hotelEvent, spel.hotel.Schoonmakers[1]);
+                spel.hotel.Schoonmakers[0].VoegRuimteToe(gevondenKamer);
             }
         }
     }
