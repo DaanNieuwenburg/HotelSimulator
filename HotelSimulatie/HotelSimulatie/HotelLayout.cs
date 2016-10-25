@@ -111,7 +111,7 @@ namespace HotelSimulatie
             }
 
             // Vervang rest van de lege lobby met gangen
-            for (int i = 2; i < MaxX; i++)
+            for (int i = 1; i < MaxX; i++)
             {
                 HotelRuimte gang = hotelRuimteFactory.MaakHotelRuimte("Gang");
                 gang.Afmetingen = new Vector2(2, 1);
@@ -122,7 +122,7 @@ namespace HotelSimulatie
             // Voeg lobby toe aan lijst
             HotelRuimte lobbyRuimte = hotelRuimteFactory.MaakHotelRuimte("Lobby");
             lobbyRuimte.Afmetingen = new Vector2(1, 1);
-            lobbyRuimte.CoordinatenInSpel = new Vector2(1, 0);
+            lobbyRuimte.CoordinatenInSpel = new Vector2(5.5f, 0);
             HotelRuimteLijst.Add(lobbyRuimte);
             lobby = (Lobby)lobbyRuimte;
 
