@@ -49,7 +49,7 @@ namespace HotelSimulatie
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel4.layout"))
+                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout"))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);
@@ -67,7 +67,7 @@ namespace HotelSimulatie
         private void ZetLiftenEnTrappenInLayout()
         {
             // Bepaal hoogte
-            hotelHoogte = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
+            hotelHoogte = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y) + 1;
 
             // Bepaal lift positie
             int LiftX = (Int32)HotelRuimteLijst.Min(obj => obj.CoordinatenInSpel.X) - 1;
@@ -156,12 +156,14 @@ namespace HotelSimulatie
                         HotelRuimteLijst.Add(gang);
                     }
                 }
+                // Bepaal de hoogte nogmaals
+                hotelHoogte = (Int32)HotelRuimteLijst.Max(obj => obj.CoordinatenInSpel.Y);
             }
 
             // Als een verdieping enkel uit gangen bestaat, vul de hele verdieping dan met gangen
-            for(int i = 0; i < hotelHoogte; i++)
+            for(int i = 0; i <= hotelHoogte; i++)
             {
-                List<HotelRuimte> checkLijst = HotelRuimteLijst.FindAll(o => o.CoordinatenInSpel.Y == i);
+                List<HotelRuimte> checkLijst = HotelRuimteLijst.FindAll(o => o.CoordinatenInSpel.Y == i && o.GetType() != typeof(Liftschacht) && o.GetType() != typeof(Trap));
                 List<HotelRuimte> gevondenGangen = checkLijst.FindAll(o => o.GetType() == typeof(Gang));
 
                 if(gevondenGangen.Count == checkLijst.Count)
@@ -169,13 +171,13 @@ namespace HotelSimulatie
                     // Maak gangen links
                     Gang gang = new Gang();
                     gang.CoordinatenInSpel = new Vector2(0, gevondenGangen.First().CoordinatenInSpel.Y);
-                    gang.Afmetingen = new Vector2(gevondenGangen.First().CoordinatenInSpel.X - 1, 1);
+                    gang.Afmetingen = new Vector2(gevondenGangen.First().CoordinatenInSpel.X, 1);
                     HotelRuimteLijst.Add(gang);
 
                     // Maak gangen rechts
                     Gang gangr = new Gang();
-                    gangr.CoordinatenInSpel = new Vector2(gevondenGangen.Last().CoordinatenInSpel.X, gevondenGangen.First().CoordinatenInSpel.Y);
-                    gangr.Afmetingen = new Vector2(gevondenGangen.Last().CoordinatenInSpel.X - gang.Afmetingen.X, 1);
+                    gangr.CoordinatenInSpel = new Vector2(gevondenGangen.Last().CoordinatenInSpel.X, gevondenGangen.Last().CoordinatenInSpel.Y);
+                    gangr.Afmetingen = new Vector2(hotelBreedte - gevondenGangen.Last().CoordinatenInSpel.X, 1);
                     HotelRuimteLijst.Add(gangr);
                 }
             }
