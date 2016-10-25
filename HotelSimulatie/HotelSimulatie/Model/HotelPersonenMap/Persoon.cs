@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HotelEvents;
+using System.Diagnostics;
 
 namespace HotelSimulatie.Model
 {
@@ -18,12 +19,13 @@ namespace HotelSimulatie.Model
         public Liftschacht bestemmingslift { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
-        private float loopSnelheid { get; set; }
-        private float loopSnelheidHTE { get; set; }
         public List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
+        private float loopSnelheid { get; set; }
+        private float loopSnelheidHTE { get; set; }
         public string Naam { get; set; }
         private int textureIndex { get; set; }
+        public Stopwatch Wachtteller { get; set; }
         private bool LooptNaarLinks { get; set; }
         public bool inLift { get; set; }
         public bool Wacht { get; set; }
