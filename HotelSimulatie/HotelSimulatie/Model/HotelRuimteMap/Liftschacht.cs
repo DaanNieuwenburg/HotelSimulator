@@ -63,6 +63,7 @@ namespace HotelSimulatie.Model
             {
                 Wachtrij.Enqueue(persoon);
                 persoon.Wacht = true;
+                // Teller van gast gaat tellen - Nog implementeren
                 isWachtrij = true;
                 lift.VoegLiftStopToe(this);
                 liftKomtAl = false;

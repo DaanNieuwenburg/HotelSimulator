@@ -19,6 +19,7 @@ namespace HotelSimulatie
         public GraphicsDeviceManager graphics { get; set; }
         private SpriteBatch spriteBatch { get; set; }
         public Hotel hotel { get; set; }
+        private int HTEtijd { get; set; }
         public Vector2 GastSpawnLocatie { get; set; }
         public Camera spelCamera { get; set; }
         public Matrix matrix { get; set; }
@@ -63,6 +64,10 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
+           
+                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds + HotelEventManager.HTE_Factor);
+            /*else
+                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds + HotelEventManager.HTE_Factor) +60;*/
             base.Update(gameTime);
         }
 
@@ -81,7 +86,7 @@ namespace HotelSimulatie
             {
                 tijd = tijd + 60;              
             }
-            spriteBatch.DrawString(font, "Tijd: " + (tijd + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) + " HTE", new Vector2(0, 700), Color.Red);
+            spriteBatch.DrawString(font, "Tijd: " + (HTEtijd/* + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor*/) + " HTE", new Vector2(0, 700), Color.Red);
 
             foreach (HotelRuimte hotelRuimte in hotel.hotelLayout.HotelRuimteLijst)
             {
