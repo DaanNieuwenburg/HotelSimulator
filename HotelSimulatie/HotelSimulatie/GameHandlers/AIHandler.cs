@@ -1,11 +1,13 @@
 ﻿using HotelEvents;
 using HotelSimulatie.Model;
+using HotelSimulatie.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace HotelSimulatie
 {
@@ -99,11 +101,21 @@ namespace HotelSimulatie
                     schoonmaker.Update(gameTime);
                 }
             }
+            // Update Lobbymenu
+            FormCollection fc = Application.OpenForms;
 
+            foreach (Form frm in fc)
+            {
+                if(frm is LobbyMenu)
+                {
+                    LobbyMenu temp = (LobbyMenu)frm;
+                    temp.RefreshInfo();
+                }
+            }
             // Controleer dood van gast
             foreach(Gast gast in spel.hotel.GastenLijst)
             {
-                if(gast.Wachtteller.Elapsed.Seconds >= 10)
+                if(gast.Wachtteller.Elapsed.Seconds >= 3)
                 {
                     gast.isDood = true;
                     gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);

@@ -42,7 +42,32 @@ namespace HotelSimulatie.View
             lbPositieLift.Text ="Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
             #endregion
         }
+        public void RefreshInfo()
+        {
+            if (tabs.SelectedTab == tabPage1)
+            {
+                //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
+                //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+            }
+            else if (tabs.SelectedTab == tabPage2)
+            {
+                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
+                lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString();
+                lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
+            }
+            else if (tabs.SelectedTab == tabPage3)
+            {
+                lvGasten.Items.Clear();
+                foreach (Gast gast in hotel.GastenLijst)
+                {
+                    if (gast.ToegewezenKamer == null)
+                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                    else
+                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                }
+            }
 
+        }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             if(tabs.SelectedTab == tabPage1)

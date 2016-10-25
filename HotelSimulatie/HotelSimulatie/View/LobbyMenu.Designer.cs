@@ -405,7 +405,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ListView lvGasten;
+        public System.Windows.Forms.ListView lvGasten;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader chPositie;
         private System.Windows.Forms.ColumnHeader chKamernr;
