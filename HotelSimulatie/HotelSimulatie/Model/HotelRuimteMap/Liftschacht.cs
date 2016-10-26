@@ -52,7 +52,7 @@ namespace HotelSimulatie.Model
                     texture = @"Lift\Lift_Gesloten";
             }
             #endregion  
-                texture = @"Lift\Lift_Open";
+
             Texture = contentManager.Load<Texture2D>(texture);
         }
 
@@ -62,10 +62,8 @@ namespace HotelSimulatie.Model
             if (!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
-                persoon.Wacht = true; 
+                persoon.Wacht = true;
                 isWachtrij = true;
-                if (persoon is Gast)
-                    persoon.Wachtteller.Start();
                 lift.VoegLiftStopToe(this);
                 liftKomtAl = false;
             }
@@ -79,11 +77,6 @@ namespace HotelSimulatie.Model
             {
                 Persoon persoon = Wachtrij.Dequeue();
                 persoon.Wacht = false;
-                if (persoon is Gast)
-                {
-                    persoon.Wachtteller.Stop();
-                    persoon.Wachtteller.Reset();
-                }              
                 persoon.inLift = true;
                 persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
                 persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
