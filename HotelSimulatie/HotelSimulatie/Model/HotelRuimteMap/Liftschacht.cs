@@ -80,12 +80,12 @@ namespace HotelSimulatie.Model
                 persoon.inLift = true;
                 persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
                 persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
-                lift.GasteninLift.Add(persoon);
+                lift.PersonenInLift.Add(persoon);
                 lift.VoegLiftStopToe((Liftschacht)persoon.Bestemming);
             }
         }
 
-        public void LaatGastenUitLiftGaan(List<Persoon> personenDieUitstappen)
+        public void LaatPersonenUitLiftGaan(List<Persoon> personenDieUitstappen)
         {
             foreach (Persoon persoon in personenDieUitstappen)
             {
@@ -94,7 +94,7 @@ namespace HotelSimulatie.Model
                 persoon.BestemmingLijst.Remove(persoon.Bestemming);
                 persoon.inLift = false;
                 persoon.Positie = EventCoordinaten;
-                lift.GasteninLift.Remove(persoon);
+                lift.PersonenInLift.Remove(persoon);
             }
         }
     }

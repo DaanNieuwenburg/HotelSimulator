@@ -115,7 +115,6 @@ namespace HotelSimulatie.Model
 
         public void GaNaarKamer<T>(ref T ruimte)
         {
-
             if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
             {
                 Bestemming = ruimte as HotelRuimte;

@@ -13,7 +13,7 @@ namespace HotelSimulatie.Model
         public Liftschacht LiftBestemming { get; set; }
         public int BovensteVerdieping { get; set; }
         public bool LiftOmhoog { get; set; }
-        public List<Persoon> GasteninLift { get; set; }
+        public List<Persoon> PersonenInLift { get; set; }
         public List<Liftschacht> LiftStoppenlijst { get; set; }
         public List<Liftschacht> Liftschachtlijst { get; set; }
         private float snelheid { get; set; }
@@ -23,7 +23,7 @@ namespace HotelSimulatie.Model
             LiftOmhoog = true;
             LiftStoppenlijst = new List<Liftschacht>();
             snelheid = 1.5f;
-            GasteninLift = new List<Persoon>();
+            PersonenInLift = new List<Persoon>();
             BovensteVerdieping = Aantalverdiepingen;
         }
 
@@ -84,14 +84,14 @@ namespace HotelSimulatie.Model
                 LiftStoppenlijst.Remove(HuidigeVerdieping);
                 HuidigeVerdieping = LiftBestemming;
 
-                GasteninLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
+                PersonenInLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
 
                 // Laat de gasten uitstappen
-                var personenDieUitstappen = (from gast in GasteninLift
-                                             where gast.Bestemming == HuidigeVerdieping
-                                             select gast);
+                var personenDieUitstappen = (from persoon in PersonenInLift
+                                             where persoon.Bestemming == HuidigeVerdieping
+                                             select persoon);
                 List<Persoon> personenDieUitstappenLijst = personenDieUitstappen.ToList();
-                HuidigeVerdieping.LaatGastenUitLiftGaan(personenDieUitstappenLijst);
+                HuidigeVerdieping.LaatPersonenUitLiftGaan(personenDieUitstappenLijst);
             }
             return aangekomenOpBestemming;
         }
