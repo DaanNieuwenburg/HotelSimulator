@@ -46,8 +46,16 @@ namespace HotelSimulatie.View
         {
             if (tabs.SelectedTab == tabPage1)
             {
-                //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
-                //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+                lbPositieA.Text = hotel.Schoonmakers[0].HuidigeRuimte.Naam;
+                lbPositieB.Text = hotel.Schoonmakers[1].HuidigeRuimte.Naam;
+                if (hotel.Schoonmakers[0].SchoonmaakLijst.Count > 0)
+                    lbBestemmingA.Text = hotel.Schoonmakers[0].SchoonmaakLijst.First().Naam;
+                else
+                    lbBestemmingA.Text = "n.v.t";
+                if (hotel.Schoonmakers[1].SchoonmaakLijst.Count > 0)
+                    lbBestemmingB.Text = hotel.Schoonmakers[1].SchoonmaakLijst.First().Naam;
+                else
+                    lbBestemmingB.Text = "n.v.t";
             }
             else if (tabs.SelectedTab == tabPage2)
             {
@@ -72,8 +80,8 @@ namespace HotelSimulatie.View
         {
             if(tabs.SelectedTab == tabPage1)
             {
-                //lbPositieA.Text = hotel.Schoonmaker_A.SchoonmaakPositie.Naam;
-                //lbPositieB.Text = hotel.Schoonmaker_B.SchoonmaakPositie.Naam;
+                lbPositieA.Text = hotel.Schoonmakers[0].SchoonmaakLijst.First().Naam;
+                lbPositieB.Text = hotel.Schoonmakers[1].SchoonmaakLijst.First().Naam;
             }
             else if(tabs.SelectedTab == tabPage2)
             {

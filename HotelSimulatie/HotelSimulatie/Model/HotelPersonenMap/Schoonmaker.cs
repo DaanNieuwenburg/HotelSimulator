@@ -14,26 +14,21 @@ namespace HotelSimulatie.Model
         public List<HotelRuimte> SchoonmaakLijst { get; set; }
         private bool isIdle { get; set; }
         private int verlopenTijd { get; set; }
+        public string texturenaam { get; set;}
         private int startTijd { get; set; }
         public Schoonmaker()
         {
             isIdle = true;
             SchoonmaakLijst = new List<HotelRuimte>();
             Texturelijst = new List<string>();
-            Texturelijst.Add(@"Gasten\AnimatedRob");
+            //Texturelijst.Add(@"Gasten\AnimatedRob");
         }
 
-        /*public void LoadContent(ContentManager contentManager)
+        public void LoadContent(ContentManager contentManager)
         {
-            if (Texturenaam == "AnimatedSchoonmaker")
-            {
-                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 2);
-            }
-            else
-            {
-                SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturenaam, 4);
-            }
-        }*/
+
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, texturenaam, 3);
+        }
 
         public void Update(GameTime spelTijd)
         {

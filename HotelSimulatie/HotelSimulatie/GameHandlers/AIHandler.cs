@@ -119,7 +119,7 @@ namespace HotelSimulatie
             {
                 if (gast.isDood == false)
                 {
-                    if (gast.Wachtteller.Elapsed.Seconds >= 3)
+                    if (gast.Wachtteller.Elapsed.Seconds >= 6)
                     {
                         gast.isDood = true;
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
