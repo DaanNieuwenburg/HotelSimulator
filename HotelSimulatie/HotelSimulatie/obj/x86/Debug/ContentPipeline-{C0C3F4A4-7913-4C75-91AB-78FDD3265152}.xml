@@ -343,6 +343,24 @@
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T11:59:31.7219653+02:00</Time>
     </Item>
+    <Item>
+      <Source>Gasten\AnimatedGast5.png</Source>
+      <Name>Gasten\AnimatedGast5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast5.xnb</Output>
+      <Time>2016-10-26T11:45:46.0472858+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Gasten\AnimatedGast5_Links.png</Source>
+      <Name>Gasten\AnimatedGast5_Links</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast5_Links.xnb</Output>
+      <Time>2016-10-26T11:45:46.0497918+02:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>

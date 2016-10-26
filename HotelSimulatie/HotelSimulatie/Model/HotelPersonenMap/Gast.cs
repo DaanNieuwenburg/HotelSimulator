@@ -24,6 +24,7 @@ namespace HotelSimulatie.Model
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");
             Texturelijst.Add(@"Gasten\AnimatedGast4");
+            Texturelijst.Add(@"Gasten\AnimatedGast5");
         }
 
         public void Inchecken(Lobby lobby, GameTime gameTime)

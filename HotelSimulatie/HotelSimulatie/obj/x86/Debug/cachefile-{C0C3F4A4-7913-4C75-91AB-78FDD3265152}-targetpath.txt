@@ -36,3 +36,5 @@ Content\Kamers\Zwembad.xnb
 Content\Gasten\spook.xnb
 Content\Gasten\spook_Links.xnb
 Content\Font.xnb
+Content\Gasten\AnimatedGast5.xnb
+Content\Gasten\AnimatedGast5_Links.xnb
