@@ -81,7 +81,10 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    schoonmaker.Update(gameTime);
+                    if(schoonmaker.inLift == false)
+                    {
+                        schoonmaker.Update(gameTime);
+                    }
                 }
             }
 
