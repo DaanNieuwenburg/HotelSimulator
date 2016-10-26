@@ -37,9 +37,9 @@ namespace HotelSimulatie.View
             //lbPositieB.Text = hotel.Schoonmakers[1].SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
-            lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;
-            lbPersonenLift.Text = hotel.hotelLayout.lift.PersonenInLift.Count().ToString() ;
-            lbPositieLift.Text ="Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
+            //lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;
+            //lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString() ;
+            //lbPositieLift.Text ="Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
             #endregion
         }
         public void RefreshInfo()
@@ -52,7 +52,7 @@ namespace HotelSimulatie.View
             else if (tabs.SelectedTab == tabPage2)
             {
                 lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
-                lbPersonenLift.Text = hotel.hotelLayout.lift.PersonenInLift.Count().ToString();
+                lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString();
                 lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
             }
             else if (tabs.SelectedTab == tabPage3)
@@ -78,7 +78,7 @@ namespace HotelSimulatie.View
             else if(tabs.SelectedTab == tabPage2)
             {
                 lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
-                lbPersonenLift.Text = hotel.hotelLayout.lift.PersonenInLift.Count().ToString();
+                lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString();
                 lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
             }
             else if(tabs.SelectedTab == tabPage3)
