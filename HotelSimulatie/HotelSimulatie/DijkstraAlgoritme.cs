@@ -21,25 +21,27 @@ namespace HotelSimulatie
             Eind = eind;
             open = new List<HotelRuimte>();
             bezochteRuimtes = new List<HotelRuimte>();
-            
+
             HotelRuimte temp = Begin;
+            temp.Afstand = 0;
             while (!Bezoek(temp, Eind))
             {
                 temp = open.Aggregate((l, r) => l.Afstand < r.Afstand ? l : r);
             }
-            
+
             ResetAfstanden();
             return MaakPad();
         }
 
         private List<HotelRuimte> MaakPad()
         {
+            Begin.Afstand = 0;
             List<HotelRuimte> pad = new List<HotelRuimte>();
             HotelRuimte deze = Eind;
             pad.Add(Eind);
             while (deze != Begin)
             {
-                if(deze.Vorige != Begin)
+                if (deze.Vorige != Begin)
                 {
                     pad.Add(deze.Vorige);
                 }
@@ -53,19 +55,11 @@ namespace HotelSimulatie
             Begin.Afstand = Int32.MaxValue / 2;
             pad.Add(Begin);
             pad.Reverse();
-            if (Eind.GetType() == typeof(Lobby))
-            {
-                return pad;
-            }
-            else
-            {
-                return pad;
-            }
-        } 
+            return pad;
+        }
 
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
-            deze.Afstand = 0;
 
             // Als de dichtbijzijnde hotelkamer gezocht moet worden
             Kamer TypeKamer = new Kamer(0);
@@ -81,7 +75,7 @@ namespace HotelSimulatie
             }
 
             // Als de dichtbijzijnde eetzaal gezocht moet worden
-            else if(zoekDichtbijzijnde == true && deze.GetType() == eind.GetType())
+            else if (zoekDichtbijzijnde == true && deze.GetType() == eind.GetType())
             {
                 Eind = deze;
                 return true;
@@ -97,23 +91,23 @@ namespace HotelSimulatie
                 open.Remove(deze);
             }
 
-            foreach (KeyValuePair<HotelRuimte, int> x in deze.Buren)
+            foreach (HotelRuimte hotelRuimte in deze.Buren)
             {
-                int NieuweAfstand = deze.Afstand + x.Value;
-                if (NieuweAfstand < x.Key.Afstand)
+                int NieuweAfstand = deze.Afstand + hotelRuimte.Gewicht;
+                if (NieuweAfstand < hotelRuimte.Afstand)
                 {
-                    x.Key.Afstand = NieuweAfstand;
-                    x.Key.Vorige = deze;
-                    open.Add(x.Key);
+                    hotelRuimte.Afstand = NieuweAfstand;
+                    hotelRuimte.Vorige = deze;
+                    open.Add(hotelRuimte);
                 }
-                bezochteRuimtes.Add(x.Key);
+                bezochteRuimtes.Add(hotelRuimte);
             }
             return false;
         }
-        
+
         private void ResetAfstanden()
         {
-            foreach(HotelRuimte hotelRuimte in bezochteRuimtes)
+            foreach (HotelRuimte hotelRuimte in bezochteRuimtes)
             {
                 hotelRuimte.Afstand = Int32.MaxValue / 2;
             }
