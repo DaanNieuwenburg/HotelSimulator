@@ -10,17 +10,15 @@ namespace HotelSimulatie
 {
     public class HotelEventAdapter : HotelEvent
     {
-        public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented }
+        public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
-        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
+        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM }
         public Gast gast { get; set; }
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }
         public int HuidigeDuurEvent { get; set; }
-        public HotelEventAdapter(HotelEvent evt = null, List<Gast> gastenLijst = null)
+        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
         {
-            if (evt != null && evt.Data != null)
-            {
             // Bepaal event category en type
             NEvent = (NEventType)evt.EventType;
             Message = evt.Message;
@@ -29,18 +27,20 @@ namespace HotelSimulatie
             bepaalHotelEventCategory(evt);
 
             // Als er geen sprake is van zo een vreselijk test event
-            if (Category == NEventCategory.Guest)
+            if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
                 Message = evt.Data.Values.ElementAt(0);
-
+                if (Category == NEventCategory.Guest)
+                { 
                     bepaalGast(evt, gastenLijst);
                 }
             }
+        }
 
         private void bepaalHotelEventCategory(HotelEvent evt)
         {
             // Initialiseer de event categories
-            NEventType[] cleaningEvents = new NEventType[2];
+            NEventType[] cleaningEvents = new NEventType[1];
             cleaningEvents[0] = NEventType.CLEANING_EMERGENCY;
 
             NEventType[] guestEvents = new NEventType[5];
