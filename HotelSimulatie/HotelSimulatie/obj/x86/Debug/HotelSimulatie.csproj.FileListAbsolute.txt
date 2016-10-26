@@ -119,7 +119,6 @@ C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
-C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast5.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast5_Links.xnb
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Gasten\AnimatedGast6.xnb

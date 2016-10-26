@@ -40,7 +40,7 @@ namespace HotelSimulatie.Model
             loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
         }
 
-        public void LoadContent(ContentManager contentManager)
+        public virtual void LoadContent(ContentManager contentManager)
         {
             tempmanager = contentManager;
             Random randomgast = new Random();

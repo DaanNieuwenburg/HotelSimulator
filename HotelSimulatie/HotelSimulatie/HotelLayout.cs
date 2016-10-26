@@ -37,17 +37,12 @@ namespace HotelSimulatie
             geefLayoutNodesBuren();
             zetLayoutPositiesGoed();
             test = HotelRuimteLijst.OfType<Kamer>().First(o => o.AantalSterren == 3);
-            /*ZetLiftenEnTrappenInLayout();
-            zetLobbyInLayout();
-            zetGangenInLayout();
-            geefLayoutNodesBuren(); 
-            zetLayoutPositiesGoed();
             bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
             fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
             KamerLijst = (from kamer in HotelRuimteLijst where kamer is Kamer select kamer as Kamer).ToList();
             eetzalen = new Eetzaal[2];
             eetzalen[0] = (Eetzaal)HotelRuimteLijst.OfType<Eetzaal>().First();
-            eetzalen[1] = (Eetzaal)HotelRuimteLijst.OfType<Eetzaal>().Last();*/
+            eetzalen[1] = (Eetzaal)HotelRuimteLijst.OfType<Eetzaal>().Last();
         }
 
         private List<HotelRuimte> LeesLayoutUit()
