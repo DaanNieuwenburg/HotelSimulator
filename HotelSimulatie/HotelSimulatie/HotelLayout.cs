@@ -205,14 +205,66 @@ namespace HotelSimulatie
 
         private void geefLayoutNodesBuren()
         {
-            // Sorteer lijst bij op y en daarna op x
+            // Sorteer lijst op y en daarna op x
             HotelRuimteLijst = HotelRuimteLijst.OrderBy(x => x.CoordinatenInSpel.Y).ThenBy(x => x.CoordinatenInSpel.X).ToList();
 
-            int teller = 0;
+            int i = 0;
+            foreach(HotelRuimte hRuimte in HotelRuimteLijst)
+            {
+                // In het geval van een liftschacht uiterst onder
+                if (hRuimte is Liftschacht && hRuimte.CoordinatenInSpel.Y == 0)
+                {
+
+                    HotelRuimte liftschachtBovenDeze = HotelRuimteLijst.OfType<Liftschacht>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i + 1], liftschachtBovenDeze);
+                }
+                // In het geval van een liftschacht uiterst boven
+                else if(hRuimte is Liftschacht && hRuimte.CoordinatenInSpel.Y == hotelHoogte)
+                {
+                    HotelRuimte liftschachtOnderDeze = HotelRuimteLijst.OfType<Liftschacht>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i + 1], liftschachtOnderDeze);
+                }
+                // In het geval van een trap uiterst onder
+                else if(hRuimte is Trap && hRuimte.CoordinatenInSpel.Y == 0)
+                {
+                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i - 1], trapBovenDeze);
+                }
+                // In het geval van een trap uiterst boven
+                else if (hRuimte is Trap && hRuimte.CoordinatenInSpel.Y == hotelHoogte)
+                {
+                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i - 1], trapOnderDeze);
+                }
+                // Bij alle overige trappen en liften
+                else if(hRuimte is Trap)
+                {
+                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i - 1], trapBovenDeze, trapOnderDeze);
+                }
+                else if(hRuimte is Liftschacht)
+                {
+                    HotelRuimte liftSchachtBovenDeze = HotelRuimteLijst.OfType<Liftschacht>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    HotelRuimte liftSchachtOnderDeze = HotelRuimteLijst.OfType<Liftschacht>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i + 1], liftSchachtBovenDeze, liftSchachtOnderDeze);
+                }
+                else
+                {
+                    hRuimte.VoegBurenToe(HotelRuimteLijst[i - 1], HotelRuimteLijst[i + 1]);
+                }
+                i++;
+            }
+
+            /*int teller = 0;
             foreach (HotelRuimte hRuimte in HotelRuimteLijst)
             {
                 if (hRuimte is Liftschacht || hRuimte is Trap)
                 {
+                    if(hRuimte is Trap)
+                    {
+                        Console.WriteLine("");
+                    }
                     HotelRuimte gevondenBovenBuur = zoekLiftOfTrapBuur(hRuimte.GetType(), "volgende", teller);
                     HotelRuimte gevondenBenedenBuur = zoekLiftOfTrapBuur(hRuimte.GetType(), "vorige", teller);
                     if (teller + 1 < HotelRuimteLijst.Count() && HotelRuimteLijst[teller + 1].GetType() != typeof(Liftschacht) && HotelRuimteLijst[teller + 1].GetType() != typeof(Trap))
@@ -236,7 +288,7 @@ namespace HotelSimulatie
                     }
                 }
                 teller++;
-            }
+            }*/
         }
 
         // Returnt de volgende lift of trap buur, als die er is.

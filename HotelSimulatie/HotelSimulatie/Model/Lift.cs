@@ -44,7 +44,7 @@ namespace HotelSimulatie.Model
             if (VerplaatsLift())
             {
                 bepaalLiftBestemming();
-                HuidigeVerdieping.LaatGastenLiftInGaan();
+                HuidigeVerdieping.LaatPersoonLiftInGaan();
             }
         }
 

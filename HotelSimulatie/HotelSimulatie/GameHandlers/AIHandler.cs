@@ -71,6 +71,20 @@ namespace HotelSimulatie
                 }
             }
 
+            // Update de schoonmakers
+            foreach (Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
+            {
+                if (schoonmaker.Positie == new Vector2(0, 0))
+                {
+                    schoonmaker.Positie = spel.GastSpawnLocatie;
+                    schoonmaker.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+                }
+                else
+                {
+                    schoonmaker.Update(gameTime);
+                }
+            }
+
             // Update de lift
             if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
             {
@@ -88,19 +102,7 @@ namespace HotelSimulatie
             }
             spel.hotel.hotelLayout.fitness.Update(gameTime);
 
-            // Update de schoonmakers
-            foreach (Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
-            {
-                if (schoonmaker.Positie == new Vector2(0, 0))
-                {
-                    schoonmaker.Positie = spel.GastSpawnLocatie;
-                    schoonmaker.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
-                }
-                else
-                {
-                    schoonmaker.Update(gameTime);
-                }
-            }
+            
             // Update Lobbymenu
             FormCollection fc = Application.OpenForms;
 

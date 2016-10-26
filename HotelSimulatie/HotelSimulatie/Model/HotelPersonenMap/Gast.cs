@@ -26,6 +26,7 @@ namespace HotelSimulatie.Model
             Texturelijst.Add(@"Gasten\AnimatedGast4");
         }
 
+
         public void Inchecken(Lobby lobby, GameTime gameTime)
         {
             // Ga naar lobby en vraag om een kamer

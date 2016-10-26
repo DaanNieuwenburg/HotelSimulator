@@ -70,7 +70,7 @@ namespace HotelSimulatie.Model
             return liftKomtAl;
         }
 
-        public void LaatGastenLiftInGaan()
+        public void LaatPersoonLiftInGaan()
         {
             int personenInWachtrij = Wachtrij.Count();
             for (int i = 0; i < personenInWachtrij; i++)

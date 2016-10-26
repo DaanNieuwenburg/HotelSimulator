@@ -147,6 +147,10 @@ namespace HotelSimulatie.Model
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
+                        if(this is Schoonmaker)
+                        {
+                            Console.WriteLine("a");
+                        }
                     }
                     else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
                     {
