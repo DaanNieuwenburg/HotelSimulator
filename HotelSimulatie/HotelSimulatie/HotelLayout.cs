@@ -28,12 +28,6 @@ namespace HotelSimulatie
             zetLobbyInLayout();
             zetGangenInLayout();
             geefLayoutNodesBuren(); 
-             /*bepaalMaxXY();
-             zetLiftschachtenInLayout();
-             zetTrapInLayout();
-             zetLobbyInLayout();
-             zetGangenInLayout();
-             geefLayoutNodesBuren();*/
             zetLayoutPositiesGoed();
             bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
             fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
