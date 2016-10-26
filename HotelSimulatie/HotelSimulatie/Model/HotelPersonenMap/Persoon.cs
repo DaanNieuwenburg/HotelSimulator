@@ -139,10 +139,6 @@ namespace HotelSimulatie.Model
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
-                        if(this is Schoonmaker)
-                        {
-                            Console.WriteLine("a");
-                        }
                     }
                     else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
                     {
@@ -155,15 +151,22 @@ namespace HotelSimulatie.Model
                 {
                     Bestemming = null;
                     BestemmingLijst = null;
-                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    if (this is Gast)
+                    {
+                        HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    }
+
                     if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
                     {
-                        HuidigeRuimte.voegPersoonToe((Gast)this);
-                        Gast persoon = (Gast)this;
-                        HuidigeRuimte.voegPersoonToe(persoon);
-                        if (HuidigeRuimte is Eetzaal)
+                        if (this is Gast)
                         {
-                            persoon.heeftHonger = false;
+                            HuidigeRuimte.voegPersoonToe((Gast)this);
+                            Gast persoon = (Gast)this;
+                            HuidigeRuimte.voegPersoonToe(persoon);
+                            if (HuidigeRuimte is Eetzaal)
+                            {
+                                persoon.heeftHonger = false;
+                            }
                         }
                     }
                 }
