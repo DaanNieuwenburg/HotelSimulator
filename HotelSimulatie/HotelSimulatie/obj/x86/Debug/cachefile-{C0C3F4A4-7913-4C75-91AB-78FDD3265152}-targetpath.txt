@@ -38,3 +38,5 @@ Content\Gasten\spook_Links.xnb
 Content\Font.xnb
 Content\Gasten\AnimatedGast5.xnb
 Content\Gasten\AnimatedGast5_Links.xnb
+Content\Gasten\AnimatedGast6.xnb
+Content\Gasten\AnimatedGast6_Links.xnb
