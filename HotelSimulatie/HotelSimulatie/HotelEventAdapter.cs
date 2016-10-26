@@ -21,25 +21,21 @@ namespace HotelSimulatie
         {
             if (evt != null && evt.Data != null)
             {
-                // Bepaal event category en type
-                NEvent = (NEventType)evt.EventType;
-                Message = evt.Message;
-                Time = evt.Time;
+            // Bepaal event category en type
+            NEvent = (NEventType)evt.EventType;
+            Message = evt.Message;
+            Time = evt.Time;
 
-                bepaalHotelEventCategory(evt);
+            bepaalHotelEventCategory(evt);
 
-                // Als er geen sprake is van zo een vreselijk test event
-                if (Category == NEventCategory.Guest)
-                {
-                    Message = evt.Data.Values.ElementAt(0);
+            // Als er geen sprake is van zo een vreselijk test event
+            if (Category == NEventCategory.Guest)
+            {
+                Message = evt.Data.Values.ElementAt(0);
+
                     bepaalGast(evt, gastenLijst);
                 }
-                else if(Category == NEventCategory.Cleaning)
-                {
-                    Message = evt.Data.Values.ElementAt(0);
-                }
             }
-        }
 
         private void bepaalHotelEventCategory(HotelEvent evt)
         {

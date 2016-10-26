@@ -29,6 +29,7 @@ namespace HotelSimulatie.Model
         private bool LooptNaarLinks { get; set; }
         public bool inLift { get; set; }
         public bool Wacht { get; set; }
+        private int aantalSchoonmakers { get; set; }
         public Persoon()
         {
             inLift = false;
@@ -40,7 +41,7 @@ namespace HotelSimulatie.Model
             loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
         }
 
-        public void LoadContent(ContentManager contentManager)
+        public virtual void LoadContent(ContentManager contentManager)
         {
             tempmanager = contentManager;
             Random randomgast = new Random();
@@ -139,7 +140,10 @@ namespace HotelSimulatie.Model
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
-                    }
+                        if (this is Schoonmaker)
+                        {
+                            Console.WriteLine("a");
+                        }
                     else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
                     {
                         HuidigeRuimte = Bestemming;
@@ -153,24 +157,24 @@ namespace HotelSimulatie.Model
                     BestemmingLijst = null;
                     if (this is Gast)
                     {
-                        HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
                     }
 
                     if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
                     {
                         if (this is Gast)
                         {
-                            HuidigeRuimte.voegPersoonToe((Gast)this);
-                            Gast persoon = (Gast)this;
-                            HuidigeRuimte.voegPersoonToe(persoon);
-                            if (HuidigeRuimte is Eetzaal)
-                            {
-                                persoon.heeftHonger = false;
-                            }
+                        HuidigeRuimte.voegPersoonToe((Gast)this);
+                        Gast persoon = (Gast)this;
+                        HuidigeRuimte.voegPersoonToe(persoon);
+                        if (HuidigeRuimte is Eetzaal)
+                        {
+                            persoon.heeftHonger = false;
                         }
                     }
                 }
              }
+        }
         }
 
         public void UpdateFrame(GameTime spelTijd)

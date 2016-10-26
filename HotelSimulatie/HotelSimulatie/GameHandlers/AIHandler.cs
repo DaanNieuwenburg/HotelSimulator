@@ -128,6 +128,10 @@ namespace HotelSimulatie
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
                     }
                 }
+                else
+                {
+                        gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                }
 
             }
         }
