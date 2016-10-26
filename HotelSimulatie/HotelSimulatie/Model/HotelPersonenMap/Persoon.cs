@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
         public Liftschacht bestemmingslift { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
-        public List<string> Texturelijst { get; set; }
+        public virtual List<string> Texturelijst { get; set; }
         private ContentManager tempmanager { get; set; }
         private float loopSnelheid { get; set; }
         private float loopSnelheidHTE { get; set; }
@@ -38,14 +38,6 @@ namespace HotelSimulatie.Model
             loopSnelheid = (float)a / 10;*/
             loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
             loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
-
-            Texturelijst = new List<string>();
-            //Texturelijst.Add(@"Gasten\AnimatedRob");
-            Texturelijst.Add(@"Gasten\AnimatedGast1");
-            Texturelijst.Add(@"Gasten\AnimatedGast2");
-            Texturelijst.Add(@"Gasten\AnimatedGast3");
-            Texturelijst.Add(@"Gasten\AnimatedGast4");
-
         }
 
         public void LoadContent(ContentManager contentManager)

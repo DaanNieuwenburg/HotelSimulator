@@ -21,14 +21,16 @@ namespace HotelSimulatie.Model
             isIdle = true;
             SchoonmaakLijst = new List<HotelRuimte>();
             Texturelijst = new List<string>();
-            //Texturelijst.Add(@"Gasten\AnimatedRob");
+            Texturelijst.Add(@"AnimatedSchoonmaker");
+            Texturelijst.Add(@"AnimatedSchoonmaker1");
+            Texturelijst.Add(@"AnimatedSchoonmaker2");
         }
 
-        public void LoadContent(ContentManager contentManager)
+        /*public void LoadContent(ContentManager contentManager)
         {
 
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, texturenaam, 3);
-        }
+        }*/
 
         public void Update(GameTime spelTijd)
         {
