@@ -38,14 +38,14 @@ namespace HotelSimulatie.Model
             }
             else if (AantalSterren == 4)
             {
-                if (Afmetingen.Y == 90)
-                {
+                /*if (Afmetingen.Y == 90)
+                {*/
                     Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_4ster(1hoog)");
-                }
+                /*}
                 else
                 {
                     Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_4ster(2hoog)");
-                }
+                }*/
             }
             else if (AantalSterren == 5)
             {

@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
             string texture;
             //Laad textures voor verschillende verdiepingen
             #region 
-            /*if (Bestemming == 0)
+            if (Bestemming == 0)
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)
                     texture = @"Lift\Lift_Beneden_Open";
@@ -50,7 +50,7 @@ namespace HotelSimulatie.Model
                     texture = @"Lift\Lift_Open";
                 else
                     texture = @"Lift\Lift_Gesloten";
-            }*/
+            }
             #endregion  
                 texture = @"Lift\Lift_Open";
             Texture = contentManager.Load<Texture2D>(texture);
