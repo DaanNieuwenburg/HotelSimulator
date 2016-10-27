@@ -24,7 +24,7 @@ namespace HotelSimulatie.Model
         private float loopSnelheid { get; set; }
         private float loopSnelheidHTE { get; set; }
         public string Naam { get; set; }
-        private int textureIndex { get; set; }
+        protected int textureIndex { get; set; }
         public Stopwatch Wachtteller { get; set; }
         private bool LooptNaarLinks { get; set; }
         public bool inLiftOfTrap { get; set; }
@@ -41,13 +41,7 @@ namespace HotelSimulatie.Model
             loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
         }
 
-        public virtual void LoadContent(ContentManager contentManager)
-        {
-            tempmanager = contentManager;
-            Random randomgast = new Random();
-            textureIndex = randomgast.Next(0, Texturelijst.Count());
-            SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureIndex], 3);
-        }
+        public abstract void LoadContent(ContentManager contentManager);
 
         public bool LoopNaarRuimte()
         {

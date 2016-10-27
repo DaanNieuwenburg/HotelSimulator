@@ -22,47 +22,50 @@ namespace HotelSimulatie
             for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
+                if (gast.isDood == false)
                 {
-                    if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+                    if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
                     {
-                        gast.Inchecken(spel.hotel.hotelLayout.lobby, gameTime);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
-                    {
-                        Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarKamer<Lobby>(ref lobby);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
-                    {
-                        Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        gast.GaNaarKamer<Bioscoop>(ref bioscoop);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
-                    {
-                        Fitness fitness = spel.hotel.hotelLayout.fitness;
-                        gast.GaNaarKamer<Fitness>(ref fitness);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
-                    {
-                        Kamer kamer = gast.ToegewezenKamer;
-                        gast.GaNaarKamer<Kamer>(ref kamer);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
-                    {
-                        Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarKamer<Lobby>(ref lobby);
-                        spel.hotel.Evacueer();
-                    }
-                    else if (spel.hotel.hotelLayout.bioscoop.filmbezig == true && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
-                    {
-                        Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        bioscoop.Update(gameTime);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
-                    {
-                        Eetzaal eetzaal = new Eetzaal();
-                        gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+                        if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+                        {
+                            gast.Inchecken(spel.hotel.hotelLayout, gameTime);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
+                        {
+                            Lobby lobby = spel.hotel.hotelLayout.lobby;
+                            gast.GaNaarKamer<Lobby>(ref lobby);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
+                        {
+                            Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
+                            gast.GaNaarKamer<Bioscoop>(ref bioscoop);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
+                        {
+                            Fitness fitness = spel.hotel.hotelLayout.fitness;
+                            gast.GaNaarKamer<Fitness>(ref fitness);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                        {
+                            Kamer kamer = gast.ToegewezenKamer;
+                            gast.GaNaarKamer<Kamer>(ref kamer);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                        {
+                            Lobby lobby = spel.hotel.hotelLayout.lobby;
+                            gast.GaNaarKamer<Lobby>(ref lobby);
+                            spel.hotel.Evacueer();
+                        }
+                        else if (spel.hotel.hotelLayout.bioscoop.filmbezig == true && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                        {
+                            Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
+                            bioscoop.Update(gameTime);
+                        }
+                        else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                        {
+                            Eetzaal eetzaal = new Eetzaal();
+                            gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+                        }
                     }
                 }
             }
@@ -77,7 +80,7 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    if(schoonmaker.inLiftOfTrap == false)
+                    if (schoonmaker.inLiftOfTrap == false)
                     {
                         schoonmaker.Update(gameTime);
                     }
@@ -104,7 +107,7 @@ namespace HotelSimulatie
             }
             spel.hotel.hotelLayout.fitness.Update(gameTime);
 
-            
+
             // Update Lobbymenu
             FormCollection fc = Application.OpenForms;
 
@@ -125,15 +128,18 @@ namespace HotelSimulatie
                     {
                         gast.isDood = true;
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                        gast.ToegewezenKamer.Bezet = false;
                     }
                 }
                 else
                 {
-                        gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    gast.Rondspoken();
                 }
 
             }
         }
+
 
         public override void Draw(GameTime gameTime)
         {

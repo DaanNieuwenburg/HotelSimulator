@@ -10,6 +10,7 @@ namespace HotelSimulatie.Model
 {
     public class Gast : Persoon
     {
+        private HotelLayout hotellayout { get; set; }
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
         public bool isDood { get; set; }
@@ -25,10 +26,18 @@ namespace HotelSimulatie.Model
             Texturelijst.Add(@"Gasten\AnimatedGast4");
             Texturelijst.Add(@"Gasten\AnimatedGast5");
             Texturelijst.Add(@"Gasten\AnimatedGast6");
+            Texturelijst.Add(@"Gasten\AnimatedGast7");
+            Texturelijst.Add(@"Gasten\AnimatedGast8");
         }
 
-
-        public void Inchecken(Lobby lobby, GameTime gameTime)
+        public override void LoadContent(ContentManager contentManager)
+        {
+            tempmanager = contentManager;
+            Random randomgast = new Random();
+            textureIndex = randomgast.Next(0, Texturelijst.Count());
+            SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureIndex], 3);
+        }
+        public void Inchecken(HotelLayout hotellayout, GameTime gameTime)
         {
             // Ga naar lobby en vraag om een kamer
             if (ToegewezenKamer == null)
@@ -36,13 +45,13 @@ namespace HotelSimulatie.Model
                 if (LoopNaarRuimte())
                 {
                     // Voeg gast aan wachtrij toe
-                    if (!lobby.Wachtrij.Contains(this))
+                    if (!hotellayout.lobby.Wachtrij.Contains(this))
                     {
-                        lobby.Wachtrij.Enqueue(this);
+                        hotellayout.lobby.Wachtrij.Enqueue(this);
                     }
 
                     // koppel de toegewezenkammer
-                    Kamer gevondenKamer = lobby.GastInChecken(this, gameTime);
+                    Kamer gevondenKamer = hotellayout.lobby.GastInChecken(this, gameTime);
 
                     // Als er een kamer is toegewezen
                     if (gevondenKamer != null)
@@ -60,6 +69,20 @@ namespace HotelSimulatie.Model
                         }
                     }
                 }
+            }
+        }
+        public void Rondspoken()
+        {
+            Trappenhuis trap = hotellayout.Trappenhuislijst[HuidigeRuimte.Verdieping];
+            Liftschacht lift = hotellayout.liftSchachtenLijst[HuidigeRuimte.Verdieping];
+            this.GaNaarKamer(ref trap);
+            if(this.HuidigeRuimte == trap)
+            {
+                this.GaNaarKamer(ref lift);
+            }
+            else if(HuidigeRuimte == lift)
+            {
+                this.GaNaarKamer(ref trap);
             }
         }
     }

@@ -12,9 +12,12 @@ namespace HotelSimulatie
     {
         public List<HotelRuimte> HotelRuimteLijst { get; set; }
         public List<Kamer> KamerLijst { get; set; }
+        public List<Trappenhuis> Trappenhuislijst { get; set; }
+        public List<Liftschacht> liftSchachtenLijst { get; set; }
         public Bioscoop bioscoop { get; set; }
         public Fitness fitness { get; set; }
         public Lift lift { get; set; }
+        public Trappenhuis trappenhuis { get; set; }
         public Trap trap { get; set; }
         public Lobby lobby { get; set; }
         private HotelRuimteFactory hotelRuimteFactory { get; set; }
@@ -76,7 +79,7 @@ namespace HotelSimulatie
             lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift", hotelHoogte);
 
             // Maak de liftschachten
-            List<Liftschacht> liftSchachtenLijst = new List<Liftschacht>();
+            liftSchachtenLijst = new List<Liftschacht>();
             for (int y = 0; y <= hotelHoogte; y++)
             {
                 Liftschacht liftschacht = (Liftschacht)hotelRuimteFactory.MaakHotelRuimte("Liftschacht", y);
@@ -90,6 +93,7 @@ namespace HotelSimulatie
             lift.HuidigeVerdieping = liftSchachtenLijst.First(); // to remove
 
             // Maak trap
+            Trappenhuislijst = new List<Trappenhuis>();
             trap = new Trap();
             for (int y = 0; y <= hotelHoogte; y++)
             {
@@ -97,6 +101,7 @@ namespace HotelSimulatie
                 trapppenhuis.CoordinatenInSpel = new Vector2(hotelBreedte + 1, y);
                 trapppenhuis.Afmetingen = new Vector2(1, 1);
                 trapppenhuis.trap = trap;
+                Trappenhuislijst.Add(trappenhuis);
                 HotelRuimteLijst.Add(trapppenhuis);
             }
         }

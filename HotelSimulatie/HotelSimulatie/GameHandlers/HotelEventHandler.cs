@@ -108,7 +108,7 @@ namespace HotelSimulatie
             spel.hotel.GastenLijst.Add(gast);
 
             // Start het event
-            gast.Inchecken(spel.hotel.hotelLayout.lobby, gametime);
+            gast.Inchecken(spel.hotel.hotelLayout, gametime);
         }
         private void Start_Cinema(HotelEventAdapter hotelEvent)
         {
