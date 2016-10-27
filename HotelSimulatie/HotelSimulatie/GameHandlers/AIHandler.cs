@@ -1,17 +1,13 @@
-﻿using HotelEvents;
-using HotelSimulatie.Model;
+﻿using HotelSimulatie.Model;
 using HotelSimulatie.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace HotelSimulatie
 {
-    public class AIHandler : Microsoft.Xna.Framework.DrawableGameComponent
+    public class AIHandler : DrawableGameComponent
     {
         public Simulatie spel { get; set; }
         public AIHandler(Game game) : base(game)
