@@ -27,11 +27,11 @@ namespace HotelSimulatie.Model
         private int textureIndex { get; set; }
         public Stopwatch Wachtteller { get; set; }
         private bool LooptNaarLinks { get; set; }
-        public bool inLift { get; set; }
+        public bool inLiftOfTrap { get; set; }
         public bool Wacht { get; set; }
         public Persoon()
         {
-            inLift = false;
+            inLiftOfTrap = false;
             LooptNaarLinks = false;
             /*Random random = new Random();
             int a = random.Next(1, 9);
@@ -139,12 +139,15 @@ namespace HotelSimulatie.Model
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
-                        if(this is Schoonmaker)
-                        {
-                            Console.WriteLine("a");
-                        }
                     }
-                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht))
+                    else if(HuidigeRuimte is Trappenhuis)
+                    {
+                        // Ga verder met de trap
+                        Trappenhuis trappenHuis = (Trappenhuis)HuidigeRuimte;
+                        trappenHuis.VoegPersoonToe(this);
+                        Bestemming = HuidigeRuimte;
+                    }
+                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht) || HuidigeRuimte.GetType() != typeof(Trappenhuis))
                     {
                         HuidigeRuimte = Bestemming;
                         Bestemming = BestemmingLijst.First();

@@ -22,7 +22,7 @@ namespace HotelSimulatie
             for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null && gast.inLift == false)
+                if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
@@ -77,7 +77,7 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    if(schoonmaker.inLift == false)
+                    if(schoonmaker.inLiftOfTrap == false)
                     {
                         schoonmaker.Update(gameTime);
                     }
@@ -93,6 +93,9 @@ namespace HotelSimulatie
             {
                 spel.hotel.hotelLayout.lift.InitializeerLift();
             }
+
+            // Update de trap
+            spel.hotel.hotelLayout.trap.Update(gameTime);
 
             // Update de eetzaal
             foreach (Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
@@ -145,7 +148,7 @@ namespace HotelSimulatie
             for (int i = 0; i < a; i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.Bestemming != null && gast.inLift == false)
+                if (gast.Bestemming != null && gast.inLiftOfTrap == false)
                 {
                     gast.Draw(spriteBatch);
                 }
