@@ -15,6 +15,7 @@ namespace HotelSimulatie
         public Bioscoop bioscoop { get; set; }
         public Fitness fitness { get; set; }
         public Lift lift { get; set; }
+        public Trap trap { get; set; }
         public Lobby lobby { get; set; }
         private HotelRuimteFactory hotelRuimteFactory { get; set; }
         public Eetzaal[] eetzalen { get; set; }
@@ -89,12 +90,14 @@ namespace HotelSimulatie
             lift.HuidigeVerdieping = liftSchachtenLijst.First(); // to remove
 
             // Maak trap
+            trap = new Trap();
             for (int y = 0; y <= hotelHoogte; y++)
             {
-                HotelRuimte trap = hotelRuimteFactory.MaakHotelRuimte("Trap", y);
-                trap.CoordinatenInSpel = new Vector2(hotelBreedte + 1, y);
-                trap.Afmetingen = new Vector2(1, 1);
-                HotelRuimteLijst.Add(trap);
+                Trappenhuis trapppenhuis = (Trappenhuis)hotelRuimteFactory.MaakHotelRuimte("Trappenhuis", y);
+                trapppenhuis.CoordinatenInSpel = new Vector2(hotelBreedte + 1, y);
+                trapppenhuis.Afmetingen = new Vector2(1, 1);
+                trapppenhuis.trap = trap;
+                HotelRuimteLijst.Add(trapppenhuis);
             }
         }
 
@@ -126,7 +129,7 @@ namespace HotelSimulatie
         private void zetGangenInLayout()
         {
             int liftX = (Int32)HotelRuimteLijst.OfType<Liftschacht>().First().CoordinatenInSpel.X;
-            int trapX = (Int32)HotelRuimteLijst.OfType<Trap>().First().CoordinatenInSpel.X;
+            int trapX = (Int32)HotelRuimteLijst.OfType<Trappenhuis>().First().CoordinatenInSpel.X;
 
             // Zet waar nodig gangen in de layout over bestaande ruimtes heen.
             for (int i = 0; i < HotelRuimteLijst.Count; i++)
@@ -160,7 +163,7 @@ namespace HotelSimulatie
             // Als een verdieping enkel uit gangen bestaat, vul de hele verdieping dan met gangen
             for (int i = 0; i <= hotelHoogte; i++)
             {
-                List<HotelRuimte> checkLijst = HotelRuimteLijst.FindAll(o => o.CoordinatenInSpel.Y == i && o.GetType() != typeof(Liftschacht) && o.GetType() != typeof(Trap));
+                List<HotelRuimte> checkLijst = HotelRuimteLijst.FindAll(o => o.CoordinatenInSpel.Y == i && o.GetType() != typeof(Liftschacht) && o.GetType() != typeof(Trappenhuis));
                 List<HotelRuimte> gevondenGangen = checkLijst.FindAll(o => o.GetType() == typeof(Gang));
 
                 if (gevondenGangen.Count == checkLijst.Count)
@@ -228,28 +231,28 @@ namespace HotelSimulatie
                     hRuimte.VoegBurenToe(buren);
                 }
                 // In het geval van een trap uiterst onder
-                else if (hRuimte is Trap && hRuimte.CoordinatenInSpel.Y == 0)
+                else if (hRuimte is Trappenhuis && hRuimte.CoordinatenInSpel.Y == 0)
                 {
-                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trappenhuis>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
                     List<HotelRuimte> buren = new List<HotelRuimte>();
                     buren.Add(trapBovenDeze);
                     buren.Add(HotelRuimteLijst[i - 1]);
                     hRuimte.VoegBurenToe(buren);
                 }
                 // In het geval van een trap uiterst boven
-                else if (hRuimte is Trap && hRuimte.CoordinatenInSpel.Y == hotelHoogte)
+                else if (hRuimte is Trappenhuis && hRuimte.CoordinatenInSpel.Y == hotelHoogte)
                 {
-                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trappenhuis>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
                     List<HotelRuimte> buren = new List<HotelRuimte>();
                     buren.Add(trapOnderDeze);
                     buren.Add(HotelRuimteLijst[i - 1]);
                     hRuimte.VoegBurenToe(buren);
                 }
                 // Bij alle overige trappen en liften
-                else if (hRuimte is Trap)
+                else if (hRuimte is Trappenhuis)
                 {
-                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
-                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trap>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
+                    HotelRuimte trapBovenDeze = HotelRuimteLijst.OfType<Trappenhuis>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y + 1);
+                    HotelRuimte trapOnderDeze = HotelRuimteLijst.OfType<Trappenhuis>().First(o => o.CoordinatenInSpel.Y == hRuimte.CoordinatenInSpel.Y - 1);
                     List<HotelRuimte> buren = new List<HotelRuimte>();
                     buren.Add(trapBovenDeze);
                     buren.Add(trapOnderDeze);

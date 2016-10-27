@@ -19,8 +19,8 @@ namespace HotelSimulatie.Model
                 return new Liftschacht(verdieping);
             else if (soort == "Lobby")
                 return new Lobby();
-            else if (soort == "Trap")
-                return new Trap();
+            else if (soort == "Trappenhuis")
+                return new Trappenhuis();
             else if (soort == "Kamer")
                 return new Kamer(1);
             else if (soort == "Gang")

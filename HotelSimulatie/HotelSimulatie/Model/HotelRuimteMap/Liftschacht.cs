@@ -84,7 +84,7 @@ namespace HotelSimulatie.Model
                     persoon.Wachtteller.Stop();
                     persoon.Wachtteller.Reset();
                 }
-                persoon.inLift = true;
+                persoon.inLiftOfTrap = true;
                 persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
                 persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
                 lift.PersonenInLift.Add(persoon);
@@ -99,7 +99,7 @@ namespace HotelSimulatie.Model
                 persoon.HuidigeRuimte = this;
                 persoon.Bestemming = persoon.BestemmingLijst.First();
                 persoon.BestemmingLijst.Remove(persoon.Bestemming);
-                persoon.inLift = false;
+                persoon.inLiftOfTrap = false;
                 persoon.Positie = EventCoordinaten;
                 lift.PersonenInLift.Remove(persoon);
             }

@@ -112,9 +112,9 @@ namespace HotelSimulatie
                 {
                     hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if (hotelRuimte is Trap)
+                if (hotelRuimte is Trappenhuis)
                 {
-                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y);
+                    hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
                 if(hotelRuimte is Bioscoop)
                 {

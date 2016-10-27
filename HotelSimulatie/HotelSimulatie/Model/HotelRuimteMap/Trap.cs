@@ -13,29 +13,52 @@ namespace HotelSimulatie.Model
         private Dictionary<Persoon, int> personenInTrap { get; set; }
         public Trap()
         {
-            Naam = "Trap";
-            texturepath = @"Kamers\Trap_gesloten";
+            personenInTrap = new Dictionary<Persoon, int>();
         }
         public override void LoadContent(ContentManager contentManager)
         {
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
-
         public void VoegPersoonToe(Persoon persoon)
         {
-            personenInTrap.Add(persoon, 0);
+            if (!personenInTrap.Keys.Contains(persoon))
+            {
+                personenInTrap.Add(persoon, 0);
+                persoon.inLiftOfTrap = true;
+            }
         }
 
+        /// <summary>
+        /// Value[0] = startTijd
+        /// Value[1] = eindTijd
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
-            /*
-            foreach(KeyValuePair<Persoon, int> persoon in personenInTrap)
+            for (int i = 0; i < personenInTrap.Count; i++)
             {
-                if(persoon.Value == 0)
+                KeyValuePair<Persoon, int> persoon = personenInTrap.ElementAt(i);
+                // Bepaal wanneer persoon weer trap uit moet
+                if (persoon.Value == 0)
                 {
-                    persoon.Value = gameTime.TotalGameTime.Seconds;
+                    int aantalTrappen = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Count();
+                    int eindTijd = gameTime.ElapsedGameTime.Seconds + aantalTrappen;
+                    // Bepaal aantal verdiepingen die de persoon op moet
+                    personenInTrap[persoon.Key] = eindTijd;
+
+                    // Verwijder trappenhuis en zet de laatste trappenhuis als bestemming
+                    persoon.Key.Bestemming = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Last();
+                    persoon.Key.BestemmingLijst.RemoveAll(o => o is Trappenhuis);
                 }
-            }*/
+
+                if (persoon.Value == gameTime.ElapsedGameTime.Seconds)
+                {
+                    persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
+                    persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+                    persoon.Key.Positie = persoon.Key.HuidigeRuimte.EventCoordinaten;
+                    persoon.Key.inLiftOfTrap = false;
+                }
+            }
         }
     }
 }
