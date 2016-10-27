@@ -13,6 +13,7 @@ namespace HotelSimulatie.Model
         public Trap trap { get; set; }
         public Trappenhuis(int verdieping)
         {
+            Verdieping = verdieping;
             // Test
             Naam = "Trap";
             texturepath = @"Kamers\Trap_gesloten";

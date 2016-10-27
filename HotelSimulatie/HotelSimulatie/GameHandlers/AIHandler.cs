@@ -22,11 +22,13 @@ namespace HotelSimulatie
             for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null && gast.inLiftOfTrap == false && gast.Wacht == false)
+                if (gast.isDood == false)
+                {
+                    if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
-                        gast.Inchecken(spel.hotel.hotelLayout.lobby, gameTime);
+                            gast.Inchecken(spel.hotel.hotelLayout, gameTime);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                     {
@@ -65,6 +67,7 @@ namespace HotelSimulatie
                         gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
                     }
                 }
+            }
             }
 
             // Update de schoonmakers
@@ -125,14 +128,17 @@ namespace HotelSimulatie
                     {
                         gast.isDood = true;
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                        gast.ToegewezenKamer.Bezet = false;
                     }
                 }
                 else
                 {
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    gast.Rondspoken();
                 }
             }
         }
+
 
         public override void Draw(GameTime gameTime)
         {

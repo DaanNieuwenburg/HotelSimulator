@@ -28,14 +28,13 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             tempmanager = contentManager;
-            if (this.Collega.texturenaam == Texturelijst[0])
+            if (this.Naam.Contains("Tim"))
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[1], 3);
             }
             else
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[0], 3);
-                texturenaam = Texturelijst[0];
             }
         }
 
