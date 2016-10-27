@@ -27,6 +27,7 @@ namespace HotelSimulatie.Model
 
         public override void LoadContent(ContentManager contentManager)
         {
+            tempmanager = contentManager;
             if (this.Collega.texturenaam == Texturelijst[0])
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[1], 3);

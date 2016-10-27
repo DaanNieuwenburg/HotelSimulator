@@ -28,16 +28,12 @@ namespace HotelSimulatie.Model
             }
         }
 
-        /// <summary>
-        /// Value[0] = startTijd
-        /// Value[1] = eindTijd
-        /// </summary>
-        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             for (int i = 0; i < personenInTrap.Count; i++)
             {
                 KeyValuePair<Persoon, int> persoon = personenInTrap.ElementAt(i);
+
                 // Bepaal wanneer persoon weer trap uit moet
                 if (persoon.Value == 0)
                 {
