@@ -87,11 +87,10 @@ namespace HotelSimulatie.Model
                 PersonenInLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
 
                 // Laat de gasten uitstappen
-                var personenDieUitstappen = (from persoon in PersonenInLift
+                List< Persoon> personenDieUitstappen = (from persoon in PersonenInLift
                                              where persoon.Bestemming == HuidigeVerdieping
-                                             select persoon);
-                List<Persoon> personenDieUitstappenLijst = personenDieUitstappen.ToList();
-                HuidigeVerdieping.LaatPersonenUitLiftGaan(personenDieUitstappenLijst);
+                                             select persoon).ToList();
+                HuidigeVerdieping.LaatPersonenUitLiftGaan(personenDieUitstappen);
             }
             return aangekomenOpBestemming;
         }
