@@ -53,6 +53,7 @@ namespace HotelSimulatie.Model
 
                 if (persoon.Value == gameTime.ElapsedGameTime.Seconds)
                 {
+                    // Hoi
                     persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
                     persoon.Key.Positie = persoon.Key.HuidigeRuimte.EventCoordinaten;
