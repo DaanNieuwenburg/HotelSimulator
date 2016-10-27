@@ -42,7 +42,7 @@ namespace HotelSimulatie.Model
                 if (persoon.Value == 0)
                 {
                     int aantalTrappen = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Count();
-                    int eindTijd = gameTime.ElapsedGameTime.Seconds + aantalTrappen;
+                    int eindTijd = gameTime.TotalGameTime.Seconds + aantalTrappen;
                     // Bepaal aantal verdiepingen die de persoon op moet
                     personenInTrap[persoon.Key] = eindTijd;
 
@@ -50,15 +50,26 @@ namespace HotelSimulatie.Model
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Last();
                     persoon.Key.BestemmingLijst.RemoveAll(o => o is Trappenhuis);
                 }
+            }
 
-                if (persoon.Value == gameTime.ElapsedGameTime.Seconds)
+            // Als persoon zijn wacht hte is gelijk aan de verlopen hte
+            List<Persoon> personenDieTrapUitGaan = new List<Persoon>();
+            foreach (KeyValuePair<Persoon, int> persoon in personenInTrap)
+            {
+                if (persoon.Value == gameTime.TotalGameTime.Seconds)
                 {
-                    // Hoi
                     persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
                     persoon.Key.Positie = persoon.Key.HuidigeRuimte.EventCoordinaten;
                     persoon.Key.inLiftOfTrap = false;
+                    personenDieTrapUitGaan.Add(persoon.Key);
                 }
+            }
+
+            // Verwijder personen die de trap uit gaan
+            foreach(Persoon persoon in personenDieTrapUitGaan)
+            {
+                personenInTrap.Remove(persoon);
             }
         }
     }

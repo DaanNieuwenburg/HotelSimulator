@@ -14,7 +14,7 @@ namespace HotelSimulatie.Model
         public List<HotelRuimte> SchoonmaakLijst { get; set; }
         private bool isIdle { get; set; }
         private int verlopenTijd { get; set; }
-        public string texturenaam { get; set;}
+        public string texturenaam { get; set; }
         private int startTijd { get; set; }
         public Schoonmaker()
         {
@@ -27,23 +27,23 @@ namespace HotelSimulatie.Model
 
         public override void LoadContent(ContentManager contentManager)
         {
-            if(this.Collega.texturenaam == Texturelijst[0])
+            if (this.Collega.texturenaam == Texturelijst[0])
+            {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[1], 3);
+            }
             else
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[0], 3);
                 texturenaam = Texturelijst[0];
             }
-                
-            
         }
 
         public void Update(GameTime spelTijd)
         {
             // Is de schoonmaker niets aan het doen, kijk dan of er een kamer schoongemaakt moet worden
-            if(isIdle == true)
+            if (isIdle == true)
             {
-                if(SchoonmaakLijst.Count > 0)
+                if (SchoonmaakLijst.Count > 0)
                 {
                     Bestemming = SchoonmaakLijst.First();
                     isIdle = false;
@@ -54,7 +54,7 @@ namespace HotelSimulatie.Model
                 // Als schoonmaker aangekomen is bij kamer
                 if (HuidigeRuimte == SchoonmaakLijst.First())
                 {
-                    if(startTijd == 0)
+                    if (startTijd == 0)
                     {
                         startTijd = spelTijd.ElapsedGameTime.Seconds;
                     }
@@ -79,18 +79,18 @@ namespace HotelSimulatie.Model
             int collegaSchoonmakerAfstand = dijkstra.MaakAlgoritme(Collega, HuidigeRuimte, ruimte).Count;
 
             // Als deze schoonmaker dichterbij is dan collega, anders gaat de collega
-            if(huidigeSchoonmakerAfstand > collegaSchoonmakerAfstand)
+            if (huidigeSchoonmakerAfstand > collegaSchoonmakerAfstand)
             {
                 SchoonmaakLijst.Add(ruimte);
             }
-            else if(huidigeSchoonmakerAfstand < collegaSchoonmakerAfstand)
+            else if (huidigeSchoonmakerAfstand < collegaSchoonmakerAfstand)
             {
                 Collega.SchoonmaakLijst.Add(ruimte);
             }
             else
             {
                 // De afstanden zijn gelijk aan elkaar, kies de schoonmaker met de minste opdrachten
-                if(Collega.SchoonmaakLijst.Count > SchoonmaakLijst.Count)
+                if (Collega.SchoonmaakLijst.Count > SchoonmaakLijst.Count)
                 {
                     SchoonmaakLijst.Add(ruimte);
                 }
@@ -103,7 +103,7 @@ namespace HotelSimulatie.Model
 
         private void maakRuimteSchoon()
         {
-            if(verlopenTijd - startTijd > HotelTijdsEenheid.schoonmakenHTE)
+            if (verlopenTijd - startTijd > HotelTijdsEenheid.schoonmakenHTE)
             {
                 SchoonmaakLijst.Remove(HuidigeRuimte);
                 isIdle = true;

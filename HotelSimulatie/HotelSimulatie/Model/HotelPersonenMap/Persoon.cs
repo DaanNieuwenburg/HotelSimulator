@@ -29,6 +29,7 @@ namespace HotelSimulatie.Model
         private bool LooptNaarLinks { get; set; }
         public bool inLiftOfTrap { get; set; }
         public bool Wacht { get; set; }
+
         public Persoon()
         {
             inLiftOfTrap = false;
@@ -86,18 +87,21 @@ namespace HotelSimulatie.Model
             Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y); // gewijzigd
             return false;
         }
+
         private bool BeweegNaarBoven()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
             Positie = new Vector2(Positie.X, Positie.Y + loopSnelheidHTE); //gewijzigd
             return false;
         }
+
         private bool BeweegNaarBeneden()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
             Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
             return false;
         }
+
         private bool BeweegNaarRechts()
         {
             SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
