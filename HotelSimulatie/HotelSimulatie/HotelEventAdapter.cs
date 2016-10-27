@@ -27,11 +27,13 @@ namespace HotelSimulatie
             bepaalHotelEventCategory(evt);
 
             // Als er geen sprake is van zo een vreselijk test event
-            if (Category == NEventCategory.Guest)
+            if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
                 Message = evt.Data.Values.ElementAt(0);
-
+                if (Category == NEventCategory.Guest)
+                { 
                     bepaalGast(evt, gastenLijst);
+                }
             }
         }
 

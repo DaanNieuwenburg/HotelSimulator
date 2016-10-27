@@ -21,6 +21,7 @@ namespace HotelSimulatie.Model
             isIdle = true;
             SchoonmaakLijst = new List<HotelRuimte>();
             Texturelijst = new List<string>();
+            Texturelijst.Add(@"AnimatedSchoonmaker");
             Texturelijst.Add(@"AnimatedSchoonmaker1");
             Texturelijst.Add(@"AnimatedSchoonmaker2");
         }

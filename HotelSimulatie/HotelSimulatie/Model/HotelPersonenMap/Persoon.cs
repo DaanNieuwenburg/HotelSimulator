@@ -29,7 +29,6 @@ namespace HotelSimulatie.Model
         private bool LooptNaarLinks { get; set; }
         public bool inLift { get; set; }
         public bool Wacht { get; set; }
-        private int aantalSchoonmakers { get; set; }
         public Persoon()
         {
             inLift = false;
@@ -140,7 +139,7 @@ namespace HotelSimulatie.Model
                         Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
                         liftschacht.VraagOmLift(this);
                         Bestemming = HuidigeRuimte;
-                        if (this is Schoonmaker)
+                        if(this is Schoonmaker)
                         {
                             Console.WriteLine("a");
                         }
@@ -168,7 +167,7 @@ namespace HotelSimulatie.Model
                         }
                     }
                 }
-            }
+             }
         }
 
         public void UpdateFrame(GameTime spelTijd)
