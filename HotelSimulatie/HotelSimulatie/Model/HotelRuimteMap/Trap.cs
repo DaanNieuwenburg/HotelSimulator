@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
         {
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
-        public void VoegPersoonToe(Persoon persoon)
+        public override void VoegPersoonToe(Persoon persoon)
         {
             if (!personenInTrap.Keys.Contains(persoon))
             {
@@ -37,14 +37,11 @@ namespace HotelSimulatie.Model
                 // Bepaal wanneer persoon weer trap uit moet
                 if (persoon.Value == 0)
                 {
-                    int aantalTrappen = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Count();
+
+                    int aantalTrappen = persoon.Key.Bestemming.Verdieping - persoon.Key.HuidigeRuimte.Verdieping;
                     int eindTijd = gameTime.TotalGameTime.Seconds + aantalTrappen;
                     // Bepaal aantal verdiepingen die de persoon op moet
                     personenInTrap[persoon.Key] = eindTijd;
-
-                    // Verwijder trappenhuis en zet de laatste trappenhuis als bestemming
-                    persoon.Key.Bestemming = persoon.Key.BestemmingLijst.OfType<Trappenhuis>().Last();
-                    persoon.Key.BestemmingLijst.RemoveAll(o => o is Trappenhuis);
                 }
             }
 

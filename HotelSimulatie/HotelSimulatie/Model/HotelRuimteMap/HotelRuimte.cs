@@ -43,7 +43,7 @@ namespace HotelSimulatie.Model
             Buren = burenLijst;
         }
 
-        public virtual void voegPersoonToe(Gast gast)
+        public virtual void VoegPersoonToe(Persoon persoon)
         {
         }
     }

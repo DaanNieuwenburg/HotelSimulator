@@ -22,7 +22,7 @@ namespace HotelSimulatie
             for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
+                if (gast.HuidigEvent != null && gast.inLiftOfTrap == false && gast.Wacht == false)
                 {
                     if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
                     {
@@ -31,27 +31,27 @@ namespace HotelSimulatie
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
                     {
                         Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarKamer<Lobby>(ref lobby);
+                        gast.GaNaarRuimte<Lobby>(ref lobby);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
                     {
                         Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        gast.GaNaarKamer<Bioscoop>(ref bioscoop);
+                        gast.GaNaarRuimte<Bioscoop>(ref bioscoop);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
                     {
                         Fitness fitness = spel.hotel.hotelLayout.fitness;
-                        gast.GaNaarKamer<Fitness>(ref fitness);
+                        gast.GaNaarRuimte<Fitness>(ref fitness);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
                     {
                         Kamer kamer = gast.ToegewezenKamer;
-                        gast.GaNaarKamer<Kamer>(ref kamer);
+                        gast.GaNaarRuimte<Kamer>(ref kamer);
                     }
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                     {
                         Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarKamer<Lobby>(ref lobby);
+                        gast.GaNaarRuimte<Lobby>(ref lobby);
                         spel.hotel.Evacueer();
                     }
                     else if (spel.hotel.hotelLayout.bioscoop.filmbezig == true && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
@@ -62,7 +62,7 @@ namespace HotelSimulatie
                     else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
                     {
                         Eetzaal eetzaal = new Eetzaal();
-                        gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+                        gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
                     }
                 }
             }
@@ -77,7 +77,7 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    if(schoonmaker.inLiftOfTrap == false)
+                    if(schoonmaker.inLiftOfTrap == false && schoonmaker.Wacht == false)
                     {
                         schoonmaker.Update(gameTime);
                     }
@@ -131,7 +131,6 @@ namespace HotelSimulatie
                 {
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
                 }
-
             }
         }
 

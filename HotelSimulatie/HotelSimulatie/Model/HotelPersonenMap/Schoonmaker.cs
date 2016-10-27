@@ -66,7 +66,7 @@ namespace HotelSimulatie.Model
                 else
                 {
                     HotelRuimte ruimte = SchoonmaakLijst.First();
-                    GaNaarKamer(ref ruimte);
+                    GaNaarRuimte(ref ruimte);
                 }
             }
             SpriteAnimatie.UpdateFrame(spelTijd);

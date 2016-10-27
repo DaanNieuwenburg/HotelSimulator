@@ -88,8 +88,8 @@ namespace HotelSimulatie.Model
 
                 // Laat de gasten uitstappen
                 List< Persoon> personenDieUitstappen = (from persoon in PersonenInLift
-                                             where persoon.Bestemming == HuidigeVerdieping
-                                             select persoon).ToList();
+                                                        where persoon.Bestemming == HuidigeVerdieping
+                                                        select persoon).ToList();
                 HuidigeVerdieping.LaatPersonenUitLiftGaan(personenDieUitstappen);
             }
             return aangekomenOpBestemming;

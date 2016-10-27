@@ -11,18 +11,19 @@ namespace HotelSimulatie.Model
     public class Trappenhuis : HotelRuimte
     {
         public Trap trap { get; set; }
-        public Trappenhuis()
+        public Trappenhuis(int verdieping)
         {
             // Test
             Naam = "Trap";
             texturepath = @"Kamers\Trap_gesloten";
+            Verdieping = verdieping;
         }
         public override void LoadContent(ContentManager contentManager)
         {
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
 
-        public void VoegPersoonToe(Persoon persoon)
+        public override void VoegPersoonToe(Persoon persoon)
         {
             trap.VoegPersoonToe(persoon);
         }

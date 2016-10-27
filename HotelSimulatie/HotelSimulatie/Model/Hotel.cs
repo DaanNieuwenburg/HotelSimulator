@@ -22,8 +22,9 @@ namespace HotelSimulatie.Model
             Schoonmakers[1] = new Schoonmaker();
             Schoonmakers[0].Collega = Schoonmakers[1];
             Schoonmakers[1].Collega = Schoonmakers[0];
-           // Schoonmakers[0].texturenaam = "AnimatedSchoonmaker1";
-           // Schoonmakers[1].texturenaam = "AnimatedSchoonmaker2";
+            // Schoonmakers[0].texturenaam = "AnimatedSchoonmaker1";
+            // Schoonmakers[1].texturenaam = "AnimatedSchoonmaker2";
+            
         }
 
         public void Evacueer()
@@ -53,7 +54,6 @@ namespace HotelSimulatie.Model
                     }
                 }
             }
-
         }
     }
 }

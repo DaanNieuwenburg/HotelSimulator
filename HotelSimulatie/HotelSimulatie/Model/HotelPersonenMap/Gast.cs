@@ -33,7 +33,7 @@ namespace HotelSimulatie.Model
             // Ga naar lobby en vraag om een kamer
             if (ToegewezenKamer == null)
             {
-                if (LoopNaarRuimte())
+                if (Beweeg())
                 {
                     // Voeg gast aan wachtrij toe
                     if (!lobby.Wachtrij.Contains(this))

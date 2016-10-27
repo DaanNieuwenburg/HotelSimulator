@@ -56,20 +56,19 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(texture);
         }
 
-        public bool VraagOmLift(Persoon persoon)
+        public override void VoegPersoonToe(Persoon persoon)
         {
-            bool liftKomtAl = true;
             if (!Wachtrij.Contains(persoon))
             {
                 Wachtrij.Enqueue(persoon);
                 persoon.Wacht = true;
                 if (persoon is Gast)
+                {
                     persoon.Wachtteller.Start();
+                }
                 isWachtrij = true;
                 lift.VoegLiftStopToe(this);
-                liftKomtAl = false;
             }
-            return liftKomtAl;
         }
 
         public void LaatPersoonLiftInGaan()
@@ -79,16 +78,19 @@ namespace HotelSimulatie.Model
             {
                 Persoon persoon = Wachtrij.Dequeue();
                 persoon.Wacht = false;
+                persoon.inLiftOfTrap = true;
                 if (persoon is Gast)
                 {
                     persoon.Wachtteller.Stop();
                     persoon.Wachtteller.Reset();
                 }
-                persoon.inLiftOfTrap = true;
-                persoon.Bestemming = persoon.BestemmingLijst.OfType<Liftschacht>().Last();
-                persoon.BestemmingLijst.RemoveAll(o => o is Liftschacht);
+
                 lift.PersonenInLift.Add(persoon);
-                lift.VoegLiftStopToe((Liftschacht)persoon.Bestemming);
+                Liftschacht test = (Liftschacht)persoon.Bestemming;
+                if (test != null)
+                {
+                    lift.VoegLiftStopToe(test);
+                }
             }
         }
 
@@ -96,7 +98,7 @@ namespace HotelSimulatie.Model
         {
             foreach (Persoon persoon in personenDieUitstappen)
             {
-                persoon.HuidigeRuimte = this;
+                persoon.HuidigeRuimte = persoon.Bestemming;
                 persoon.Bestemming = persoon.BestemmingLijst.First();
                 persoon.BestemmingLijst.Remove(persoon.Bestemming);
                 persoon.inLiftOfTrap = false;

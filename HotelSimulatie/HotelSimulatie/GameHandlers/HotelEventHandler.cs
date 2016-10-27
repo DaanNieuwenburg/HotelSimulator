@@ -119,7 +119,7 @@ namespace HotelSimulatie
         {
             gast.HuidigEvent = hotelEvent;
             Lobby lobby = spel.hotel.hotelLayout.lobby;
-            gast.GaNaarKamer<Lobby>(ref lobby);
+            gast.GaNaarRuimte<Lobby>(ref lobby);
             SchoonmaakEvent(hotelEvent);
         }
 
@@ -127,28 +127,28 @@ namespace HotelSimulatie
         {
             gast.HuidigEvent = hotelEvent;
             Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-            gast.GaNaarKamer<Bioscoop>(ref bioscoop);
+            gast.GaNaarRuimte<Bioscoop>(ref bioscoop);
         }
 
         private void GaNaarFitnessEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
             Fitness fitness = spel.hotel.hotelLayout.fitness;
-            gast.GaNaarKamer<Fitness>(ref fitness);
+            gast.GaNaarRuimte<Fitness>(ref fitness);
         }
 
         private void GaNaarEigenKamerEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
             Kamer kamer = gast.ToegewezenKamer;
-            gast.GaNaarKamer<Kamer>(ref kamer);
+            gast.GaNaarRuimte<Kamer>(ref kamer);
         }
 
         private void GaNaarEetzaalEvent(Gast gast, HotelEventAdapter hotelEvent)
         {
             gast.HuidigEvent = hotelEvent;
             Eetzaal eetzaal = new Eetzaal();
-            gast.GaNaarKamer<Eetzaal>(ref eetzaal);
+            gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
         }
 
         private void SchoonmaakEvent(HotelEventAdapter hotelEvent)

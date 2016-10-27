@@ -20,7 +20,7 @@ namespace HotelSimulatie.Model
             else if (soort == "Lobby")
                 return new Lobby();
             else if (soort == "Trappenhuis")
-                return new Trappenhuis();
+                return new Trappenhuis(verdieping);
             else if (soort == "Kamer")
                 return new Kamer(1);
             else if (soort == "Gang")

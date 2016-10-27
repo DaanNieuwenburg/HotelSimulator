@@ -22,10 +22,10 @@ namespace HotelSimulatie.Model
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
 
-        public override void voegPersoonToe(Gast gast)
+        public override void VoegPersoonToe(Persoon persoon)
         {
             // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
-            inFitnessLijst.Add(gast);
+            inFitnessLijst.Add((Gast)persoon);
         }
 
         public void Update(GameTime gameTijd)

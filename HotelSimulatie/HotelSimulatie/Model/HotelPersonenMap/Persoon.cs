@@ -49,132 +49,99 @@ namespace HotelSimulatie.Model
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureIndex], 3);
         }
 
-        public bool LoopNaarRuimte()
+
+        public void GaNaarRuimte<T>(ref T ruimte)
         {
-            bool bestemmingBereikt = false;
-
-            if (Bestemming != null && bestemmingBereikt == false)
+            if(Naam == "Gast1" || Naam == "gast1")
             {
-                HuidigeRuimte = HuidigeRuimte;
-                Bestemming = Bestemming;
-
-                // Als persoon aan komt op bestemming
-                if ((Int32)Positie.X == Bestemming.EventCoordinaten.X)
-                {
-                    bestemmingBereikt = true;
-                    HuidigeRuimte = Bestemming;
-                }
-
-                // Als persoon naar links moet
-                else if (Positie.X > Bestemming.EventCoordinaten.X)
-                {
-                    BeweegNaarLinks();
-                }
-
-                // Als persoon naar rechts moet
-                else if (Positie.X < Bestemming.EventCoordinaten.X)
-                {
-                    BeweegNaarRechts();
-                }
+                Console.WriteLine();
             }
-
-            return bestemmingBereikt;
-        }
-
-        private bool BeweegNaarLinks()
-        {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y); // gewijzigd
-            return false;
-        }
-
-        private bool BeweegNaarBoven()
-        {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X, Positie.Y + loopSnelheidHTE); //gewijzigd
-            return false;
-        }
-
-        private bool BeweegNaarBeneden()
-        {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X, Positie.Y - loopSnelheid);
-            return false;
-        }
-
-        private bool BeweegNaarRechts()
-        {
-            SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
-            Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y); //gewijzigd
-            return false;
-        }
-
-        public void GaNaarKamer<T>(ref T ruimte)
-        {
-            if (Bestemming == null && HuidigeRuimte != ruimte as HotelRuimte)
+            // Zoek het kortste pad naar de bestemming
+            if (BestemmingLijst == null)
             {
-                Bestemming = ruimte as HotelRuimte;
-            }
-
-            if (BestemmingLijst == null && Bestemming is T)
-            {
-                // Zoek kortste pad naar bestemming
-                DijkstraAlgoritme pathfindingAlgoritme = new DijkstraAlgoritme();
-                if (Bestemming is Eetzaal)
-                {
-                    pathfindingAlgoritme.zoekDichtbijzijnde = true;
-                }
-                BestemmingLijst = pathfindingAlgoritme.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
-
-                // Koppel eerste node aan bestemming
-                HuidigEvent = HuidigEvent;
+                DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
+                BestemmingLijst = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
                 Bestemming = BestemmingLijst.First();
-                BestemmingLijst.Remove(BestemmingLijst.First());
+                BestemmingLijst.Remove(Bestemming);
             }
-
-            // Loop via pathfinding naar bestemming
-            else if (BestemmingLijst != null)
+            else if (Beweeg())
             {
-                if (LoopNaarRuimte() && BestemmingLijst.Count > 0)
+                // Aangekomen in de volgende ruimte
+                if (BestemmingLijst.Count > 0 || Bestemming != null)
                 {
-                    if (HuidigeRuimte is Liftschacht)
+                    if (HuidigeRuimte is Liftschacht && Bestemming is Liftschacht || HuidigeRuimte is Trappenhuis && Bestemming is Trappenhuis)
                     {
-                        // Ga verder met de lift
-                        Liftschacht liftschacht = (Liftschacht)HuidigeRuimte;
-                        liftschacht.VraagOmLift(this);
-                        Bestemming = HuidigeRuimte;
-                    }
-                    else if(HuidigeRuimte is Trappenhuis)
-                    {
-                        // Ga verder met de trap
-                        Trappenhuis trappenHuis = (Trappenhuis)HuidigeRuimte;
-                        trappenHuis.VoegPersoonToe(this);
-                        Bestemming = HuidigeRuimte;
-                    }
-                    else if (HuidigeRuimte.GetType() != typeof(Liftschacht) || HuidigeRuimte.GetType() != typeof(Trappenhuis))
-                    {
-                        HuidigeRuimte = Bestemming;
-                        Bestemming = BestemmingLijst.First();
-                        BestemmingLijst.Remove(BestemmingLijst.First());
-                    }
-                }
-                else if (LoopNaarRuimte() && BestemmingLijst.Count == 0)
-                {
-                    Bestemming = null;
-                    BestemmingLijst = null;
-                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
-                    if (HuidigeRuimte is Eetzaal || HuidigeRuimte is Bioscoop || HuidigeRuimte is Fitness)
-                    {
-                        HuidigeRuimte.voegPersoonToe((Gast)this);
-                        Gast persoon = (Gast)this;
-                        HuidigeRuimte.voegPersoonToe(persoon);
-                        if (HuidigeRuimte is Eetzaal)
+                        // Zet laatste liftschacht of trappenhuis als bestemming, verwijder ze dan allemaal
+                        // Het kan voorkomen dat de bestemming die enige liftschacht of trappenhuis is, dan is de bestemminglijst niet gevuld
+                        if (BestemmingLijst.Contains(Bestemming))
                         {
-                            persoon.heeftHonger = false;
+                            Bestemming = BestemmingLijst.Last(o => o.GetType() == HuidigeRuimte.GetType());
+                            BestemmingLijst.RemoveAll(o => o.GetType() == HuidigeRuimte.GetType());
+                        }
+                        HuidigeRuimte.VoegPersoonToe(this);
+                    }
+                    else
+                    {
+                        // Haal de volgende ruimte op, in het geval van een liftschacht of trappenhuis hoeft dit echter niet
+                        if (Bestemming.GetType() != typeof(Liftschacht) && Bestemming.GetType() != typeof(Trappenhuis))
+                        {
+                            HuidigeRuimte = Bestemming;
+                            if (BestemmingLijst.Count != 0)
+                            {
+                                Bestemming = BestemmingLijst.First();
+
+                                BestemmingLijst.Remove(Bestemming);
+                            }
+                            else
+                            {
+                                // Aangekomen op bestemming
+                                gaRuimteIn(Bestemming);
+                            }
+                        }
+                        else
+                        {
+                            HuidigeRuimte = Bestemming;
                         }
                     }
                 }
-             }
+            }
+        }
+
+        public bool Beweeg()
+        {
+            // Laat persoon bewegen d.m.v. animatie
+            if (Positie.X < Bestemming.EventCoordinaten.X)
+            {
+                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
+                return false;
+            }
+            else if (Positie.X > Bestemming.EventCoordinaten.X)
+            {
+                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
+                return false;
+            }
+
+            // Als persoon in een nieuwe ruimte aankomt ( bestemming bereikt )
+            else
+            {
+                return true;
+            }
+        }
+
+        private void gaRuimteIn(HotelRuimte ruimte)
+        {
+            // Koppelt ruimte aan persoon
+            HuidigeRuimte = ruimte;
+            Bestemming = null;
+            BestemmingLijst = null;
+            HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+
+            if (this is Gast)
+            {
+                ruimte.VoegPersoonToe((Gast)this);
+            }
         }
 
         public void UpdateFrame(GameTime spelTijd)
