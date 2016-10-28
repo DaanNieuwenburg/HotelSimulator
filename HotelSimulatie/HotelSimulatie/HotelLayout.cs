@@ -90,7 +90,6 @@ namespace HotelSimulatie
                 HotelRuimteLijst.Add(liftschacht);
             }
             lift.Liftschachtlijst = liftSchachtenLijst;
-            lift.HuidigeVerdieping = liftSchachtenLijst.First(); // to remove
 
             // Maak trap
             Trappenhuislijst = new List<Trappenhuis>();

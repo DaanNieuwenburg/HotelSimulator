@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameHandlers\AIHandler.cs" />
-    <Compile Include="GameHandlers\HotelEventHandler.cs" />
+    <Compile Include="GameHandlers\HotelEventListener.cs" />
     <Compile Include="DijkstraAlgoritme.cs" />
     <Compile Include="GeanimeerdeTexture.cs" />
     <Compile Include="HotelEventAdapter.cs" />

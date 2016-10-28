@@ -61,27 +61,7 @@ namespace HotelSimulatie
         private bool Bezoek(HotelRuimte deze, HotelRuimte eind)
         {
 
-            // Als de dichtbijzijnde hotelkamer gezocht moet worden
-            Kamer TypeKamer = new Kamer(0);
-            if (zoekDichtbijzijnde == true && deze.GetType() == eind.GetType() && eind.GetType() == TypeKamer.GetType())
-            {
-                Kamer teVindenKamer = (Kamer)eind;
-                Kamer gevondenKamer = (Kamer)deze;
-                if (gevondenKamer.AantalSterren == teVindenKamer.AantalSterren && gevondenKamer.Bezet == false)
-                {
-                    Eind = deze;
-                    return true;
-                }
-            }
-
-            // Als de dichtbijzijnde eetzaal gezocht moet worden
-            else if (zoekDichtbijzijnde == true && deze.GetType() == eind.GetType())
-            {
-                Eind = deze;
-                return true;
-            }
-
-            else if (zoekDichtbijzijnde == false && deze == eind)
+            if (zoekDichtbijzijnde == false && deze == eind)
             {
                 return true;
             }

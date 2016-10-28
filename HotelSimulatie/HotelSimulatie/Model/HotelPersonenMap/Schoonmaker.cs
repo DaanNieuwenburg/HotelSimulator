@@ -56,9 +56,9 @@ namespace HotelSimulatie.Model
                 // Als schoonmaker aangekomen is bij kamer
                 if (HuidigeRuimte == SchoonmaakLijst.First())
                 {
-                    if (startTijd == 0)
+                    if (HuidigEvent.HuidigeDuurEvent == 0)
                     {
-                        startTijd = spelTijd.ElapsedGameTime.Seconds;
+                        HuidigEvent.HuidigeDuurEvent = spelTijd.ElapsedGameTime.Seconds;
                     }
                     verlopenTijd = spelTijd.ElapsedGameTime.Seconds;
                     HuidigEvent.NEvent = HotelEventAdapter.NEventType.IS_CLEANING;
@@ -74,7 +74,7 @@ namespace HotelSimulatie.Model
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
-        public void VoegRuimteToe(HotelRuimte ruimte)
+        public void VoegSchoonmaakRuimteToe(HotelRuimte ruimte)
         {
             // Bepaal de dichtbijzijnde schoonmaker
             DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();

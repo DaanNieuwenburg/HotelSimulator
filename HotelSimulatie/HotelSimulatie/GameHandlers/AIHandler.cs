@@ -120,8 +120,9 @@ namespace HotelSimulatie
                 }
             }
             // Controleer dood van gast
-            foreach (Gast gast in spel.hotel.GastenLijst)
+            for(int i = 0; i < spel.hotel.GastenLijst.Count; i++)
             {
+                Gast gast = spel.hotel.GastenLijst[i];
                 if (gast.isDood == false)
                 {
                     if (gast.Wachtteller.Elapsed.Seconds >= 6)

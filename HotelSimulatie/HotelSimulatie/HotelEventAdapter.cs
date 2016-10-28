@@ -13,15 +13,15 @@ namespace HotelSimulatie
         public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
         public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
-        public Gast gast { get; set; }
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }
         public int HuidigeDuurEvent { get; set; }
-        public HotelEventAdapter(HotelEvent evt, List<Gast> gastenLijst = null)
+        public HotelEventAdapter(HotelEvent evt)
         {
             // Bepaal event category en type
             NEvent = (NEventType)evt.EventType;
             Message = evt.Message;
+            Data = evt.Data;
             Time = evt.Time;
 
             bepaalHotelEventCategory(evt);
@@ -30,10 +30,6 @@ namespace HotelSimulatie
             if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
             {
                 Message = evt.Data.Values.ElementAt(0);
-                if (Category == NEventCategory.Guest)
-                { 
-                    bepaalGast(evt, gastenLijst);
-                }
             }
         }
 
@@ -70,36 +66,6 @@ namespace HotelSimulatie
             else
             {
                 Category = NEventCategory.NotImplented;
-            }
-        }
-
-        private void bepaalGast(HotelEvent evt, List<Gast> gastenLijst)
-        {
-            // Maak en koppel gastnaam
-            evt.Data.Keys.ElementAt(0);
-            string gastNaam = evt.Data.Keys.ElementAt(0);
-
-            // Als gastnaam gast is, pak de value van de key ( de gast id )
-            if (evt.Data.Keys.ElementAt(0) == "Gast")
-            {
-                gastNaam = gastNaam + evt.Data.Values.ElementAt(0);
-            }
-
-            // Vind de gast in de gastenlijst
-            gast = gastenLijst.Find(o => o.Naam == gastNaam);
-
-            if (gast == null)
-            {
-                gast = new Gast();
-                gast.Naam = gastNaam;
-            }
-
-
-            // Bepaal kamernummer bij een checkin
-            if (NEvent == NEventType.CHECK_IN)
-            {
-                string aantalSterrenKamerStr = Regex.Match(evt.Data.First().Value, @"([1-9])").Value;
-                gast.AantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
             }
         }
     }
