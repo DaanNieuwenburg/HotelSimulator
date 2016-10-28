@@ -15,7 +15,7 @@ namespace HotelSimulatie
         public bool zoekDichtbijzijnde { get; set; }
         private List<HotelRuimte> bezochteRuimtes { get; set; }
 
-        public List<HotelRuimte> MaakAlgoritme(Persoon gast, HotelRuimte begin, HotelRuimte eind)
+        public List<HotelRuimte> MaakAlgoritme(Persoon persoon, HotelRuimte begin, HotelRuimte eind)
         {
             Begin = begin;
             Eind = eind;

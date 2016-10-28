@@ -75,14 +75,14 @@ namespace HotelSimulatie.Model
         {
             Trappenhuis trap = hotellayout.Trappenhuislijst[HuidigeRuimte.Verdieping];
             Liftschacht lift = hotellayout.liftSchachtenLijst[HuidigeRuimte.Verdieping];
-            this.GaNaarKamer(ref trap);
+            this.GaNaarRuimte(ref trap);
             if(this.HuidigeRuimte == trap)
             {
-                this.GaNaarKamer(ref lift);
+                this.GaNaarRuimte(ref lift);
             }
             else if(HuidigeRuimte == lift)
             {
-                this.GaNaarKamer(ref trap);
+                this.GaNaarRuimte(ref trap);
             }
         }
     }

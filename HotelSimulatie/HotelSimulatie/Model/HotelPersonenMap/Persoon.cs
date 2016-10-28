@@ -46,10 +46,6 @@ namespace HotelSimulatie.Model
 
         public void GaNaarRuimte<T>(ref T ruimte)
         {
-            if(Naam == "Gast1" || Naam == "gast1")
-            {
-                Console.WriteLine();
-            }
             // Zoek het kortste pad naar de bestemming
             if (BestemmingLijst == null)
             {
@@ -83,7 +79,6 @@ namespace HotelSimulatie.Model
                             if (BestemmingLijst.Count != 0)
                             {
                                 Bestemming = BestemmingLijst.First();
-
                                 BestemmingLijst.Remove(Bestemming);
                             }
                             else

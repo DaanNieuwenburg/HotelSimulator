@@ -12,7 +12,7 @@ namespace HotelSimulatie
     {
         public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
-        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM }
+        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
         public Gast gast { get; set; }
         public NEventType NEvent { get; set; }
         public NEventCategory Category { get; set; }

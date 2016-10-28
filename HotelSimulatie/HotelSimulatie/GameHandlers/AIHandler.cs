@@ -160,8 +160,13 @@ namespace HotelSimulatie
             }
 
             // Toon schoonmakers
-            spel.hotel.Schoonmakers[0].Draw(spriteBatch);
-            spel.hotel.Schoonmakers[1].Draw(spriteBatch);
+            foreach(Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
+            {
+                if(schoonmaker.HuidigEvent.NEvent != HotelEventAdapter.NEventType.IS_CLEANING && schoonmaker.inLiftOfTrap == false)
+                {
+                    schoonmaker.Draw(spriteBatch);
+                }
+            }
             spriteBatch.End();
         }
     }
