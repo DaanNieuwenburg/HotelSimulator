@@ -9,30 +9,37 @@ namespace HotelSimulatie.Model
     public class Hotel
     {
         public HotelLayout hotelLayout { get; set; }
-        public List<Gast> GastenLijst { get; set; }
-        public Schoonmaker[] Schoonmakers { get; set; }
-        public bool IsEvacuatie { get; set; }
+        public List<Persoon> PersonenInHotelLijst { get; set; }
+        public HotelEventAdapter huidigEvent { get; set; }
+        private bool isEvacuatie { get; set; }
         public Hotel()
         {
-            IsEvacuatie = false;
+            huidigEvent = new HotelEventAdapter(new HotelEvents.HotelEvent() { EventType = HotelEvents.HotelEventType.NONE });
             hotelLayout = new HotelLayout();
-            GastenLijst = new List<Gast>();
-            Schoonmakers = new Schoonmaker[2];
-            Schoonmakers[0] = new Schoonmaker();
-            Schoonmakers[1] = new Schoonmaker();
-            Schoonmakers[0].Collega = Schoonmakers[1];
-            Schoonmakers[1].Collega = Schoonmakers[0];
-            Schoonmakers[0].Naam = "SchoonmakerTim";
-            Schoonmakers[1].Naam = "SchoonmakerVincent";
+            PersonenInHotelLijst = new List<Persoon>();
+            Schoonmaker SchoonmakerEen = new Schoonmaker() { Naam = "SchoonmakerTim" };
+            Schoonmaker SchoonmakerTwee = new Schoonmaker() { Naam = "SchoonmakerVincent" };
+            SchoonmakerEen.Collega = SchoonmakerTwee;
+            SchoonmakerTwee.Collega = SchoonmakerEen;
+            PersonenInHotelLijst.Add(SchoonmakerEen);
+            PersonenInHotelLijst.Add(SchoonmakerTwee);
         }
 
-        public void Evacueer()
+        public void Update()
         {
-            if (IsEvacuatie == false)
+            if(huidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
             {
-                IsEvacuatie = true;
+                Evacueer();
+            }
+        }
+
+        private void Evacueer()
+        {
+            if (isEvacuatie == false)
+            {
+                isEvacuatie = true;
                 Console.WriteLine("OMG EVACUATIE");
-                foreach (Gast gast in GastenLijst)
+                foreach (Gast gast in PersonenInHotelLijst.Where(o => o is Gast))
                 {
                     gast.Bestemming = hotelLayout.lobby;
                     gast.BestemmingLijst = null;
@@ -41,12 +48,12 @@ namespace HotelSimulatie.Model
             }
             else
             {
-                int aantalGasten = GastenLijst.Count;
-                int aantalGastenOpEvacuatiePunt = (from Gast in GastenLijst where Gast.HuidigeRuimte == hotelLayout.lobby select Gast).Count();
+                int aantalGasten = PersonenInHotelLijst.Count(o => o is Gast);
+                int aantalGastenOpEvacuatiePunt = (from gast in PersonenInHotelLijst where gast is Gast && gast.HuidigeRuimte == hotelLayout.lobby select gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
                     Console.WriteLine("Evacuatie completed");
-                    foreach(Gast gast in GastenLijst)
+                    foreach(Gast gast in PersonenInHotelLijst.Where(o => o is Gast))
                     {
                         gast.HuidigeRuimte = hotelLayout.lobby;
                         gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;

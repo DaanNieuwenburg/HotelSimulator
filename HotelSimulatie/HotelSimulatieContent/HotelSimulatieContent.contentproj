@@ -194,13 +194,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bioscoop.jpg">
-      <Name>Bioscoop</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Kamers\Kamer_5ster.png">
       <Name>Kamer_5ster</Name>
       <Importer>TextureImporter</Importer>
@@ -339,6 +332,13 @@
     </Compile>
     <Compile Include="Gasten\AnimatedGast8_Links.png">
       <Name>AnimatedGast8_Links</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Kamers\Bioscoop_MetFilm.png">
+      <Name>Bioscoop_MetFilm</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

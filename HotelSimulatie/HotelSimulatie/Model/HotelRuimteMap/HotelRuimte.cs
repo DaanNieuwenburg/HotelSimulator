@@ -33,6 +33,7 @@ namespace HotelSimulatie.Model
 
         public HotelRuimte()
         {
+            HuidigEvent = new HotelEventAdapter(new HotelEvents.HotelEvent { EventType = HotelEvents.HotelEventType.NONE });
             Afstand = Int32.MaxValue / 2;
             Gewicht = 1;
             Vorige = null;
@@ -41,6 +42,12 @@ namespace HotelSimulatie.Model
         public void VoegBurenToe(List<HotelRuimte> burenLijst)
         {
             Buren = burenLijst;
+        }
+
+
+        public virtual void Update(GameTime gameTime)
+        {
+
         }
 
         public virtual void VoegPersoonToe(Persoon persoon)

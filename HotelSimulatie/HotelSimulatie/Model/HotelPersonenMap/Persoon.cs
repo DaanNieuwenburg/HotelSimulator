@@ -13,10 +13,10 @@ namespace HotelSimulatie.Model
     public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
+        public HotelRuimte EindBestemming { get; set; }
         public List<HotelRuimte> BestemmingLijst { get; set; }
         public HotelEventAdapter HuidigEvent { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
-        public Liftschacht bestemmingslift { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         public virtual List<string> Texturelijst { get; set; }

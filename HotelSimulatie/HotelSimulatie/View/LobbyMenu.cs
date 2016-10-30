@@ -24,7 +24,7 @@ namespace HotelSimulatie.View
             hotel = _hotel;
 
             // voeg gasten toe aan de lijst
-            foreach (Gast gast in hotel.GastenLijst)
+            foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
             {
                 if (gast.ToegewezenKamer == null)
                     lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
@@ -33,8 +33,8 @@ namespace HotelSimulatie.View
             }
             #region
             //Ken waardes voor schoonmakers toe aan labels
-            //lbPositieA.Text = hotel.Schoonmakers[0].SchoonmaakPositie.Naam;
-            //lbPositieB.Text = hotel.Schoonmakers[1].SchoonmaakPositie.Naam;
+            //lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakPositie.Naam;
+            //lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakPositie.Naam;
 
             // Ken waardes toe voor de lift
             //lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;
@@ -46,14 +46,14 @@ namespace HotelSimulatie.View
         {
             if (tabs.SelectedTab == tabPage1)
             {
-                lbPositieA.Text = hotel.Schoonmakers[0].HuidigeRuimte.Naam;
-                lbPositieB.Text = hotel.Schoonmakers[1].HuidigeRuimte.Naam;
-                if (hotel.Schoonmakers[0].SchoonmaakLijst.Count > 0)
-                    lbBestemmingA.Text = hotel.Schoonmakers[0].SchoonmaakLijst.First().Naam;
+                lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().HuidigeRuimte.Naam;
+                lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().HuidigeRuimte.Naam;
+                if (hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.Count > 0)
+                    lbBestemmingA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.First().Naam;
                 else
                     lbBestemmingA.Text = "n.v.t";
-                if (hotel.Schoonmakers[1].SchoonmaakLijst.Count > 0)
-                    lbBestemmingB.Text = hotel.Schoonmakers[1].SchoonmaakLijst.First().Naam;
+                if (hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakLijst.Count > 0)
+                    lbBestemmingB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakLijst.First().Naam;
                 else
                     lbBestemmingB.Text = "n.v.t";
             }
@@ -66,7 +66,7 @@ namespace HotelSimulatie.View
             else if (tabs.SelectedTab == tabPage3)
             {
                 lvGasten.Items.Clear();
-                foreach (Gast gast in hotel.GastenLijst)
+                foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
                 {
                     if (gast.ToegewezenKamer == null)
                         lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
@@ -80,8 +80,8 @@ namespace HotelSimulatie.View
         {
             if(tabs.SelectedTab == tabPage1)
             {
-                lbPositieA.Text = hotel.Schoonmakers[0].SchoonmaakLijst.First().Naam;
-                lbPositieB.Text = hotel.Schoonmakers[1].SchoonmaakLijst.First().Naam;
+                lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.First().Naam;
+                lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakLijst.First().Naam;
             }
             else if(tabs.SelectedTab == tabPage2)
             {
@@ -92,7 +92,7 @@ namespace HotelSimulatie.View
             else if(tabs.SelectedTab == tabPage3)
             {
                 lvGasten.Items.Clear();
-                foreach (Gast gast in hotel.GastenLijst)
+                foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
                 {
                     if (gast.ToegewezenKamer == null)
                         lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));

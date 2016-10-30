@@ -11,8 +11,6 @@ namespace HotelSimulatie.Model
     public class Bioscoop : HotelRuimte
     {
         private List<Gast> inBioscoopLijst { get; set; }
-        private int filmtijd { get; set; }
-        public bool filmbezig { get; set; }
         public Bioscoop()
         {
             Naam = "Bioscoop";
@@ -26,29 +24,37 @@ namespace HotelSimulatie.Model
 
         public override void VoegPersoonToe(Persoon persoon)
         {
-            // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
             inBioscoopLijst.Add((Gast)persoon);
         }
 
-        public void Start(GameTime gameTime)
+        public override void Update(GameTime gameTijd)
         {
-            filmtijd = gameTime.TotalGameTime.Seconds;
-            filmbezig = true;
-            Console.WriteLine("Film is gestart");
+            if(HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+            {
+                StartCinema(gameTijd);
+                HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+            }
+            if (gameTijd.TotalGameTime.Seconds > HuidigEvent.Time && HuidigEvent.Time != 0)
+            {
+                StopCinema();
+            }
         }
 
-        public void Update(GameTime gameTijd)
+        private void StartCinema(GameTime gameTijd)
         {
-            int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
-            if (gameTijd.TotalGameTime.Seconds - filmtijd > HotelTijdsEenheid.filmHTE )
+            // Koppel de tijd
+            HuidigEvent.Time = gameTijd.TotalGameTime.Seconds + (HuidigEvent.Time / 60);
+            texturepath = @"Kamers\Bioscoop_MetFilm";
+        }
+
+        private void StopCinema()
+        {
+            texturepath = @"Kamers\Bioscoop";
+            foreach(Gast gast in inBioscoopLijst)
             {
-                filmbezig = false;
-                Console.WriteLine("Film is gestopt");
-                foreach (Gast gast in inBioscoopLijst)
-                {
-                    gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
-                    gast.HuidigEvent.HuidigeDuurEvent = 0;
-                }
-            }        }
+                gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+            }
+            inBioscoopLijst.Clear();
+        }
     }
 }

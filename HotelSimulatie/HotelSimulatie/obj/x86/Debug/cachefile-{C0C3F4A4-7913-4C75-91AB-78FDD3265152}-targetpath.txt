@@ -24,7 +24,6 @@ Content\Kamers\Kamer_2ster.xnb
 Content\Kamers\Kamer_3ster.xnb
 Content\Kamers\Kamer_4ster(2hoog).xnb
 Content\Kamers\Kamer_4ster(1hoog).xnb
-Content\Bioscoop.xnb
 Content\Kamers\Kamer_5ster.xnb
 Content\Kamers\Fitness.xnb
 Content\Kamers\Eetzaal.xnb
@@ -48,3 +47,4 @@ Content\Gasten\AnimatedGast7_Links.xnb
 Content\Gasten\AnimatedGast8.xnb
 Content\Gasten\AnimatedGast8_Links.xnb
 Content\Font.xnb
+Content\Kamers\Bioscoop_MetFilm.xnb

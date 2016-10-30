@@ -52,8 +52,8 @@ namespace HotelSimulatie
             font = Content.Load<SpriteFont>("Font");
 
             // Laad de schoonmakers
-            hotel.Schoonmakers[0].LoadContent(Content);
-            hotel.Schoonmakers[1].LoadContent(Content);
+            hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().LoadContent(Content);
+            hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().LoadContent(Content);
         }
 
         protected override void UnloadContent()

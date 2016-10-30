@@ -39,7 +39,7 @@ namespace HotelSimulatie.Model
             // Deze lift kent geen texture
         }
 
-        public void UpdateLift()
+        public void Update()
         {
             if (VerplaatsLift())
             {

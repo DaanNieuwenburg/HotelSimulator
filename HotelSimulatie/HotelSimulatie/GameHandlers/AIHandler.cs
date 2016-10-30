@@ -2,6 +2,7 @@
 using HotelSimulatie.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -18,79 +19,96 @@ namespace HotelSimulatie
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            // For loop aangezien we aanpassing maken aan de gasten die in de lijst staan
-            for (int i = 0; i < spel.hotel.GastenLijst.Count(); i++)
-            {
-                Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.isDood == false)
-                {
-                    if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
-                {
-                    if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
-                    {
-                            gast.Inchecken(spel.hotel.hotelLayout, gameTime);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
-                    {
-                        Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarRuimte<Lobby>(ref lobby);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
-                    {
-                        Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        gast.GaNaarRuimte<Bioscoop>(ref bioscoop);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
-                    {
-                        Fitness fitness = spel.hotel.hotelLayout.fitness;
-                        gast.GaNaarRuimte<Fitness>(ref fitness);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
-                    {
-                        Kamer kamer = gast.ToegewezenKamer;
-                        gast.GaNaarRuimte<Kamer>(ref kamer);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
-                    {
-                        Lobby lobby = spel.hotel.hotelLayout.lobby;
-                        gast.GaNaarRuimte<Lobby>(ref lobby);
-                        spel.hotel.Evacueer();
-                    }
-                    else if (spel.hotel.hotelLayout.bioscoop.filmbezig == true && spel.hotel.hotelLayout.bioscoop.HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
-                    {
-                        Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
-                        bioscoop.Update(gameTime);
-                    }
-                    else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
-                    {
-                        Eetzaal eetzaal = new Eetzaal();
-                        gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
-                    }
-                }
-            }
-            }
 
-            // Update de schoonmakers
-            foreach (Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
+            for (int i = 0; i < spel.hotel.PersonenInHotelLijst.Count; i++)
             {
-                if (schoonmaker.Positie == new Vector2(0, 0))
+                Persoon persoon = spel.hotel.PersonenInHotelLijst[i];
+                if(persoon is Gast)
                 {
-                    schoonmaker.Positie = spel.GastSpawnLocatie;
-                    schoonmaker.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+                    Gast gast = (Gast)persoon;
+                    if (gast.isDood == false)
+                    {
+                        if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
+                        {
+                            if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+                            {
+                                gast.Inchecken(spel.hotel.hotelLayout, gameTime);
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
+                            {
+                                Lobby lobby = spel.hotel.hotelLayout.lobby;
+                                gast.GaNaarRuimte<Lobby>(ref lobby);
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
+                            {
+                                Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
+                                gast.GaNaarRuimte<Bioscoop>(ref bioscoop);
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
+                            {
+                                Fitness fitness = spel.hotel.hotelLayout.fitness;
+                                gast.GaNaarRuimte<Fitness>(ref fitness);
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                            {
+                                Kamer kamer = gast.ToegewezenKamer;
+                                gast.GaNaarRuimte<Kamer>(ref kamer);
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                            {
+                                Lobby lobby = spel.hotel.hotelLayout.lobby;
+                                gast.GaNaarRuimte<Lobby>(ref lobby);
+                                spel.hotel.Update();
+                            }
+                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                            {
+                                List<List<HotelRuimte>> wegenNaarEetzalen = new List<List<HotelRuimte>>();
+                                DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
+                                foreach (Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
+                                {
+                                    wegenNaarEetzalen.Add(dijkstra.MaakAlgoritme(gast, gast.HuidigeRuimte, eetzaal));
+                                }
+                                if (wegenNaarEetzalen[0].Count > wegenNaarEetzalen[1].Count)
+                                {
+                                    Eetzaal eetzaal = (Eetzaal)wegenNaarEetzalen[1].Last();
+                                    gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
+                                }
+                                else
+                                {
+                                    Eetzaal eetzaal = (Eetzaal)wegenNaarEetzalen[0].Last();
+                                    gast.GaNaarRuimte<Eetzaal>(ref eetzaal);
+                                }
+                            }
+                        }
+                    }
                 }
                 else
                 {
-                    if(schoonmaker.inLiftOfTrap == false && schoonmaker.Wacht == false)
+                    Schoonmaker schoonmaker = (Schoonmaker)persoon;
+                    if (schoonmaker.Positie == new Vector2(0, 0))
                     {
-                        schoonmaker.Update(gameTime);
+                        schoonmaker.Positie = spel.GastSpawnLocatie;
+                        schoonmaker.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+                    }
+                    else
+                    {
+                        if (schoonmaker.inLiftOfTrap == false && schoonmaker.Wacht == false)
+                        {
+                            schoonmaker.Update(gameTime);
+                        }
                     }
                 }
             }
 
+            // Update de hotelRuimtes
+            foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
+            {
+                hotelRuimte.Update(gameTime);
+            }
             // Update de lift
             if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
             {
-                spel.hotel.hotelLayout.lift.UpdateLift();
+                spel.hotel.hotelLayout.lift.Update();
             }
             else
             {
@@ -100,14 +118,9 @@ namespace HotelSimulatie
             // Update de trap
             spel.hotel.hotelLayout.trap.Update(gameTime);
 
-            // Update de eetzaal
-            foreach (Eetzaal eetzaal in spel.hotel.hotelLayout.eetzalen)
-            {
-                eetzaal.Update(gameTime);
-            }
-            spel.hotel.hotelLayout.fitness.Update(gameTime);
 
-            
+
+
             // Update Lobbymenu
             FormCollection fc = Application.OpenForms;
 
@@ -119,8 +132,9 @@ namespace HotelSimulatie
                     temp.RefreshInfo();
                 }
             }
+            /*
             // Controleer dood van gast
-            for(int i = 0; i < spel.hotel.GastenLijst.Count; i++)
+            for (int i = 0; i < spel.hotel.GastenLijst.Count; i++)
             {
                 Gast gast = spel.hotel.GastenLijst[i];
                 if (gast.isDood == false)
@@ -134,10 +148,10 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                        gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                    gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
                     gast.Rondspoken();
                 }
-            }
+            }*/
         }
 
 
@@ -150,22 +164,21 @@ namespace HotelSimulatie
             base.Draw(gameTime);
 
             // Toon gasten
-            int a = spel.hotel.GastenLijst.Count;
-            for (int i = 0; i < a; i++)
+            foreach (Persoon persoon in spel.hotel.PersonenInHotelLijst)
             {
-                Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.Bestemming != null && gast.inLiftOfTrap == false)
+                if (persoon is Gast)
                 {
-                    gast.Draw(spriteBatch);
+                    if (persoon.Bestemming != null && persoon.inLiftOfTrap == false)
+                    {
+                        persoon.Draw(spriteBatch);
+                    }
                 }
-            }
-
-            // Toon schoonmakers
-            foreach(Schoonmaker schoonmaker in spel.hotel.Schoonmakers)
-            {
-                if(schoonmaker.HuidigEvent.NEvent != HotelEventAdapter.NEventType.IS_CLEANING && schoonmaker.inLiftOfTrap == false)
+                else
                 {
-                    schoonmaker.Draw(spriteBatch);
+                    if (persoon.HuidigEvent.NEvent != HotelEventAdapter.NEventType.IS_CLEANING && persoon.inLiftOfTrap == false)
+                    {
+                        persoon.Draw(spriteBatch);
+                    }
                 }
             }
             spriteBatch.End();

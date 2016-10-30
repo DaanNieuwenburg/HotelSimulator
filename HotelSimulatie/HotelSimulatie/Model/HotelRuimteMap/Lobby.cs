@@ -76,7 +76,7 @@ namespace HotelSimulatie.Model
             Kamer gastKamer = hotel.hotelLayout.KamerLijst.Find(o => o.Code == gast.ToegewezenKamer.Code);
             gastKamer.Bezet = false;
             gast.ToegewezenKamer = null;
-            hotel.GastenLijst.Remove(gast);
+            hotel.PersonenInHotelLijst.Remove(gast);
         }
     }
 }
