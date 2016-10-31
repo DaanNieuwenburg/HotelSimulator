@@ -40,7 +40,7 @@ namespace HotelSimulatie.Model
                 }
                 else if (totaleSpelTijd - gast.HuidigEvent.HuidigeDuurEvent > HotelTijdsEenheid.fitnessHTE)
                 {
-                    gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                    gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                     gast.HuidigEvent.HuidigeDuurEvent = 0;
                 }
             }

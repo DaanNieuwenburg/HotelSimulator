@@ -30,37 +30,37 @@ namespace HotelSimulatie
                     {
                         if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
                         {
-                            if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+                            if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_IN)
                             {
                                 gast.Inchecken(spel.hotel.hotelLayout, gameTime);
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.CHECK_OUT)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_OUT)
                             {
                                 Lobby lobby = spel.hotel.hotelLayout.lobby;
                                 gast.GaNaarRuimte<Lobby>(ref lobby);
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_CINEMA)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_CINEMA)
                             {
                                 Bioscoop bioscoop = spel.hotel.hotelLayout.bioscoop;
                                 gast.GaNaarRuimte<Bioscoop>(ref bioscoop);
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_FITNESS)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_FITNESS)
                             {
                                 Fitness fitness = spel.hotel.hotelLayout.fitness;
                                 gast.GaNaarRuimte<Fitness>(ref fitness);
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.GOTO_ROOM)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_ROOM)
                             {
                                 Kamer kamer = gast.ToegewezenKamer;
                                 gast.GaNaarRuimte<Kamer>(ref kamer);
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.EVACUATE)
                             {
                                 Lobby lobby = spel.hotel.hotelLayout.lobby;
                                 gast.GaNaarRuimte<Lobby>(ref lobby);
                                 spel.hotel.Update();
                             }
-                            else if (gast.HuidigEvent.NEvent == HotelEventAdapter.NEventType.NEED_FOOD)
+                            else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.NEED_FOOD)
                             {
                                 List<List<HotelRuimte>> wegenNaarEetzalen = new List<List<HotelRuimte>>();
                                 DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
@@ -176,7 +176,7 @@ namespace HotelSimulatie
                 }
                 else
                 {
-                    if (persoon.HuidigEvent.NEvent != HotelEventAdapter.NEventType.IS_CLEANING && persoon.inLiftOfTrap == false)
+                    if (persoon.HuidigEvent.Event != HotelEventAdapter.EventType.IS_CLEANING && persoon.inLiftOfTrap == false)
                     {
                         persoon.Draw(spriteBatch);
                     }

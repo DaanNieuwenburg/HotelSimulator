@@ -24,7 +24,7 @@ namespace HotelSimulatie.Model
             Texturelijst.Add(@"AnimatedSchoonmaker2");
             HotelEvent evt = new HotelEvent();
             HuidigEvent = new HotelEventAdapter(evt);
-            HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+            HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
         }
 
         public override void LoadContent(ContentManager contentManager)
@@ -43,12 +43,12 @@ namespace HotelSimulatie.Model
         public void Update(GameTime spelTijd)
         {
             // Is de schoonmaker niets aan het doen, kijk dan of er een kamer schoongemaakt moet worden
-            if (HuidigEvent.NEvent == HotelEventAdapter.NEventType.NONE)
+            if (HuidigEvent.Event == HotelEventAdapter.EventType.NONE)
             {
                 if (SchoonmaakLijst.Count > 0)
                 {
                     Bestemming = SchoonmaakLijst.First();
-                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                    HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                 }
             }
             else
@@ -61,7 +61,7 @@ namespace HotelSimulatie.Model
                         HuidigEvent.HuidigeDuurEvent = spelTijd.ElapsedGameTime.Seconds;
                     }
                     verlopenTijd = spelTijd.ElapsedGameTime.Seconds;
-                    HuidigEvent.NEvent = HotelEventAdapter.NEventType.IS_CLEANING;
+                    HuidigEvent.Event = HotelEventAdapter.EventType.IS_CLEANING;
                     maakRuimteSchoon();
                 }
                 // Als schoonmaker onderweg is naar kamer
@@ -109,7 +109,7 @@ namespace HotelSimulatie.Model
             if (verlopenTijd - startTijd > HotelTijdsEenheid.schoonmakenHTE)
             {
                 SchoonmaakLijst.Remove(HuidigeRuimte);
-                HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
             }
         }
     }

@@ -125,7 +125,7 @@ namespace HotelSimulatie.Model
             HuidigeRuimte = ruimte;
             Bestemming = null;
             BestemmingLijst = null;
-            HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+            HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
 
             if (this is Gast)
             {

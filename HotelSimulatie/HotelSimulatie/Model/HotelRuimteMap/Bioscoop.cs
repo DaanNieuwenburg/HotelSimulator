@@ -29,12 +29,12 @@ namespace HotelSimulatie.Model
 
         public override void Update(GameTime gameTijd)
         {
-            if(HuidigEvent.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+            if(HuidigEvent.Event == HotelEventAdapter.EventType.START_CINEMA)
             {
                 StartCinema(gameTijd);
-                HuidigEvent.NEvent = HotelEventAdapter.NEventType.NONE;
+                HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
             }
-            if (gameTijd.TotalGameTime.Seconds > HuidigEvent.Time && HuidigEvent.Time != 0)
+            if (gameTijd.TotalGameTime.Seconds > HuidigEvent.Tijd && HuidigEvent.Tijd != 0)
             {
                 StopCinema();
             }
@@ -43,7 +43,7 @@ namespace HotelSimulatie.Model
         private void StartCinema(GameTime gameTijd)
         {
             // Koppel de tijd
-            HuidigEvent.Time = gameTijd.TotalGameTime.Seconds + (HuidigEvent.Time / 60);
+            HuidigEvent.Tijd = gameTijd.TotalGameTime.Seconds + (HuidigEvent.Tijd / 60);
             texturepath = @"Kamers\Bioscoop_MetFilm";
         }
 
@@ -52,7 +52,7 @@ namespace HotelSimulatie.Model
             texturepath = @"Kamers\Bioscoop";
             foreach(Gast gast in inBioscoopLijst)
             {
-                gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
             }
             inBioscoopLijst.Clear();
         }

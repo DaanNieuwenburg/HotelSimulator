@@ -27,7 +27,7 @@ namespace HotelSimulatie.Model
 
         public void Update()
         {
-            if(huidigEvent.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+            if(huidigEvent.Event == HotelEventAdapter.EventType.EVACUATE)
             {
                 Evacueer();
             }
@@ -43,7 +43,7 @@ namespace HotelSimulatie.Model
                 {
                     gast.Bestemming = hotelLayout.lobby;
                     gast.BestemmingLijst = null;
-                    gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
+                    gast.HuidigEvent.Event = HotelEventAdapter.EventType.EVACUATE;
                 }
             }
             else
@@ -56,7 +56,7 @@ namespace HotelSimulatie.Model
                     foreach(Gast gast in PersonenInHotelLijst.Where(o => o is Gast))
                     {
                         gast.HuidigeRuimte = hotelLayout.lobby;
-                        gast.HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                        gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                     }
                 }
             }

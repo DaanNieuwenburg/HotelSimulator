@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace HotelSimulatie
 {
@@ -51,11 +52,29 @@ namespace HotelSimulatie
 
         private List<HotelRuimte> LeesLayoutUit()
         {
+            // Bekijk eerst of layout bestand bestaat
+            string locatie = "";
+            if(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout"))
+            {
+                locatie = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout";
+            }
+            else
+            {
+                OpenFileDialog layoutOpzoekDialog = new OpenFileDialog();
+                if(layoutOpzoekDialog.ShowDialog() == DialogResult.OK)
+                {
+                    locatie = layoutOpzoekDialog.FileName;
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
             List<HotelRuimte> ruimteLijst = null;
             try
             {
                 JsonConverter converter = new HotelRuimteJsonConverter();
-                using (StreamReader reader = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout"))
+                using (StreamReader reader = new StreamReader(locatie))
                 {
                     string content = reader.ReadToEnd();
                     ruimteLijst = JsonConvert.DeserializeObject<List<HotelRuimte>>(content, converter);

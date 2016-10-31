@@ -36,13 +36,13 @@ namespace HotelSimulatie
             // Zet hotelevent om naar adapter
             HotelEventAdapter hotelEventAdapter = new HotelEventAdapter(evt);
 
-            if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Guest)
+            if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Guest)
             {
                 // Koppel event aan gast
                 Gast gast = bepaalGast(hotelEventAdapter);
                 gast.HuidigEvent = hotelEventAdapter;
             }
-            else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
+            else if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Cleaning)
             {
                 // Bepaal schoon te maken ruimte
                 int kamerCode = Convert.ToInt32(hotelEventAdapter.Message);
@@ -53,14 +53,14 @@ namespace HotelSimulatie
                     schoonmaker.VoegSchoonmaakRuimteToe(gevondenKamer);
                 }
             }
-            else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
+            else if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel)
             {
                 // Koppel event aan hotelruimte
-                if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                if (hotelEventAdapter.Event == HotelEventAdapter.EventType.EVACUATE)
                 {
-                    spel.hotel.huidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
+                    spel.hotel.huidigEvent.Event = HotelEventAdapter.EventType.EVACUATE;
                 }
-                else if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                else if (hotelEventAdapter.Event == HotelEventAdapter.EventType.START_CINEMA)
                 {
                     int code = Convert.ToInt32(hotelEventAdapter.Data.First().Value);
                     Bioscoop bioscoop = (Bioscoop)spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == code);
@@ -84,7 +84,7 @@ namespace HotelSimulatie
             // Vind de gast in de gastenlijst
             Gast gast = (Gast)spel.hotel.PersonenInHotelLijst.Find(o => o.Naam == gastNaam);
 
-            if (gast == null && hotelEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+            if (gast == null && hotelEvent.Event == HotelEventAdapter.EventType.CHECK_IN)
             {
                 // Maak een nieuwe gast
                 gast = new Gast();

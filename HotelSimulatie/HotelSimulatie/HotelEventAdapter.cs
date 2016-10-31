@@ -8,26 +8,31 @@ using System.Text.RegularExpressions;
 
 namespace HotelSimulatie
 {
-    public class HotelEventAdapter : HotelEvent
+    public class HotelEventAdapter
     {
-        public enum NEventCategory { Cleaning, Testing, Guest, Hotel, NotImplented}
+        public HotelEvent hotelEvent { get; set; }
+        public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented }
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
-        public enum NEventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
-        public NEventType NEvent { get; set; }
-        public NEventCategory Category { get; set; }
+        public enum EventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
+        public EventType Event { get; set; }
+        public EventCategory Category { get; set; }
         public int HuidigeDuurEvent { get; set; }
+        public int Tijd { get; set; }
+        public Dictionary<string, string> Data { get; set; }
+        public string Message { get; set; }
         public HotelEventAdapter(HotelEvent evt)
         {
+            hotelEvent = evt;
             // Bepaal event category en type
-            NEvent = (NEventType)evt.EventType;
+            Event = (EventType)evt.EventType;
             Message = evt.Message;
             Data = evt.Data;
-            Time = evt.Time;
+            Tijd = evt.Time;
 
             bepaalHotelEventCategory(evt);
 
             // Als er geen sprake is van zo een vreselijk test event
-            if (Category != NEventCategory.NotImplented && Category != NEventCategory.Hotel)
+            if (Category != EventCategory.NotImplented && Category != EventCategory.Hotel)
             {
                 Message = evt.Data.Values.ElementAt(0);
             }
@@ -36,36 +41,36 @@ namespace HotelSimulatie
         private void bepaalHotelEventCategory(HotelEvent evt)
         {
             // Initialiseer de event categories
-            NEventType[] cleaningEvents = new NEventType[1];
-            cleaningEvents[0] = NEventType.CLEANING_EMERGENCY;
+            EventType[] cleaningEvents = new EventType[1];
+            cleaningEvents[0] = EventType.CLEANING_EMERGENCY;
 
-            NEventType[] guestEvents = new NEventType[5];
-            guestEvents[0] = NEventType.CHECK_IN;
-            guestEvents[1] = NEventType.CHECK_OUT;
-            guestEvents[2] = NEventType.GOTO_CINEMA;
-            guestEvents[3] = NEventType.GOTO_FITNESS;
-            guestEvents[4] = NEventType.NEED_FOOD;
+            EventType[] guestEvents = new EventType[5];
+            guestEvents[0] = EventType.CHECK_IN;
+            guestEvents[1] = EventType.CHECK_OUT;
+            guestEvents[2] = EventType.GOTO_CINEMA;
+            guestEvents[3] = EventType.GOTO_FITNESS;
+            guestEvents[4] = EventType.NEED_FOOD;
 
-            NEventType[] hotelEvents = new NEventType[2];
-            hotelEvents[0] = NEventType.START_CINEMA;
-            hotelEvents[1] = NEventType.EVACUATE;
+            EventType[] hotelEvents = new EventType[2];
+            hotelEvents[0] = EventType.START_CINEMA;
+            hotelEvents[1] = EventType.EVACUATE;
 
             // Bepaal de event category van het huidige event
-            if (cleaningEvents.Contains(NEvent))
+            if (cleaningEvents.Contains(Event))
             {
-                Category = NEventCategory.Cleaning;
+                Category = EventCategory.Cleaning;
             }
-            else if (guestEvents.Contains(NEvent))
+            else if (guestEvents.Contains(Event))
             {
-                Category = NEventCategory.Guest;
+                Category = EventCategory.Guest;
             }
-            else if (hotelEvents.Contains(NEvent))
+            else if (hotelEvents.Contains(Event))
             {
-                Category = NEventCategory.Hotel;
+                Category = EventCategory.Hotel;
             }
             else
             {
-                Category = NEventCategory.NotImplented;
+                Category = EventCategory.NotImplented;
             }
         }
     }

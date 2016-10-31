@@ -59,13 +59,13 @@ namespace HotelSimulatie.Model
                         if (gevondenKamer.AantalSterren == 0)
                         {
                             // Ga uitchecken, gevraagde kamer is niet beschikbaar
-                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.CHECK_OUT;
+                            HuidigEvent.Event = HotelEventAdapter.EventType.CHECK_OUT;
                         }
                         else
                         {
                             Bestemming = gevondenKamer;
                             ToegewezenKamer = gevondenKamer;
-                            HuidigEvent.NEvent = HotelEventAdapter.NEventType.GOTO_ROOM;
+                            HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                         }
                     }
                 }
