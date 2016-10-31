@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HotelEvents;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -40,7 +41,7 @@ namespace HotelSimulatie.Model
                 {
 
                     int aantalTrappen = persoon.Key.Bestemming.Verdieping - persoon.Key.HuidigeRuimte.Verdieping;
-                    int eindTijd = gameTime.TotalGameTime.Seconds + aantalTrappen;
+                    int eindTijd = Convert.ToInt32((gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor) + (aantalTrappen * aantalTrappen));
                     // Bepaal aantal verdiepingen die de persoon op moet
                     personenInTrap[persoon.Key] = eindTijd;
                 }
@@ -50,7 +51,7 @@ namespace HotelSimulatie.Model
             List<Persoon> personenDieTrapUitGaan = new List<Persoon>();
             foreach (KeyValuePair<Persoon, int> persoon in personenInTrap)
             {
-                if (persoon.Value == gameTime.TotalGameTime.Seconds)
+                if (persoon.Value == (gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor))
                 {
                     persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();

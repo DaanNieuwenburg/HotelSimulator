@@ -17,7 +17,7 @@ namespace HotelSimulatie.View
             InitializeComponent();
             try
             {
-                //LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
+                LogoPbx.Load("http://i.imgur.com/5vQC9XM.png");
             }
             catch (System.Net.WebException ex)
             {
