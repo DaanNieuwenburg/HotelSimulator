@@ -51,9 +51,10 @@ namespace HotelSimulatie
             guestEvents[3] = EventType.GOTO_FITNESS;
             guestEvents[4] = EventType.NEED_FOOD;
 
-            EventType[] hotelEvents = new EventType[2];
+            EventType[] hotelEvents = new EventType[3];
             hotelEvents[0] = EventType.START_CINEMA;
             hotelEvents[1] = EventType.EVACUATE;
+            hotelEvents[2] = EventType.GODZILLA;
 
             // Bepaal de event category van het huidige event
             if (cleaningEvents.Contains(Event))

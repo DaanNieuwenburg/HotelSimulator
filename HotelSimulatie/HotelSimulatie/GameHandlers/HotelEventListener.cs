@@ -66,6 +66,10 @@ namespace HotelSimulatie
                     Bioscoop bioscoop = (Bioscoop)spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == code);
                     bioscoop.HuidigEvent = hotelEventAdapter;
                 }
+                else if (hotelEventAdapter.Event == HotelEventAdapter.EventType.GODZILLA)
+                {
+                    spel.hotel.huidigEvent.Event = HotelEventAdapter.EventType.GODZILLA;
+                }
             }
         }
 
