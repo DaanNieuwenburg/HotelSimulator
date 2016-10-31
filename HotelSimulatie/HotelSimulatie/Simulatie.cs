@@ -65,7 +65,7 @@ namespace HotelSimulatie
         protected override void Update(GameTime gameTime)
         {
            
-                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds + HotelEventManager.HTE_Factor);
+                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
             /*else
                 HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds + HotelEventManager.HTE_Factor) +60;*/
             base.Update(gameTime);

@@ -9,13 +9,14 @@ namespace HotelSimulatie.View
         public OptiesForm()
         {
             InitializeComponent();
+            tbHTE.Text = HotelEventManager.HTE_Factor.ToString();
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)
         {
             if(Convert.ToDouble(tbHTE.Text) < 0.1)
             {
-                MessageBox.Show("De tijdsduur van een HTE mag niet lager zijn dan 0,1 seconde", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("De tijdsduur van een seconde mag niet lager zijn dan 0,1 HTE", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             /*if(Convert.ToDouble(tbTijdsduur1.Text) < 0.1 || Convert.ToDouble(tbTijdsduur2.Text) < 0.1 || Convert.ToDouble(tbTijdsduur3.Text) < 0.1 || Convert.ToDouble(tbTijdsduur4.Text) < 0.1 || Convert.ToDouble(tbTijdsduur5.Text) < 0.1)
             {
