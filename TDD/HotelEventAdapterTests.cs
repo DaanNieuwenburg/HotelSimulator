@@ -15,13 +15,30 @@ namespace TDD
         }
 
         [TestMethod]
-        public void Zou_event_type_niet_moeten_koppelen_bij_geen_meegegeven_data()
+        public void Zou_tijd_moeten_koppelen_bij_meegegeven_tijd()
         {
-            HotelEvents.HotelEvent evt = new HotelEvents.HotelEvent() { EventType = HotelEvents.HotelEventType.CHECK_IN};
+            int time = 10;
+            HotelEvents.HotelEvent evt = new HotelEvents.HotelEvent();
+            evt.Time = time;
+            evt.Data = new System.Collections.Generic.Dictionary<string, string>();
+            HotelEventAdapter hea = new HotelEventAdapter(evt);
+
+            bool test = hea.Tijd == time;
+            Assert.IsTrue(test);
+        }
+
+        [TestMethod]
+        public void Zou_data_moeten_koppelen_bij_meegegeven_data()
+        {
+            int time = 10;
+            HotelEvents.HotelEvent evt = new HotelEvents.HotelEvent();
+            evt.Time = time;
             evt.Data = new System.Collections.Generic.Dictionary<string, string>();
             evt.Data.Add("test", "test");
             HotelEventAdapter hea = new HotelEventAdapter(evt);
-            Assert.AreSame(evt.EventType, hea.Event);
+
+            bool test = evt.Data.Keys == hea.Data.Keys;
+            Assert.IsTrue(test);
         }
     }
 }

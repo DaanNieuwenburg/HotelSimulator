@@ -25,5 +25,7 @@ namespace TDD
             Lift lift = (Lift)liftHRuimte;
             Assert.AreEqual(lift.HuidigeVerdieping, lift.Liftschachtlijst[0]);
         }
+
+
     }
 }
