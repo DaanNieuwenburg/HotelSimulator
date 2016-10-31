@@ -23,6 +23,7 @@ namespace HotelSimulatie.Model
         {
             if (!personenInTrap.Keys.Contains(persoon))
             {
+                // Value van dictionary is verlopentijd + aantalverdieping waar 
                 personenInTrap.Add(persoon, 0);
                 persoon.inLiftOfTrap = true;
             }

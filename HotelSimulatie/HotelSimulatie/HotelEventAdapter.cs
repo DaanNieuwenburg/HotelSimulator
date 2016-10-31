@@ -22,19 +22,29 @@ namespace HotelSimulatie
         public string Message { get; set; }
         public HotelEventAdapter(HotelEvent evt)
         {
-            hotelEvent = evt;
-            // Bepaal event category en type
-            Event = (EventType)evt.EventType;
-            Message = evt.Message;
-            Data = evt.Data;
-            Tijd = evt.Time;
-
-            bepaalHotelEventCategory(evt);
-
-            // Als er geen sprake is van zo een vreselijk test event
-            if (Category != EventCategory.NotImplented && Category != EventCategory.Hotel)
+            try
             {
-                Message = evt.Data.Values.ElementAt(0);
+                if (evt != null && evt.Data != null)
+                {
+                    hotelEvent = evt;
+                    // Bepaal event category en type
+                    Event = (EventType)evt.EventType;
+                    Message = evt.Message;
+                    Data = evt.Data;
+                    Tijd = evt.Time;
+
+                    bepaalHotelEventCategory(evt);
+
+                    // Als er geen sprake is van zo een vreselijk test event
+                    if (Category != EventCategory.NotImplented && Category != EventCategory.Hotel)
+                    {
+                        Message = evt.Data.Values.ElementAt(0);
+                    }
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine("Exception in hotelEventadapter" + ex);
             }
         }
 
