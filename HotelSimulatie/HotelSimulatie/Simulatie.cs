@@ -90,14 +90,7 @@ namespace HotelSimulatie
             }
             base.Update(gameTime);
         }
-        private void Godzilla()
-        {
-            GodzillaEvent = true;
-
-            Console.WriteLine("OH NO Godzilla is coming");
-
-
-        }
+        private void Godzilla() => GodzillaEvent = true;
 
         protected override void Draw(GameTime gameTime)
         {

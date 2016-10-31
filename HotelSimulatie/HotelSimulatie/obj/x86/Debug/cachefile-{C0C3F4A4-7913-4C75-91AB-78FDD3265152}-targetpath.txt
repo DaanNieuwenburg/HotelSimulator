@@ -48,5 +48,5 @@ Content\Gasten\AnimatedGast8.xnb
 Content\Gasten\AnimatedGast8_Links.xnb
 Content\Kamers\Bioscoop_MetFilm.xnb
 Content\Kamers\Kamer_5ster(1hoog).xnb
-Content\Font.xnb
 Content\Godzilla.xnb
+Content\Font.xnb
