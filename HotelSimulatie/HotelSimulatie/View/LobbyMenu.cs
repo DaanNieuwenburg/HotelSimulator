@@ -14,9 +14,11 @@ namespace HotelSimulatie.View
     public partial class LobbyMenu : Form
     {
         private Hotel hotel { get; set; }
+        Stopwatch LvTimer { get; set; }
         public LobbyMenu(Hotel _hotel)
         {
             InitializeComponent();
+            LvTimer = new Stopwatch();
             tabs.Size = this.Size;
             tabs.ItemSize = new Size(tabPage1.Width / 3, 20);
             lvGasten.Size = tabPage3.Size;
@@ -27,9 +29,9 @@ namespace HotelSimulatie.View
             foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
             {
                 if (gast.ToegewezenKamer == null)
-                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
                 else
-                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                    lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
             }
             #region
             //Ken waardes voor schoonmakers toe aan labels
@@ -44,6 +46,7 @@ namespace HotelSimulatie.View
         }
         public void RefreshInfo()
         {
+            LvTimer.Start();
             if (tabs.SelectedTab == tabPage1)
             {
                 lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().HuidigeRuimte.Naam;
@@ -65,19 +68,24 @@ namespace HotelSimulatie.View
             }
             else if (tabs.SelectedTab == tabPage3)
             {
-                lvGasten.Items.Clear();
-                foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
+                if (LvTimer.Elapsed.TotalSeconds > 2)
                 {
-                    if (gast.ToegewezenKamer == null)
-                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
-                    else
-                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
+                    lvGasten.Items.Clear();
+                    LvTimer.Reset();
+                    foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
+                    {
+                        if (gast.ToegewezenKamer == null)
+                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
+                        else
+                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
+                    }
                 }
             }
 
         }
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            LvTimer.Start();
             if(tabs.SelectedTab == tabPage1)
             {
                 lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.First().Naam;
@@ -91,16 +99,31 @@ namespace HotelSimulatie.View
             }
             else if(tabs.SelectedTab == tabPage3)
             {
-                lvGasten.Items.Clear();
-                foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
+                if(LvTimer.Elapsed.TotalSeconds > 10)
                 {
-                    if (gast.ToegewezenKamer == null)
-                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
-                    else
-                        lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString() }));
-                }
+                    LvTimer.Reset();
+                    lvGasten.Items.Clear();
+                    foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
+                    {
+                        if (gast.ToegewezenKamer == null)
+                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
+                        else
+                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
+                    }
+                }          
             }
             
         }
+
+        /*private void lvGasten_ItemActivate(object sender, EventArgs e)
+        {
+            string gastnaam = lvGasten.SelectedItems[0].Text;
+            foreach(Gast g in hotel.PersonenInHotelLijst)
+            {
+                if (gastnaam == g.Naam)
+                    MessageBox.Show(g.HuidigEvent.ToString());
+            }
+            
+        }*/
     }
 }

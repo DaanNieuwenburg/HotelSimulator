@@ -18,6 +18,10 @@ namespace HotelSimulatie.View
             {
                 MessageBox.Show("De tijdsduur van een seconde mag niet lager zijn dan 0,1 HTE", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            else if(Convert.ToDouble(tbHTE.Text) > 50)
+            {
+                MessageBox.Show("De tijdsduur niet hoger zijn dan 50 HTE per seconde", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             /*if(Convert.ToDouble(tbTijdsduur1.Text) < 0.1 || Convert.ToDouble(tbTijdsduur2.Text) < 0.1 || Convert.ToDouble(tbTijdsduur3.Text) < 0.1 || Convert.ToDouble(tbTijdsduur4.Text) < 0.1 || Convert.ToDouble(tbTijdsduur5.Text) < 0.1)
             {
                 MessageBox.Show("De tijdsduur van een Activiteit mag niet lager zijn dan 0,1 HTE", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);

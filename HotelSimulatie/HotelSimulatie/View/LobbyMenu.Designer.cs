@@ -59,6 +59,7 @@
             this.chWachten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHonger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.chDood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -330,16 +331,18 @@
             // 
             // lvGasten
             // 
+            this.lvGasten.Activation = System.Windows.Forms.ItemActivation.TwoClick;
             this.lvGasten.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.chPositie,
             this.chKamernr,
             this.chWachten,
-            this.chHonger});
+            this.chHonger,
+            this.chDood});
             this.lvGasten.Location = new System.Drawing.Point(6, 0);
             this.lvGasten.MultiSelect = false;
             this.lvGasten.Name = "lvGasten";
-            this.lvGasten.Size = new System.Drawing.Size(350, 331);
+            this.lvGasten.Size = new System.Drawing.Size(406, 331);
             this.lvGasten.TabIndex = 1;
             this.lvGasten.UseCompatibleStateImageBehavior = false;
             this.lvGasten.View = System.Windows.Forms.View.Details;
@@ -373,6 +376,10 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // chDood
+            // 
+            this.chDood.Text = "IsDood";
             // 
             // LobbyMenu
             // 
@@ -426,5 +433,6 @@
         private System.Windows.Forms.Label lbBestemmingLift;
         private System.Windows.Forms.Label lbPersonenLift;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.ColumnHeader chDood;
     }
 }
