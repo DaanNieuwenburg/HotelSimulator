@@ -54,6 +54,7 @@ namespace HotelSimulatie.Model
                 }
                 catch (InvalidOperationException e)
                 {
+                    Console.WriteLine("Geen kamer gevonden " + e);
                     // Als er geen kamer beschikbaar is, return kamer van 0 sterren
                     gast.ToegewezenKamer = new Kamer(0);
                 }

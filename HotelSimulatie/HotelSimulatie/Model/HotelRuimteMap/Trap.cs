@@ -28,7 +28,7 @@ namespace HotelSimulatie.Model
             }
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             for (int i = 0; i < personenInTrap.Count; i++)
             {

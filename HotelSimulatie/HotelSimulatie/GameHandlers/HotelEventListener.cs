@@ -6,24 +6,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HotelEvents;
+using DLL = HotelEvents;
 using System.Text.RegularExpressions;
 
 namespace HotelSimulatie
 {
-    public class HotelEventHandler : Microsoft.Xna.Framework.GameComponent, HotelEventListener
+    public class HotelEventListener : Microsoft.Xna.Framework.GameComponent, DLL.HotelEventListener
     {
         private Simulatie spel { get; set; }
-        private HotelEvent Event { get; }
+        private DLL.HotelEvent Event { get; }
         private GameTime gametime { get; set; }
 
-        public HotelEventHandler(Game game) : base(game)
+        public HotelEventListener(Game game) : base(game)
         {
             spel = (Simulatie)game;
-            Event = new HotelEvent();
+            Event = new DLL.HotelEvent();
             // Start de event listener
-            HotelEventManager.Register(this);
-            HotelEventManager.Start();
+            DLL.HotelEventManager.Register(this);
+            DLL.HotelEventManager.Start();
         }
         public override void Update(GameTime gameTime)
         {
@@ -31,18 +31,18 @@ namespace HotelSimulatie
             base.Update(gameTime);
         }
 
-        public void Notify(HotelEvent evt)
+        public void Notify(DLL.HotelEvent evt)
         {
             // Zet hotelevent om naar adapter
             HotelEventAdapter hotelEventAdapter = new HotelEventAdapter(evt);
-            
-            if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Guest)
+
+            if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Guest)
             {
                 // Koppel event aan gast
                 Gast gast = bepaalGast(hotelEventAdapter);
                 gast.HuidigEvent = hotelEventAdapter;
             }
-            else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
+            else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Cleaning)
             {
                 // Bepaal schoon te maken ruimte
                 int kamerCode = Convert.ToInt32(hotelEventAdapter.Message);
@@ -53,14 +53,14 @@ namespace HotelSimulatie
                     schoonmaker.VoegSchoonmaakRuimteToe(gevondenKamer);
                 }
             }
-           else if(hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
+            else if (hotelEventAdapter.Category == HotelEventAdapter.NEventCategory.Hotel)
             {
                 // Koppel event aan hotelruimte
-                if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
+                if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.EVACUATE)
                 {
                     spel.hotel.huidigEvent.NEvent = HotelEventAdapter.NEventType.EVACUATE;
                 }
-                else if(hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
+                else if (hotelEventAdapter.NEvent == HotelEventAdapter.NEventType.START_CINEMA)
                 {
                     int code = Convert.ToInt32(hotelEventAdapter.Data.First().Value);
                     Bioscoop bioscoop = (Bioscoop)spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == code);
@@ -81,33 +81,34 @@ namespace HotelSimulatie
                 gastNaam = gastNaam + hotelEvent.Data.Values.ElementAt(0);
             }
 
-        // Vind de gast in de gastenlijst
-        Gast gast = (Gast)spel.hotel.PersonenInHotelLijst.Find(o => o.Naam == gastNaam);
+            // Vind de gast in de gastenlijst
+            Gast gast = (Gast)spel.hotel.PersonenInHotelLijst.Find(o => o.Naam == gastNaam);
 
-        if (gast == null && hotelEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
-        {
-            // Maak een nieuwe gast
-            gast = new Gast();
-            gast.Naam = gastNaam;
+            if (gast == null && hotelEvent.NEvent == HotelEventAdapter.NEventType.CHECK_IN)
+            {
+                // Maak een nieuwe gast
+                gast = new Gast();
+                gast.Naam = gastNaam;
 
-            // Zet de gast in gastenlijst
-            spel.hotel.PersonenInHotelLijst.Add(gast);
-            string aantalSterrenKamerStr = Regex.Match(hotelEvent.Data.First().Value, @"([1-9])").Value;
-            gast.AantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
+                // Zet de gast in gastenlijst
+                spel.hotel.PersonenInHotelLijst.Add(gast);
+                string aantalSterrenKamerStr = Regex.Match(hotelEvent.Data.First().Value, @"([1-9])").Value;
+                gast.AantalSterrenKamer = Convert.ToInt32(aantalSterrenKamerStr);
 
-            // Zet spawnpositie van gast goed
-            gast.Positie = spel.GastSpawnLocatie;
+                // Zet spawnpositie van gast goed
+                gast.Positie = spel.GastSpawnLocatie;
 
-            // Koppel de texture van de gast
-            gast.LoadContent(Game.Content);
+                // Koppel de texture van de gast
+                gast.LoadContent(Game.Content);
 
-            // Geef gast de bestemming van de lobby
-            gast.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
-            gast.Bestemming = spel.hotel.hotelLayout.lobby;
+                // Geef gast de bestemming van de lobby
+                gast.HuidigeRuimte = spel.hotel.hotelLayout.lobby;
+                gast.Bestemming = spel.hotel.hotelLayout.lobby;
 
-            // Start het event
-            gast.Inchecken(spel.hotel.hotelLayout, gametime);
+                // Start het event
+                gast.Inchecken(spel.hotel.hotelLayout, gametime);
+            }
+            return gast;
         }
-        return gast;
     }
 }

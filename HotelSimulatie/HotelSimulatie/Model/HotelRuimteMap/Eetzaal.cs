@@ -28,7 +28,7 @@ namespace HotelSimulatie.Model
             inEetzaalLijst.Add((Gast)persoon);
         }
 
-        public void Update(GameTime gameTijd)
+        public override void Update(GameTime gameTijd)
         {
             int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
             foreach (Gast gast in inEetzaalLijst)
