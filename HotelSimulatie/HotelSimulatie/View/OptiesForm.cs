@@ -10,6 +10,11 @@ namespace HotelSimulatie.View
         {
             InitializeComponent();
             tbHTE.Text = HotelEventManager.HTE_Factor.ToString();
+            tbTijdsduur1.Text = HotelTijdsEenheid.eetzaalHTE.ToString();
+            tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
+            tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
+            tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
+
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)
@@ -29,6 +34,10 @@ namespace HotelSimulatie.View
             else
             {
                 HotelEventManager.HTE_Factor = (float)Convert.ToDouble(tbHTE.Text.Replace('.', ','));
+                HotelTijdsEenheid.fitnessHTE = (Int32)Convert.ToDouble(tbTijdsduur3.Text.Replace('.', ','));
+                HotelTijdsEenheid.eetzaalHTE = (Int32)Convert.ToDouble(tbTijdsduur1.Text.Replace('.', ','));
+                HotelTijdsEenheid.bioscoopHTE = (Int32)Convert.ToDouble(tbTijdsduur2.Text.Replace('.', ','));
+                HotelTijdsEenheid.schoonmakenHTE = (Int32)Convert.ToDouble(tbTijdsduur4.Text.Replace('.', ','));
                 DialogResult = DialogResult.OK;
             }
             
