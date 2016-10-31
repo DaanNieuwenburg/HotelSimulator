@@ -49,7 +49,7 @@ namespace HotelSimulatie.Model
             }
             else if (AantalSterren == 5)
             {
-                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_5ster");
+                Texture = contentManager.Load<Texture2D>(@"Kamers\Kamer_5ster(1hoog)");
             }
         }
     }

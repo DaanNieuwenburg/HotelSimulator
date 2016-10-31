@@ -155,9 +155,9 @@ namespace HotelSimulatie
                         // Bij een kamer haal de 2de verdieping weg en vervang door een gang
                         hotelRuimte.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);
 
-                        Gang gang = new Gang();
-                        gang.CoordinatenInSpel = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y + 1);
+                        HotelRuimte gang = hotelRuimteFactory.MaakHotelRuimte("Gang");
                         gang.Afmetingen = new Vector2(hotelRuimte.Afmetingen.X, 1);
+                        gang.CoordinatenInSpel = new Vector2(hotelRuimte.CoordinatenInSpel.X, hotelRuimte.CoordinatenInSpel.Y + 1);
                         gang.Texture = hotelRuimte.Texture;
                         HotelRuimteLijst.Add(gang);
                     }

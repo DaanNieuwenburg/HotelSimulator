@@ -46,5 +46,6 @@ Content\Gasten\AnimatedGast7.xnb
 Content\Gasten\AnimatedGast7_Links.xnb
 Content\Gasten\AnimatedGast8.xnb
 Content\Gasten\AnimatedGast8_Links.xnb
-Content\Font.xnb
 Content\Kamers\Bioscoop_MetFilm.xnb
+Content\Font.xnb
+Content\Kamers\Kamer_5ster(1hoog).xnb

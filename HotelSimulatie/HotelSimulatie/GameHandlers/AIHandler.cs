@@ -164,8 +164,9 @@ namespace HotelSimulatie
             base.Draw(gameTime);
 
             // Toon gasten
-            foreach (Persoon persoon in spel.hotel.PersonenInHotelLijst)
+            for (int i = 0; i < spel.hotel.PersonenInHotelLijst.Count; i++)
             {
+                Persoon persoon = spel.hotel.PersonenInHotelLijst[i];
                 if (persoon is Gast)
                 {
                     if (persoon.Bestemming != null && persoon.inLiftOfTrap == false)
