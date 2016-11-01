@@ -44,13 +44,16 @@ namespace HotelSimulatie
             }
             else if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Cleaning)
             {
-                // Bepaal schoon te maken ruimte
-                int kamerCode = Convert.ToInt32(hotelEventAdapter.Message);
-                HotelRuimte gevondenKamer = spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == kamerCode);
-                if (gevondenKamer != null)
+                if (hotelEventAdapter.Event == HotelEventAdapter.EventType.CLEANING_EMERGENCY)
                 {
-                    Schoonmaker schoonmaker = (Schoonmaker)spel.hotel.PersonenInHotelLijst.Where(o => o is Schoonmaker).First();
-                    schoonmaker.VoegSchoonmaakRuimteToe(gevondenKamer);
+                    // Bepaal schoon te maken ruimte
+                    int kamerCode = Convert.ToInt32(hotelEventAdapter.Message);
+                    HotelRuimte gevondenKamer = spel.hotel.hotelLayout.HotelRuimteLijst.Find(o => o.Code == kamerCode);
+                    if (gevondenKamer != null)
+                    {
+                        Schoonmaker schoonmaker = (Schoonmaker)spel.hotel.PersonenInHotelLijst.Where(o => o is Schoonmaker).First();
+                        schoonmaker.VoegSchoonmaakRuimteToe(gevondenKamer);
+                    }
                 }
             }
             else if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Hotel)
