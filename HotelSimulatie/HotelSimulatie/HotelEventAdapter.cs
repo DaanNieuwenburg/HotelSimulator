@@ -10,7 +10,7 @@ namespace HotelSimulatie
 {
     public class HotelEventAdapter
     {
-        public HotelEvent hotelEvent { get; set; }
+        public HotelEvent dllHotelEvent { get; set; }
         public enum EventCategory { Cleaning, Testing, Guest, Hotel, NotImplented }
         // Let op - enkel waardes aan het eind van deze enum toevoegen, i.v.m. cast op de originele EventType uit dll
         public enum EventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
@@ -26,7 +26,7 @@ namespace HotelSimulatie
             {
                 if (evt != null && evt.Data != null)
                 {
-                    hotelEvent = evt;
+                    dllHotelEvent = evt;
                     // Bepaal event category en type
                     Event = (EventType)evt.EventType;
                     Message = evt.Message;
