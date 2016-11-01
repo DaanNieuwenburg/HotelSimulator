@@ -101,13 +101,19 @@ namespace HotelSimulatie.Model
             // Laat persoon bewegen d.m.v. animatie
             if (Positie.X < Bestemming.EventCoordinaten.X)
             {
-                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                if (this is Gast)
+                {
+                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                }
                 Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
                 return false;
             }
             else if (Positie.X > Bestemming.EventCoordinaten.X)
             {
-                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                if(this is Gast)
+                {
+                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex]+"_Links", 3);
+                }
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
                 return false;
             }

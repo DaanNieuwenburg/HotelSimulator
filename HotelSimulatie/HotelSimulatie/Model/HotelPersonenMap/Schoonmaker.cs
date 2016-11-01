@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             tempmanager = contentManager;
-            if (this.Naam == "SchoonmakerTim")
+            if (Naam == "SchoonmakerTim")
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[0], 3);
             }

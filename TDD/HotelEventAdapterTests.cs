@@ -40,5 +40,32 @@ namespace TDD
             bool test = evt.Data.Keys == hea.Data.Keys;
             Assert.IsTrue(test);
         }
+
+
+        [TestMethod]
+        public void Zou_event_moeten_koppelen_bij_meegegeven_event()
+        {
+            HotelEvents.HotelEvent evt = new HotelEvents.HotelEvent();
+            evt.EventType = HotelEvents.HotelEventType.CHECK_IN;
+            evt.Data = new System.Collections.Generic.Dictionary<string, string>();
+            evt.Data.Add("test", "test");
+            HotelEventAdapter hea = new HotelEventAdapter(evt);
+
+            bool tweeGelijkeEvents = evt.EventType.ToString() == hea.Event.ToString();
+            Assert.IsTrue(tweeGelijkeEvents);
+        }
+
+        [TestMethod]
+        public void Zou_event_category_moeten_koppelen_bij_meegegeven_event()
+        {
+            HotelEvents.HotelEvent evt = new HotelEvents.HotelEvent();
+            evt.EventType = HotelEvents.HotelEventType.GODZILLA;
+            evt.Data = new System.Collections.Generic.Dictionary<string, string>();
+            evt.Data.Add("test", "test");
+            HotelEventAdapter hea = new HotelEventAdapter(evt);
+            
+            bool tweeGelijkeEventCategories = HotelEventAdapter.EventCategory.Hotel.ToString() == hea.Category.ToString();
+            Assert.IsTrue(tweeGelijkeEventCategories);
+        }
     }
 }
