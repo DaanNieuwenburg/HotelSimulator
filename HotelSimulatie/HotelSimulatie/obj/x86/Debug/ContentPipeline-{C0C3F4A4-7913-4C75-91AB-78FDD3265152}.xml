@@ -443,6 +443,15 @@
       <Time>2016-11-01T10:13:51.5286946+01:00</Time>
     </Item>
     <Item>
+      <Source>Kamers\Unknown.png</Source>
+      <Name>Kamers\Unknown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Unknown.xnb</Output>
+      <Time>2016-11-01T13:56:01.2222629+01:00</Time>
+    </Item>
+    <Item>
       <Source>Font.spritefont</Source>
       <Name>Font</Name>
       <Importer>FontDescriptionImporter</Importer>
@@ -450,15 +459,6 @@
       <Options>None</Options>
       <Output>C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T12:54:09.7472508+02:00</Time>
-    </Item>
-    <Item>
-      <Source>Kamers\Unknown.png</Source>
-      <Name>Kamers\Unknown</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Unknown.xnb</Output>
-      <Time>2016-11-01T12:45:59.2855601+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

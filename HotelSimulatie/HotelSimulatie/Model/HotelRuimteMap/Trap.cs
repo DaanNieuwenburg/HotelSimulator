@@ -51,7 +51,7 @@ namespace HotelSimulatie.Model
             List<Persoon> personenDieTrapUitGaan = new List<Persoon>();
             foreach (KeyValuePair<Persoon, int> persoon in personenInTrap)
             {
-                if (persoon.Value == (gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor))
+                if (persoon.Value >= (gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor))
                 {
                     persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
@@ -62,7 +62,7 @@ namespace HotelSimulatie.Model
             }
 
             // Verwijder personen die de trap uit gaan
-            foreach(Persoon persoon in personenDieTrapUitGaan)
+            foreach (Persoon persoon in personenDieTrapUitGaan)
             {
                 personenInTrap.Remove(persoon);
             }

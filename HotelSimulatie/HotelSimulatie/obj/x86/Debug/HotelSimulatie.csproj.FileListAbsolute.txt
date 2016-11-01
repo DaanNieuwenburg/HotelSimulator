@@ -120,9 +120,11 @@ C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Bioscoop_MetFilm.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Kamer_5ster(1hoog).xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Godzilla.xnb
+C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Unknown.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.exe
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelSimulatie.pdb
+C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelEvents.dll
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.dll
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.Game.dll
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Microsoft.Xna.Framework.GamerServices.dll
@@ -143,4 +145,3 @@ C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
 C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache
-C:\Users\niels\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\HotelEvents.dll
