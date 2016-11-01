@@ -9,10 +9,10 @@ namespace HotelSimulatie
 {
     public class DijkstraAlgoritme
     {
-        public HotelRuimte Begin { get; set; }
-        public HotelRuimte Eind { get; set; }
-        public List<HotelRuimte> open { get; set; }
-        public bool zoekDichtbijzijnde { get; set; }
+        private HotelRuimte Begin { get; set; }
+        private HotelRuimte Eind { get; set; }
+        private List<HotelRuimte> open { get; set; }
+        private bool zoekDichtbijzijnde { get; set; }
         private List<HotelRuimte> bezochteRuimtes { get; set; }
 
         public List<HotelRuimte> MaakAlgoritme(Persoon persoon, HotelRuimte begin, HotelRuimte eind)
