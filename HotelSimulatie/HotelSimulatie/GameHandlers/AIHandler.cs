@@ -132,26 +132,30 @@ namespace HotelSimulatie
                     temp.RefreshInfo();
                 }
             }
-            /*
+            
             // Controleer dood van gast
-            for (int i = 0; i < spel.hotel.GastenLijst.Count; i++)
+            for (int i = 0; i < spel.hotel.PersonenInHotelLijst.Count; i++)
             {
-                Gast gast = spel.hotel.GastenLijst[i];
-                if (gast.isDood == false)
+                if(spel.hotel.PersonenInHotelLijst[i] is Gast)
                 {
-                    if (gast.Wachtteller.Elapsed.Seconds >= 6)
+                    Gast gast = (Gast)spel.hotel.PersonenInHotelLijst[i];
+                    if (gast.isDood == false)
                     {
-                        gast.isDood = true;
+                        if (gast.Wachtteller.Elapsed.Seconds >= 6)
+                        {
+                            gast.isDood = true;
+                            gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
+                            gast.ToegewezenKamer.Bezet = false;
+                        }
+                    }
+                    else
+                    {
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
-                        gast.ToegewezenKamer.Bezet = false;
+                        gast.Rondspoken();
                     }
                 }
-                else
-                {
-                    gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
-                    gast.Rondspoken();
-                }
-            }*/
+                
+            }
         }
 
 
