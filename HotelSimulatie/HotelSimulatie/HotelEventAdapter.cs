@@ -40,6 +40,10 @@ namespace HotelSimulatie
                     {
                         Message = evt.Data.Values.ElementAt(0);
                     }
+                    if(Category == EventCategory.Cleaning)
+                    {
+                        Console.WriteLine("");
+                    }
                 }
             }
             catch (NullReferenceException ex)

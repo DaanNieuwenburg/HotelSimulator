@@ -26,7 +26,7 @@ namespace HotelSimulatie.Model
         public string Naam { get; set; }
         protected int textureIndex { get; set; }
         public Stopwatch Wachtteller { get; set; }
-        private bool LooptNaarLinks { get; set; }
+        private bool? LooptNaarLinks { get; set; }
         public bool inLiftOfTrap { get; set; }
         public bool Wacht { get; set; }
 
@@ -103,6 +103,7 @@ namespace HotelSimulatie.Model
                     SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
                 }
                 Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
+                LooptNaarLinks = false;
                 return false;
             }
             else if (Positie.X > Bestemming.EventCoordinaten.X)
@@ -112,12 +113,14 @@ namespace HotelSimulatie.Model
                     SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex]+"_Links", 3);
                 }
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
+                LooptNaarLinks = true;
                 return false;
             }
 
             // Als persoon in een nieuwe ruimte aankomt ( bestemming bereikt )
             else
             {
+                LooptNaarLinks = null;
                 return true;
             }
         }

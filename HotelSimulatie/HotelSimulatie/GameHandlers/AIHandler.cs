@@ -24,7 +24,7 @@ namespace HotelSimulatie
             for (int i = 0; i < spel.hotel.PersonenInHotelLijst.Count; i++)
             {
                 Persoon persoon = spel.hotel.PersonenInHotelLijst[i];
-                if(persoon is Gast)
+                if (persoon is Gast)
                 {
                     Gast gast = (Gast)persoon;
                     if (gast.isDood == false)
@@ -99,45 +99,45 @@ namespace HotelSimulatie
                         }
                     }
                 }
-            }
 
-            // Update de hotelRuimtes
-            foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
-            {
-                hotelRuimte.Update(gameTime);
-            }
-            // Update de lift
-            if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
-            {
-                spel.hotel.hotelLayout.lift.Update();
-            }
-            else
-            {
-                spel.hotel.hotelLayout.lift.InitializeerLift();
-            }
-
-            // Update de trap
-            spel.hotel.hotelLayout.trap.Update(gameTime);
-
-
-
-
-            // Update Lobbymenu
-            FormCollection fc = Application.OpenForms;
-
-            foreach (Form frm in fc)
-            {
-                if (frm is LobbyMenu)
+                // Update de hotelRuimtes
+                foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
                 {
-                    LobbyMenu temp = (LobbyMenu)frm;
-                    temp.RefreshInfo();
+                    hotelRuimte.Update(gameTime);
+                }
+                // Update de lift
+                if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
+                {
+                    spel.hotel.hotelLayout.lift.Update();
+                }
+                else
+                {
+                    spel.hotel.hotelLayout.lift.InitializeerLift();
+                }
+
+                // Update de trap
+                spel.hotel.hotelLayout.trap.Update(gameTime);
+
+
+
+
+                // Update Lobbymenu
+                FormCollection fc = Application.OpenForms;
+
+                foreach (Form frm in fc)
+                {
+                    if (frm is LobbyMenu)
+                    {
+                        LobbyMenu temp = (LobbyMenu)frm;
+                        temp.RefreshInfo();
+                    }
                 }
             }
-            
+
             // Controleer dood van gast
             for (int i = 0; i < spel.hotel.PersonenInHotelLijst.Count; i++)
             {
-                if(spel.hotel.PersonenInHotelLijst[i] is Gast)
+                if (spel.hotel.PersonenInHotelLijst[i] is Gast)
                 {
                     Gast gast = (Gast)spel.hotel.PersonenInHotelLijst[i];
                     if (gast.isDood == false)
@@ -155,7 +155,7 @@ namespace HotelSimulatie
                         gast.Rondspoken();
                     }
                 }
-                
+
             }
         }
 
