@@ -451,6 +451,15 @@
       <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Font.xnb</Output>
       <Time>2016-10-06T11:59:31.7219653+02:00</Time>
     </Item>
+    <Item>
+      <Source>Kamers\Unknown.png</Source>
+      <Name>Kamers\Unknown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\bin\x86\Debug\Content\Kamers\Unknown.xnb</Output>
+      <Time>2016-11-01T12:45:59.2855601+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{C0C3F4A4-7913-4C75-91AB-78FDD3265152}</ContentProjectGUID>
