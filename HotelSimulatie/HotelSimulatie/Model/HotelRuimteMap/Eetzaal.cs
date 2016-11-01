@@ -11,11 +11,14 @@ namespace HotelSimulatie.Model
     public class Eetzaal : HotelRuimte
     {
         private List<Gast> inEetzaalLijst { get; set; }
+        public static int MaxAantalGasten { get; set; } = 20;
+        private Queue<Gast> Wachtrij { get; set; }
         public Eetzaal()
         {
             Naam = "Eetzaal";
             texturepath = @"Kamers\Eetzaal";
             inEetzaalLijst = new List<Gast>();
+            Wachtrij = new Queue<Gast>();
         }
         public override void LoadContent(ContentManager contentManager)
         {
@@ -24,12 +27,30 @@ namespace HotelSimulatie.Model
 
         public override void VoegPersoonToe(Persoon persoon)
         {
-            // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
-            inEetzaalLijst.Add((Gast)persoon);
+            if(inEetzaalLijst.Count < MaxAantalGasten)
+            {
+                // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
+                inEetzaalLijst.Add((Gast)persoon);
+            }
+            else
+            {
+                Wachtrij.Enqueue((Gast)persoon);
+                persoon.Wachtteller.Start();
+            }
+            
         }
 
         public override void Update(GameTime gameTijd)
         {
+            if(inEetzaalLijst.Count < MaxAantalGasten && Wachtrij.Count > 0)
+            {
+                Gast temp = Wachtrij.Dequeue();
+                if (temp.isDood == false)
+                {
+                    temp.Wachtteller.Reset();
+                    inEetzaalLijst.Add(temp);
+                }  
+            }
             int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
             foreach (Gast gast in inEetzaalLijst)
             {

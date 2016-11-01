@@ -48,6 +48,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tbTijdsduur5 = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbEetzaal = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // tbHTE
@@ -56,6 +58,7 @@
             this.tbHTE.Name = "tbHTE";
             this.tbHTE.Size = new System.Drawing.Size(100, 20);
             this.tbHTE.TabIndex = 0;
+            this.tbHTE.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbHTE_KeyPress);
             // 
             // tbTijdsduur1
             // 
@@ -63,6 +66,7 @@
             this.tbTijdsduur1.Name = "tbTijdsduur1";
             this.tbTijdsduur1.Size = new System.Drawing.Size(100, 20);
             this.tbTijdsduur1.TabIndex = 1;
+            this.tbTijdsduur1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
             // 
             // tbTijdsduur2
             // 
@@ -70,6 +74,7 @@
             this.tbTijdsduur2.Name = "tbTijdsduur2";
             this.tbTijdsduur2.Size = new System.Drawing.Size(100, 20);
             this.tbTijdsduur2.TabIndex = 2;
+            this.tbTijdsduur2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
             // 
             // tbTijdsduur3
             // 
@@ -77,6 +82,7 @@
             this.tbTijdsduur3.Name = "tbTijdsduur3";
             this.tbTijdsduur3.Size = new System.Drawing.Size(100, 20);
             this.tbTijdsduur3.TabIndex = 3;
+            this.tbTijdsduur3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
             // 
             // label1
             // 
@@ -194,6 +200,7 @@
             this.tbTijdsduur4.Name = "tbTijdsduur4";
             this.tbTijdsduur4.Size = new System.Drawing.Size(100, 20);
             this.tbTijdsduur4.TabIndex = 20;
+            this.tbTijdsduur4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
             // 
             // label11
             // 
@@ -219,12 +226,32 @@
             this.tbTijdsduur5.Name = "tbTijdsduur5";
             this.tbTijdsduur5.Size = new System.Drawing.Size(100, 20);
             this.tbTijdsduur5.TabIndex = 23;
+            this.tbTijdsduur5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(37, 309);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(142, 13);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Max aantal gasten in eetzaal";
+            // 
+            // tbEetzaal
+            // 
+            this.tbEetzaal.Location = new System.Drawing.Point(193, 306);
+            this.tbEetzaal.Name = "tbEetzaal";
+            this.tbEetzaal.Size = new System.Drawing.Size(100, 20);
+            this.tbEetzaal.TabIndex = 26;
+            this.tbEetzaal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEetzaal_KeyPress);
             // 
             // OptiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 411);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.tbEetzaal);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.tbTijdsduur5);
@@ -274,5 +301,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbTijdsduur5;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox tbEetzaal;
     }
 }

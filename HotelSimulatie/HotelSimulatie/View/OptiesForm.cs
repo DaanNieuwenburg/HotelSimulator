@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using HotelEvents;
 using System.Collections.Generic;
+using HotelSimulatie.Model;
 
 namespace HotelSimulatie.View
 {
@@ -11,16 +12,19 @@ namespace HotelSimulatie.View
         public OptiesForm()
         {
             InitializeComponent();
+            #region
             tbHTE.Text = HotelEventManager.HTE_Factor.ToString();
             tbTijdsduur1.Text = HotelTijdsEenheid.eetzaalHTE.ToString();
             tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
             tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
             tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
+            tbEetzaal.Text = Eetzaal.MaxAantalGasten.ToString();
+            #endregion
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)
-        { 
+        {
             // Controleer waardes van de textboxes
             #region
             allgood = true;
@@ -37,17 +41,22 @@ namespace HotelSimulatie.View
 
             foreach (Control x in this.Controls)
             {
-                if (x is TextBox && x.Name.Contains("tbTijdsduur"))
+                if (x is TextBox && (x.Name.Contains("tbTijdsduur") || x.Name.Contains("tbEetzaal")))
                 {
                     if (x.Text.Length <= 0)
                     {
                         allgood = false;
+                        MessageBox.Show("Een of meerdere waarden zijn onjuist, Pas deze aan en probeer het opnieuw\nLet op: een waarde mag niet kleiner zijn dan 0.6 of leeg zijn");
                     }
                     else
                     {
-                        
+
                         if (Convert.ToDouble(x.Text.Replace(".", ",")) < 0.6)
+                        {
                             allgood = false;
+                            MessageBox.Show("Een of meerdere waarden zijn onjuist, Pas deze aan en probeer het opnieuw\nLet op: een waarde mag niet kleiner zijn dan 0.6 of leeg zijn");
+                        }
+
                     }
                 }
             }
@@ -61,17 +70,38 @@ namespace HotelSimulatie.View
                 HotelTijdsEenheid.bioscoopHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur2.Text.Replace('.', ',')));
                 HotelTijdsEenheid.schoonmakenHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur4.Text.Replace('.', ',')));
                 HotelTijdsEenheid.doodgaanHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur5.Text.Replace('.', ',')));
+                Eetzaal.MaxAantalGasten = Convert.ToInt32(tbEetzaal.Text);
                 DialogResult = DialogResult.OK;
-            }
-            else
-            {
-                MessageBox.Show("Een of meerdere waarden zijn onjuist, Pas deze aan en probeer het opnieuw\nLet op: een waarde mag niet kleiner zijn dan 0.6 of leeg zijn");
             }
         }
 
         private void btCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void tbEetzaal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbHTE_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbTijdsduur1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
