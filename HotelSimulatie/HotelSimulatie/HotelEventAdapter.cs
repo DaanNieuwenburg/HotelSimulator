@@ -24,7 +24,7 @@ namespace HotelSimulatie
         {
             try
             {
-                if (evt != null && evt.Data != null)
+                if (evt != null && evt.Data != null || evt.EventType != HotelEventType.EVACUATE)
                 {
                     dllHotelEvent = evt;
                     // Bepaal event category en type
@@ -39,10 +39,6 @@ namespace HotelSimulatie
                     if (Category != EventCategory.NotImplented && Category != EventCategory.Hotel)
                     {
                         Message = evt.Data.Values.ElementAt(0);
-                    }
-                    if(Category == EventCategory.Cleaning)
-                    {
-                        Console.WriteLine("");
                     }
                 }
             }

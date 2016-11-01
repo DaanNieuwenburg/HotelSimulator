@@ -95,25 +95,36 @@ namespace HotelSimulatie.Model
 
         public bool Beweeg()
         {
+            // Kijkt welke kant persoon op loopt
+            if (LooptNaarLinks == null)
+            {
+                if (Positie.X < Bestemming.EventCoordinaten.X)
+                {
+                    LooptNaarLinks = false;
+                }
+                else if (Positie.X > Bestemming.EventCoordinaten.X)
+                {
+                    LooptNaarLinks = true;
+                }
+            }
+
             // Laat persoon bewegen d.m.v. animatie
-            if (Positie.X < Bestemming.EventCoordinaten.X)
+            if (Positie.X < Bestemming.EventCoordinaten.X && LooptNaarLinks == false)
             {
                 if (this is Gast)
                 {
                     SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
                 }
                 Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
-                LooptNaarLinks = false;
                 return false;
             }
-            else if (Positie.X > Bestemming.EventCoordinaten.X)
+            else if (Positie.X > Bestemming.EventCoordinaten.X && LooptNaarLinks == true)
             {
                 if(this is Gast)
                 {
                     SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex]+"_Links", 3);
                 }
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
-                LooptNaarLinks = true;
                 return false;
             }
 
