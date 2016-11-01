@@ -72,7 +72,7 @@ namespace HotelSimulatie.Model
             }
         }
         public void Rondspoken()
-        {
+        { /*
             Trappenhuis trap = hotellayout.Trappenhuislijst[HuidigeRuimte.Verdieping];
             Liftschacht lift = hotellayout.liftSchachtenLijst[HuidigeRuimte.Verdieping];
             this.GaNaarRuimte(ref trap);
@@ -83,7 +83,7 @@ namespace HotelSimulatie.Model
             else if(HuidigeRuimte == lift)
             {
                 this.GaNaarRuimte(ref trap);
-            }
+            }*/
         }
     }
 }

@@ -110,6 +110,7 @@
     <Compile Include="Model\HotelRuimteMap\Lobby.cs" />
     <Compile Include="Model\HotelRuimteMap\Trap.cs" />
     <Compile Include="Model\HotelRuimteMap\Trappenhuis.cs" />
+    <Compile Include="Model\HotelRuimteMap\Unknown.cs" />
     <Compile Include="Model\HotelRuimteMap\Zwembad.cs" />
     <Compile Include="Model\HotelRuimteMap\Lift.cs" />
     <Compile Include="Model\HotelPersonenMap\Persoon.cs" />

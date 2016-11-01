@@ -1,4 +1,5 @@
 ﻿using HotelSimulatie.Model;
+using HotelSimulatie.Model.HotelRuimteMap;
 using Microsoft.Xna.Framework;
 using Newtonsoft.Json;
 using System;
@@ -30,7 +31,13 @@ namespace HotelSimulatie
         {
             hotelRuimteFactory = new HotelRuimteFactory();
             HotelRuimteLijst = LeesLayoutUit();
-
+            for (int i = 0; i < HotelRuimteLijst.Count(); i++)
+            {
+                HotelRuimte a = HotelRuimteLijst[i];
+                if (a == null)
+                    HotelRuimteLijst[i] = new Unknown();
+            }
+            
             // Bepaal hotel hoogte, - 1 omdat coordinaten van 1 + afmetingen van 1 = 2, terwijl hoogte 1 is 
             hotelHoogte = HotelRuimteLijst.Max(o => (Int32)o.CoordinatenInSpel.Y + (Int32)o.Afmetingen.Y) - 1;
             // Bepaal hotel breedte, trap en lift niet meegenomen
@@ -54,14 +61,14 @@ namespace HotelSimulatie
         {
             // Bekijk eerst of layout bestand bestaat
             string locatie = "";
-            if(File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout"))
+            if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout"))
             {
                 locatie = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\Hotel5.layout";
             }
             else
             {
                 OpenFileDialog layoutOpzoekDialog = new OpenFileDialog();
-                if(layoutOpzoekDialog.ShowDialog() == DialogResult.OK)
+                if (layoutOpzoekDialog.ShowDialog() == DialogResult.OK)
                 {
                     locatie = layoutOpzoekDialog.FileName;
                 }
