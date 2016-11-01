@@ -16,7 +16,7 @@ namespace HotelSimulatie.View
             tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
             tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
-
+            tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)

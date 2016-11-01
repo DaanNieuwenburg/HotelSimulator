@@ -34,11 +34,8 @@ namespace HotelSimulatie.Model
         {
             inLiftOfTrap = false;
             LooptNaarLinks = false;
-            /*Random random = new Random();
-            int a = random.Next(1, 9);
-            loopSnelheid = (float)a / 10;*/
-            loopSnelheid = (float)0.7;  // dit mag nooit minder dan 0,6 zijn
-            loopSnelheidHTE = HotelEventManager.HTE_Factor * 0.5f;
+            //loopSnelheidHTE = HotelEventManager.HTE_Factor * 2.0f;        --> Bewegen volgens juiste HTE snelheid, Veroorzaakt problemen
+            loopSnelheidHTE = HotelEventManager.HTE_Factor * 1.0f;
         }
 
         public abstract void LoadContent(ContentManager contentManager);
