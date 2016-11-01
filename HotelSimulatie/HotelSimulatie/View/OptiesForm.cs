@@ -7,7 +7,7 @@ namespace HotelSimulatie.View
 {
     public partial class OptiesForm : Form
     {
-        private bool allgood { get; set; }
+        private bool allgood { get; set; } = true;
         public OptiesForm()
         {
             InitializeComponent();
@@ -16,7 +16,6 @@ namespace HotelSimulatie.View
             tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
             tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
-            allgood = true;
 
         }
 

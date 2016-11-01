@@ -1,4 +1,5 @@
-﻿using HotelSimulatie.Model;
+﻿using HotelEvents;
+using HotelSimulatie.Model;
 using HotelSimulatie.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -141,7 +142,7 @@ namespace HotelSimulatie
                     Gast gast = (Gast)spel.hotel.PersonenInHotelLijst[i];
                     if (gast.isDood == false)
                     {
-                        if (gast.Wachtteller.Elapsed.Seconds >= 6)
+                        if (gast.Wachtteller.Elapsed.Seconds * HotelEventManager.HTE_Factor >= HotelTijdsEenheid.doodgaanHTE)
                         {
                             gast.isDood = true;
                             gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
