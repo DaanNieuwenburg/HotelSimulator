@@ -85,6 +85,12 @@ namespace HotelSimulatie
                 Console.WriteLine("Exception bij het uitlezen van de layout " + ex);
             }
 
+            // Update het gewicht
+            foreach(HotelRuimte hotelruimte in ruimteLijst)
+            {
+                hotelruimte.UpdateGewicht();
+            }
+
             // Sorteer layout 
             return ruimteLijst;
         }
