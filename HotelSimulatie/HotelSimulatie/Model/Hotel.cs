@@ -1,4 +1,5 @@
 ﻿using HotelSimulatie.Model;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace HotelSimulatie.Model
             {
                 Evacueer();
             }
+            
         }
 
         private void Evacueer()
@@ -60,6 +62,11 @@ namespace HotelSimulatie.Model
                     }
                 }
             }
+        }
+        private void Godzilla()
+        {
+            Console.WriteLine("Godzilla");
+            
         }
     }
 }

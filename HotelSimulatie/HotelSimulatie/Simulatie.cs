@@ -11,6 +11,8 @@ using Microsoft.Xna.Framework.Media;
 using HotelSimulatie.Model;
 using HotelSimulatie.View;
 using HotelEvents;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace HotelSimulatie
 {
@@ -25,6 +27,8 @@ namespace HotelSimulatie
         public Matrix matrix { get; set; }
         public SpriteFont font { get; set; }
 
+        private Texture2D Godzillatexture { get; set; }
+        private bool GodzillaEvent { get; set; }
         public Simulatie(Hotel _hotel)
         {
             graphics = new GraphicsDeviceManager(this);
@@ -35,6 +39,7 @@ namespace HotelSimulatie
             spelCamera = new Camera(540, 750);
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 768;
+            GodzillaEvent = false;
         }
 
         protected override void Initialize()
@@ -54,6 +59,11 @@ namespace HotelSimulatie
             // Laad de schoonmakers
             hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().LoadContent(Content);
             hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().LoadContent(Content);
+
+            /*// Laad Godzilla
+            Godzillatexture = Content.Load<Texture2D>("Godzilla");*/
+
+
         }
 
         protected override void UnloadContent()
@@ -64,13 +74,23 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
-           
-                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
-            /*else
-                HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds + HotelEventManager.HTE_Factor) +60;*/
+            if (gameTime.TotalGameTime.Seconds == 5)
+            {
+                HotelEvent test = new HotelEvent();
+                test.EventType = HotelEventType.GODZILLA;
+                test.Data = new Dictionary<string, string>();
+
+                HotelEventAdapter evt = new HotelEventAdapter(test);
+                Godzilla();
+            }
+            HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
+            if (hotel.huidigEvent.Event == HotelEventAdapter.EventType.GODZILLA)
+            {
+                Godzilla();
+            }
             base.Update(gameTime);
         }
-
+        private void Godzilla() => GodzillaEvent = true;
 
         protected override void Draw(GameTime gameTime)
         {
@@ -78,13 +98,13 @@ namespace HotelSimulatie
 
             matrix = Matrix.CreateTranslation(new Vector3(0, 40, 0));
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, spelCamera.TransformeerMatrix(GraphicsDevice));
-            spriteBatch.Draw(Content.Load<Texture2D>("Background1"), Vector2.Zero, Color.White);
+
 
             // Zet de tijd neer
             int tijd = 0;
-            if(gameTime.TotalGameTime.Seconds > 59)
+            if (gameTime.TotalGameTime.Seconds > 59)
             {
-                tijd = tijd + 60;              
+                tijd = tijd + 60;
             }
             spriteBatch.DrawString(font, "Tijd: " + (HTEtijd/* + gameTime.TotalGameTime.Seconds * HotelEventManager.HTE_Factor*/) + " HTE", new Vector2(0, 700), Color.Red);
 
@@ -108,7 +128,7 @@ namespace HotelSimulatie
                     GastSpawnLocatie = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                     hotel.hotelLayout.lobby.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 10, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if(hotelRuimte is Liftschacht)
+                if (hotelRuimte is Liftschacht)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
@@ -116,10 +136,26 @@ namespace HotelSimulatie
                 {
                     hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 45, (Int32)hotelRuimte.CoordinatenInSpel.Y + 20);
                 }
-                if(hotelRuimte is Bioscoop)
+                if (hotelRuimte is Bioscoop)
                 {
                     hotelRuimte.EventCoordinaten = new Vector2((Int32)hotelRuimte.CoordinatenInSpel.X + 80, (Int32)hotelRuimte.CoordinatenInSpel.Y);
                 }
+            }
+            if (GodzillaEvent == true)
+            {
+                spriteBatch.Draw(Content.Load<Texture2D>("Godzilla"), Vector2.Zero, Color.White);
+                
+                Stopwatch Timer = new Stopwatch();
+                Timer.Start();
+                if (hotel.huidigEvent.Tijd == 0)
+                {
+                    hotel.huidigEvent.Tijd = gameTime.TotalGameTime.Seconds + 3;
+                }
+                if (gameTime.TotalGameTime.Seconds > hotel.huidigEvent.Tijd)
+                    if (MessageBox.Show("Godzilla is terrorising your hotel.\n SIMULATION OVER") == DialogResult.OK)
+                    {
+                        Environment.Exit(0);
+                    }
             }
             spriteBatch.End();
             base.Draw(gameTime);
