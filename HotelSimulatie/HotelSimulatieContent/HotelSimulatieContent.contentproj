@@ -37,20 +37,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnimatedSchoonmaker.png">
-      <Name>AnimatedSchoonmaker</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AnimatedTim.png">
-      <Name>AnimatedTim</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Gasten\AnimatedGast1.png">
       <Name>AnimatedGast1</Name>
       <Importer>TextureImporter</Importer>

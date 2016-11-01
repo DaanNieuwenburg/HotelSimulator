@@ -19,7 +19,7 @@ namespace HotelSimulatie.Model
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
-        public virtual List<string> Texturelijst { get; set; }
+        public List<string> Texturelijst { get; set; }
         public ContentManager tempmanager { get; set; }
         private float loopSnelheid { get; set; }
         private float loopSnelheidHTE { get; set; }
@@ -101,13 +101,11 @@ namespace HotelSimulatie.Model
             // Laat persoon bewegen d.m.v. animatie
             if (Positie.X < Bestemming.EventCoordinaten.X)
             {
-                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
                 Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
                 return false;
             }
             else if (Positie.X > Bestemming.EventCoordinaten.X)
             {
-                SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
                 return false;
             }

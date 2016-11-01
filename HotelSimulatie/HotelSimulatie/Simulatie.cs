@@ -59,11 +59,6 @@ namespace HotelSimulatie
             // Laad de schoonmakers
             hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().LoadContent(Content);
             hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().LoadContent(Content);
-
-            /*// Laad Godzilla
-            Godzillatexture = Content.Load<Texture2D>("Godzilla");*/
-
-
         }
 
         protected override void UnloadContent()
@@ -74,7 +69,7 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
-            if (gameTime.TotalGameTime.Seconds == 5)
+            /*if (gameTime.TotalGameTime.Seconds == 5)
             {
                 HotelEvent test = new HotelEvent();
                 test.EventType = HotelEventType.GODZILLA;
@@ -82,12 +77,13 @@ namespace HotelSimulatie
 
                 HotelEventAdapter evt = new HotelEventAdapter(test);
                 Godzilla();
-            }
+            }*/
             HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
+            /*
             if (hotel.huidigEvent.Event == HotelEventAdapter.EventType.GODZILLA)
             {
                 Godzilla();
-            }
+            }*/
             base.Update(gameTime);
         }
         private void Godzilla() => GodzillaEvent = true;
