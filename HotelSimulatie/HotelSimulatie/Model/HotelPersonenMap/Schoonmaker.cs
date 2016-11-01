@@ -42,6 +42,7 @@ namespace HotelSimulatie.Model
 
         public void Update(GameTime spelTijd)
         {
+            verlopenTijd = spelTijd.TotalGameTime.Seconds * (int)HotelEventManager.HTE_Factor;
             // Is de schoonmaker niets aan het doen, kijk dan of er een kamer schoongemaakt moet worden
             if (HuidigEvent.Event == HotelEventAdapter.EventType.NONE)
             {
@@ -51,16 +52,12 @@ namespace HotelSimulatie.Model
                     HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                 }
             }
-            else
+            else if(HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_ROOM)
             {
                 // Als schoonmaker aangekomen is bij kamer
                 if (HuidigeRuimte == SchoonmaakLijst.First())
                 {
-                    if (HuidigEvent.HuidigeDuurEvent == 0)
-                    {
-                        HuidigEvent.HuidigeDuurEvent = spelTijd.ElapsedGameTime.Seconds;
-                    }
-                    verlopenTijd = spelTijd.ElapsedGameTime.Seconds;
+                    startTijd = spelTijd.TotalGameTime.Seconds * (int)HotelEventManager.HTE_Factor + HotelTijdsEenheid.schoonmakenHTE; 
                     HuidigEvent.Event = HotelEventAdapter.EventType.IS_CLEANING;
                     maakRuimteSchoon();
                 }
@@ -71,35 +68,43 @@ namespace HotelSimulatie.Model
                     GaNaarRuimte(ref ruimte);
                 }
             }
+            else
+            {
+                maakRuimteSchoon();
+            }
             SpriteAnimatie.UpdateFrame(spelTijd);
         }
 
         public void VoegSchoonmaakRuimteToe(HotelRuimte ruimte)
         {
-            // Bepaal de dichtbijzijnde schoonmaker
-            DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
-            int huidigeSchoonmakerAfstand = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte).Count;
-            int collegaSchoonmakerAfstand = dijkstra.MaakAlgoritme(Collega, HuidigeRuimte, ruimte).Count;
+            // Als kamer niet al schoongemaakt wordt
+            if (!SchoonmaakLijst.Contains(ruimte) && !Collega.SchoonmaakLijst.Contains(ruimte))
+            {
+                // Bepaal de dichtbijzijnde schoonmaker
+                DijkstraAlgoritme dijkstra = new DijkstraAlgoritme();
+                int huidigeSchoonmakerAfstand = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte).Count;
+                int collegaSchoonmakerAfstand = dijkstra.MaakAlgoritme(Collega, HuidigeRuimte, ruimte).Count;
 
-            // Als deze schoonmaker dichterbij is dan collega, anders gaat de collega
-            if (huidigeSchoonmakerAfstand > collegaSchoonmakerAfstand)
-            {
-                SchoonmaakLijst.Add(ruimte);
-            }
-            else if (huidigeSchoonmakerAfstand < collegaSchoonmakerAfstand)
-            {
-                Collega.SchoonmaakLijst.Add(ruimte);
-            }
-            else
-            {
-                // De afstanden zijn gelijk aan elkaar, kies de schoonmaker met de minste opdrachten
-                if (Collega.SchoonmaakLijst.Count > SchoonmaakLijst.Count)
+                // Als deze schoonmaker dichterbij is dan collega, anders gaat de collega
+                if (huidigeSchoonmakerAfstand > collegaSchoonmakerAfstand)
                 {
                     SchoonmaakLijst.Add(ruimte);
                 }
-                else
+                else if (huidigeSchoonmakerAfstand < collegaSchoonmakerAfstand)
                 {
                     Collega.SchoonmaakLijst.Add(ruimte);
+                }
+                else
+                {
+                    // De afstanden zijn gelijk aan elkaar, kies de schoonmaker met de minste opdrachten
+                    if (Collega.SchoonmaakLijst.Count > SchoonmaakLijst.Count)
+                    {
+                        SchoonmaakLijst.Add(ruimte);
+                    }
+                    else
+                    {
+                        Collega.SchoonmaakLijst.Add(ruimte);
+                    }
                 }
             }
         }

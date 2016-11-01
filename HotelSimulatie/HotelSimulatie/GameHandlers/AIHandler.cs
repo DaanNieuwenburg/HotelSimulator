@@ -37,6 +37,10 @@ namespace HotelSimulatie
                             }
                             else if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_OUT)
                             {
+                                // Voeg uitgecheckte kamer aan schoonmakers toe
+                                Schoonmaker schoonmaker = spel.hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First();
+                                schoonmaker.VoegSchoonmaakRuimteToe(gast.ToegewezenKamer);
+
                                 Lobby lobby = spel.hotel.hotelLayout.lobby;
                                 gast.GaNaarRuimte<Lobby>(ref lobby);
                             }

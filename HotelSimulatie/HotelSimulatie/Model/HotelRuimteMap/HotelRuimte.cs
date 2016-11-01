@@ -35,6 +35,8 @@ namespace HotelSimulatie.Model
         {
             HuidigEvent = new HotelEventAdapter(new HotelEvents.HotelEvent { EventType = HotelEvents.HotelEventType.NONE });
             Afstand = Int32.MaxValue / 2;
+
+            // Bepaal gewicht, is afhankelijk van de 
             Gewicht = 1;
             Vorige = null;
         }
@@ -49,6 +51,15 @@ namespace HotelSimulatie.Model
         {
 
         }
+
+        public void UpdateGewicht()
+        {
+            if(Afmetingen.X > 1)
+            {
+                Gewicht = (int)Afmetingen.X;
+            }
+        }
+
 
         public virtual void VoegPersoonToe(Persoon persoon)
         {
