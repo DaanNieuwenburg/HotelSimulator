@@ -21,7 +21,9 @@ namespace HotelSimulatie.View
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)
-        {
+        { 
+            // Controleer waardes van de textboxes
+            #region
             allgood = true;
             if (Convert.ToDouble(tbHTE.Text) < 0.1)
             {
@@ -38,27 +40,33 @@ namespace HotelSimulatie.View
             {
                 if (x is TextBox && x.Name.Contains("tbTijdsduur"))
                 {
-                    if (x.Text?.Length <= 0)
+                    if (x.Text.Length <= 0)
                     {
                         allgood = false;
                     }
-                    else if (Convert.ToDouble(x.Text) < 0.1)
-                        allgood = false;
+                    else
+                    {
+                        
+                        if (Convert.ToDouble(x.Text.Replace(".", ",")) < 0.6)
+                            allgood = false;
+                    }
                 }
             }
+            #endregion
+
             if (allgood == true)
             {
                 HotelEventManager.HTE_Factor = (float)Convert.ToDouble(tbHTE.Text.Replace('.', ','));
-                HotelTijdsEenheid.fitnessHTE = (Int32)Convert.ToDouble(tbTijdsduur3.Text.Replace('.', ','));
-                HotelTijdsEenheid.eetzaalHTE = (Int32)Convert.ToDouble(tbTijdsduur1.Text.Replace('.', ','));
-                HotelTijdsEenheid.bioscoopHTE = (Int32)Convert.ToDouble(tbTijdsduur2.Text.Replace('.', ','));
-                HotelTijdsEenheid.schoonmakenHTE = (Int32)Convert.ToDouble(tbTijdsduur4.Text.Replace('.', ','));
-                HotelTijdsEenheid.doodgaanHTE = (Int32)Convert.ToDouble(tbTijdsduur5.Text.Replace('.', ','));
+                HotelTijdsEenheid.fitnessHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur3.Text.Replace('.', ',')));
+                HotelTijdsEenheid.eetzaalHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur1.Text.Replace('.', ',')));
+                HotelTijdsEenheid.bioscoopHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur2.Text.Replace('.', ',')));
+                HotelTijdsEenheid.schoonmakenHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur4.Text.Replace('.', ',')));
+                HotelTijdsEenheid.doodgaanHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur5.Text.Replace('.', ',')));
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show("Een of meerdere waarden zijn onjuist, Pas deze aan en probeer het opnieuw\nLet op: een waarde mag niet kleiner zijn dan 0.1 of leeg zijn");
+                MessageBox.Show("Een of meerdere waarden zijn onjuist, Pas deze aan en probeer het opnieuw\nLet op: een waarde mag niet kleiner zijn dan 0.6 of leeg zijn");
             }
         }
 
