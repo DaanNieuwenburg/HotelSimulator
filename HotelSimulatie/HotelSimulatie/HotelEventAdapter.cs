@@ -24,7 +24,7 @@ namespace HotelSimulatie
         {
             try
             {
-                if (evt != null && evt.Data != null || evt.EventType != HotelEventType.EVACUATE)
+                if (evt != null && evt.Data != null || evt.EventType == HotelEventType.EVACUATE)
                 {
                     dllHotelEvent = evt;
                     // Bepaal event category en type

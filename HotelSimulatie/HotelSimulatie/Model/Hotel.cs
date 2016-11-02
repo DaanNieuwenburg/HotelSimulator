@@ -60,6 +60,7 @@ namespace HotelSimulatie.Model
                         gast.HuidigeRuimte = hotelLayout.lobby;
                         gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                     }
+                    huidigEvent.Event = HotelEventAdapter.EventType.NONE;
                 }
             }
         }

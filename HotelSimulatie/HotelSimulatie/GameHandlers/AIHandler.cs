@@ -109,10 +109,11 @@ namespace HotelSimulatie
                 {
                     hotelRuimte.Update(gameTime);
                 }
+
                 // Update de lift
                 if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
                 {
-                    spel.hotel.hotelLayout.lift.Update();
+                    spel.hotel.hotelLayout.lift.Update(gameTime);
                 }
                 else
                 {
@@ -122,6 +123,8 @@ namespace HotelSimulatie
                 // Update de trap
                 spel.hotel.hotelLayout.trap.Update(gameTime);
 
+                // Update het hotel
+                spel.hotel.Update();
 
 
 
