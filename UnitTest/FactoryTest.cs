@@ -19,19 +19,7 @@ namespace UnitTest
             //Assert
             Assert.AreEqual("Fitness", soort);
         }
-        [TestMethod]
-        public void Test_RuimteFactory_Return_Lift()
-        {
-            // Arrange
-            string n = "Trap";
-            //Act
-
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
-
-            //Assert
-            Assert.AreEqual("Lift", soort);
-        }
+       
         [TestMethod]
         public void Test_RuimteFactory_Return_Lobby()
         {
@@ -43,7 +31,7 @@ namespace UnitTest
             string soort = factory.MaakHotelRuimte(n).Naam;
 
             //Assert
-            Assert.AreEqual("lobby_Normaal", soort);
+            Assert.AreEqual("Lobby", soort);
         }
     }
 }

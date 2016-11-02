@@ -81,16 +81,16 @@ namespace HotelSimulatie.Model
                             }
                             else
                             {
-                                /*if (HuidigeRuimte is Lobby && this is Gast)
+                                if (HuidigeRuimte is Lobby && this is Gast)
                                 {
                                     Lobby lobby = (Lobby)HuidigeRuimte;
                                     lobby.GaRuimteIn((Gast)this);
                                 }
                                 else
-                                {*/
+                                {
                                     // Aangekomen op bestemming
                                     gaRuimteIn(Bestemming);
-                                //}
+                                }
                                 
                             }
                         }
