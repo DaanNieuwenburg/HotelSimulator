@@ -26,7 +26,14 @@ namespace HotelSimulatie
             temp.Afstand = 0;
             while (!Bezoek(temp, Eind))
             {
-                temp = open.Aggregate((l, r) => l.Afstand < r.Afstand ? l : r);
+                try
+                {
+                    temp = open.Aggregate((l, r) => l.Afstand < r.Afstand ? l : r);
+                }
+                catch(InvalidOperationException ex)
+                {
+                    Console.WriteLine("Exception: "+ex);
+                }
             }
 
             ResetAfstanden();

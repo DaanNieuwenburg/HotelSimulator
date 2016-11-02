@@ -19,14 +19,8 @@ namespace HotelSimulatie.Model
             texturepath = @"Kamers\Trap_gesloten";
             Verdieping = verdieping;
         }
-        public override void LoadContent(ContentManager contentManager)
-        {
-            Texture = contentManager.Load<Texture2D>(texturepath);
-        }
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
 
-        public override void VoegPersoonToe(Persoon persoon)
-        {
-            trap.VoegPersoonToe(persoon);
-        }
+        public override void VoegPersoonToe(Persoon persoon) => trap.VoegPersoonToe(persoon);
     }
 }

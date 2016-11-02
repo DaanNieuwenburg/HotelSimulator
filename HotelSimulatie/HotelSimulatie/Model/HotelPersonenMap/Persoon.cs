@@ -160,14 +160,8 @@ namespace HotelSimulatie.Model
             }
         }
 
-        public void UpdateFrame(GameTime spelTijd)
-        {
-            SpriteAnimatie.UpdateFrame(spelTijd);
-        }
+        public void UpdateFrame(GameTime spelTijd) => SpriteAnimatie.UpdateFrame(spelTijd);
 
-        public void Draw(SpriteBatch spritebatch)
-        {
-            SpriteAnimatie.ToonFrame(spritebatch, Positie);
-        }
+        public void Draw(SpriteBatch spritebatch) => SpriteAnimatie.ToonFrame(spritebatch, Positie);
     }
 }

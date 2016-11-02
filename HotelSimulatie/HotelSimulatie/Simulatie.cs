@@ -79,11 +79,11 @@ namespace HotelSimulatie
                 Godzilla();
             }*/
             HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
-            /*
+            
             if (hotel.huidigEvent.Event == HotelEventAdapter.EventType.GODZILLA)
             {
                 Godzilla();
-            }*/
+            }
             base.Update(gameTime);
         }
         private void Godzilla() => GodzillaEvent = true;

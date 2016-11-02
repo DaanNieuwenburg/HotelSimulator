@@ -17,15 +17,9 @@ namespace HotelSimulatie.Model
             texturepath = @"Kamers\Bioscoop";
             inBioscoopLijst = new List<Gast>();
         }
-        public override void LoadContent(ContentManager contentManager)
-        {
-            Texture = contentManager.Load<Texture2D>(texturepath);
-        }
+        public override void LoadContent(ContentManager contentManager)=> Texture = contentManager.Load<Texture2D>(texturepath);
 
-        public override void VoegPersoonToe(Persoon persoon)
-        {
-            inBioscoopLijst.Add((Gast)persoon);
-        }
+        public override void VoegPersoonToe(Persoon persoon) => inBioscoopLijst.Add((Gast)persoon);
 
         public override void Update(GameTime gameTijd)
         {

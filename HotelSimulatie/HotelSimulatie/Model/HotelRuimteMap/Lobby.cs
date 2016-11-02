@@ -22,10 +22,7 @@ namespace HotelSimulatie.Model
             texturepath = @"Kamers\lobby_Normaal";
         }
 
-        public override void LoadContent(ContentManager contentManager)
-        {
-            Texture = contentManager.Load<Texture2D>(texturepath);
-        }
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
         public void GaRuimteIn(Gast gast)
         {
             if(gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_OUT)

@@ -41,11 +41,7 @@ namespace HotelSimulatie.Model
             Vorige = null;
         }
         public abstract void LoadContent(ContentManager contentManager);
-        public void VoegBurenToe(List<HotelRuimte> burenLijst)
-        {
-            Buren = burenLijst;
-        }
-
+        public void VoegBurenToe(List<HotelRuimte> burenLijst) => Buren = burenLijst;
 
         public virtual void Update(GameTime gameTime)
         {

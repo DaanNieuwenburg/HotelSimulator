@@ -20,10 +20,7 @@ namespace HotelSimulatie.Model
             inEetzaalLijst = new List<Gast>();
             Wachtrij = new Queue<Gast>();
         }
-        public override void LoadContent(ContentManager contentManager)
-        {
-            Texture = contentManager.Load<Texture2D>(texturepath);
-        }
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
 
         public override void VoegPersoonToe(Persoon persoon)
         {
