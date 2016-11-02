@@ -51,6 +51,8 @@ namespace HotelSimulatie.View
             {
                 lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().HuidigeRuimte.Naam;
                 lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().HuidigeRuimte.Naam;
+                lbKamerA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().InRuimte.ToString();
+                lbKamerB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().InRuimte.ToString();
                 if (hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.Count > 0)
                     lbBestemmingA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.First().Naam;
                 else
