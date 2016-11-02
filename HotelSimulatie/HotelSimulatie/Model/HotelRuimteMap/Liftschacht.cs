@@ -28,8 +28,9 @@ namespace HotelSimulatie.Model
         public override void LoadContent(ContentManager contentManager)
         {
             string texture;
+
+            #region Ken textures toe per verdieping
             //Laad textures voor verschillende verdiepingen
-            #region 
             if (Bestemming == 0)
             {
                 if (lift.HuidigeVerdieping.Verdieping == Bestemming)

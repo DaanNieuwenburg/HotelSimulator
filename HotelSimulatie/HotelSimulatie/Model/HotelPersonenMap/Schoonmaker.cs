@@ -118,6 +118,7 @@ namespace HotelSimulatie.Model
                 this.InRuimte = false;
                 SchoonmaakLijst.Remove(HuidigeRuimte);
                 HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
+                    
             }
         }
     }

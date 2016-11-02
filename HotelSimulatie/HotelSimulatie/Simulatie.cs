@@ -69,6 +69,7 @@ namespace HotelSimulatie
 
         protected override void Update(GameTime gameTime)
         {
+            KeyboardState ks = Keyboard.GetState();
             /*if (gameTime.TotalGameTime.Seconds == 5)
             {
                 HotelEvent test = new HotelEvent();
@@ -78,8 +79,12 @@ namespace HotelSimulatie
                 HotelEventAdapter evt = new HotelEventAdapter(test);
                 Godzilla();
             }*/
+            if (ks.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.F1))
+            {
+                graphics.ToggleFullScreen();
+            }
             HTEtijd = Convert.ToInt32(gameTime.TotalGameTime.TotalSeconds * HotelEventManager.HTE_Factor);
-            
+
             if (hotel.huidigEvent.Event == HotelEventAdapter.EventType.GODZILLA)
             {
                 Godzilla();
@@ -140,7 +145,7 @@ namespace HotelSimulatie
             if (GodzillaEvent == true)
             {
                 spriteBatch.Draw(Content.Load<Texture2D>("Godzilla"), Vector2.Zero, Color.White);
-                
+
                 Stopwatch Timer = new Stopwatch();
                 Timer.Start();
                 if (hotel.huidigEvent.Tijd == 0)

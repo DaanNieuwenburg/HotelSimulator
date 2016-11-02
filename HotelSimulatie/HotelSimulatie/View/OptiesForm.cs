@@ -12,7 +12,7 @@ namespace HotelSimulatie.View
         public OptiesForm()
         {
             InitializeComponent();
-            #region
+            #region zet huidige waarde in textboxes
             tbHTE.Text = HotelEventManager.HTE_Factor.ToString();
             tbTijdsduur1.Text = HotelTijdsEenheid.eetzaalHTE.ToString();
             tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
@@ -20,13 +20,13 @@ namespace HotelSimulatie.View
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
             tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
             tbEetzaal.Text = Eetzaal.MaxAantalGasten.ToString();
-            #endregion
+            #endregion 
         }
 
         private void btOpslaan_Click(object sender, EventArgs e)
         {
             // Controleer waardes van de textboxes
-            #region
+            #region Controleer texturebox waardes
             allgood = true;
             if (Convert.ToDouble(tbHTE.Text) < 0.1)
             {

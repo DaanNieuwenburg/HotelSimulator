@@ -33,16 +33,6 @@ namespace HotelSimulatie.View
                 else
                     lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
             }
-            #region
-            //Ken waardes voor schoonmakers toe aan labels
-            //lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakPositie.Naam;
-            //lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakPositie.Naam;
-
-            // Ken waardes toe voor de lift
-            //lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString() ;
-            //lbPersonenLift.Text = hotel.hotelLayout.lift.GasteninLift.Count().ToString() ;
-            //lbPositieLift.Text ="Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
-            #endregion
         }
         public void RefreshInfo()
         {

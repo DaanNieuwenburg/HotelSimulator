@@ -144,3 +144,4 @@ C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csproj.GenerateResource.Cache
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.exe
 C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.pdb
+C:\Users\daan1\Source\Repos\HotelSimulator\HotelSimulatie\HotelSimulatie\obj\x86\Debug\HotelSimulatie.csprojResolveAssemblyReference.cache

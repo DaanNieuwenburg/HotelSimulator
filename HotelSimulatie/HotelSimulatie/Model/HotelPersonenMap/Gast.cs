@@ -10,7 +10,7 @@ namespace HotelSimulatie.Model
 {
     public class Gast : Persoon
     {
-        private HotelLayout hotellayout { get; set; }
+        
         public Kamer ToegewezenKamer { get; set; }
         public int AantalSterrenKamer { get; set; }
         public bool isDood { get; set; }
