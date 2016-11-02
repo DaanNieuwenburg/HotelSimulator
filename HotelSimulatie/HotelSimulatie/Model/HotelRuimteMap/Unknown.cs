@@ -9,15 +9,12 @@ namespace HotelSimulatie.Model.HotelRuimteMap
 {
     public class Unknown : HotelRuimte
     {
-            public Unknown()
-            {
+        public Unknown()
+        {
             Naam = "Unknown";
             texturepath = @"Kamers\Unknown";
-            }
-            public override void LoadContent(ContentManager contentManager)
-            {
-            Texture = contentManager.Load<Texture2D>(texturepath);
         }
-        }
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
     }
+}
 

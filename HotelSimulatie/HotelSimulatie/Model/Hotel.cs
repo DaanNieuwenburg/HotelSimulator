@@ -65,10 +65,5 @@ namespace HotelSimulatie.Model
                 }
             }
         }
-        private void Godzilla()
-        {
-            Console.WriteLine("Godzilla");
-            
-        }
     }
 }
