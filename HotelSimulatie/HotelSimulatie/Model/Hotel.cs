@@ -58,6 +58,7 @@ namespace HotelSimulatie.Model
                     foreach(Gast gast in PersonenInHotelLijst.Where(o => o is Gast))
                     {
                         gast.HuidigeRuimte = hotelLayout.lobby;
+                        gast.Bestemming = gast.ToegewezenKamer;
                         gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                     }
                     huidigEvent.Event = HotelEventAdapter.EventType.NONE;

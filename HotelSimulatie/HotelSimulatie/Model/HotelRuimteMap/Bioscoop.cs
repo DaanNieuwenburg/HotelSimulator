@@ -52,7 +52,10 @@ namespace HotelSimulatie.Model
             texturepath = @"Kamers\Bioscoop";
             foreach(Gast gast in inBioscoopLijst)
             {
-                gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
+                if(gast.HuidigEvent.Event != HotelEventAdapter.EventType.EVACUATE)
+                {
+                    gast.HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
+                }
             }
             inBioscoopLijst.Clear();
         }

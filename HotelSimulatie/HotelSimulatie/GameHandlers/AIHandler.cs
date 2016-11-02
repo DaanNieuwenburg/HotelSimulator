@@ -113,7 +113,7 @@ namespace HotelSimulatie
                 // Update de lift
                 if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
                 {
-                    spel.hotel.hotelLayout.lift.Update(gameTime);
+                    spel.hotel.hotelLayout.lift.Update();
                 }
                 else
                 {
@@ -125,8 +125,6 @@ namespace HotelSimulatie
 
                 // Update het hotel
                 spel.hotel.Update();
-
-
 
                 // Update Lobbymenu
                 FormCollection fc = Application.OpenForms;
