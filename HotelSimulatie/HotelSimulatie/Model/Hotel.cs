@@ -50,8 +50,8 @@ namespace HotelSimulatie.Model
             }
             else
             {
-                int aantalGasten = PersonenInHotelLijst.Count(o => o is Gast);
-                int aantalGastenOpEvacuatiePunt = (from gast in PersonenInHotelLijst where gast is Gast && gast.HuidigeRuimte == hotelLayout.lobby select gast).Count();
+                int aantalGasten = (from gast in PersonenInHotelLijst.OfType<Gast>().Cast<Gast>() where gast.isDood == false select gast).Count();
+                int aantalGastenOpEvacuatiePunt = (from gast in PersonenInHotelLijst.OfType<Gast>().Cast<Gast>() where gast.HuidigeRuimte == hotelLayout.lobby select gast).Count();
                 if(aantalGasten == aantalGastenOpEvacuatiePunt)
                 {
                     Console.WriteLine("Evacuatie completed");
