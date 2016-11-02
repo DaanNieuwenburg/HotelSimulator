@@ -16,6 +16,7 @@ namespace HotelSimulatie.Model
         private int verlopenTijd { get; set; }
         public string texturenaam { get; set; }
         private int startTijd { get; set; }
+        public bool InRuimte { get; set; } = false;
         public Schoonmaker()
         {
             SchoonmaakLijst = new List<HotelRuimte>();
@@ -111,8 +112,10 @@ namespace HotelSimulatie.Model
 
         private void maakRuimteSchoon()
         {
+            this.InRuimte = true;
             if (verlopenTijd - startTijd > HotelTijdsEenheid.schoonmakenHTE)
             {
+                this.InRuimte = false;
                 SchoonmaakLijst.Remove(HuidigeRuimte);
                 HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
             }
