@@ -38,9 +38,15 @@ namespace HotelSimulatie
 
             if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Guest)
             {
-                // Koppel event aan gast
-                Gast gast = bepaalGast(hotelEventAdapter);
-                gast.HuidigEvent = hotelEventAdapter;
+                // Koppel event aan gast, mits er geen sprake is van evacuatie
+                if (spel.hotel.huidigEvent.Event != HotelEventAdapter.EventType.EVACUATE)
+                {
+                    Gast gast = bepaalGast(hotelEventAdapter);
+                    if (gast.HuidigEvent?.Event != HotelEventAdapter.EventType.CHECK_OUT)
+                    {
+                        gast.HuidigEvent = hotelEventAdapter;
+                    }
+                }
             }
             else if (hotelEventAdapter.Category == HotelEventAdapter.EventCategory.Cleaning)
             {

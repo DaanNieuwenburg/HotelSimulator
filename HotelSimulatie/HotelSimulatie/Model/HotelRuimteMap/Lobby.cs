@@ -26,14 +26,20 @@ namespace HotelSimulatie.Model
         {
             Texture = contentManager.Load<Texture2D>(texturepath);
         }
-
-        public Kamer GastInChecken(Gast gast, GameTime gameTime)
+        public void GaRuimteIn(Gast gast)
         {
-            verlopenTijd += gameTime.ElapsedGameTime.Milliseconds;
-            if (verlopenTijd > 100)
+            if(gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_OUT)
             {
-                Gast gastAanDeBeurt = Wachtrij.Dequeue();
-
+                GastUitchecken(gast);
+            }
+            else if(gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_IN)
+            {
+                GastInChecken(gast);
+            }
+        }
+        public Kamer GastInChecken(Gast gast)
+        {
+            
                 try
                 {
                     // Zoekt een beschikbare kamer en bij geen ga telkens 1 ster omhoog
@@ -60,14 +66,7 @@ namespace HotelSimulatie.Model
                 }
                 verlopenTijd = 0;
                 return gast.ToegewezenKamer;
-            }
-            else
-            {
-                if (!Wachtrij.Contains(gast))
-                {
-                    Wachtrij.Enqueue(gast);
-                }
-            }
+            
             return null;
         }
 

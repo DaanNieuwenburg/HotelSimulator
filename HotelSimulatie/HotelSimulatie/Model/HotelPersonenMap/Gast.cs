@@ -20,6 +20,7 @@ namespace HotelSimulatie.Model
             isDood = false;
             Wachtteller = new System.Diagnostics.Stopwatch();
             Texturelijst = new List<string>();
+            Texturelijst.Add(@"Gasten\AnimatedRob");
             Texturelijst.Add(@"Gasten\AnimatedGast1");
             Texturelijst.Add(@"Gasten\AnimatedGast2");
             Texturelijst.Add(@"Gasten\AnimatedGast3");
@@ -51,7 +52,7 @@ namespace HotelSimulatie.Model
                     }
 
                     // koppel de toegewezenkammer
-                    Kamer gevondenKamer = hotellayout.lobby.GastInChecken(this, gameTime);
+                    Kamer gevondenKamer = hotellayout.lobby.GastInChecken(this);
 
                     // Als er een kamer is toegewezen
                     if (gevondenKamer != null)
