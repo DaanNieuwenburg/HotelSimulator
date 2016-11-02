@@ -52,7 +52,7 @@ namespace HotelSimulatie.Model
                     }
 
                     // koppel de toegewezenkammer
-                    Kamer gevondenKamer = hotellayout.lobby.GastInChecken(this, gameTime);
+                    Kamer gevondenKamer = hotellayout.lobby.GastInChecken(this);
 
                     // Als er een kamer is toegewezen
                     if (gevondenKamer != null)

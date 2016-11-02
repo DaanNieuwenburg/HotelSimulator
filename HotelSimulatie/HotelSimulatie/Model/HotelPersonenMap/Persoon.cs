@@ -69,6 +69,7 @@ namespace HotelSimulatie.Model
                     }
                     else
                     {
+                        
                         // Haal de volgende ruimte op, in het geval van een liftschacht of trappenhuis hoeft dit echter niet
                         if (Bestemming.GetType() != typeof(Liftschacht) && Bestemming.GetType() != typeof(Trappenhuis))
                         {
@@ -80,8 +81,17 @@ namespace HotelSimulatie.Model
                             }
                             else
                             {
-                                // Aangekomen op bestemming
-                                gaRuimteIn(Bestemming);
+                                if (HuidigeRuimte is Lobby)
+                                {
+                                    Lobby lobby = (Lobby)HuidigeRuimte;
+                                    lobby.GaRuimteIn((Gast)this);
+                                }
+                                else
+                                {
+                                    // Aangekomen op bestemming
+                                    gaRuimteIn(Bestemming);
+                                }
+                                
                             }
                         }
                         else

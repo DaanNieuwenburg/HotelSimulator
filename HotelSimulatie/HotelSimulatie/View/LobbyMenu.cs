@@ -81,49 +81,6 @@ namespace HotelSimulatie.View
                     }
                 }
             }
-
         }
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            LvTimer.Start();
-            if(tabs.SelectedTab == tabPage1)
-            {
-                lbPositieA.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().First().SchoonmaakLijst.First().Naam;
-                lbPositieB.Text = hotel.PersonenInHotelLijst.OfType<Schoonmaker>().Last().SchoonmaakLijst.First().Naam;
-            }
-            else if(tabs.SelectedTab == tabPage2)
-            {
-                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
-                lbPersonenLift.Text = hotel.hotelLayout.lift.PersonenInLift.Count().ToString();
-                lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
-            }
-            else if(tabs.SelectedTab == tabPage3)
-            {
-                if(LvTimer.Elapsed.TotalSeconds > 10)
-                {
-                    LvTimer.Reset();
-                    lvGasten.Items.Clear();
-                    foreach (Gast gast in hotel.PersonenInHotelLijst.OfType<Gast>())
-                    {
-                        if (gast.ToegewezenKamer == null)
-                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, "n.v.t", gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
-                        else
-                            lvGasten.Items.Add(new ListViewItem(new string[] { gast.Naam.ToString(), gast.HuidigeRuimte.Naam, gast.ToegewezenKamer.Code.ToString(), gast.Wacht.ToString(), gast.heeftHonger.ToString(), gast.isDood.ToString() }));
-                    }
-                }          
-            }
-            
-        }
-
-        /*private void lvGasten_ItemActivate(object sender, EventArgs e)
-        {
-            string gastnaam = lvGasten.SelectedItems[0].Text;
-            foreach(Gast g in hotel.PersonenInHotelLijst)
-            {
-                if (gastnaam == g.Naam)
-                    MessageBox.Show(g.HuidigEvent.ToString());
-            }
-            
-        }*/
     }
 }

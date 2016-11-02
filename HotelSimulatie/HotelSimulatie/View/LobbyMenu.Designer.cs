@@ -58,7 +58,6 @@
             this.chKamernr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chWachten = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chHonger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.chDood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabs.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -367,16 +366,6 @@
             // 
             this.chHonger.Text = "Honger";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Location = new System.Drawing.Point(7, 368);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(87, 29);
-            this.btnRefresh.TabIndex = 2;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // chDood
             // 
             this.chDood.Text = "IsDood";
@@ -386,7 +375,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 400);
-            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.tabs);
             this.Name = "LobbyMenu";
             this.Text = "LobbyMenu";
@@ -432,7 +420,6 @@
         private System.Windows.Forms.Label lbPositieLift;
         private System.Windows.Forms.Label lbBestemmingLift;
         private System.Windows.Forms.Label lbPersonenLift;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.ColumnHeader chDood;
     }
 }
