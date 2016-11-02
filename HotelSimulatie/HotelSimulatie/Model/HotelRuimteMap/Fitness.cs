@@ -25,17 +25,16 @@ namespace HotelSimulatie.Model
             inFitnessLijst.Add((Gast)persoon);
         }
 
-        public override void Update(GameTime gameTijd)
+        public override void Update(int verlopenTijdInSeconden)
         {
-            int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
             foreach (Gast gast in inFitnessLijst)
             {
                 if (gast.HuidigEvent.HuidigeDuurEvent == 0)
                 {
                     // In dit geval is er nog geen tijd toegewezen
-                    gast.HuidigEvent.HuidigeDuurEvent = totaleSpelTijd;
+                    gast.HuidigEvent.HuidigeDuurEvent = verlopenTijdInSeconden;
                 }
-                else if (totaleSpelTijd - gast.HuidigEvent.HuidigeDuurEvent > HotelTijdsEenheid.fitnessHTE)
+                else if (verlopenTijdInSeconden - gast.HuidigEvent.HuidigeDuurEvent > HotelTijdsEenheid.fitnessHTE)
                 {
                     if (gast.HuidigEvent.Event != HotelEventAdapter.EventType.EVACUATE)
                     {

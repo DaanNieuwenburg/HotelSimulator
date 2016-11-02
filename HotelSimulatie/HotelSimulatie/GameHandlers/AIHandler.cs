@@ -112,7 +112,7 @@ namespace HotelSimulatie
                 // Update de hotelRuimtes
                 foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
                 {
-                    hotelRuimte.Update(gameTime);
+                    hotelRuimte.Update(gameTime.TotalGameTime.Seconds);
                 }
 
                 // Update de lift
@@ -126,7 +126,7 @@ namespace HotelSimulatie
                 }
 
                 // Update de trap
-                spel.hotel.hotelLayout.trap.Update(gameTime);
+                spel.hotel.hotelLayout.trap.Update(gameTime.TotalGameTime.Seconds);
 
                 // Update het hotel
                 spel.hotel.Update();
@@ -152,7 +152,7 @@ namespace HotelSimulatie
                     Gast gast = (Gast)spel.hotel.PersonenInHotelLijst[i];
                     if (gast.isDood == false)
                     {
-                        if (gast.Wachtteller.Elapsed.Seconds * HotelEventManager.HTE_Factor >= HotelTijdsEenheid.doodgaanHTE)
+                        if (gast.Wachtteller.Elapsed.Seconds >= HotelTijdsEenheid.doodgaanHTE)
                         {
                             gast.isDood = true;
                             gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
