@@ -19,10 +19,10 @@ namespace HotelSimulatie.Model
             EventCoordinaten = new Vector2(LobbyRectangle.Left + 80, LobbyRectangle.Bottom);
             Wachtrij = new Queue<Gast>();
             Naam = "Lobby";
-            texturepath = @"Kamers\lobby_Normaal";
+            TexturePad = @"Kamers\lobby_Normaal";
         }
 
-        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
         public void GaRuimteIn(Gast gast)
         {
             if(gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_OUT)

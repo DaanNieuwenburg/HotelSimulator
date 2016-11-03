@@ -14,10 +14,10 @@ namespace HotelSimulatie.Model
         public Bioscoop()
         {
             Naam = "Bioscoop";
-            texturepath = @"Kamers\Bioscoop";
+            TexturePad = @"Kamers\Bioscoop";
             inBioscoopLijst = new List<Gast>();
         }
-        public override void LoadContent(ContentManager contentManager)=> Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager)=> Texture = contentManager.Load<Texture2D>(TexturePad);
 
         public override void VoegPersoonToe(Persoon persoon) => inBioscoopLijst.Add((Gast)persoon);
 
@@ -25,7 +25,7 @@ namespace HotelSimulatie.Model
         {
             if(HuidigEvent.Event == HotelEventAdapter.EventType.START_CINEMA)
             {
-                StartCinema(verlopenTijdInSeconden);
+                startCinema(verlopenTijdInSeconden);
                 HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
             }
             if (verlopenTijdInSeconden > HuidigEvent.Tijd && HuidigEvent.Tijd != 0)
@@ -34,16 +34,16 @@ namespace HotelSimulatie.Model
             }
         }
 
-        private void StartCinema(int verlopenTijdInSeconden)
+        private void startCinema(int verlopenTijdInSeconden)
         {
             // Koppel de tijd
             HuidigEvent.Tijd = verlopenTijdInSeconden + (HuidigEvent.Tijd / 60);
-            texturepath = @"Kamers\Bioscoop_MetFilm";
+            TexturePad = @"Kamers\Bioscoop_MetFilm";
         }
 
         private void StopCinema()
         {
-            texturepath = @"Kamers\Bioscoop";
+            TexturePad = @"Kamers\Bioscoop";
             foreach(Gast gast in inBioscoopLijst)
             {
                 if(gast.HuidigEvent.Event != HotelEventAdapter.EventType.EVACUATE)

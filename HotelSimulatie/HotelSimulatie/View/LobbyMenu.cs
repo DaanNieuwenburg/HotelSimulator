@@ -54,9 +54,9 @@ namespace HotelSimulatie.View
             }
             else if (tabs.SelectedTab == tabPage2)
             {
-                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.lift.LiftBestemming.Verdieping.ToString();
-                lbPersonenLift.Text = hotel.hotelLayout.lift.PersonenInLift.Count().ToString();
-                lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.lift.HuidigeVerdieping.Verdieping.ToString();
+                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.LiftschachtenLijst.First().lift.LiftBestemming.Verdieping.ToString();
+                lbPersonenLift.Text = hotel.hotelLayout.LiftschachtenLijst.First().lift.PersonenInLift.Count().ToString();
+                lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.LiftschachtenLijst.First().lift.HuidigeVerdieping.Verdieping.ToString();
             }
             else if (tabs.SelectedTab == tabPage3)
             {

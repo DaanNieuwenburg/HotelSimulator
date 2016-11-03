@@ -33,7 +33,7 @@ namespace HotelSimulatie.Model
 
         public override void LoadContent(ContentManager contentManager)
         {
-            tempmanager = contentManager;
+            TempManager = contentManager;
             Random randomgast = new Random();
             textureIndex = randomgast.Next(0, Texturelijst.Count());
             SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[textureIndex], 3);
@@ -71,20 +71,6 @@ namespace HotelSimulatie.Model
                     }
                 }
             }
-        }
-        public void Rondspoken()
-        { /*
-            Trappenhuis trap = hotellayout.Trappenhuislijst[HuidigeRuimte.Verdieping];
-            Liftschacht lift = hotellayout.liftSchachtenLijst[HuidigeRuimte.Verdieping];
-            this.GaNaarRuimte(ref trap);
-            if(this.HuidigeRuimte == trap)
-            {
-                this.GaNaarRuimte(ref lift);
-            }
-            else if(HuidigeRuimte == lift)
-            {
-                this.GaNaarRuimte(ref trap);
-            }*/
         }
     }
 }

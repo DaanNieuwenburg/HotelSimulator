@@ -13,15 +13,13 @@ namespace HotelSimulatie.Model
     public abstract class Persoon
     {
         public HotelRuimte Bestemming { get; set; }
-        public HotelRuimte EindBestemming { get; set; }
         public List<HotelRuimte> BestemmingLijst { get; set; }
         public HotelEventAdapter HuidigEvent { get; set; }
         public HotelRuimte HuidigeRuimte { get; set; }
         public Vector2 Positie { get; set; }
         public GeanimeerdeTexture SpriteAnimatie { get; set; }
         public List<string> Texturelijst { get; set; }
-        public ContentManager tempmanager { get; set; }
-        private float loopSnelheid { get; set; }
+        public ContentManager TempManager { get; set; }
         private float loopSnelheidHTE { get; set; }
         public string Naam { get; set; }
         protected int textureIndex { get; set; }
@@ -71,7 +69,7 @@ namespace HotelSimulatie.Model
                     {
                         
                         // Haal de volgende ruimte op, in het geval van een liftschacht of trappenhuis hoeft dit echter niet
-                        if (Bestemming.GetType() != typeof(Liftschacht) && Bestemming.GetType() != typeof(Trappenhuis))
+                        if (Bestemming.GetType() != typeof(Trappenhuis))
                         {
                             HuidigeRuimte = Bestemming;
                             if (BestemmingLijst.Count != 0)
@@ -123,7 +121,7 @@ namespace HotelSimulatie.Model
             {
                 if (this is Gast)
                 {
-                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex], 3);
+                    SpriteAnimatie = new GeanimeerdeTexture(TempManager, Texturelijst[textureIndex], 3);
                 }
                 Positie = new Vector2(Positie.X + loopSnelheidHTE, Positie.Y);
                 return false;
@@ -132,7 +130,7 @@ namespace HotelSimulatie.Model
             {
                 if(this is Gast)
                 {
-                    SpriteAnimatie = new GeanimeerdeTexture(tempmanager, Texturelijst[textureIndex]+"_Links", 3);
+                    SpriteAnimatie = new GeanimeerdeTexture(TempManager, Texturelijst[textureIndex]+"_Links", 3);
                 }
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
                 return false;

@@ -11,7 +11,7 @@ namespace HotelSimulatie
 {
     public class AIHandler : DrawableGameComponent
     {
-        public Simulatie spel { get; set; }
+        private Simulatie spel { get; set; }
         public AIHandler(Game game) : base(game)
         {
             spel = (Simulatie)game;
@@ -112,21 +112,21 @@ namespace HotelSimulatie
                 // Update de hotelRuimtes
                 foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
                 {
-                    hotelRuimte.Update(gameTime.TotalGameTime.Seconds);
+                    hotelRuimte.Update((int)gameTime.TotalGameTime.TotalSeconds);
                 }
 
                 // Update de lift
-                if (spel.hotel.hotelLayout.lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.lift.EventCoordinaten.Y != 0)
+                if (spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.EventCoordinaten.Y != 0)
                 {
-                    spel.hotel.hotelLayout.lift.Update();
+                    spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.Update((int)gameTime.TotalGameTime.TotalSeconds);
                 }
                 else
                 {
-                    spel.hotel.hotelLayout.lift.InitializeerLift();
+                    spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.InitializeerLift(spel.hotel.hotelLayout.LiftschachtenLijst);
                 }
 
                 // Update de trap
-                spel.hotel.hotelLayout.trap.Update(gameTime.TotalGameTime.Seconds);
+                spel.hotel.hotelLayout.TrappenhuisLijst.First().trap.Update((int)gameTime.TotalGameTime.TotalSeconds);
 
                 // Update het hotel
                 spel.hotel.Update();
@@ -162,7 +162,6 @@ namespace HotelSimulatie
                     else
                     {
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
-                        gast.Rondspoken();
                     }
                 }
 

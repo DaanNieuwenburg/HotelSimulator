@@ -20,7 +20,7 @@ namespace HotelSimulatie.Model
 
         public override void LoadContent(ContentManager contentManager)
         {
-            Texture = contentManager.Load<Texture2D>(texturepath);
+            Texture = contentManager.Load<Texture2D>(TexturePad);
         }
 
         public override void VoegPersoonToe(Persoon persoon)

@@ -14,9 +14,8 @@ namespace HotelSimulatie.Model
         public Schoonmaker Collega { get; set; }
         public List<HotelRuimte> SchoonmaakLijst { get; set; }
         private int verlopenTijd { get; set; }
-        public string texturenaam { get; set; }
         private int startTijd { get; set; }
-        public bool InRuimte { get; set; } = false;
+        public bool InRuimte { get; set; }
         public Schoonmaker()
         {
             SchoonmaakLijst = new List<HotelRuimte>();
@@ -30,7 +29,7 @@ namespace HotelSimulatie.Model
 
         public override void LoadContent(ContentManager contentManager)
         {
-            tempmanager = contentManager;
+            TempManager = contentManager;
             if (Naam == "SchoonmakerTim")
             {
                 SpriteAnimatie = new GeanimeerdeTexture(contentManager, Texturelijst[0], 3);

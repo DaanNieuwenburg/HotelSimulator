@@ -15,9 +15,9 @@ namespace HotelSimulatie.Model
         {
             inFitnessLijst = new List<Gast>();
             Naam = "Fitness";
-            texturepath = @"Kamers\Fitness";
+            TexturePad = @"Kamers\Fitness";
         }
-        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
 
         public override void VoegPersoonToe(Persoon persoon)
         {

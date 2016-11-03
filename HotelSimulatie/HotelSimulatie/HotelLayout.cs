@@ -14,19 +14,15 @@ namespace HotelSimulatie
     {
         public List<HotelRuimte> HotelRuimteLijst { get; set; }
         public List<Kamer> KamerLijst { get; set; }
-        public List<Trappenhuis> Trappenhuislijst { get; set; }
-        public List<Liftschacht> liftSchachtenLijst { get; set; }
+        public List<Trappenhuis> TrappenhuisLijst { get; set; }
+        public List<Liftschacht> LiftschachtenLijst { get; set; }
         public Bioscoop bioscoop { get; set; }
         public Fitness fitness { get; set; }
-        public Lift lift { get; set; }
-        public Trappenhuis trappenhuis { get; set; }
-        public Trap trap { get; set; }
         public Lobby lobby { get; set; }
         private HotelRuimteFactory hotelRuimteFactory { get; set; }
         public Eetzaal[] eetzalen { get; set; }
         private int hotelHoogte { get; set; }
         private int hotelBreedte { get; set; }
-        public HotelRuimte test { get; set; }
         public HotelLayout()
         {
             hotelRuimteFactory = new HotelRuimteFactory();
@@ -48,7 +44,6 @@ namespace HotelSimulatie
             zetGangenInLayout();
             geefLayoutNodesBuren();
             zetLayoutPositiesGoed();
-            test = HotelRuimteLijst.OfType<Kamer>().First(o => o.AantalSterren == 3);
             bioscoop = (Bioscoop)HotelRuimteLijst.OfType<Bioscoop>().First();
             fitness = (Fitness)HotelRuimteLijst.OfType<Fitness>().First();
             KamerLijst = (from kamer in HotelRuimteLijst where kamer is Kamer select kamer as Kamer).ToList();
@@ -93,9 +88,12 @@ namespace HotelSimulatie
             }
 
             // Update het gewicht
-            foreach(HotelRuimte hotelruimte in ruimteLijst)
+            foreach(HotelRuimte hotelRuimte in ruimteLijst)
             {
-                hotelruimte.UpdateGewicht();
+                if (hotelRuimte.Afmetingen.X > 1)
+                {
+                    hotelRuimte.Gewicht = (int)hotelRuimte.Afmetingen.X;
+                }
             }
 
             // Sorteer layout 
@@ -108,32 +106,31 @@ namespace HotelSimulatie
             int liftX = HotelRuimteLijst.Min(o => (Int32)o.CoordinatenInSpel.X) - 1;
 
             // Maak een nieuwe lift aan, hier hebben alle schachten kennis van
-            lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift", hotelHoogte);
+            Lift lift = (Lift)hotelRuimteFactory.MaakHotelRuimte("Lift", hotelHoogte);
 
             // Maak de liftschachten
-            liftSchachtenLijst = new List<Liftschacht>();
+            LiftschachtenLijst = new List<Liftschacht>();
             for (int y = 0; y <= hotelHoogte; y++)
             {
                 Liftschacht liftschacht = (Liftschacht)hotelRuimteFactory.MaakHotelRuimte("Liftschacht", y);
                 liftschacht.CoordinatenInSpel = new Vector2(liftX, y);
                 liftschacht.Afmetingen = new Vector2(1, 1);
                 liftschacht.lift = lift;
-                liftSchachtenLijst.Add(liftschacht);
+                LiftschachtenLijst.Add(liftschacht);
                 HotelRuimteLijst.Add(liftschacht);
             }
-            lift.Liftschachtlijst = liftSchachtenLijst;
 
             // Maak trap
-            Trappenhuislijst = new List<Trappenhuis>();
-            trap = (Trap)hotelRuimteFactory.MaakHotelRuimte("Trap");
+            TrappenhuisLijst = new List<Trappenhuis>();
+            Trap trap = (Trap)hotelRuimteFactory.MaakHotelRuimte("Trap");
             for (int y = 0; y <= hotelHoogte; y++)
             {
-                Trappenhuis trapppenhuis = (Trappenhuis)hotelRuimteFactory.MaakHotelRuimte("Trappenhuis", y);
-                trapppenhuis.CoordinatenInSpel = new Vector2(hotelBreedte + 1, y);
-                trapppenhuis.Afmetingen = new Vector2(1, 1);
-                trapppenhuis.trap = trap;
-                Trappenhuislijst.Add(trappenhuis);
-                HotelRuimteLijst.Add(trapppenhuis);
+                Trappenhuis trappenhuis = (Trappenhuis)hotelRuimteFactory.MaakHotelRuimte("Trappenhuis", y);
+                trappenhuis.CoordinatenInSpel = new Vector2(hotelBreedte + 1, y);
+                trappenhuis.Afmetingen = new Vector2(1, 1);
+                trappenhuis.trap = trap;
+                TrappenhuisLijst.Add(trappenhuis);
+                HotelRuimteLijst.Add(trappenhuis);
             }
         }
 

@@ -12,6 +12,7 @@ namespace HotelSimulatie.Model
         public HotelLayout hotelLayout { get; set; }
         public List<Persoon> PersonenInHotelLijst { get; set; }
         public HotelEventAdapter huidigEvent { get; set; }
+        private HotelTijdsEenheid hotelTijdsEenheid { get; set; }
         private bool isEvacuatie { get; set; }
         public Hotel()
         {

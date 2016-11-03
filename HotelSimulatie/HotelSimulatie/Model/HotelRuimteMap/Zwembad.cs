@@ -12,8 +12,8 @@ namespace HotelSimulatie.Model
         public Zwembad()
         {
             Naam = "Zwembad";
-            texturepath = @"Kamers\Zwembad";
+            TexturePad = @"Kamers\Zwembad";
         }
-        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
     }
 }

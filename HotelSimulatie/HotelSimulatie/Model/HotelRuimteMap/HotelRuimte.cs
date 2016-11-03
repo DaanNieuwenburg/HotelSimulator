@@ -15,10 +15,10 @@ namespace HotelSimulatie.Model
         public int Code { get; set; }
         public HotelEventAdapter HuidigEvent { get; set; }
         public string Naam { get; set; }
-        public string texturepath { get; set; }
+        public string TexturePad { get; set; }
         [JsonProperty("Dimension")]
         public Vector2 Afmetingen { get; set; }
-        
+
         public int Afstand { get; set; }
         public int Gewicht { get; set; }
         [JsonProperty("Capacity")]
@@ -40,22 +40,16 @@ namespace HotelSimulatie.Model
             Gewicht = 1;
             Vorige = null;
         }
+        public void VoegBurenToe(List<HotelRuimte> burenLijst)
+        {
+            Buren = burenLijst;
+        }
+
         public abstract void LoadContent(ContentManager contentManager);
-        public void VoegBurenToe(List<HotelRuimte> burenLijst) => Buren = burenLijst;
 
         public virtual void Update(int verlopenTijdInSeconden)
         {
-
         }
-
-        public void UpdateGewicht()
-        {
-            if(Afmetingen.X > 1)
-            {
-                Gewicht = (int)Afmetingen.X;
-            }
-        }
-
 
         public virtual void VoegPersoonToe(Persoon persoon)
         {

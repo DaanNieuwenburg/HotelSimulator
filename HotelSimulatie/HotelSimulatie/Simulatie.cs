@@ -27,7 +27,7 @@ namespace HotelSimulatie
         public Matrix matrix { get; set; }
         public SpriteFont font { get; set; }
 
-        private Texture2D Godzillatexture { get; set; }
+        private Texture2D godzillaTexture { get; set; }
         private bool GodzillaEvent { get; set; }
         public Simulatie(Hotel _hotel)
         {
@@ -39,7 +39,6 @@ namespace HotelSimulatie
             spelCamera = new Camera(540, 750);
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 768;
-            GodzillaEvent = false;
         }
 
         protected override void Initialize()
@@ -70,15 +69,6 @@ namespace HotelSimulatie
         protected override void Update(GameTime gameTime)
         {
             KeyboardState ks = Keyboard.GetState();
-            /*if (gameTime.TotalGameTime.Seconds == 5)
-            {
-                HotelEvent test = new HotelEvent();
-                test.EventType = HotelEventType.GODZILLA;
-                test.Data = new Dictionary<string, string>();
-
-                HotelEventAdapter evt = new HotelEventAdapter(test);
-                Godzilla();
-            }*/
             if (ks.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.F1))
             {
                 graphics.ToggleFullScreen();
@@ -87,11 +77,10 @@ namespace HotelSimulatie
 
             if (hotel.huidigEvent.Event == HotelEventAdapter.EventType.GODZILLA)
             {
-                Godzilla();
+                GodzillaEvent = true;
             }
             base.Update(gameTime);
         }
-        private void Godzilla() => GodzillaEvent = true;
 
         protected override void Draw(GameTime gameTime)
         {

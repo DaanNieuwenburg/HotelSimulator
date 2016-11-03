@@ -16,11 +16,11 @@ namespace HotelSimulatie.Model
         public Eetzaal()
         {
             Naam = "Eetzaal";
-            texturepath = @"Kamers\Eetzaal";
+            TexturePad = @"Kamers\Eetzaal";
             inEetzaalLijst = new List<Gast>();
             Wachtrij = new Queue<Gast>();
         }
-        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
 
         public override void VoegPersoonToe(Persoon persoon)
         {

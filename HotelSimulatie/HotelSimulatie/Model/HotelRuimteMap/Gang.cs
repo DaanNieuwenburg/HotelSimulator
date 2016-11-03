@@ -12,8 +12,8 @@ namespace HotelSimulatie.Model
         public Gang()
         {
             Naam = "Gang";
-            texturepath = @"Kamers\Gang";
+            TexturePad = @"Kamers\Gang";
         }
-        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
     }
 }
