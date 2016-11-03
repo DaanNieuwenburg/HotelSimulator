@@ -43,7 +43,7 @@ namespace HotelSimulatie.Model
         public abstract void LoadContent(ContentManager contentManager);
         public void VoegBurenToe(List<HotelRuimte> burenLijst) => Buren = burenLijst;
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(int verlopenTijdInSeconden)
         {
 
         }

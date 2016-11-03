@@ -37,7 +37,7 @@ namespace HotelSimulatie.Model
             
         }
 
-        public override void Update(GameTime gameTijd)
+        public override void Update(int verlopenTijdInSeconden)
         {
             if(inEetzaalLijst.Count < MaxAantalGasten && Wachtrij.Count > 0)
             {
@@ -48,7 +48,7 @@ namespace HotelSimulatie.Model
                     inEetzaalLijst.Add(temp);
                 }  
             }
-            int totaleSpelTijd = gameTijd.TotalGameTime.Seconds;
+            int totaleSpelTijd = verlopenTijdInSeconden;
             foreach (Gast gast in inEetzaalLijst)
             {
                 if (gast.HuidigEvent.HuidigeDuurEvent == 0)

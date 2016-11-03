@@ -63,8 +63,6 @@ namespace HotelSimulatie.Model
                 }
                 verlopenTijd = 0;
                 return gast.ToegewezenKamer;
-            
-            return null;
         }
 
         public void GastUitchecken(Gast gast)

@@ -32,6 +32,7 @@ namespace HotelSimulatie
                 }
                 catch(InvalidOperationException ex)
                 {
+                    ResetAfstanden();
                     Console.WriteLine("Exception: "+ex);
                 }
             }

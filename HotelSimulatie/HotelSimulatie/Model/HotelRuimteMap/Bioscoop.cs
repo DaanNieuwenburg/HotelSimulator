@@ -21,23 +21,23 @@ namespace HotelSimulatie.Model
 
         public override void VoegPersoonToe(Persoon persoon) => inBioscoopLijst.Add((Gast)persoon);
 
-        public override void Update(GameTime gameTijd)
+        public override void Update(int verlopenTijdInSeconden)
         {
             if(HuidigEvent.Event == HotelEventAdapter.EventType.START_CINEMA)
             {
-                StartCinema(gameTijd);
+                StartCinema(verlopenTijdInSeconden);
                 HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
             }
-            if (gameTijd.TotalGameTime.Seconds > HuidigEvent.Tijd && HuidigEvent.Tijd != 0)
+            if (verlopenTijdInSeconden > HuidigEvent.Tijd && HuidigEvent.Tijd != 0)
             {
                 StopCinema();
             }
         }
 
-        private void StartCinema(GameTime gameTijd)
+        private void StartCinema(int verlopenTijdInSeconden)
         {
             // Koppel de tijd
-            HuidigEvent.Tijd = gameTijd.TotalGameTime.Seconds + (HuidigEvent.Tijd / 60);
+            HuidigEvent.Tijd = verlopenTijdInSeconden + (HuidigEvent.Tijd / 60);
             texturepath = @"Kamers\Bioscoop_MetFilm";
         }
 

@@ -125,7 +125,7 @@ namespace HotelSimulatie
 
             // Maak trap
             Trappenhuislijst = new List<Trappenhuis>();
-            trap = new Trap();
+            trap = (Trap)hotelRuimteFactory.MaakHotelRuimte("Trap");
             for (int y = 0; y <= hotelHoogte; y++)
             {
                 Trappenhuis trapppenhuis = (Trappenhuis)hotelRuimteFactory.MaakHotelRuimte("Trappenhuis", y);

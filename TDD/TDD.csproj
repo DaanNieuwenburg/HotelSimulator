@@ -63,6 +63,7 @@
     <Compile Include="LiftTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HotelEventAdapterTests.cs" />
+    <Compile Include="TrapTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HotelSimulatie\HotelSimulatie\HotelSimulatie.csproj">
