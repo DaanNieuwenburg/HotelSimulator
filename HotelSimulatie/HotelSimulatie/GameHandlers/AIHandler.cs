@@ -183,7 +183,7 @@ namespace HotelSimulatie
                 Persoon persoon = spel.hotel.PersonenInHotelLijst[i];
                 if (persoon is Gast)
                 {
-                    if (persoon.Bestemming != null && persoon.inLiftOfTrap == false)
+                    if (persoon.Bestemming != null && persoon.inLiftOfTrap == false && persoon.HuidigeRuimte != persoon.Bestemming)
                     {
                         persoon.Draw(spriteBatch);
                     }
