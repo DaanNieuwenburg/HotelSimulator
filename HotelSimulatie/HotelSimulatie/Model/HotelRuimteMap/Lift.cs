@@ -12,26 +12,29 @@ namespace HotelSimulatie.Model
         public Liftschacht HuidigeVerdieping { get; set; }
         public Liftschacht LiftBestemming { get; set; }
         public int BovensteVerdieping { get; set; }
-        public bool LiftOmhoog { get; set; }
+        private int verlopenTijd { get; set; }
+        private int aankomstTijd { get; set; }
         public List<Persoon> PersonenInLift { get; set; }
-        public List<Liftschacht> LiftStoppenlijst { get; set; }
-        public List<Liftschacht> Liftschachtlijst { get; set; }
-        private float snelheid { get; set; }
+        public Dictionary<Persoon, List<object>> LiftStoppenlijst { get; set; }
+        private List<Liftschacht> LiftSchachtenlijst { get; set; }
 
         public Lift(int Aantalverdiepingen)
         {
-            LiftOmhoog = true;
-            LiftStoppenlijst = new List<Liftschacht>();
-            snelheid = 1.5f;
+            LiftStoppenlijst = new Dictionary<Persoon, List<object>>();
             PersonenInLift = new List<Persoon>();
             BovensteVerdieping = Aantalverdiepingen;
         }
 
-        public void InitializeerLift()
+        public void InitializeerLift(List<Liftschacht> _liftschachtenLijst)
         {
-            HuidigeVerdieping = Liftschachtlijst.Find(o => o.Verdieping == 0);
+            LiftSchachtenlijst = _liftschachtenLijst;
+
+            // Sorteer de liftschachtenLijst van de laagste verdieping naar de hoogste
+            LiftSchachtenlijst.Sort((o1, o2) => o1.Verdieping.CompareTo(o2.Verdieping));
+            HuidigeVerdieping = LiftSchachtenlijst.First();
+
+            // Koppelt de eventcoordinaten van de lift, zodat gasten op de juiste manier uitstappen
             EventCoordinaten = HuidigeVerdieping.EventCoordinaten;
-            LiftBestemming = Liftschachtlijst.First();
         }
 
         public override void LoadContent(ContentManager contentManager)
@@ -39,89 +42,99 @@ namespace HotelSimulatie.Model
             // Deze lift kent geen texture
         }
 
-        public void Update()
+        public override void Update(int verlopenTijdInSeconden)
         {
-            if (VerplaatsLift())
+            verlopenTijd = verlopenTijdInSeconden;
+            // Als de lift een bestemming heeft en aangekomen is op bestemming
+            if (LiftBestemming != null && verlopenTijd >= aankomstTijd)
+            {
+                HuidigeVerdieping = LiftBestemming;
+                LiftBestemming = null;
+                personenUitstappen();
+                personenInstappen();
+            }
+            else
             {
                 bepaalLiftBestemming();
-                HuidigeVerdieping.LaatPersoonLiftInGaan();
             }
         }
 
-        public void VoegLiftStopToe(Liftschacht liftstop)
+        private void personenInstappen()
         {
-            if (LiftStoppenlijst.Any(o => o.Verdieping == liftstop.Verdieping) == false)
+            foreach (Persoon persoon in HuidigeVerdieping.Wachtrij)
             {
-                LiftStoppenlijst.Add(liftstop);
+                // De persoon is opgepikt, verwijder liftstop in huidige lijst
+                LiftStoppenlijst.Remove(persoon);
+
+                // Zorg ervoor dat persoon niet meer grafisch getoond wordt
+                persoon.Wacht = false;
+                persoon.inLiftOfTrap = true;
+
+                // Reset het doodgaan
+                if (persoon is Gast)
+                {
+                    persoon.Wachtteller.Stop();
+                    persoon.Wachtteller.Reset();
+                }
+
+                // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
+                if(persoon.Bestemming is Liftschacht)
+                {
+                    VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
+                }
             }
         }
 
-        private bool VerplaatsLift()
+
+        private void personenUitstappen()
         {
-            bool aangekomenOpBestemming = false;
+            // Bepaal welke personen willen uitstappen
+            Dictionary<Persoon, List<object>> personenDieLiftUitGaan = (from persoon in LiftStoppenlijst
+                                                                        where HuidigeVerdieping == (Liftschacht)persoon.Value[0] && persoon.Key.Wacht == false
+                                                                        select persoon).ToDictionary(o1 => o1.Key, o2 => o2.Value);
 
-            // Omhoog
-            if ((Int32)EventCoordinaten.Y < LiftBestemming.EventCoordinaten.Y)
+
+            foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieLiftUitGaan)
             {
-                Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y + snelheid);
-                EventCoordinaten = nieuweLiftPositie;
-            }
+                persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
+                persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+                persoon.Key.BestemmingLijst.Remove(persoon.Value[0] as Liftschacht);
+                persoon.Key.Positie = HuidigeVerdieping.EventCoordinaten;
+                persoon.Key.inLiftOfTrap = false;
+                LiftStoppenlijst.Remove(persoon.Key);
 
-            // Omlaag
-            else if ((Int32)EventCoordinaten.Y > LiftBestemming.EventCoordinaten.Y)
+                /*persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
+                persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+                //persoon.BestemmingLijst.Remove(persoon.Bestemming);
+                persoon.Key.inLiftOfTrap = false;
+                persoon.Key.Positie = EventCoordinaten;
+                LiftStoppenlijst.Remove(persoon.Key);*/
+            }
+        }
+
+        public void VoegLiftStopToe(Persoon persoon, Liftschacht liftstop)
+        {
+            if (!LiftStoppenlijst.ContainsKey(persoon))
             {
-                Vector2 nieuweLiftPositie = new Vector2(EventCoordinaten.X, EventCoordinaten.Y - snelheid);
-                EventCoordinaten = nieuweLiftPositie;
+                // Bepaal hoe lang persoon op de lift moet wachten
+                int wachtTijd = verlopenTijd + Math.Abs(liftstop.Verdieping - HuidigeVerdieping.Verdieping);
+
+                List<object> stopGegevens = new List<object>();
+                stopGegevens.Add(liftstop);
+                stopGegevens.Add(wachtTijd);
+                LiftStoppenlijst.Add(persoon, stopGegevens);
             }
-
-            // Bij aankomst
-            if (EventCoordinaten.Y == LiftBestemming.EventCoordinaten.Y)
-            {
-                aangekomenOpBestemming = true;
-
-                // Verwijder liftstop uit liftstoppenlijst
-                HuidigeVerdieping = LiftBestemming;
-                LiftStoppenlijst.Remove(HuidigeVerdieping);
-                HuidigeVerdieping = LiftBestemming;
-
-                PersonenInLift.Sort((o1, o2) => o1.Bestemming.Verdieping.CompareTo(o2.Bestemming.Verdieping));
-
-                // Laat de gasten uitstappen
-                List< Persoon> personenDieUitstappen = (from persoon in PersonenInLift
-                                                        where persoon.Bestemming == HuidigeVerdieping
-                                                        select persoon).ToList();
-                HuidigeVerdieping.LaatPersonenUitLiftGaan(personenDieUitstappen);
-            }
-            return aangekomenOpBestemming;
         }
 
         private void bepaalLiftBestemming()
         {
-            int wachtendeBovenDeLift = LiftStoppenlijst.Count(o => o.Verdieping > HuidigeVerdieping.Verdieping);
-            int wachtendeOnderDeLift = LiftStoppenlijst.Count(o => o.Verdieping < HuidigeVerdieping.Verdieping);
-
-            // Ga omhoog, bij wachtende mensen boven de huidige lift
-            if (wachtendeBovenDeLift > 0)
+            if (LiftStoppenlijst.Count > 0)
             {
-                // Sorteer de lijst van laag naar hoog, want de lift gaat omhoog
-                LiftStoppenlijst.Sort((o1, o2) => o1.Verdieping.CompareTo(o2.Verdieping));
+                LiftBestemming = (Liftschacht)LiftStoppenlijst.First().Value[0];
 
-                // Pak de eerste bestemming boven de huidige liftverdieping
-                LiftBestemming = LiftStoppenlijst.First(o => o.Verdieping > HuidigeVerdieping.Verdieping);
+                // Bepaal aankomsttijd
+                aankomstTijd = verlopenTijd + Math.Abs(HuidigeVerdieping.Verdieping - LiftBestemming.Verdieping);
             }
-
-            // Ga omlaag bij wachtende mensen onder de huidige lift
-            else if (wachtendeOnderDeLift > 0)
-            {
-                // Sorteer de lijst van hoog naar laag want de lift gaat omlaag
-                LiftStoppenlijst.Sort((o1, o2) => o2.Verdieping.CompareTo(o1.Verdieping));
-
-                // Pak de eerste bestemming onder de huidige liftverdieping
-                LiftBestemming = LiftStoppenlijst.First(o => o.Verdieping < HuidigeVerdieping.Verdieping);
-            }
-
-            // Als er niemand wacht op de lift, blijf op huidige verdieping
-
         }
     }
 }
