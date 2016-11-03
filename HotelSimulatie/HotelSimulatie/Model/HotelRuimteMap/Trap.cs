@@ -30,7 +30,7 @@ namespace HotelSimulatie.Model
                 // Bepaal hoe lang persoon er over doet om trap op of af te lopen
                 int aantalTrappen = Math.Abs(persoon.Bestemming.Verdieping - persoon.HuidigeRuimte.Verdieping);
                 // Bepaal bij welke tijd de persoon de trap weer uit gaat, (aantaltrappen * aantaltrappen) zorgt ervoor dat de persoon moe wordt
-                int eindTijd = Convert.ToInt32((verlopenTijd * HotelEventManager.HTE_Factor) + (aantalTrappen * aantalTrappen));
+                int eindTijd = Convert.ToInt32((verlopenTijd) + (aantalTrappen * aantalTrappen));
 
                 List<object> valuesDict = new List<object>();
                 valuesDict.Add(persoon.Bestemming);
@@ -51,7 +51,11 @@ namespace HotelSimulatie.Model
             foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieTrapUitGaan)
             {
                 persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
-                persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+
+                if(persoon.Key.BestemmingLijst != null)
+                {
+                    persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+                }
                 persoon.Key.Positie = persoon.Key.HuidigeRuimte.EventCoordinaten;
                 persoon.Key.inLiftOfTrap = false;
                 personenInTrap.Remove(persoon.Key);

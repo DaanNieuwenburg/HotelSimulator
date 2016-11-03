@@ -112,13 +112,13 @@ namespace HotelSimulatie
                 // Update de hotelRuimtes
                 foreach (HotelRuimte hotelRuimte in spel.hotel.hotelLayout.HotelRuimteLijst)
                 {
-                    hotelRuimte.Update((int)gameTime.TotalGameTime.TotalSeconds);
+                    hotelRuimte.Update((int)gameTime.TotalGameTime.TotalSeconds * (int)HotelEventManager.HTE_Factor);
                 }
 
                 // Update de lift
                 if (spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.EventCoordinaten.X != 0 && spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.EventCoordinaten.Y != 0)
                 {
-                    spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.Update((int)gameTime.TotalGameTime.TotalSeconds);
+                    spel.hotel.hotelLayout.LiftschachtenLijst.First().lift.Update((int)gameTime.TotalGameTime.TotalSeconds * (int)HotelEventManager.HTE_Factor);
                 }
                 else
                 {
@@ -126,7 +126,7 @@ namespace HotelSimulatie
                 }
 
                 // Update de trap
-                spel.hotel.hotelLayout.TrappenhuisLijst.First().trap.Update((int)gameTime.TotalGameTime.TotalSeconds);
+                spel.hotel.hotelLayout.TrappenhuisLijst.First().trap.Update((int)gameTime.TotalGameTime.TotalSeconds * (int)HotelEventManager.HTE_Factor);
 
                 // Update het hotel
                 spel.hotel.Update();
