@@ -56,7 +56,7 @@ namespace HotelSimulatie.Model
             }
         }
 
-        private bool VerplaatsLift()
+        public bool VerplaatsLift()
         {
             bool aangekomenOpBestemming = false;
 

@@ -103,5 +103,16 @@ namespace HotelSimulatie.View
                 e.Handled = true;
             }
         }
+
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            tbHTE.Text = HotelEventManager.HTE_Factor.ToString();
+            tbTijdsduur1.Text = HotelTijdsEenheid.eetzaalHTE.ToString();
+            tbTijdsduur2.Text = HotelTijdsEenheid.bioscoopHTE.ToString();
+            tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
+            tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
+            tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
+            tbEetzaal.Text = Eetzaal.MaxAantalGasten.ToString();
+        }
     }
 }

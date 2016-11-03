@@ -50,6 +50,7 @@
             this.tbTijdsduur5 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tbEetzaal = new System.Windows.Forms.TextBox();
+            this.btnDefault = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbHTE
@@ -245,11 +246,22 @@
             this.tbEetzaal.TabIndex = 26;
             this.tbEetzaal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEetzaal_KeyPress);
             // 
+            // btnDefault
+            // 
+            this.btnDefault.Location = new System.Drawing.Point(12, 376);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnDefault.TabIndex = 29;
+            this.btnDefault.Text = "Set Default";
+            this.btnDefault.UseVisualStyleBackColor = true;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
+            // 
             // OptiesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 411);
+            this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.tbEetzaal);
             this.Controls.Add(this.label11);
@@ -303,5 +315,6 @@
         private System.Windows.Forms.TextBox tbTijdsduur5;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox tbEetzaal;
+        private System.Windows.Forms.Button btnDefault;
     }
 }

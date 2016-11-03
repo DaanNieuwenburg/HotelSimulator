@@ -11,15 +11,8 @@ namespace HotelSimulatie.Model
 {
     public class Trap : HotelRuimte
     {
-        private Dictionary<Persoon, int> personenInTrap { get; set; }
-        public Trap()
-        {
-            personenInTrap = new Dictionary<Persoon, int>();
-        }
-        public override void LoadContent(ContentManager contentManager)
-        {
-            Texture = contentManager.Load<Texture2D>(texturepath);
-        }
+        private Dictionary<Persoon, int> personenInTrap { get; set; } = new Dictionary<Persoon, int>();
+        public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(texturepath);
         public override void VoegPersoonToe(Persoon persoon)
         {
             if (!personenInTrap.Keys.Contains(persoon))
