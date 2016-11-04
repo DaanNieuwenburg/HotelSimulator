@@ -152,15 +152,17 @@ namespace HotelSimulatie
                     Gast gast = (Gast)spel.hotel.PersonenInHotelLijst[i];
                     if (gast.isDood == false)
                     {
-                        if (gast.Wachtteller.Elapsed.Seconds >= HotelTijdsEenheid.doodgaanHTE)
+                        if (gast.Wachtteller.Elapsed.Seconds * HotelEventManager.HTE_Factor >= HotelTijdsEenheid.doodgaanHTE)
                         {
                             gast.isDood = true;
+                            gast.HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
                             gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
                             gast.ToegewezenKamer.Bezet = false;
                         }
                     }
                     else
                     {
+                        gast.HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
                         gast.SpriteAnimatie = new GeanimeerdeTexture(spel.Content, @"Gasten\spook", 1);
                     }
                 }

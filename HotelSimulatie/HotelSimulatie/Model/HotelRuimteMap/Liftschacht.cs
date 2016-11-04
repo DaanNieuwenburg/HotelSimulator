@@ -69,6 +69,7 @@ namespace HotelSimulatie.Model
         {
             foreach (Persoon persoon in Wachtrij)
             {
+                
                 // Zorg ervoor dat persoon niet meer grafisch getoond wordt
                 persoon.Wacht = false;
                 persoon.inLiftOfTrap = true;
@@ -77,7 +78,17 @@ namespace HotelSimulatie.Model
                 lift.LiftStoppenlijst.Remove(persoon);
 
                 // Voeg de bestemming waar de persoon wil uitstappen toe
-                lift.VoegLiftStopToe(persoon, (Liftschacht)persoon.Bestemming);
+                if (persoon is Gast)
+                {
+                    Gast gast = (Gast)persoon;
+                    if(gast.isDood == false)
+                        lift.VoegLiftStopToe(persoon, (Liftschacht)persoon.Bestemming);
+                }
+                else
+                {
+                    lift.VoegLiftStopToe(persoon, (Liftschacht)persoon.Bestemming);
+                }
+                
 
                 // Reset het doodgaan
                 if (persoon is Gast)
