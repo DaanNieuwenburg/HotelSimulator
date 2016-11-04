@@ -376,7 +376,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(428, 400);
             this.Controls.Add(this.tabs);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LobbyMenu";
+            this.ShowIcon = false;
             this.Text = "LobbyMenu";
             this.tabs.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
