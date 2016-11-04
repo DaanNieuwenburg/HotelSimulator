@@ -15,7 +15,7 @@ namespace HotelSimulatie.Model
         public List<HotelRuimte> SchoonmaakLijst { get; set; }
         private int verlopenTijd { get; set; }
         private int startTijd { get; set; }
-        public bool InRuimte { get; set; }
+        public bool InRuimte { get; set; } = false;
         public Schoonmaker()
         {
             SchoonmaakLijst = new List<HotelRuimte>();
@@ -40,7 +40,7 @@ namespace HotelSimulatie.Model
             }
         }
 
-        public void Update(GameTime spelTijd)
+        public void Update(GameTime spelTijd, Lobby lobby)
         {
             verlopenTijd = spelTijd.TotalGameTime.Seconds * (int)HotelEventManager.HTE_Factor;
             // Is de schoonmaker niets aan het doen, kijk dan of er een kamer schoongemaakt moet worden
@@ -51,13 +51,17 @@ namespace HotelSimulatie.Model
                     Bestemming = SchoonmaakLijst.First();
                     HuidigEvent.Event = HotelEventAdapter.EventType.GOTO_ROOM;
                 }
+                else if(HuidigeRuimte.GetType() != typeof(Lobby))
+                {
+                    GaNaarRuimte(ref lobby);
+                }
             }
-            else if(HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_ROOM)
+            else if (HuidigEvent.Event == HotelEventAdapter.EventType.GOTO_ROOM)
             {
                 // Als schoonmaker aangekomen is bij kamer
                 if (HuidigeRuimte == SchoonmaakLijst.First())
                 {
-                    startTijd = spelTijd.TotalGameTime.Seconds * (int)HotelEventManager.HTE_Factor + HotelTijdsEenheid.schoonmakenHTE; 
+                    startTijd = spelTijd.TotalGameTime.Seconds * (int)HotelEventManager.HTE_Factor + HotelTijdsEenheid.schoonmakenHTE;
                     HuidigEvent.Event = HotelEventAdapter.EventType.IS_CLEANING;
                     maakRuimteSchoon();
                 }
@@ -68,7 +72,7 @@ namespace HotelSimulatie.Model
                     GaNaarRuimte(ref ruimte);
                 }
             }
-            else
+            else if(HuidigEvent.Event == HotelEventAdapter.EventType.IS_CLEANING)
             {
                 maakRuimteSchoon();
             }
@@ -117,7 +121,6 @@ namespace HotelSimulatie.Model
                 this.InRuimte = false;
                 SchoonmaakLijst.Remove(HuidigeRuimte);
                 HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
-                    
             }
         }
     }

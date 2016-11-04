@@ -47,6 +47,11 @@ namespace HotelSimulatie.Model
                 BestemmingLijst = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
                 Bestemming = BestemmingLijst.First();
                 BestemmingLijst.Remove(Bestemming);
+
+                if(this is Schoonmaker)
+                {
+                    Console.WriteLine("a");
+                }
             }
             else if (Beweeg())
             {
@@ -66,7 +71,7 @@ namespace HotelSimulatie.Model
                     }
                     else
                     {
-                        
+
                         // Haal de volgende ruimte op, in het geval van een liftschacht of trappenhuis hoeft dit echter niet
                         if (Bestemming.GetType() != typeof(Trappenhuis))
                         {
@@ -88,7 +93,7 @@ namespace HotelSimulatie.Model
                                     // Aangekomen op bestemming
                                     gaRuimteIn(Bestemming);
                                 }
-                                
+
                             }
                         }
                         else
@@ -127,9 +132,9 @@ namespace HotelSimulatie.Model
             }
             else if (Positie.X > Bestemming.EventCoordinaten.X && LooptNaarLinks == true)
             {
-                if(this is Gast)
+                if (this is Gast)
                 {
-                    SpriteAnimatie = new GeanimeerdeTexture(TempManager, Texturelijst[textureIndex]+"_Links", 3);
+                    SpriteAnimatie = new GeanimeerdeTexture(TempManager, Texturelijst[textureIndex] + "_Links", 3);
                 }
                 Positie = new Vector2(Positie.X - loopSnelheidHTE, Positie.Y);
                 return false;
@@ -150,7 +155,6 @@ namespace HotelSimulatie.Model
             Bestemming = null;
             BestemmingLijst = null;
             HuidigEvent.Event = HotelEventAdapter.EventType.NONE;
-
             if (this is Gast)
             {
                 ruimte.VoegPersoonToe((Gast)this);

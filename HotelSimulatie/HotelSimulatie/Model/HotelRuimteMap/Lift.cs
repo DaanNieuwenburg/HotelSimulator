@@ -126,10 +126,15 @@ namespace HotelSimulatie.Model
             
             foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieLiftUitGaan)
             {
+                Console.WriteLine("Uitstapper " + persoon.Key.Naam);
                 persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
-                persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
-                persoon.Key.BestemmingLijst.Remove(persoon.Value[0] as Liftschacht);
+                if(persoon.Key.BestemmingLijst != null)
+                {
+                    persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
+                    persoon.Key.BestemmingLijst.Remove(persoon.Value[0] as Liftschacht);
+                }
                 persoon.Key.Positie = HuidigeVerdieping.EventCoordinaten;
+                persoon.Key.Wacht = false;
                 persoon.Key.inLiftOfTrap = false;
                 LiftStoppenlijst.Remove(persoon.Key);
                 PersonenInLift.Remove(persoon.Key);
@@ -142,7 +147,7 @@ namespace HotelSimulatie.Model
             {
                 // Bepaal hoe lang persoon op de lift moet wachten
                 int wachtTijd = verlopenTijd + Math.Abs(liftstop.Verdieping - HuidigeVerdieping.Verdieping);
-
+                persoon.inLiftOfTrap = true;
                 List<object> stopGegevens = new List<object>();
                 stopGegevens.Add(liftstop);
                 stopGegevens.Add(wachtTijd);

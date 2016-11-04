@@ -64,39 +64,5 @@ namespace HotelSimulatie.Model
                 lift.VoegLiftStopToe(persoon, this);
             }
         }
-
-        public void PersonenInstappen()
-        {
-            foreach (Persoon persoon in Wachtrij)
-            {
-                
-                // Zorg ervoor dat persoon niet meer grafisch getoond wordt
-                persoon.Wacht = false;
-                persoon.inLiftOfTrap = true;
-
-                // Verwijder de persoon uit de liftstoppenlijst
-                lift.LiftStoppenlijst.Remove(persoon);
-
-                // Voeg de bestemming waar de persoon wil uitstappen toe
-                if (persoon is Gast)
-                {
-                    Gast gast = (Gast)persoon;
-                    if(gast.isDood == false)
-                        lift.VoegLiftStopToe(persoon, (Liftschacht)persoon.Bestemming);
-                }
-                else
-                {
-                    lift.VoegLiftStopToe(persoon, (Liftschacht)persoon.Bestemming);
-                }
-                
-
-                // Reset het doodgaan
-                if (persoon is Gast)
-                {
-                    persoon.Wachtteller.Stop();
-                    persoon.Wachtteller.Reset();
-                }
-            }
-        }
     }
 }
