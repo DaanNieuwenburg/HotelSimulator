@@ -99,12 +99,7 @@ namespace HotelSimulatie
                     {
                         if (schoonmaker.inLiftOfTrap == false && schoonmaker.Wacht == false)
                         {
-                            if(schoonmaker.HuidigEvent.Event == HotelEventAdapter.EventType.NONE && schoonmaker.SchoonmaakLijst.Count < 1)
-                            {
-                                Lobby lobby = spel.hotel.hotelLayout.lobby;
-                                schoonmaker.GaNaarRuimte(ref lobby);
-                            }
-                            schoonmaker.Update(gameTime);
+                            schoonmaker.Update(gameTime, spel.hotel.hotelLayout.lobby);
                         }
                     }
                 }

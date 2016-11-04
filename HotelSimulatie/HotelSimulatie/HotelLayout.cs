@@ -31,7 +31,9 @@ namespace HotelSimulatie
             {
                 HotelRuimte a = HotelRuimteLijst[i];
                 if (a == null)
+                {
                     HotelRuimteLijst[i] = new Unknown();
+                }
             }
             
             // Bepaal hotel hoogte, - 1 omdat coordinaten van 1 + afmetingen van 1 = 2, terwijl hoogte 1 is 
