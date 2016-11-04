@@ -54,7 +54,14 @@ namespace HotelSimulatie.View
             }
             else if (tabs.SelectedTab == tabPage2)
             {
-                lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.LiftschachtenLijst.First().lift.LiftBestemming.Verdieping.ToString();
+                if(hotel.hotelLayout.LiftschachtenLijst.First().lift.LiftBestemming != null)
+                {
+                    lbBestemmingLift.Text = "Verdieping: " + hotel.hotelLayout.LiftschachtenLijst.First().lift.LiftBestemming.Verdieping.ToString();
+                }
+                else
+                {
+                    lbBestemmingLift.Text = "Geen";
+                }
                 lbPersonenLift.Text = hotel.hotelLayout.LiftschachtenLijst.First().lift.PersonenInLift.Count().ToString();
                 lbPositieLift.Text = "Verdieping: " + hotel.hotelLayout.LiftschachtenLijst.First().lift.HuidigeVerdieping.Verdieping.ToString();
             }

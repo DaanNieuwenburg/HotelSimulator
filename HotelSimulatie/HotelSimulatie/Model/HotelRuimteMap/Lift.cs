@@ -81,6 +81,7 @@ namespace HotelSimulatie.Model
                 if(persoon.Bestemming is Liftschacht)
                 {
                     VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
+                    PersonenInLift.Add(persoon);
                 }
             }
         }
@@ -92,8 +93,7 @@ namespace HotelSimulatie.Model
             Dictionary<Persoon, List<object>> personenDieLiftUitGaan = (from persoon in LiftStoppenlijst
                                                                         where HuidigeVerdieping == (Liftschacht)persoon.Value[0] && persoon.Key.Wacht == false
                                                                         select persoon).ToDictionary(o1 => o1.Key, o2 => o2.Value);
-
-
+            
             foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieLiftUitGaan)
             {
                 persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
@@ -102,13 +102,7 @@ namespace HotelSimulatie.Model
                 persoon.Key.Positie = HuidigeVerdieping.EventCoordinaten;
                 persoon.Key.inLiftOfTrap = false;
                 LiftStoppenlijst.Remove(persoon.Key);
-
-                /*persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
-                persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
-                //persoon.BestemmingLijst.Remove(persoon.Bestemming);
-                persoon.Key.inLiftOfTrap = false;
-                persoon.Key.Positie = EventCoordinaten;
-                LiftStoppenlijst.Remove(persoon.Key);*/
+                PersonenInLift.Remove(persoon.Key);
             }
         }
 
