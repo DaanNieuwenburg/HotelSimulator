@@ -377,7 +377,9 @@
             this.ClientSize = new System.Drawing.Size(428, 400);
             this.Controls.Add(this.tabs);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(444, 439);
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(444, 439);
             this.Name = "LobbyMenu";
             this.ShowIcon = false;
             this.Text = "LobbyMenu";
