@@ -86,7 +86,8 @@ namespace HotelSimulatie.Model
                             
                             // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
                             VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
-                            PersonenInLift.Add(persoon);
+                            if (!PersonenInLift.Contains(persoon))
+                                PersonenInLift.Add(persoon);
                         }
                     }
                     else
@@ -97,7 +98,8 @@ namespace HotelSimulatie.Model
 
                         // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
                         VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
-                        PersonenInLift.Add(persoon);
+                        if(!PersonenInLift.Contains(persoon))
+                            PersonenInLift.Add(persoon);
                     } 
                 }
             }

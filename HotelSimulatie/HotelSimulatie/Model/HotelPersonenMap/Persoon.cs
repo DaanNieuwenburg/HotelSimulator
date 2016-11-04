@@ -32,7 +32,6 @@ namespace HotelSimulatie.Model
         {
             inLiftOfTrap = false;
             LooptNaarLinks = false;
-            //loopSnelheidHTE = HotelEventManager.HTE_Factor * 2.0f;        --> Bewegen volgens juiste HTE snelheid, Veroorzaakt problemen
             loopSnelheidHTE = HotelEventManager.HTE_Factor * 1.0f;
         }
 

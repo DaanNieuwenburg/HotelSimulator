@@ -11,7 +11,6 @@ namespace HotelSimulatie.Model
     public class Eetzaal : HotelRuimte
     {
         private List<Gast> inEetzaalLijst { get; set; }
-        public static int MaxAantalGasten { get; set; } = 20;
         private Queue<Gast> Wachtrij { get; set; }
         public Eetzaal()
         {
@@ -24,7 +23,7 @@ namespace HotelSimulatie.Model
 
         public override void VoegPersoonToe(Persoon persoon)
         {
-            if(inEetzaalLijst.Count < MaxAantalGasten)
+            if(inEetzaalLijst.Count < this.Capaciteit)
             {
                 // Omdat er bij voegPersoonToe geen gameTime doorgegeven kan worden doen wij dit vanuit UpdateEetzaal
                 inEetzaalLijst.Add((Gast)persoon);
@@ -39,7 +38,7 @@ namespace HotelSimulatie.Model
 
         public override void Update(int verlopenTijdInSeconden)
         {
-            if(inEetzaalLijst.Count < MaxAantalGasten && Wachtrij.Count > 0)
+            if(inEetzaalLijst.Count < this.Capaciteit && Wachtrij.Count > 0)
             {
                 Gast temp = Wachtrij.Dequeue();
                 if (temp.isDood == false)
