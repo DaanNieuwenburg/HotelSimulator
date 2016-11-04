@@ -16,6 +16,7 @@ namespace HotelSimulatie
         public enum EventType { NONE, CHECK_IN, CHECK_OUT, CLEANING_EMERGENCY, EVACUATE, GODZILLA, NEED_FOOD, GOTO_CINEMA, GOTO_FITNESS, START_CINEMA, GOTO_ROOM, IS_CLEANING }
         public EventType Event { get; set; }
         public EventCategory Category { get; set; }
+        public HotelRuimte EventRuimte { get; set; }
         public int HuidigeDuurEvent { get; set; }
         public int Tijd { get; set; }
         public Dictionary<string, string> Data { get; set; }

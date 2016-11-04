@@ -28,7 +28,7 @@ namespace HotelSimulatie.Model
             else if (soort == "Gang")
                 return new Gang();
             else if (soort == "Lift")
-                return new Lift(verdieping);
+                return new Lift();
             else if (soort == "Zwembad")
                 return new Zwembad();
             else

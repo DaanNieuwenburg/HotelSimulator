@@ -18,16 +18,16 @@ namespace HotelSimulatie.Model
         public Dictionary<Persoon, List<object>> LiftStoppenlijst { get; set; }
         private List<Liftschacht> LiftSchachtenlijst { get; set; }
 
-        public Lift(int Aantalverdiepingen)
+        public Lift()
         {
             LiftStoppenlijst = new Dictionary<Persoon, List<object>>();
             PersonenInLift = new List<Persoon>();
-            BovensteVerdieping = Aantalverdiepingen;
         }
 
         public void InitializeerLift(List<Liftschacht> _liftschachtenLijst)
         {
             LiftSchachtenlijst = _liftschachtenLijst;
+            BovensteVerdieping = LiftSchachtenlijst.Count;
 
             // Sorteer de liftschachtenLijst van de laagste verdieping naar de hoogste
             LiftSchachtenlijst.Sort((o1, o2) => o1.Verdieping.CompareTo(o2.Verdieping));
@@ -44,9 +44,10 @@ namespace HotelSimulatie.Model
 
         public override void Update(int verlopenTijdInSeconden)
         {
-            for(int i = 0; i < LiftStoppenlijst.Count; i++)
+            // Kijkt of gasten zijn doodgegaan
+            for (int i = 0; i < LiftStoppenlijst.Count; i++)
             {
-                if(LiftStoppenlijst.Keys.ElementAt(i) is Gast)
+                if (LiftStoppenlijst.Keys.ElementAt(i) is Gast)
                 {
                     Gast temp = (Gast)(LiftStoppenlijst.Keys.ElementAt(i));
                     if (temp.isDood == true)
@@ -64,7 +65,7 @@ namespace HotelSimulatie.Model
                 personenUitstappen();
                 personenInstappen();
             }
-            else
+            else if (LiftBestemming == null)
             {
                 bepaalLiftBestemming();
             }
@@ -76,7 +77,7 @@ namespace HotelSimulatie.Model
             {
                 // De persoon is opgepikt, verwijder liftstop in huidige lijst
                 LiftStoppenlijst.Remove(persoon);
-                
+
                 // Reset het doodgaan
                 if (persoon is Gast)
                 {
@@ -84,21 +85,23 @@ namespace HotelSimulatie.Model
                     persoon.Wachtteller.Reset();
                 }
 
-                if(persoon.Bestemming is Liftschacht)
+                if (persoon.Bestemming is Liftschacht)
                 {
-                    if(persoon is Gast)
+                    if (persoon is Gast)
                     {
                         Gast gast = (Gast)persoon;
-                        if(gast.isDood == false)
+                        if (gast.isDood == false)
                         {
                             // Zorg ervoor dat persoon niet meer grafisch getoond wordt
                             persoon.Wacht = false;
                             persoon.inLiftOfTrap = true;
-                            
+
                             // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
                             VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
                             if (!PersonenInLift.Contains(persoon))
+                            {
                                 PersonenInLift.Add(persoon);
+                            }
                         }
                     }
                     else
@@ -109,9 +112,11 @@ namespace HotelSimulatie.Model
 
                         // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
                         VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
-                        if(!PersonenInLift.Contains(persoon))
+                        if (!PersonenInLift.Contains(persoon))
+                        {
                             PersonenInLift.Add(persoon);
-                    } 
+                        }
+                    }
                 }
             }
         }
@@ -123,12 +128,12 @@ namespace HotelSimulatie.Model
             Dictionary<Persoon, List<object>> personenDieLiftUitGaan = (from persoon in LiftStoppenlijst
                                                                         where HuidigeVerdieping == (Liftschacht)persoon.Value[0] && persoon.Key.Wacht == false
                                                                         select persoon).ToDictionary(o1 => o1.Key, o2 => o2.Value);
-            
+
             foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieLiftUitGaan)
             {
                 Console.WriteLine("Uitstapper " + persoon.Key.Naam);
                 persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
-                if(persoon.Key.BestemmingLijst != null)
+                if (persoon.Key.BestemmingLijst != null)
                 {
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
                     persoon.Key.BestemmingLijst.Remove(persoon.Value[0] as Liftschacht);

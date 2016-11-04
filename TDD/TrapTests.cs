@@ -9,16 +9,6 @@ namespace TDD
     public class TrapTests
     {
         [TestMethod]
-        public void Zou_instantie_van_trap_moeten_returnen_bij_aanmaken_trap()
-        {
-            // Arrange 
-            HotelRuimte trapAlsHotelRuimte = new HotelRuimteFactory().MaakHotelRuimte("Trap");
-
-            // Assert
-            Assert.IsInstanceOfType(trapAlsHotelRuimte, typeof(Trap));
-        }
-
-        [TestMethod]
         public void Zou_persoon_moeten_laten_verplaatsen_bij_persoon_die_via_trap_omhoog_gaat()
         {
             // Arrange

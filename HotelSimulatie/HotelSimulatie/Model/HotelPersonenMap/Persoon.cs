@@ -47,11 +47,6 @@ namespace HotelSimulatie.Model
                 BestemmingLijst = dijkstra.MaakAlgoritme(this, HuidigeRuimte, ruimte as HotelRuimte);
                 Bestemming = BestemmingLijst.First();
                 BestemmingLijst.Remove(Bestemming);
-
-                if(this is Schoonmaker)
-                {
-                    Console.WriteLine("a");
-                }
             }
             else if (Beweeg())
             {
