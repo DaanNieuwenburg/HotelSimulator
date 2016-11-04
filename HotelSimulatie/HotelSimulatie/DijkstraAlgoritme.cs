@@ -34,6 +34,7 @@ namespace HotelSimulatie
                 {
                     ResetAfstanden();
                     Console.WriteLine("Exception: "+ex);
+                    break;
                 }
             }
 

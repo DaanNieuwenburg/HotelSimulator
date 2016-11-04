@@ -56,19 +56,22 @@ namespace HotelSimulatie.Model
                     if (HuidigeRuimte is Liftschacht && Bestemming is Liftschacht || HuidigeRuimte is Trappenhuis && Bestemming is Trappenhuis)
                     {
                         // Zet laatste liftschacht of trappenhuis als bestemming, verwijder ze dan allemaal
-                        // Het kan voorkomen dat de bestemming die enige liftschacht of trappenhuis is, dan is de bestemminglijst niet gevuld
-                        if (BestemmingLijst.Contains(Bestemming))
+                        // Het kan voorkomen dat de bestemming de enige liftschacht of trappenhuis is, dan is de bestemminglijst niet gevuld
+                        if (inLiftOfTrap == false)
                         {
-                            Bestemming = BestemmingLijst.Last(o => o.GetType() == HuidigeRuimte.GetType());
-                            BestemmingLijst.RemoveAll(o => o.GetType() == HuidigeRuimte.GetType());
+                            // Voorkomt een crash op een evacueerevent
+                            if (BestemmingLijst.OfType<Liftschacht>().Count() > 0)
+                            {
+                                Bestemming = BestemmingLijst.Last(o => o.GetType() == HuidigeRuimte.GetType());
+                                BestemmingLijst.RemoveAll(o => o.GetType() == HuidigeRuimte.GetType());
+                                HuidigeRuimte.VoegPersoonToe(this);
+                            }
                         }
-                        HuidigeRuimte.VoegPersoonToe(this);
                     }
                     else
                     {
-
                         // Haal de volgende ruimte op, in het geval van een liftschacht of trappenhuis hoeft dit echter niet
-                        if (Bestemming.GetType() != typeof(Trappenhuis))
+                        if (Bestemming.GetType() != typeof(Trappenhuis) && Bestemming.GetType() != typeof(Liftschacht))
                         {
                             HuidigeRuimte = Bestemming;
                             if (BestemmingLijst.Count != 0)
@@ -88,7 +91,6 @@ namespace HotelSimulatie.Model
                                     // Aangekomen op bestemming
                                     gaRuimteIn(Bestemming);
                                 }
-
                             }
                         }
                         else

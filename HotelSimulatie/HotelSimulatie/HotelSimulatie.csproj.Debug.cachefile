@@ -8,7 +8,6 @@ Content\Lift\Lift_Bovenste_Gesloten.xnb
 Content\Lift\Lift_Bovenste_Open.xnb
 Content\Lift\Lift_Gesloten.xnb
 Content\Lift\Lift_Open.xnb
-Content\Kamers\Trap_gesloten.xnb
 Content\Kamers\lobby_Normaal.xnb
 Content\Kamers\lobby_Death.xnb
 Content\Kamers\Kamer_1ster.xnb
@@ -49,3 +48,4 @@ Content\Kamers\Kamer_5ster(1hoog).xnb
 Content\Godzilla.xnb
 Content\Kamers\Unknown.xnb
 Content\Font.xnb
+Content\Kamers\Trappenhuis_gesloten.xnb

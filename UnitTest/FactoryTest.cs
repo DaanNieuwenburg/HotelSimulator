@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using HotelSimulatie.Model;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xna.Framework;
 
 namespace UnitTest
@@ -11,14 +12,15 @@ namespace UnitTest
         {
             // Arrange
             string  n = "Fitness";
-            
+
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
-            
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
+
             //Assert
-            Assert.AreEqual("Fitness", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Fitness));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Lift()
         {
@@ -26,12 +28,13 @@ namespace UnitTest
             string n = "Liftschacht";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Lift", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Liftschacht));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Lobby()
         {
@@ -39,12 +42,13 @@ namespace UnitTest
             string n = "Lobby";
             
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Lobby", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Lobby));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Eetzaal()
         {
@@ -52,12 +56,14 @@ namespace UnitTest
             string n = "Eetzaal";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
+
 
             //Assert
-            Assert.AreEqual("Eetzaal", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Eetzaal));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Bioscoop()
         {
@@ -65,12 +71,13 @@ namespace UnitTest
             string n = "Bioscoop";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Bioscoop", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Bioscoop));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Trappenhuis()
         {
@@ -78,12 +85,13 @@ namespace UnitTest
             string n = "Trappenhuis";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Trappenhuis", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Trappenhuis));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Trap()
         {
@@ -91,12 +99,13 @@ namespace UnitTest
             string n = "Trap";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Trap", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Trap));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Kamer()
         {
@@ -104,12 +113,13 @@ namespace UnitTest
             string n = "Kamer";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Kamer", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Kamer));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Gang()
         {
@@ -117,12 +127,13 @@ namespace UnitTest
             string n = "Gang";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Gang", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Gang));
         }
+
         [TestMethod]
         public void Test_RuimteFactory_Return_Zwembad()
         {
@@ -130,12 +141,11 @@ namespace UnitTest
             string n = "Zwembad";
 
             //Act
-            HotelSimulatie.Model.HotelRuimteFactory factory = new HotelSimulatie.Model.HotelRuimteFactory();
-            string soort = factory.MaakHotelRuimte(n).Naam;
+            HotelRuimteFactory factory = new HotelRuimteFactory();
+            HotelRuimte ruimte = factory.MaakHotelRuimte(n);
 
             //Assert
-            Assert.AreEqual("Zwembad", soort);
+            Assert.IsInstanceOfType(ruimte, typeof(Zwembad));
         }
-        
     }
 }

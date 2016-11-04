@@ -14,13 +14,15 @@ namespace HotelSimulatie.Model
         public Trappenhuis(int verdieping)
         {
             Verdieping = verdieping;
-            // Test
-            Naam = "Trap";
-            TexturePad = @"Kamers\Trap_gesloten";
+            Naam = "Trappenhuis";
+            TexturePad = @"Kamers\Trappenhuis_gesloten";
             Verdieping = verdieping;
         }
         public override void LoadContent(ContentManager contentManager) => Texture = contentManager.Load<Texture2D>(TexturePad);
 
-        public override void VoegPersoonToe(Persoon persoon) => trap.VoegPersoonToe(persoon);
+        public override void VoegPersoonToe(Persoon persoon)
+        {
+            trap.VoegPersoonToe(persoon);
+        }
     }
 }

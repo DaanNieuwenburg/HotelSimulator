@@ -88,8 +88,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Kamers\Trap_gesloten.png">
-      <Name>Trap_gesloten</Name>
+    <Compile Include="Kamers\Trappenhuis_gesloten.png">
+      <Name>Trappenhuis_gesloten</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

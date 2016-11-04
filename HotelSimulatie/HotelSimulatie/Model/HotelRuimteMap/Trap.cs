@@ -16,6 +16,7 @@ namespace HotelSimulatie.Model
         public Trap()
         {
             personenInTrap = new Dictionary<Persoon, List<object>>();
+            Naam = "Trap";
         }
 
         public override void LoadContent(ContentManager contentManager)

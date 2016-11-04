@@ -57,14 +57,15 @@ namespace HotelSimulatie.Model
                 }
             }
             verlopenTijd = verlopenTijdInSeconden;
-            // Als de lift een bestemming heeft en aangekomen is op bestemming
-            if (LiftBestemming != null && verlopenTijd >= aankomstTijd)
+            // Als de lift aangekomen is op bestemming
+            if (LiftBestemming != null && verlopenTijd >= aankomstTijd + 2)
             {
                 HuidigeVerdieping = LiftBestemming;
                 LiftBestemming = null;
                 personenUitstappen();
                 personenInstappen();
             }
+            // Als lift geen bestemming heeft zoek er een
             else if (LiftBestemming == null)
             {
                 bepaalLiftBestemming();
@@ -131,14 +132,15 @@ namespace HotelSimulatie.Model
 
             foreach (KeyValuePair<Persoon, List<object>> persoon in personenDieLiftUitGaan)
             {
-                Console.WriteLine("Uitstapper " + persoon.Key.Naam);
-                persoon.Key.HuidigeRuimte = (HotelRuimte)persoon.Value[0];
-                if (persoon.Key.BestemmingLijst != null)
+                // Als een persoon op een lift wacht, is de bestemming van de persoon de uitstap liftschacht
+                // Zo niet, dan is de bestemming de volgende ruimte
+                if (persoon.Key.Wacht != true)
                 {
+                    persoon.Key.HuidigeRuimte = persoon.Key.Bestemming;
                     persoon.Key.Bestemming = persoon.Key.BestemmingLijst.First();
-                    persoon.Key.BestemmingLijst.Remove(persoon.Value[0] as Liftschacht);
+                    persoon.Key.BestemmingLijst.Remove(persoon.Key.Bestemming);
+                    persoon.Key.Positie = HuidigeVerdieping.EventCoordinaten;
                 }
-                persoon.Key.Positie = HuidigeVerdieping.EventCoordinaten;
                 persoon.Key.Wacht = false;
                 persoon.Key.inLiftOfTrap = false;
                 LiftStoppenlijst.Remove(persoon.Key);
@@ -152,9 +154,9 @@ namespace HotelSimulatie.Model
             {
                 // Bepaal hoe lang persoon op de lift moet wachten
                 int wachtTijd = verlopenTijd + Math.Abs(liftstop.Verdieping - HuidigeVerdieping.Verdieping);
-                persoon.inLiftOfTrap = true;
                 List<object> stopGegevens = new List<object>();
                 stopGegevens.Add(liftstop);
+                stopGegevens.Add(verlopenTijd);
                 stopGegevens.Add(wachtTijd);
                 LiftStoppenlijst.Add(persoon, stopGegevens);
             }
@@ -162,8 +164,42 @@ namespace HotelSimulatie.Model
 
         private void bepaalLiftBestemming()
         {
+            // Hier maken we gebruik van het scheduling algoritme
+
+            // Bepaal de totale tijd die de lift nog heen en weer moet gaan
             if (LiftStoppenlijst.Count > 0)
             {
+                int totaleSomVanDuration = LiftStoppenlijst.Sum(p => (int)p.Value[1]);
+
+                Dictionary<Persoon, List<object>> starvationGevallen = new Dictionary<Persoon, List<object>>();
+                // Controleer op starvation
+                foreach (KeyValuePair<Persoon, List<object>> persoon in LiftStoppenlijst)
+                {
+                    // Bepaal de verstreken tijd
+                    int wachtTijd = (verlopenTijd - (int)persoon.Value[1]) + totaleSomVanDuration - (int)persoon.Value[2];
+                    if (wachtTijd > HotelTijdsEenheid.doodgaanHTE)
+                    {
+                        starvationGevallen.Add(persoon.Key, persoon.Value);
+                    }
+                }
+
+                if(starvationGevallen.Count > 0)
+                {
+                    // Sorteert de dictionary van kortste wachttijd naar hoogtste
+                    Dictionary<Persoon, List<object>> starvationGevallenGesorteerd = (from persoon in starvationGevallen
+                                                                        orderby (int)persoon.Value[2]
+                                                                        select persoon).ToDictionary(o1 => o1.Key, o2 => o2.Value);
+                    LiftBestemming = starvationGevallenGesorteerd.First().Value[0] as Liftschacht;
+                }
+                else
+                {
+                    // Sorteert de dictionary van kortste wachttijd naar hoogtste
+                    Dictionary<Persoon, List<object>> liftStoppenGesorteerd = (from persoon in LiftStoppenlijst
+                                                                               orderby (int)persoon.Value[2]
+                                                                               select persoon).ToDictionary(o1 => o1.Key, o2 => o2.Value);
+                    LiftBestemming = liftStoppenGesorteerd.First().Value[0] as Liftschacht;
+                }
+
                 LiftBestemming = (Liftschacht)LiftStoppenlijst.First().Value[0];
 
                 // Bepaal aankomsttijd

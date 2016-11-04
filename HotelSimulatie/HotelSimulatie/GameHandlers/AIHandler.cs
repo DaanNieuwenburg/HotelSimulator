@@ -29,7 +29,7 @@ namespace HotelSimulatie
                     Gast gast = (Gast)persoon;
                     if (gast.isDood == false)
                     {
-                        if (gast.HuidigEvent != null && gast.inLiftOfTrap == false)
+                        if (gast.HuidigEvent != null && gast.inLiftOfTrap == false && gast.Wacht == false)
                         {
                             if (gast.HuidigEvent.Event == HotelEventAdapter.EventType.CHECK_IN)
                             {
