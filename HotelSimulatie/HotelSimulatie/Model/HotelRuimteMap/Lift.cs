@@ -44,6 +44,17 @@ namespace HotelSimulatie.Model
 
         public override void Update(int verlopenTijdInSeconden)
         {
+            for(int i = 0; i < LiftStoppenlijst.Count; i++)
+            {
+                if(LiftStoppenlijst.Keys.ElementAt(i) is Gast)
+                {
+                    Gast temp = (Gast)(LiftStoppenlijst.Keys.ElementAt(i));
+                    if (temp.isDood == true)
+                    {
+                        LiftStoppenlijst.Remove(temp);
+                    }
+                }
+            }
             verlopenTijd = verlopenTijdInSeconden;
             // Als de lift een bestemming heeft en aangekomen is op bestemming
             if (LiftBestemming != null && verlopenTijd >= aankomstTijd)
@@ -65,11 +76,7 @@ namespace HotelSimulatie.Model
             {
                 // De persoon is opgepikt, verwijder liftstop in huidige lijst
                 LiftStoppenlijst.Remove(persoon);
-
-                // Zorg ervoor dat persoon niet meer grafisch getoond wordt
-                persoon.Wacht = false;
-                persoon.inLiftOfTrap = true;
-
+                
                 // Reset het doodgaan
                 if (persoon is Gast)
                 {
@@ -77,11 +84,34 @@ namespace HotelSimulatie.Model
                     persoon.Wachtteller.Reset();
                 }
 
-                // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
                 if(persoon.Bestemming is Liftschacht)
                 {
-                    VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
-                    PersonenInLift.Add(persoon);
+                    if(persoon is Gast)
+                    {
+                        Gast gast = (Gast)persoon;
+                        if(gast.isDood == false)
+                        {
+                            // Zorg ervoor dat persoon niet meer grafisch getoond wordt
+                            persoon.Wacht = false;
+                            persoon.inLiftOfTrap = true;
+                            
+                            // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
+                            VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
+                            if (!PersonenInLift.Contains(persoon))
+                                PersonenInLift.Add(persoon);
+                        }
+                    }
+                    else
+                    {
+                        // Zorg ervoor dat persoon niet meer grafisch getoond wordt
+                        persoon.Wacht = false;
+                        persoon.inLiftOfTrap = true;
+
+                        // Voeg de liftschacht waar de persoon weer uit wil toe als liftstop
+                        VoegLiftStopToe(persoon, persoon.Bestemming as Liftschacht);
+                        if(!PersonenInLift.Contains(persoon))
+                            PersonenInLift.Add(persoon);
+                    } 
                 }
             }
         }

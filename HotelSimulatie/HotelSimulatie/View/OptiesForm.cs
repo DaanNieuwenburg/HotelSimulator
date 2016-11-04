@@ -19,7 +19,6 @@ namespace HotelSimulatie.View
             tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
             tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
-            tbEetzaal.Text = Eetzaal.MaxAantalGasten.ToString();
             #endregion 
         }
 
@@ -70,7 +69,6 @@ namespace HotelSimulatie.View
                 HotelTijdsEenheid.bioscoopHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur2.Text.Replace('.', ',')));
                 HotelTijdsEenheid.schoonmakenHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur4.Text.Replace('.', ',')));
                 HotelTijdsEenheid.doodgaanHTE = (Int32)Math.Round(Convert.ToDouble(tbTijdsduur5.Text.Replace('.', ',')));
-                Eetzaal.MaxAantalGasten = Convert.ToInt32(tbEetzaal.Text);
                 DialogResult = DialogResult.OK;
             }
         }
@@ -112,7 +110,6 @@ namespace HotelSimulatie.View
             tbTijdsduur3.Text = HotelTijdsEenheid.fitnessHTE.ToString();
             tbTijdsduur4.Text = HotelTijdsEenheid.schoonmakenHTE.ToString();
             tbTijdsduur5.Text = HotelTijdsEenheid.doodgaanHTE.ToString();
-            tbEetzaal.Text = Eetzaal.MaxAantalGasten.ToString();
         }
     }
 }

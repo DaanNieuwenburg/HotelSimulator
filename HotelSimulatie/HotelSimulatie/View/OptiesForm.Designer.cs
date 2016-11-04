@@ -48,8 +48,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tbTijdsduur5 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.tbEetzaal = new System.Windows.Forms.TextBox();
             this.btnDefault = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -229,23 +227,6 @@
             this.tbTijdsduur5.TabIndex = 23;
             this.tbTijdsduur5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTijdsduur1_KeyPress);
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(37, 309);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(142, 13);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "Max aantal gasten in eetzaal";
-            // 
-            // tbEetzaal
-            // 
-            this.tbEetzaal.Location = new System.Drawing.Point(193, 306);
-            this.tbEetzaal.Name = "tbEetzaal";
-            this.tbEetzaal.Size = new System.Drawing.Size(100, 20);
-            this.tbEetzaal.TabIndex = 26;
-            this.tbEetzaal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEetzaal_KeyPress);
-            // 
             // btnDefault
             // 
             this.btnDefault.Location = new System.Drawing.Point(12, 376);
@@ -262,8 +243,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 411);
             this.Controls.Add(this.btnDefault);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.tbEetzaal);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.tbTijdsduur5);
@@ -313,8 +292,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox tbTijdsduur5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox tbEetzaal;
         private System.Windows.Forms.Button btnDefault;
     }
 }
