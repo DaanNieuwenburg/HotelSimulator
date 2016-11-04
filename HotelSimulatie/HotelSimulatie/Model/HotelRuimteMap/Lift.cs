@@ -44,6 +44,17 @@ namespace HotelSimulatie.Model
 
         public override void Update(int verlopenTijdInSeconden)
         {
+            for(int i = 0; i < LiftStoppenlijst.Count; i++)
+            {
+                if(LiftStoppenlijst.Keys.ElementAt(i) is Gast)
+                {
+                    Gast temp = (Gast)(LiftStoppenlijst.Keys.ElementAt(i));
+                    if (temp.isDood == true)
+                    {
+                        LiftStoppenlijst.Remove(temp);
+                    }
+                }
+            }
             verlopenTijd = verlopenTijdInSeconden;
             // Als de lift een bestemming heeft en aangekomen is op bestemming
             if (LiftBestemming != null && verlopenTijd >= aankomstTijd)
