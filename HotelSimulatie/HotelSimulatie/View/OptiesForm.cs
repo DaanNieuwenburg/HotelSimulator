@@ -32,10 +32,10 @@ namespace HotelSimulatie.View
                 allgood = false;
                 MessageBox.Show("De tijdsduur van een seconde mag niet lager zijn dan 0,1 HTE", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else if (Convert.ToDouble(tbHTE.Text) > 50)
+            else if (Convert.ToDouble(tbHTE.Text) > 30)
             {
                 allgood = false;
-                MessageBox.Show("De tijdsduur niet hoger zijn dan 50 HTE per seconde", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("De tijdsduur niet hoger zijn dan 30 HTE per seconde", "Waarschuwing", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             foreach (Control x in this.Controls)

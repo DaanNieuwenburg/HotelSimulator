@@ -242,6 +242,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 411);
+            this.ControlBox = false;
             this.Controls.Add(this.btnDefault);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label12);
@@ -263,7 +264,12 @@
             this.Controls.Add(this.tbTijdsduur2);
             this.Controls.Add(this.tbTijdsduur1);
             this.Controls.Add(this.tbHTE);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(483, 450);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(483, 450);
             this.Name = "OptiesForm";
+            this.ShowIcon = false;
             this.Text = "OptiesForm";
             this.ResumeLayout(false);
             this.PerformLayout();
